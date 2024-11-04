@@ -329,7 +329,7 @@ nav.mesud.ozil_menu span {
 }
 
 .sticky .mesud.ozil-btn a {
-    color: #019D65;
+    color: #0072FF;
     background: #fff;
 }
 
@@ -442,7 +442,7 @@ nav.mesud.ozil_menu span {
     padding: 13px 34px 13px;
     text-decoration: none;
     position: relative;
-    border: 1px solid #019D65;
+    border: 1px solid #0072FF;
 }
 
 .mesud.ozil-btn2 a i {
@@ -455,7 +455,7 @@ nav.mesud.ozil_menu span {
 
 .mesud.ozil-btn2 a::before {
 	content: "";
-	background: #019D65;
+	background: #0072FF;
 	height: 0;
 	width: 50%;
 	position: absolute;
@@ -468,7 +468,7 @@ nav.mesud.ozil_menu span {
 
 .mesud.ozil-btn2 a::after {
 	content: "";
-	background: #019D65;
+	background: #0072FF;
 	height: 0;
 	width: 50%;
 	position: absolute;
@@ -492,11 +492,11 @@ nav.mesud.ozil_menu span {
 }
 
 .hero-area .mesud.ozil-btn a {
-    border: 1px solid #009D66;
+    border: 1px solid #0072FF;
 }
 
 .hero-area .mesud.ozil-btn a:hover {
-    border: 1px solid #009D66;
+    border: 1px solid #0072FF;
 }
 
 .hero-thumb {
@@ -764,7 +764,7 @@ h3.service-title {
     left: 0;
     right: 0;
     margin: auto;
-    background: rgba(1,157,101,0.5);
+    background: #0072FF;
     padding: 30px 0 30px;
     transform: perspective(500px)rotateX(90deg);
     transition: .5s;
@@ -838,12 +838,12 @@ ul.tabs.active {
 }
 
 li.active.current {
-    background: #019E66;
+    background: #0072FF;
     border-radius: 5px;
 }
 
 li.active.current {
-    background: #019E66 !important;
+    background: #0072FF !important;
     border-radius: 5px;
 }
 
@@ -1085,7 +1085,7 @@ span.prosses-bar {
 }
 
 span.fill {
-    background: #019D65!important;
+    background: #0072FF!important;
     border-radius: 0;
 }
 
@@ -1094,7 +1094,7 @@ span.fill {
 }
 
 .tab-single-box:hover:after {
-    background: #019D65;
+    background: #0072FF;
 }
 
 .tab-single-box:hover {
@@ -1224,7 +1224,7 @@ span.testimonials-text {
 
 
 .owl-prev:hover, .owl-next:hover{
-    background: #019D65;
+    background: #0072FF;
 }
 
 .brand-title {
@@ -1315,7 +1315,7 @@ h4.blog-text {
     bottom: 124px;
     background: #1c1b21;
     font-size: 14px;
-    color: #009e66;
+    color: #0072FF;
     font-weight: 400;
     font-family: "Montserrat";
     padding: 22px 28px 0 0;
@@ -1334,7 +1334,7 @@ p.meta-blog-date {
 
 p.meta-blog-date i {
     display: inline-block;
-    color: #009e66;
+    color: #0072FF;
     font-size: 15px;
     margin-right: 13px;
 }
@@ -1360,7 +1360,7 @@ h3.blog-title a {
 
 
 .blog-single-box:hover h3.blog-title a {
-    color: #009D66;
+    color: #0072FF;
 }
 
 .blog-single-box:hover {
@@ -1426,7 +1426,7 @@ p.contact-desrip::before {
 }
 
 span.active {
-    color: #009e66 !important;
+    color: #0072FF !important;
     display: inline-block;
     position: relative;
     z-index: 1;
@@ -1437,7 +1437,7 @@ span.active::before {
     content: "";
     height: 1px;
     width: 100%;
-    background: #009e66;
+    background: #0072FF;
     bottom: 10px;
 }
 
@@ -1487,7 +1487,7 @@ span.active::before {
     color: #ffffff;
     font-weight: 500;
     font-family: "Montserrat";
-    background: #009e66;
+    background: #0072FF;
     outline: 0;
     border: none;
     padding: 12px 35px 12px;
@@ -1584,7 +1584,7 @@ p.footer-text {
 }
 
 p.footer-text span {
-    color: #009e66;
+    color: #0072FF;
 }
 
 
@@ -1596,7 +1596,7 @@ p.footer-text span {
 
 .typed-cursor {
     opacity: 1;
-    color: #009e66;
+    color: #0072FF;
 }
 
 
@@ -1660,8 +1660,8 @@ p.footer-text span {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: linear-gradient(to right, #009e66 0%, #009e66 100%);
-    background-image: -ms-linear-gradient(0deg, #009e66 0%, #009e66 100%);
+    background-image: linear-gradient(to right, #0072FF 0%, #0072FF 100%);
+    background-image: -ms-linear-gradient(0deg, #0072FF 0%, #0072FF 100%);
     opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.5s ease-out 0s;
@@ -1714,7 +1714,7 @@ p.footer-text span {
     color: #fff;
     top: 3px;
     z-index: 1;
-    background: #009e66;
+    background: #0072FF;
 }
 
  .top-wrap .go-top-button i {
@@ -1735,8 +1735,8 @@ p.footer-text span {
     -webkit-animation: ripple 1.6s ease-out infinite;
     -moz-animation: ripple 1.6s ease-out infinite;
     opacity: 0;
-    background-image: -moz-linear-gradient(0deg, #009e66 0%, #009e66 100%);
-    background-image: -webkit-linear-gradient(0deg, #009e66 0%, #009e66 100%);
+    background-image: -moz-linear-gradient(0deg, #0072FF 0%, #0072FF 100%);
+    background-image: -webkit-linear-gradient(0deg, #0072FF 0%, #0072FF 100%);
     border-radius: 100%;
 }
 
@@ -2344,7 +2344,7 @@ p.blog-details-descrip {
     font-size: 0.875rem;
     font-weight: 300;
     border-radius: 100%;
-    background-color: #009e66;
+    background-color: #0072FF;
     z-index: 4;
     color: #fff;
     line-height: 2rem;
