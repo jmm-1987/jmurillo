@@ -234,11 +234,15 @@ nav.mesud.ozil_menu span {
 }
 
 .mesud.ozil_nav_manu.sticky .logo_img {
-    display: none;
+    display: flex;
+    height: 70px;
+    width: 70px;
 }
 
 .main_sticky {
-    display: none;
+    display: flex;
+    height: 70px;
+    width: 70px;
 }
 
 .mesud.ozil_nav_manu.sticky .main_sticky {
