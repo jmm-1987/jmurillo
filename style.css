@@ -34,6 +34,10 @@ Tags:   delivery company, grid, logistics, moving, moving company, shipping, cou
 <--  Polytia Nav Menu Area Css -->
 =======================================*/
 
+svg {
+    align-items: center;
+}
+
 
 .mesud.ozil_nav_manu {
     padding: 0 62px;
@@ -111,7 +115,7 @@ nav.mesud.ozil_menu span {
 }
 
 .mesud.ozil_menu > ul > li > a:hover {
-    color: blue;
+    color: #0072FF;
 }
 
 .sticky .mesud.ozil_menu > ul > li > a:hover {
@@ -503,7 +507,7 @@ nav.mesud.ozil_menu span {
 
 .hero-thumb {
     text-align: center;
-    margin: 215px -99px 0 0;
+    margin: 180px 0px 0 0;
 }
 
 .hero-social-icon {
@@ -524,7 +528,7 @@ nav.mesud.ozil_menu span {
 .hero-social-icon ul li a i {
     display: inline-block;
     font-size: 14px;
-    color: blue;
+    color: #0072FF;
     height: 35px;
     width: 35px;
     line-height: 35px;
@@ -541,7 +545,7 @@ nav.mesud.ozil_menu span {
     content: "";
     height: 100%;
     width: 100%;
-    background: blue;
+    background: #0072FF;
     left: 0;
     top: 0;
     z-index: -1;
@@ -1830,14 +1834,14 @@ p.footer-text span {
     width: 48em;
     height: 48em;
     background-image:
-      radial-gradient(circle 10px, #009D66 100%, transparent 0),
-      radial-gradient(circle 10px, #009D66 100%, transparent 0),
-      radial-gradient(circle 10px, #009D66 100%, transparent 0),
-      radial-gradient(circle 10px, #009D66 100%, transparent 0),
-      radial-gradient(circle 10px, #009D66 100%, transparent 0),
-      radial-gradient(circle 10px, #009D66 100%, transparent 0),
-      radial-gradient(circle 10px, #009D66 100%, transparent 0),
-      radial-gradient(circle 10px, #009D66 100%, transparent 0);
+      radial-gradient(circle 10px, #0072FF 100%, transparent 0),
+      radial-gradient(circle 10px, #00C6FF 100%, transparent 0),
+      radial-gradient(circle 10px, #0072FF 100%, transparent 0),
+      radial-gradient(circle 10px, #00C6FF 100%, transparent 0),
+      radial-gradient(circle 10px, #0072FF 100%, transparent 0),
+      radial-gradient(circle 10px, #00C6FF 100%, transparent 0),
+      radial-gradient(circle 10px, #0072FF 100%, transparent 0),
+      radial-gradient(circle 10px, #00C6FF 100%, transparent 0);
     background-position: 0em -18em, 0em 18em, 18em 0em, -18em 0em,
                          13em -13em, -13em -13em, 13em 13em, -13em 13em;
       background-repeat: no-repeat;
