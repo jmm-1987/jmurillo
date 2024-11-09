@@ -386,7 +386,7 @@ nav.mesud.ozil_menu span {
 }
 
 .hero-contant {
-    margin-top: 89px;
+    margin-top: 20px;
 }
 
 .row.hero {
@@ -524,7 +524,7 @@ nav.mesud.ozil_menu span {
 .hero-social-icon ul li a i {
     display: inline-block;
     font-size: 14px;
-    color: #009D66;
+    color: blue;
     height: 35px;
     width: 35px;
     line-height: 35px;
@@ -541,7 +541,7 @@ nav.mesud.ozil_menu span {
     content: "";
     height: 100%;
     width: 100%;
-    background: #009D66;
+    background: blue;
     left: 0;
     top: 0;
     z-index: -1;
@@ -617,9 +617,9 @@ h1.section-main-title {
 }
 
 .service-single-box {
-    background: #1C1B21;
+    background: #474747;
     border: 1px solid #272727;
-    border-radius: 5px;
+    border-radius: 20px;
     padding: 46px 30px 17px;
     transition: .5s;
     margin-bottom: 30px;
@@ -886,13 +886,13 @@ ul.tabs.active li a {
 }
 
 .tab-single-box {
-    background: #1C1B21;
+    background: #474747;
     border: 1px solid #272727;
     margin: 0 16px 30px 0;
     padding: 38px 30px 34px;
     position: relative;
     z-index: 1;
-    border-radius: 5px;
+    border-radius: 20px;
     transition: .5s;
 }
 
@@ -1031,7 +1031,7 @@ p.tab-descrip {
     margin: 0 22px 40px;
     border: 1px solid #272727;
     border-radius: 20px;
-    background-color: gray;
+    background-color: #474747;
 }
 
 /*prossess-ber */
@@ -1544,7 +1544,7 @@ span.active::before {
 .footer-social-icon ul li a i {
     display: inline-block;
     font-size: 14px;
-    color: #009D66;
+    color: blue;
     height: 35px;
     width: 35px;
     line-height: 35px;
