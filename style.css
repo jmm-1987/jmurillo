@@ -35,7 +35,11 @@ Tags:   delivery company, grid, logistics, moving, moving company, shipping, cou
 =======================================*/
 
 svg {
-    align-items: center;
+    max-width: 80%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block; /* Elimina espacios adicionales */
 }
 
 
