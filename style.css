@@ -1319,6 +1319,7 @@ span.testimonials-text {
 
 .blog-thumb img {
     width: 100%;
+    margin-top: 100px;
 }
 
 h4.blog-text {
@@ -2271,6 +2272,7 @@ to {transform: scale(1)}
 .blog-details-thumb img {
     width: 100%;
     position: relative;
+
 }
 
 span.blog-details-date {
@@ -2283,12 +2285,12 @@ span.blog-details-date {
 }
 
 h3.blog-details-title a {
-    display: inline-block;
+    display: flex;
     font-size: 30px;
     text-decoration: none;
     color: #000;
     font-weight: 700;
-    padding: 20px 0 15px;
+    padding: 250px 0 15px;
 }
 
 p.blog-details-descrip {
@@ -2326,6 +2328,7 @@ p.blog-details-descrip {
     transition: 0.64s ease-in-out;
 }
 .popup-inner {
+    padding-top: 220px;
     position: relative;
     bottom: -100vw;
     right: -100vh;
