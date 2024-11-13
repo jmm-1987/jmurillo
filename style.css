@@ -2328,7 +2328,7 @@ p.blog-details-descrip {
     transition: 0.64s ease-in-out;
 }
 .popup-inner {
-    padding-top: 220px;
+    padding-top: 480px;
     position: relative;
     bottom: -100vw;
     right: -100vh;
