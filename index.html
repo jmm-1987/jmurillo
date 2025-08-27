@@ -71,6 +71,59 @@
 			scroll-behavior: smooth;
 		}
 		
+		/* === LOGO CON DIRECTCITA === */
+		.logo-with-buttons {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			margin-left: -20px;
+		}
+		
+		.directcita-logo {
+			display: flex;
+			align-items: center;
+		}
+		
+		.directcita-logo a {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			text-decoration: none;
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			padding: 8px 12px;
+			border-radius: 12px;
+		}
+		
+		.directcita-img {
+			height: 50px;
+			width: auto;
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			border-radius: 8px;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+		}
+		
+		.directcita-text {
+			font-family: 'Poppins', sans-serif;
+			font-size: 16px;
+			font-weight: 700;
+			color: #2c3e50;
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+		
+		.directcita-logo a:hover {
+			background: rgba(40, 167, 69, 0.1);
+			transform: translateY(-2px);
+		}
+		
+		.directcita-logo a:hover .directcita-img {
+			transform: scale(1.05);
+			box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+		}
+		
+		.directcita-logo a:hover .directcita-text {
+			color: #28a745;
+		}
+		
 		/* Efectos glassmorphism para las cajas */
 		.service-single-box, .portfolio-single-box, .tab-single-box, .skills-single-box.two {
 			backdrop-filter: blur(15px);
@@ -223,7 +276,7 @@
 		@media (max-width: 1024px) {
 			.hero-area {
 				height: 80vh;
-				background: url('assets/images/fondo2.png') center center/cover no-repeat !important;
+				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
 			}
 			
@@ -247,12 +300,77 @@
 			}
 		}
 		
+		/* === LOGO DIRECTCITA RESPONSIVOS === */
+		@media (max-width: 1024px) {
+			.logo-with-buttons {
+				gap: 15px;
+			}
+			
+			.directcita-img {
+				height: 45px;
+			}
+			
+			.directcita-text {
+				font-size: 15px;
+			}
+		}
+		
+		@media (max-width: 768px) {
+			.logo-with-buttons {
+				gap: 12px;
+			}
+			
+			.directcita-img {
+				height: 35px;
+			}
+			
+			.directcita-text {
+				font-size: 14px;
+			}
+			
+			.directcita-logo a {
+				gap: 8px;
+				padding: 6px 8px;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.logo-with-buttons {
+				gap: 10px;
+				flex-direction: column;
+				align-items: flex-start;
+			}
+			
+			.directcita-img {
+				height: 30px;
+			}
+			
+			.directcita-text {
+				font-size: 12px;
+			}
+			
+			.directcita-logo a {
+				gap: 6px;
+				padding: 4px 6px;
+			}
+		}
+		
+		@media (max-width: 360px) {
+			.directcita-img {
+				height: 25px;
+			}
+			
+			.directcita-text {
+				font-size: 11px;
+			}
+		}
+		
 		/* Mobile Landscape (481px - 768px) */
 		@media (max-width: 768px) {
 			.hero-area {
 				height: 100vh;
 				padding: 20px 0;
-				background: url('assets/images/fondo2.png') center center/cover no-repeat !important;
+				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
 			}
 			
@@ -349,7 +467,7 @@
 				height: auto;
 				min-height: 100vh;
 				padding: 60px 0 40px;
-				background: url('assets/images/fondo2.png') center center/cover no-repeat !important;
+				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
 			}
 			
@@ -461,7 +579,7 @@
 		@media (max-width: 360px) {
 			.hero-area {
 				padding: 40px 0 20px;
-				background: url('assets/images/fondo2.png') center center/cover no-repeat !important;
+				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
 			}
 			
@@ -532,13 +650,22 @@
 <div id="sticky-header" class="mesud ozil_nav_manu">
 	<div class="row align-items-center">
 		<div class="col-lg-3">
-			<div class="logo">
-				<a class="logo_img" href="index.html" title="mesud ozil">
-					<img src="assets/images/yogrande.png" alt="logo" width="70" height="70">
-				</a>
-				<a class="main_sticky" href="index.html" title="mesud ozil">
-					<img src="assets/images/yogrande.png" alt="astute" width="70" height="70">
-				</a>
+			<div class="logo-with-buttons">
+				<div class="logo">
+					<a class="logo_img" href="index.html" title="mesud ozil">
+						<img src="assets/images/yogrande.png" alt="logo" width="70" height="70">
+					</a>
+					<a class="main_sticky" href="index.html" title="mesud ozil">
+						<img src="assets/images/yogrande.png" alt="astute" width="70" height="70">
+					</a>
+				</div>
+				<!-- Logotipo DirectaCita -->
+				<div class="directcita-logo">
+					<a href="https://directcita.onrender.com" target="_blank" rel="noopener noreferrer">
+						<img src="assets/images/directcita.png" alt="DirectaCita" class="directcita-img">
+						<span class="directcita-text">DirectCita</span>
+					</a>
+				</div>
 			</div>
 		</div>
 		<div class="col-lg-9">
@@ -1811,3 +1938,4 @@
 </body>
 </html>
 <h2></h2>
+

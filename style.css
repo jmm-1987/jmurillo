@@ -44,7 +44,7 @@ svg {
 
 
 .mesud.ozil_nav_manu {
-    padding: 0 62px;
+    padding: 0 20px;
 }
 
 .sticky {
@@ -57,13 +57,13 @@ svg {
     box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
     background: #0072FF!important;
     z-index: 500;
-    padding: 0 100px;
+    padding: 0 20px;
     transition: .5s !important;
     z-index: 500;
     -webkit-animation: 300ms running fadeInDown;
     animation: 500ms running fadeInUp;
     animation-name: slideInDown;
-    border: 2px solid #000000;
+    border: 2px solid #000000 !important;
     border-radius: 15px;
     margin: 10px;
     width: calc(100% - 20px);
@@ -75,6 +75,14 @@ svg {
 
 .sticky.mesud.ozil_nav_manu:before {
     display: none;
+}
+
+/* Asegurar marco completo en sticky */
+.sticky.mesud.ozil_nav_manu {
+    border-top: 2px solid #000000 !important;
+    border-right: 2px solid #000000 !important;
+    border-bottom: 2px solid #000000 !important;
+    border-left: 2px solid #000000 !important;
 }
 
 /* mesud ozil Menu Css*/
@@ -127,7 +135,7 @@ nav.mesud.ozil_menu span {
 }
 
 .sticky .mesud.ozil_menu > ul > li > a:hover {
-    color: #fff;
+    color: #28a745;
 }
 
 
@@ -260,7 +268,7 @@ nav.mesud.ozil_menu span {
 }
 
 .sticky .mesud.ozil_menu li a {
-    color: #fff;
+    color: #000000;
 }
 
 .mesud.ozil_nav_manu.sticky a.dtbtn {
@@ -515,7 +523,7 @@ nav.mesud.ozil_menu span {
 
 .hero-thumb {
     text-align: center;
-    margin: 180px 0px 0 0;
+    margin: 120px 0px 0 0;
 }
 
 .hero-social-icon {
