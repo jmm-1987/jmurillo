@@ -51,7 +51,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-	<!-- Estilos para ocultar logo inicialmente -->
+	<!-- Estilos para diseño moderno y profesional -->
 	<style>
 		/* Ocultar logo inicialmente */
 		.logo_img {
@@ -64,12 +64,453 @@
 			opacity: 1;
 		}
 		
-
+		/* === EFECTOS MODERNOS Y PROFESIONALES === */
+		
+		/* Scroll suave */
+		* {
+			scroll-behavior: smooth;
+		}
+		
+		/* Efectos glassmorphism para las cajas */
+		.service-single-box, .portfolio-single-box, .tab-single-box, .skills-single-box.two {
+			backdrop-filter: blur(15px);
+			border: 1px solid rgba(255, 255, 255, 0.3) !important;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+		}
+		
+		/* Hover effects elegantes */
+		.service-single-box:hover, .portfolio-single-box:hover, .tab-single-box:hover {
+			transform: translateY(-15px) scale(1.03) !important;
+			box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+		}
+		
+		/* Gradientes en títulos principales */
+		.section-main-title {
+			background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+			-webkit-background-clip: text !important;
+			-webkit-text-fill-color: transparent !important;
+			background-clip: text !important;
+			position: relative;
+		}
+		
+		/* Líneas decorativas bajo títulos */
+		.section-title {
+			position: relative;
+		}
+		
+		.section-title::after {
+			content: '';
+			position: absolute;
+			bottom: -15px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 80px;
+			height: 4px;
+			background: linear-gradient(90deg, #28a745, #00C6FF);
+			border-radius: 2px;
+		}
+		
+		.section-title.text-left::after {
+			left: 0;
+			transform: none;
+		}
+		
+		/* Navegación con glassmorphism */
+		.mesud.ozil_nav_manu {
+			backdrop-filter: blur(20px) !important;
+			background: rgba(255, 255, 255, 0.95) !important;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		}
+		
+		/* Botón contacto con efectos modernos */
+		.mesud.ozil-btn a {
+			box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4) !important;
+			position: relative;
+			overflow: hidden;
+		}
+		
+		.mesud.ozil-btn a::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+			transition: left 0.6s ease;
+		}
+		
+		.mesud.ozil-btn a:hover::after {
+			left: 100%;
+		}
+		
+		/* Portfolio con overlay mejorado */
+		.portfolio-content {
+			background: linear-gradient(135deg, rgba(40, 167, 69, 0.95), rgba(0, 198, 255, 0.95)) !important;
+		}
+		
+		/* Efecto parallax para hero */
+		.hero-area {
+			background-attachment: fixed !important;
+		}
+		
+		/* Micro-interacciones */
+		.service-number h1 {
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+		}
+		
+		.service-single-box:hover .service-number h1 {
+			transform: scale(1.2) rotate(10deg) !important;
+			color: #28a745 !important;
+		}
+		
+		/* Efectos en skills bars */
+		.skills-single-box.two:hover {
+			transform: translateX(10px) !important;
+		}
+		
+		/* Sombras dinámicas en imágenes */
+		.portfolio-thumb img, .hero-thumb img {
+			transition: all 0.4s ease !important;
+			border-radius: 15px !important;
+		}
+		
+		.portfolio-single-box:hover .portfolio-thumb img,
+		.hero-thumb img:hover {
+			transform: scale(1.05) !important;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+		}
+		
+		/* Efectos de texto typing mejorados */
+		.typed-cursor {
+			color: #28a745 !important;
+			animation: pulse 1.5s infinite !important;
+		}
+		
+		@keyframes pulse {
+			0%, 100% { opacity: 1; transform: scale(1); }
+			50% { opacity: 0.7; transform: scale(1.1); }
+		}
+		
+		/* Scroll indicator */
+		.scroll-progress {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 0%;
+			height: 4px;
+			background: linear-gradient(90deg, #28a745, #00C6FF);
+			z-index: 9999;
+			transition: width 0.1s ease;
+		}
+		
+		/* Animaciones de entrada */
+		.fade-in-up {
+			opacity: 0;
+			transform: translateY(50px);
+			transition: all 0.8s ease;
+		}
+		
+		.fade-in-up.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		
+		/* === DISEÑO RESPONSIVO MODERNO === */
+		
+		/* Tablets (768px - 1024px) */
+		@media (max-width: 1024px) {
+			.hero-area {
+				height: 80vh;
+				background: url('assets/images/fondo2.png') center center/cover no-repeat !important;
+				background-attachment: scroll !important;
+			}
+			
+			.sticky {
+				padding: 0 50px !important;
+				margin: 5px !important;
+				width: calc(100% - 10px) !important;
+			}
+			
+			.service-single-box, .portfolio-single-box, .tab-single-box {
+				margin-bottom: 25px;
+				padding: 30px 20px;
+			}
+			
+			.section-main-title {
+				font-size: 35px !important;
+			}
+			
+			.hero-thumb img {
+				max-width: 280px !important;
+			}
+		}
+		
+		/* Mobile Landscape (481px - 768px) */
+		@media (max-width: 768px) {
+			.hero-area {
+				height: 100vh;
+				padding: 20px 0;
+			}
+			
+			.hero-contant {
+				text-align: center;
+				margin-bottom: 30px;
+			}
+			
+			.hero-thumb {
+				text-align: center;
+				margin-top: 30px !important;
+			}
+			
+			.hero-thumb img {
+				max-width: 250px !important;
+			}
+			
+			.sticky {
+				padding: 0 20px !important;
+				margin: 5px !important;
+				border-radius: 10px !important;
+			}
+			
+			.mesud.ozil_nav_manu {
+				padding: 0 20px !important;
+			}
+			
+			.section-main-title {
+				font-size: 28px !important;
+				line-height: 1.2 !important;
+			}
+			
+			.section-sub-title {
+				font-size: 14px !important;
+			}
+			
+			.service-single-box, .portfolio-single-box, .tab-single-box {
+				margin-bottom: 20px;
+				padding: 25px 15px;
+				transform: none !important;
+			}
+			
+			.service-single-box:hover, .portfolio-single-box:hover, .tab-single-box:hover {
+				transform: translateY(-5px) scale(1.01) !important;
+			}
+			
+			.section-title::after {
+				width: 60px;
+				height: 3px;
+			}
+			
+			/* Navegación móvil mejorada */
+			.mobile-menu-area {
+				backdrop-filter: blur(20px) !important;
+				background: rgba(255, 255, 255, 0.95) !important;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			}
+			
+			/* Portfolio responsivo */
+			.portfolio-single-box {
+				margin-bottom: 25px;
+			}
+			
+			.portfolio-thumb img {
+				border-radius: 10px !important;
+			}
+			
+			/* Skills responsivo */
+			.skills-single-box.two {
+				margin: 0 10px 25px;
+				padding: 15px;
+			}
+			
+			.skills-single-box.two:hover {
+				transform: translateY(-5px) !important;
+			}
+			
+			/* Tabs responsivo */
+			ul.tabs.active li {
+				margin: 5px 2px;
+				display: block;
+				width: 100%;
+			}
+			
+			ul.tabs.active li a {
+				padding: 12px 20px;
+				font-size: 14px;
+			}
+		}
+		
+		/* Mobile Portrait (320px - 480px) */
+		@media (max-width: 480px) {
+			.hero-area {
+				height: auto;
+				min-height: 100vh;
+				padding: 60px 0 40px;
+			}
+			
+			.hero-contant h3, .hero-contant h2 {
+				font-size: 18px !important;
+				padding: 8px 15px !important;
+				margin-bottom: 15px;
+			}
+			
+			.hero-thumb img {
+				max-width: 200px !important;
+				margin-top: 20px;
+			}
+			
+			.sticky {
+				padding: 0 15px !important;
+				margin: 3px !important;
+				border-radius: 8px !important;
+			}
+			
+			.mesud.ozil-btn a {
+				padding: 10px 20px !important;
+				font-size: 12px !important;
+			}
+			
+			.section-main-title {
+				font-size: 24px !important;
+				text-align: center;
+			}
+			
+			.section-sub-title {
+				font-size: 12px !important;
+				text-align: center;
+			}
+			
+			.service-single-box, .portfolio-single-box, .tab-single-box {
+				padding: 20px 10px;
+				margin-bottom: 15px;
+				border-radius: 15px;
+			}
+			
+			.service-number h1 {
+				font-size: 35px !important;
+			}
+			
+			.service-title {
+				font-size: 18px !important;
+			}
+			
+			/* Navegación móvil compacta */
+			.logo img {
+				width: 50px !important;
+				height: 50px !important;
+			}
+			
+			/* Portfolio móvil */
+			.portfolio-title a {
+				font-size: 16px !important;
+			}
+			
+			.portfolio-text {
+				font-size: 14px !important;
+			}
+			
+			/* Contacto móvil */
+			.contact-address ul li {
+				font-size: 14px !important;
+				line-height: 35px;
+			}
+			
+			/* Scroll progress responsivo */
+			.scroll-progress {
+				height: 3px;
+			}
+			
+			/* Efectos reducidos en móvil */
+			.service-single-box:hover .service-number h1 {
+				transform: scale(1.1) rotate(5deg) !important;
+			}
+			
+			/* Tabs móvil */
+			ul.tabs.active {
+				text-align: center;
+				margin-bottom: 30px;
+			}
+			
+			ul.tabs.active li {
+				margin: 3px 1px;
+			}
+			
+			ul.tabs.active li a {
+				padding: 8px 15px;
+				font-size: 12px;
+			}
+			
+			/* Footer responsivo */
+			.footer-text {
+				text-align: center !important;
+				font-size: 12px !important;
+			}
+			
+			.footer-social-icon {
+				text-align: center;
+				margin-bottom: 15px;
+			}
+		}
+		
+		/* Mobile Pequeño (máx 360px) */
+		@media (max-width: 360px) {
+			.hero-area {
+				padding: 40px 0 20px;
+			}
+			
+			.container {
+				padding: 0 10px;
+			}
+			
+			.hero-contant h3, .hero-contant h2 {
+				font-size: 16px !important;
+				padding: 6px 12px !important;
+			}
+			
+			.section-main-title {
+				font-size: 20px !important;
+			}
+			
+			.service-single-box, .portfolio-single-box, .tab-single-box {
+				padding: 15px 8px;
+			}
+			
+			.sticky {
+				margin: 2px !important;
+				padding: 0 10px !important;
+			}
+			
+			/* Glassmorphism reducido en móviles muy pequeños */
+			.service-single-box, .portfolio-single-box, .tab-single-box, .skills-single-box.two {
+				backdrop-filter: blur(10px);
+			}
+		}
+		
+		/* Optimizaciones de performance para móvil */
+		@media (max-width: 768px) {
+			* {
+				-webkit-transform: translateZ(0);
+				transform: translateZ(0);
+			}
+			
+			.fade-in-up {
+				transform: translateY(20px);
+			}
+			
+			/* Reducir animaciones en móvil para mejor performance */
+			.service-single-box, .portfolio-single-box, .tab-single-box {
+				transition: all 0.3s ease !important;
+			}
+		}
+		
 	</style>
 
 	
 </head>
 <body>
+	<!-- Indicador de progreso de scroll -->
+	<div class="scroll-progress"></div>
 	
 	<!-- loder -->
 	<div class="loader-wrapper">
@@ -1328,6 +1769,37 @@
 			} else {
 				document.body.classList.remove('show-logo');
 			}
+			
+			// Actualizar barra de progreso
+			const scrollProgress = document.querySelector('.scroll-progress');
+			const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+			const scrolled = window.scrollY;
+			const progress = (scrolled / scrollable) * 100;
+			scrollProgress.style.width = progress + '%';
+		});
+		
+		// Animaciones de entrada
+		const observerOptions = {
+			threshold: 0.1,
+			rootMargin: '0px 0px -50px 0px'
+		};
+		
+		const observer = new IntersectionObserver(function(entries) {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+				}
+			});
+		}, observerOptions);
+		
+		// Aplicar animaciones a elementos
+		document.addEventListener('DOMContentLoaded', function() {
+			// Agregar clase fade-in-up a elementos
+			const elementsToAnimate = document.querySelectorAll('.service-single-box, .portfolio-single-box, .tab-single-box, .section-title');
+			elementsToAnimate.forEach(el => {
+				el.classList.add('fade-in-up');
+				observer.observe(el);
+			});
 		});
 	</script>
 </body>
