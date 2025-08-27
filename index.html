@@ -300,6 +300,44 @@
 			}
 		}
 		
+		/* === ASEGURAR BARRA VISIBLE EN DESKTOP === */
+		@media (min-width: 1025px) {
+			#sticky-header,
+			.mesud.ozil_nav_manu {
+				display: block !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+				height: auto !important;
+			}
+			
+			/* Ocultar menú móvil en desktop */
+			.mobile-menu-area {
+				display: none !important;
+			}
+		}
+		
+		/* === OCULTAR BARRA SUPERIOR EN RESPONSIVO === */
+		@media (max-width: 1024px) {
+			#sticky-header,
+			div#sticky-header,
+			.mesud.ozil_nav_manu,
+			div.mesud.ozil_nav_manu,
+			.sticky {
+				display: none !important;
+				visibility: hidden !important;
+				opacity: 0 !important;
+				height: 0 !important;
+				overflow: hidden !important;
+			}
+			
+			/* Asegurar que el menú móvil esté visible */
+			.mobile-menu-area {
+				display: block !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+			}
+		}
+		
 		/* === LOGO DIRECTCITA RESPONSIVOS === */
 		@media (max-width: 1024px) {
 			.logo-with-buttons {
@@ -365,6 +403,18 @@
 			}
 		}
 		
+		/* === REFUERZO OCULTAR BARRA EN MÓVILES === */
+		@media (max-width: 768px) {
+			#sticky-header,
+			.mesud.ozil_nav_manu,
+			.sticky {
+				display: none !important;
+				visibility: hidden !important;
+				opacity: 0 !important;
+				height: 0 !important;
+			}
+		}
+		
 		/* Mobile Landscape (481px - 768px) */
 		@media (max-width: 768px) {
 			.hero-area {
@@ -372,6 +422,7 @@
 				padding: 20px 0;
 				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
+				margin-top: 0 !important;
 			}
 			
 			.hero-contant {
@@ -466,9 +517,10 @@
 			.hero-area {
 				height: auto;
 				min-height: 100vh;
-				padding: 60px 0 40px;
+				padding: 20px 0 40px;
 				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
+				margin-top: 0 !important;
 			}
 			
 			.hero-contant h3, .hero-contant h2 {
@@ -578,9 +630,10 @@
 		/* Mobile Pequeño (máx 360px) */
 		@media (max-width: 360px) {
 			.hero-area {
-				padding: 40px 0 20px;
+				padding: 20px 0 20px;
 				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
+				margin-top: 0 !important;
 			}
 			
 			.container {
