@@ -46,10 +46,31 @@
 	<!-- bootstrap icons -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<!-- Google Fonts para el nombre -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	<!-- Estilos para ocultar logo inicialmente -->
+	<style>
+		/* Ocultar logo inicialmente */
+		.logo_img {
+			opacity: 0;
+			transition: opacity 0.5s ease-in-out;
+		}
+		
+		/* Mostrar logo después del scroll */
+		.show-logo .logo_img {
+			opacity: 1;
+		}
+		
+
+	</style>
 
 	
 </head>
 <body>
+	
 	<!-- loder -->
 	<div class="loader-wrapper">
 	  <div class="loader"></div>
@@ -128,14 +149,12 @@
 			<div class="row hero align-items-center">
 				<div class="col-lg-6">
 					<div class="hero-contant">
-						<h2>Jonatan Murillo Mateo</h2>
 						<div class="hero-main-title">
-							<h3 style="color:#00C6FF !important;"><span class="type"></span></h3>
+							<h3 style="color:#000000 !important; background-color: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 8px; border: 2px solid #dddddd; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: inline-block;"><span class="type"></span></h3>
 						</div>
-						<div class="hero-main-title">
-							<h2 style="color:#fff !important;"><span class="types"></span></h2>
-						</div>
-						<p>Desarrollo web y consultoría tecnológica</p>
+						<!--<div class="hero-main-title">
+							<h2 style="color:#000000 !important; background-color: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 8px; border: 2px solid #dddddd; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: inline-block;"><span class="types"></span></h2>
+						</div>-->
 						<!--<div class="mesud ozil-btn">
 							<a href="#">LET’S TALK <i class="bi bi-arrow-right"></i></a>
 						</div>
@@ -146,61 +165,7 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="hero-thumb">
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20 0 350 350">
-							<!-- Gradientes -->
-							<defs>
-							  <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-								<stop offset="0%" style="stop-color:#00C6FF"/>
-								<stop offset="100%" style="stop-color:#0072FF"/>
-							  </linearGradient>
-							  <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-								<stop offset="0%" style="stop-color:#4A90E2;stop-opacity:0.6"/>
-								<stop offset="100%" style="stop-color:#4A90E2;stop-opacity:0"/>
-							  </linearGradient>
-							</defs>
-						  
-							<!-- Patrón de circuitos en el fondo -->
-							<path d="M25,100 L125,100 M125,100 L125,150 M125,150 L225,150"
-								  stroke="#1E4B88" stroke-width="1" fill="none" opacity="0.3"/>
-							<path d="M275,50 L375,50 M375,50 L375,100 M375,100 L275,100"
-								  stroke="#1E4B88" stroke-width="1" fill="none" opacity="0.3"/>
-						  
-							<!-- Elemento central hexagonal -->
-							<g transform="translate(200,90)">
-							  <!-- Hexágono exterior rotativo -->
-							  <path d="M80,0 L40,-69.28 L-40,-69.28 L-80,0 L-40,69.28 L40,69.28 Z"
-									fill="none" stroke="url(#techGradient)" stroke-width="3">
-								<animateTransform attributeName="transform" type="rotate"
-												from="0 0 0" to="360 0 0"
-												dur="20s" repeatCount="indefinite"/>
-							  </path>
-						  
-							  <!-- Hexágono interior -->
-							  <path d="M60,0 L30,-51.96 L-30,-51.96 L-60,0 L-30,51.96 L30,51.96 Z"
-									fill="none" stroke="#4A90E2" stroke-width="2" opacity="0.7"/>
-						  
-							  <!-- Círculo central con brillo -->
-							  <circle cx="0" cy="0" r="35" fill="url(#glowGradient)"/>
-						  
-							  <!-- Símbolo de código estilizado -->
-							  <path d="M-15,-10 L-25,0 L-15,10 M15,-10 L25,0 L15,10"
-									stroke="#FFFFFF" stroke-width="3" fill="none"/>
-							</g>
-						  
-							<!-- Texto principal con efecto moderno -->
-							<g transform="translate(200,170)">
-							  <text x="0" y="0"
-									font-family="Arial, sans-serif"
-									font-size="32"
-									fill="#FFFFFF"
-									text-anchor="middle"
-									font-weight="bold"									
-									letter-spacing="2">
-								JommA
-							  </text>
-							  
-						  </g>
-						  </svg>
+						<img src="assets/images/logo jonatan.png" alt="Jonatan Murillo Logo" style="max-width: 350px; height: auto;">
 					</div>
 				</div>
 				<!--<div class="hero-social-icon">
@@ -1142,7 +1107,7 @@
 						</div>
 					</div>
 					<div class="col-lg-8 col-md-6">
-						<p class="footer-text">Copyright © 2023 <span>Mesut Ozil</span> Theme. All rights reserved.</p>
+						<p class="footer-text"><span>Jonatan Murillo Mateo</span></p>
 					</div>
 				</div>
 		    </div>
@@ -1354,6 +1319,15 @@
 			typeSpeed:90,
 			backSpeed:90,
 			loop:true
+		});
+		
+		// Mostrar logo al hacer scroll
+		window.addEventListener('scroll', function() {
+			if (window.scrollY > 100) {
+				document.body.classList.add('show-logo');
+			} else {
+				document.body.classList.remove('show-logo');
+			}
 		});
 	</script>
 </body>

@@ -63,6 +63,10 @@ svg {
     -webkit-animation: 300ms running fadeInDown;
     animation: 500ms running fadeInUp;
     animation-name: slideInDown;
+    border: 2px solid #000000;
+    border-radius: 15px;
+    margin: 10px;
+    width: calc(100% - 20px);
 }
 
 .sticky .logo {
@@ -101,8 +105,8 @@ nav.mesud.ozil_menu {
     text-decoration: none;
     font-size: 14px;
     line-height: 27px;
-    color: #ffffff;
-    font-weight: 500;
+    color: #000000;
+    font-weight: 700;
 }
 
 nav.mesud.ozil_menu ul li a i {
@@ -285,14 +289,14 @@ nav.mesud.ozil_menu span {
 .mesud.ozil-btn a {
     display: inline-block;
     overflow: hidden;
-    background: #00C6FF;
+    background: #28a745;
     border-radius: 5px;
     transition: all 0.5s ease 0s;
     z-index: 1;
     font-size: 14px;
     line-height: 22px;
     color: white;
-    font-weight: 500;
+    font-weight: 700;
     padding: 14px 34px 14px;
     text-decoration: none;
     position: relative;
@@ -339,7 +343,7 @@ nav.mesud.ozil_menu span {
 }
 
 .sticky .mesud.ozil-btn a {
-    color: #0072FF;
+    color: #28a745;
     background: #fff;
 }
 
@@ -384,8 +388,8 @@ nav.mesud.ozil_menu span {
 =======================================*/
 
 .hero-area {
-    height: 908px;
-    background: url(assets/images/hero-bg.png);
+    height: 100vh;
+    background: url(assets/images/fondo2.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -580,7 +584,7 @@ nav.mesud.ozil_menu span {
 h5.section-sub-title {
     font-size: 16px;
     line-height: 57px;
-    color: #ffffff;
+    color: #000000;
     font-weight: 600;
     font-family: "Montserrat";
     margin-bottom: 4px;
@@ -588,7 +592,7 @@ h5.section-sub-title {
 
 h1.section-main-title {
     font-size: 45px;
-    color: #ffffff;
+    color: #000000;
     font-weight: 600;
     font-family: "Montserrat";
 }
@@ -621,12 +625,12 @@ h1.section-main-title {
 
 .service-area {
     padding: 94px 0 88px;
-    background: #141318;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
 }
 
 .service-single-box {
-    background: #474747;
-    border: 1px solid #272727;
+    background: #f5f5f5;
+    border: 1px solid #dddddd;
     border-radius: 20px;
     padding: 46px 30px 17px;
     transition: .5s;
@@ -634,7 +638,7 @@ h1.section-main-title {
 }
 
 .service-number h1 {
-    -webkit-text-stroke-color: #F2F2F2;
+    -webkit-text-stroke-color: #333333;
     color: transparent;
     -webkit-text-stroke-width: 1px;
     font-size: 45px;
@@ -647,7 +651,7 @@ h1.section-main-title {
 h3.service-title {
     font-size: 22px;
     line-height: 26px;
-    color: #ffffff;
+    color: #000000;
     font-weight: 600;
     font-family: "Montserrat";
     margin: 0;
@@ -657,7 +661,7 @@ h3.service-title {
 h3.service-title {
     font-size: 22px;
     line-height: 26px;
-    color: #ffffff;
+    color: #000000;
     font-weight: 600;
     font-family: "Montserrat";
     margin: 0;
@@ -666,7 +670,7 @@ h3.service-title {
 
 .service-single-box:hover {
     margin-top: -15px;
-    box-shadow: 0px 10px 15px -5px rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.15);
 }
 
 .mesud.ozil-btns {
@@ -737,7 +741,7 @@ h3.service-title {
 
 
 .service-single-box:hover .service-number h1{
-    color: #fff;
+    color: #000;
 }
 
 
@@ -752,7 +756,7 @@ h3.service-title {
 =======================================*/
 
 .portfolio-area {
-    background: #0F0F0F;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
     padding: 94px 0 90px;
 }
 
@@ -823,7 +827,7 @@ p.portfolio-text {
 
 .tab-area {
     padding: 96px 0 88px;
-    background: #141318;
+    background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 50%, #f5f7fa 100%);
 }
 
 .tab-area.style-two {
@@ -894,8 +898,8 @@ ul.tabs.active li a {
 }
 
 .tab-single-box {
-    background: #474747;
-    border: 1px solid #272727;
+    background: #f5f5f5;
+    border: 1px solid #dddddd;
     margin: 0 16px 30px 0;
     padding: 38px 30px 34px;
     position: relative;
@@ -959,7 +963,7 @@ ul.tabs.active li a {
 
 h3.tab-title {
     font-size: 19px;
-    color: #ffffff;
+    color: #000000;
     font-weight: 500;
     font-family: "Montserrat";
     margin: 0;
@@ -1024,9 +1028,9 @@ p.tab-descrip {
 }
 
 .row.tab {
-    background: #1C1B21;
+    background: #f5f5f5;
     padding: 56px 18px 20px;
-    border: 1px solid #272727;
+    border: 1px solid #dddddd;
     margin-bottom: 30px;
 }
 
@@ -1037,9 +1041,9 @@ p.tab-descrip {
 .skills-single-box.two {
     padding: 0 0 0 22px;
     margin: 0 22px 40px;
-    border: 1px solid #272727;
+    border: 1px solid #dddddd;
     border-radius: 20px;
-    background-color: #474747;
+    background-color: #f5f5f5;
 }
 
 /*prossess-ber */
@@ -1050,7 +1054,7 @@ span.prosses-bar {
     margin: 0;
     padding: 17px 0 20px 0;
     display: inline-block;
-    color: #ffffff;
+    color: #000000;
 }
 
 .prossess-ber-plugin span {
@@ -1109,7 +1113,7 @@ span.fill {
 }
 
 .tab-single-box:hover {
-    box-shadow: 0px 10px 15px -5px rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.15);
 }
 
 
@@ -1299,7 +1303,7 @@ span.testimonials-text {
 
 
 .blog-area {
-    background: #141318;
+    background: #ffffff;
     padding: 94px 0 88px;
 }
 
@@ -1393,7 +1397,7 @@ h3.blog-title a {
 
 
 .contact-area {
-    background: #101010;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
     padding: 118px 0 118px;
 }
 
@@ -1426,7 +1430,7 @@ p.contact-desrip::before {
 .contact-address ul li {
     list-style: none;
     font-size: 18px;
-    color: #ffffff;
+    color: #000000;
     font-weight: 600;
     font-family: "Montserrat";
     line-height: 42px;
@@ -1458,7 +1462,7 @@ span.active::before {
 }
 
 .row.contact_bg {
-    background: #141318;
+    background: #f5f5f5;
     padding: 36px 64px 68px;
     border-radius: 5px;
 }
@@ -1522,7 +1526,7 @@ span.active::before {
 =======================================*/
 
 .footer-area {
-    background: url(assets/images/footer-bg.png);
+    background: linear-gradient(135deg, rgba(245, 247, 250, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%), url(assets/images/footer-bg.png);
     padding: 117px 0 14px;
     background-repeat: no-repeat;
     background-size: cover;
