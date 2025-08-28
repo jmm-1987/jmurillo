@@ -1,0 +1,19 @@
+{
+  "name": "Jony Murillo - Portfolio",
+  "short_name": "Jony Murillo",
+  "description": "Portfolio personal de Jonatan Murillo - Desarrollador Full Stack",
+  "display": "browser",
+  "orientation": "portrait-primary",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "assets/images/fav-icon/icon.png",
+      "sizes": "56x56",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
