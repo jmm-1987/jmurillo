@@ -138,6 +138,43 @@
 			scroll-behavior: smooth;
 		}
 		
+		/* === LOGO DE JONATAN EN HERO === */
+		.hero-image {
+			display: flex !important;
+			justify-content: center !important;
+			align-items: center !important;
+			height: 100% !important;
+			margin-top: 30px !important;
+		}
+		
+		.jonatan-logo-container {
+			position: relative !important;
+			display: flex !important;
+			justify-content: center !important;
+			align-items: center !important;
+			animation: float 3s ease-in-out infinite !important;
+		}
+		
+		.jonatan-logo {
+			max-width: 100% !important;
+			height: auto !important;
+			max-height: 400px !important;
+			border-radius: 20px !important;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+			transition: all 0.3s ease !important;
+			object-fit: contain !important;
+		}
+		
+		.jonatan-logo:hover {
+			transform: scale(1.05) !important;
+			box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+		}
+		
+		@keyframes float {
+			0%, 100% { transform: translateY(0px); }
+			50% { transform: translateY(-20px); }
+		}
+		
 		/* === LOGO CON DIRECTCITA === */
 		.logo-with-buttons {
 			display: flex !important;
@@ -355,6 +392,13 @@
 		
 		/* Tablets (768px - 1024px) */
 		@media (max-width: 1024px) {
+			.jonatan-logo {
+				max-height: 350px !important;
+			}
+			
+			.hero-image {
+				margin-top: 20px !important;
+			}
 			.hero-area {
 				height: 80vh;
 				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
@@ -665,8 +709,10 @@
 				height: 100% !important;
 				display: flex !important;
 				flex-direction: column !important;
-				justify-content: center !important;
+				justify-content: flex-start !important;
 				align-items: center !important;
+				padding-top: 120px !important;
+				overflow-y: auto !important;
 			}
 			
 			.close-btn {
@@ -779,6 +825,33 @@
 				font-size: 18px !important;
 				padding: 8px 15px !important;
 				margin-bottom: 15px !important;
+				text-align: center !important;
+			}
+			
+			/* Layout móvil: imagen arriba, texto abajo */
+			.hero .row {
+				flex-direction: column-reverse !important;
+			}
+			
+			.hero .col-lg-6 {
+				width: 100% !important;
+				max-width: 100% !important;
+			}
+			
+			.hero-image {
+				margin-bottom: 30px !important;
+				margin-top: 140px !important;
+				order: -1 !important;
+			}
+			
+			.jonatan-logo {
+				max-height: 250px !important;
+				width: auto !important;
+				margin: 0 auto !important;
+				margin-top: 70px !important;
+			}
+			
+			.jonatan-logo-container {
 				text-align: center !important;
 			}
 			
@@ -1301,9 +1374,9 @@
 
 	<div class="hero-area d-flex align-items-center" id="hero">
 		<div class="container">
-			<div class="row hero align-items-center justify-content-center">
-				<div class="col-lg-8 col-md-10">
-					<div class="hero-contant text-center">
+			<div class="row hero align-items-center">
+				<div class="col-lg-6 col-md-6">
+					<div class="hero-contant">
 						<div class="hero-main-title">
 							<h3 style="color:#000000 !important; background-color: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 8px; border: 2px solid #dddddd; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: inline-block;"><span class="type"></span></h3>
 						</div>
@@ -1311,11 +1384,20 @@
 							<h2 style="color:#000000 !important; background-color: rgba(255, 255, 255, 0.95); padding: 12px 20px; border-radius: 8px; border: 2px solid #dddddd; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); display: inline-block;"><span class="types"></span></h2>
 						</div>-->
 						<!--<div class="mesud ozil-btn">
-							<a href="#">LET’S TALK <i class="bi bi-arrow-right"></i></a>
+							<a href="#">LET'S TALK <i class="bi bi-arrow-right"></i></a>
 						</div>
 						<div class="mesud ozil-btn2">
 							<a href="#">HIRE ME <i class="bi bi-arrow-right"></i></a>
 						</div>-->
+					</div>
+				</div>
+				
+				<!-- Imagen de Jonatan en la parte central derecha -->
+				<div class="col-lg-6 col-md-6">
+					<div class="hero-image">
+						<div class="jonatan-logo-container">
+							<img src="assets/images/logo jonatan.png" alt="Jonatan Murillo" class="jonatan-logo">
+						</div>
 					</div>
 				</div>
 
