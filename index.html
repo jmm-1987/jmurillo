@@ -1440,6 +1440,7 @@
 			.project-modal {
 				padding: 20px;
 				padding-top: 0;
+				align-items: center;
 			}
 			
 			.modal-content {
@@ -1507,6 +1508,7 @@
 			.project-modal {
 				padding: 10px;
 				padding-top: 0;
+				align-items: center;
 			}
 			
 			.modal-content {
@@ -3043,6 +3045,26 @@
 			// Mostrar modal
 			document.getElementById('projectModal').classList.add('active');
 			document.body.style.overflow = 'hidden';
+			
+			// Scroll al centro en versión responsiva
+			if (window.innerWidth <= 768) {
+				setTimeout(() => {
+					const modal = document.getElementById('projectModal');
+					const modalContent = modal.querySelector('.modal-content');
+					if (modalContent) {
+						// Calcular la posición para centrar el modal
+						const viewportHeight = window.innerHeight;
+						const modalHeight = modalContent.offsetHeight;
+						const scrollPosition = (modalHeight / 2) - (viewportHeight / 2);
+						
+						// Hacer scroll suave al centro
+						modal.scrollTo({
+							top: Math.max(0, scrollPosition),
+							behavior: 'smooth'
+						});
+					}
+				}, 100); // Pequeño delay para asegurar que el modal esté renderizado
+			}
 		}
 		
 		// Función para cerrar modal
@@ -3064,6 +3086,27 @@
 				closeProjectModal();
 			}
 		});
+		
+		// Función para centrar el modal en responsiva
+		function centerModalOnResponsive() {
+			if (window.innerWidth <= 768 && document.getElementById('projectModal').classList.contains('active')) {
+				const modal = document.getElementById('projectModal');
+				const modalContent = modal.querySelector('.modal-content');
+				if (modalContent) {
+					const viewportHeight = window.innerHeight;
+					const modalHeight = modalContent.offsetHeight;
+					const scrollPosition = (modalHeight / 2) - (viewportHeight / 2);
+					
+					modal.scrollTo({
+						top: Math.max(0, scrollPosition),
+						behavior: 'smooth'
+					});
+				}
+			}
+		}
+		
+		// Ajustar scroll al redimensionar ventana
+		window.addEventListener('resize', centerModalOnResponsive);
 		
 		// === MENÚ HAMBURGUESA FLOTANTE === 
 		
