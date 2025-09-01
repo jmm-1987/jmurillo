@@ -476,6 +476,23 @@
 			}
 		}
 		
+		/* === CORRECCIÓN VISTA ESCRITORIO DESDE MÓVIL === */
+		@media (max-width: 1024px) and (min-width: 769px) {
+			.directcita-img {
+				height: 40px !important;
+				max-width: 40px !important;
+			}
+			
+			.directcita-text {
+				font-size: 14px !important;
+			}
+			
+			.directcita-logo a {
+				padding: 6px 10px !important;
+				gap: 8px !important;
+			}
+		}
+		
 		@media (max-width: 768px) {
 			.logo-with-buttons {
 				gap: 12px;
@@ -523,6 +540,80 @@
 			
 			.directcita-text {
 				font-size: 11px;
+			}
+		}
+		
+		/* === REGLAS ESPECÍFICAS PARA VISTA ESCRITORIO FORZADA === */
+		/* Cuando se fuerza vista de escritorio desde móvil */
+		@media (max-width: 1200px) and (min-width: 769px) {
+			.directcita-img {
+				height: 35px !important;
+				max-width: 35px !important;
+			}
+			
+			.directcita-text {
+				font-size: 13px !important;
+			}
+			
+			.directcita-logo a {
+				padding: 5px 8px !important;
+				gap: 6px !important;
+			}
+		}
+		
+		/* Para tablets en vista de escritorio */
+		@media (max-width: 900px) and (min-width: 769px) {
+			.directcita-img {
+				height: 30px !important;
+				max-width: 30px !important;
+			}
+			
+			.directcita-text {
+				font-size: 12px !important;
+			}
+			
+			.directcita-logo a {
+				padding: 4px 6px !important;
+				gap: 5px !important;
+			}
+		}
+		
+		/* === CORRECCIÓN ADICIONAL PARA VISTA ESCRITORIO FORZADA === */
+		/* Asegurar que el logo se ajuste cuando se fuerza vista de escritorio */
+		@media screen and (max-width: 1024px) {
+			.directcita-img {
+				height: 35px !important;
+				max-width: 35px !important;
+				object-fit: contain !important;
+			}
+			
+			.directcita-text {
+				font-size: 13px !important;
+				white-space: nowrap !important;
+			}
+			
+			.directcita-logo a {
+				padding: 5px 8px !important;
+				gap: 6px !important;
+				max-width: 120px !important;
+			}
+		}
+		
+		/* Para pantallas muy pequeñas en vista de escritorio */
+		@media screen and (max-width: 800px) {
+			.directcita-img {
+				height: 30px !important;
+				max-width: 30px !important;
+			}
+			
+			.directcita-text {
+				font-size: 12px !important;
+			}
+			
+			.directcita-logo a {
+				padding: 4px 6px !important;
+				gap: 5px !important;
+				max-width: 100px !important;
 			}
 		}
 		
@@ -1011,6 +1102,7 @@
 			body {
 				-webkit-touch-callout: default;
 				-webkit-user-select: text;
+				user-select: text;
 				-webkit-tap-highlight-color: rgba(40, 167, 69, 0.3);
 				touch-action: manipulation;
 			}
@@ -1134,9 +1226,10 @@
 			visibility: hidden;
 			transition: all 0.3s ease;
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			justify-content: center;
 			padding: 20px;
+			padding-top: 8vh;
 		}
 		
 		.project-modal.active {
@@ -1346,11 +1439,12 @@
 		@media (max-width: 768px) {
 			.project-modal {
 				padding: 20px;
+				padding-top: 0;
 			}
 			
 			.modal-content {
 				max-width: 95%;
-				max-height: 100vh;
+				max-height: calc(100vh - 40px);
 				border-radius: 15px;
 			}
 			
@@ -1412,11 +1506,12 @@
 		@media (max-width: 480px) {
 			.project-modal {
 				padding: 10px;
+				padding-top: 0;
 			}
 			
 			.modal-content {
 				max-width: 100%;
-				max-height: 100vh;
+				max-height: calc(100vh - 20px);
 			}
 			
 			.modal-header {
@@ -2267,70 +2362,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="tabs_item">
-							<div class="row upper">
-								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
-									<div class="tab-single-box">
-										<div class="teb-content">
-											<h3 class="tab-title">Personal Portfolio April Fools</h3>
-											<h4 class="tab-text">Cambridge University / 2005 - 2008</h4>
-											<p class="tab-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quo
-											repudiandae consectetur adipisicing elit.</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
-									<div class="tab-single-box two">
-										<div class="teb-content">
-											<h3 class="tab-title">Diploma in Web Development</h3>
-											<h4 class="tab-text">Cambridge University / 2005 - 2008</h4>
-											<p class="tab-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quo
-											repudiandae consectetur adipisicing elit.</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
-									<div class="tab-single-box ">
-										<div class="teb-content">
-											<h3 class="tab-title">Diploma in Computer Science</h3>
-											<h4 class="tab-text">Cambridge University / 2005 - 2008</h4>
-											<p class="tab-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quo
-											repudiandae consectetur adipisicing elit.</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
-									<div class="tab-single-box two">
-										<div class="teb-content">
-											<h3 class="tab-title">Examples Of Personal Portfolio</h3>
-											<h4 class="tab-text">Cambridge University / 2005 - 2008</h4>
-											<p class="tab-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quo
-											repudiandae consectetur adipisicing elit.</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
-									<div class="tab-single-box">
-										<div class="teb-content">
-											<h3 class="tab-title">The Personal Portfolio Mystery</h3>
-											<h4 class="tab-text">Cambridge University / 2005 - 2008</h4>
-											<p class="tab-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quo
-											repudiandae consectetur adipisicing elit.</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
-									<div class="tab-single-box two">
-										<div class="teb-content">
-											<h3 class="tab-title">Tips For Personal Portfolio</h3>
-											<h4 class="tab-text">Cambridge University / 2005 - 2008</h4>
-											<p class="tab-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quo
-											repudiandae consectetur adipisicing elit.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+
 					 </div>
 				</div>
 			</div>
@@ -2698,65 +2730,6 @@
 	</div>
 </div>
 
-<!--==================================================-->
-<!-- end-Mesud Ozil contact  Area -->
-<!--==================================================-->
-
-<!--==================================================-->
-<!-- Start Mesud Ozil Footer Area -->
-<!--==================================================-->
-		<div class="footer-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="footer-logo">
-							<img src="assets/images/footer-logo.png" alt="footer-logo">
-						</div>
-					</div>
-				</div>
-				<div class="row footer-bottom">
-					<div class="col-lg-4 col-md-6">
-						<div class="footer-social-icon">
-							<ul class="socials">
-								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-								<li><a href="#"><i class="bi bi-twitter"></i></a></li>
-								<li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-								<li><a href="#"><i class="bi bi-pinterest"></i></a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-8 col-md-6">
-						<p class="footer-text"><span>Jonatan Murillo Mateo</span></p>
-					</div>
-				</div>
-		    </div>
-	    </div>
-	
-<!--==================================================-->
-<!-- end Mesud Ozil Footer Area -->
-<!--==================================================-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--==================================================-->
-<!-- Start scrollup section Area -->
-<!--==================================================-->
 
 <!-- Modales de Proyectos -->
 <div id="projectModal" class="project-modal">
@@ -2786,134 +2759,6 @@
 <!--==================================================-->
 <!-- Start scrollup section Area -->
 <!--==================================================-->
-  <div class="modam">
-	<div class="popup" id="popup">
-	  <div class="popup-inner">
-		<div class="blog-details-area">
-			<div class="container">
-			 <div class="row">
-				 <div class="col-lg-12">
-					 <div class="blog-details-thumb">
-						 <img src="assets/images/vehiculos_login.png" alt="blog-details-img">
-					 </div>
-					 <span class="blog-details-date">
-						Aplicación web para el control de flotas</span>
-					 <p class="blog-details-title"><a>Jonatan Murillo, 2024</a></p>
-					 <p class="blog-details-descrip">Construida con Python, flask, html, css y SqlAlchemy </p>
-					 
-					 <!-- Video del proyecto -->
-					 <div class="blog-details-thumb" style="margin: 30px 0;">
-						 <video width="100%" height="400" controls style="border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
-							 <source src="images/alditraex.mp4" type="video/mp4">
-							 Tu navegador no soporta el elemento de video.
-						 </video>
-					 </div>
-					<p>Sistema de login implantado con flask-login. </p>
-					<p>Despliegue en Ubuntu con Gunicorn </p>
-					<p>Esta aplicación se encarga del almacenamiento de documentos y fechas relativas a los controles periódicos de los vehículos, así como también sus visitas al taller.</p>
-					<img src="assets/images/vehiculos_itv.png" alt="blog-details-img" width="700" height="320">
-					<p>Todas estas fechas quedarán registradas junto con sus documentos y avisará al usuario cada vez que una fecha esté cerca.</p>
-					<img src="assets/images/vehiculos_avisos.JPG" alt="blog-details-img" width="700" height="320">
-					<p>Control de repostajes con cálculos de medias y totales</p>
-					<img src="assets/images/vehiculos_gasoil.png" alt="blog-details-img" width="700" height="320">
-					<p>Construida con Python, flask, html, css. 
-					Base de datos sqlite. 
-					Sistema de login implantado con flask-login. 
-					Despliegue en Ubuntu con gunicorn 
-					Esta aplicación se encarga del almacenamiento de documentos y fechas relativas a los controles periódicos de los vehículos, así como también sus visitas al taller.
-					Todas estas fechas quedarán registradas junto con sus documentos y avisará al usuario cada vez que una fecha esté cerca.</p>
-			 </div>
-			</div>
-		 </div>
-		<a class="popup__close" href="#portfolio">X</a>
-	  </div>
-	</div>
-  </div>
-
-  <div class="modam">
-	<div class="popup" id="popup2">
-	  <div class="popup-inner">
-		<div class="portfolio-details-area">
-			<div class="container">
-			 <div class="row">
-				 <div class="col-lg-12">
-					 <div class="blog-details-thumb">
-						 <img src="assets/images/ficheros.png" alt="blog-details-img">
-					 </div>
-					 <span class="blog-details-date">
-						 By Jonatan Murillo, 2024</span>
-					 <h3 class="blog-details-title"><a href="#">Aplicación web procesado de ficheros.</a></h3>
-					 <p class="blog-details-descrip">Desarrollada con Html,css, Python y Flask
-					
-					 </p>
-					 <div class="blog-details-thumb">
-						<img src="assets/images/ficheros2.png" alt="blog-details-img">
-					</div>
-					<p>LA aplicación recibe ficheros csv o excel, y los transforma en excel mapeados
-						 según petición del cliente para el posterior procesado en su ERP</p>
-				 </div>
-			 </div>
-			</div>
-		 </div>
-		<a class="popup__close" href="#portfolio">X</a>
-	  </div>
-	</div>
-  </div>
-  <div class="modam">
-	<div class="popup" id="popup3">
-	  <div class="popup-inner">
-		<div class="portfolio-details-area">
-			<div class="container">
-			 <div class="row">
-				 <div class="col-lg-12">
-					 <div class="blog-details-thumb">
-						 <img src="assets/images/ftp_transfer.png" alt="blog-details-img">
-					 </div>
-					 <span class="blog-details-date">
-						 By Jonatan Murillo, 2024</span>
-					 <h3 class="blog-details-title"><a href="#">Aplicación transferencia de ficheros</a></h3>
-					 <p class="blog-details-descrip">Desarrollada con Python, Flask, Html, Css y la librería ftplib</p>
-				 </div>
-				 <div class="blog-details-thumb">
-					<img src="assets/images/ftp2.png" alt="blog-details-img">
-				</div>
-				<p>Esta aplicaión transfiere ficheros entre servidores ftp.Dependiedo del nombre de cada fichero los sube a un directorio u otro.</p>
-				<div class="blog-details-thumb">
-					<img src="assets/images/ftp3.png" alt="blog-details-img">
-				</div>
-				<p>Y por último muestra al usuario el resultado de la transacción</p>
-			 </div>
-			</div>
-		 </div>
-		<a class="popup__close" href="#portfolio">X</a>
-	  </div>
-	</div>
-  </div>
-  <div class="modam">
-	<div class="popup" id="popup4">
-	  <div class="popup-inner">
-		<div class="portfolio-details-area">
-			<div class="container">
-			 <div class="row">
-				 <div class="col-lg-12">
-					 <div class="blog-details-thumb">
-						 <img src="assets/images/portfolio-details-img.jpg" alt="blog-details-img">
-					 </div>
-					 <span class="blog-details-date">
-						 By John Smith 02 June, 2023</span>
-					 <h3 class="blog-details-title"><a href="#">App Design Development.</a></h3>
-					 <p class="blog-details-descrip">Orido is a leading web design agency with an award-winning design team that creates innovative, effective websites that capture your brand, improve your conversion rates, and maximize your revenue to help grow your business and achieve your goals.
-						 In today's digital world, your website is the first interaction consumers have with your business. That's why almost 95 percent of a user's first impression relates to web design. It's also why web design services can have an immense impact on your company's bottom line.    
-						 That's why more companies are not only reevaluating their website's design but also partnering with Orido, the web design agency that's driven more than $2.4 billion in revenue for its clients. With over 50 web design awards under our belt, we're confident we can design a 
-						 custom website that drives sales for your unique business.</p>
-				 </div>
-			 </div>
-			</div>
-		 </div>
-		<a class="popup__close" href="#portfolio">X</a>
-	  </div>
-	</div>
-  </div>
 
 
 
@@ -3040,6 +2885,24 @@
 				status: 'En producción',
 				year: '2024'
 			},
+			cmr: {
+				title: 'Aplicación web gestión CMR',
+				subtitle: 'Sistema de gestión de documentos CMR',
+				description: 'Aplicación web para la gestión de documentos CMR (Carta de Porte por Carretera), incluyendo generación automática y seguimiento de envíos.',
+				features: [
+					'Generación automática de CMR',
+					'Base de datos de transportistas',
+					'Seguimiento de envíos',
+					'Impresión de documentos',
+					'Gestión de rutas',
+					'Control de entregas'
+				],
+				tech: ['Python', 'Flask', 'HTML', 'CSS', 'JavaScript', 'SQLite'],
+				videoUrl: 'assets/images/alditraex.mp4', // Video local
+				videoType: 'local', // Indicador de tipo de video
+				status: 'En desarrollo',
+				year: '2024'
+			},
 			alditraex: {
 				title: 'Web con chatbot y tarificador',
 				subtitle: 'Sitio web corporativo con IA',
@@ -3082,8 +2945,13 @@
 		
 		// Función para abrir modal
 		function openProjectModal(projectId) {
+			console.log('Intentando abrir modal para proyecto:', projectId);
 			const project = projectData[projectId];
-			if (!project) return;
+			if (!project) {
+				console.error('Proyecto no encontrado:', projectId);
+				return;
+			}
+			console.log('Proyecto encontrado:', project);
 			
 			// Actualizar contenido del modal
 			document.getElementById('modalTitle').textContent = project.title;
