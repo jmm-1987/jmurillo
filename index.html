@@ -175,73 +175,7 @@
 			50% { transform: translateY(-20px); }
 		}
 		
-		/* === LOGO CON DIRECTCITA === */
-		.logo-with-buttons {
-			display: flex !important;
-			align-items: center !important;
-			gap: 20px !important;
-			margin-left: -20px !important;
-			visibility: visible !important;
-			opacity: 1 !important;
-		}
-		
-		.directcita-logo {
-			display: flex !important;
-			align-items: center !important;
-			visibility: visible !important;
-			opacity: 1 !important;
-			z-index: 10 !important;
-		}
-		
-		.directcita-logo a {
-			display: flex !important;
-			align-items: center !important;
-			gap: 12px !important;
-			text-decoration: none !important;
-			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-			padding: 8px 12px !important;
-			border-radius: 12px !important;
-			visibility: visible !important;
-			opacity: 1 !important;
-			background: transparent !important;
-			border: none !important;
-		}
-		
-		.directcita-img {
-			height: 50px !important;
-			width: auto !important;
-			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-			border-radius: 8px !important;
-			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
-			display: block !important;
-			visibility: visible !important;
-			opacity: 1 !important;
-		}
-		
-		.directcita-text {
-			font-family: 'Poppins', sans-serif !important;
-			font-size: 16px !important;
-			font-weight: 700 !important;
-			color: #2c3e50 !important;
-			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-			display: inline-block !important;
-			visibility: visible !important;
-			opacity: 1 !important;
-		}
-		
-		.directcita-logo a:hover {
-			background: transparent !important;
-			transform: translateY(-2px) !important;
-		}
-		
-		.directcita-logo a:hover .directcita-img {
-			transform: scale(1.05) !important;
-			box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
-		}
-		
-		.directcita-logo a:hover .directcita-text {
-			color: #28a745 !important;
-		}
+
 		
 		/* Efectos glassmorphism para las cajas */
 		.service-single-box, .portfolio-single-box, .tab-single-box, .skills-single-box.two {
@@ -588,161 +522,7 @@
 			}
 		}
 		
-		/* === LOGO DIRECTCITA RESPONSIVOS === */
-		@media (max-width: 1024px) {
-			.logo-with-buttons {
-				gap: 15px;
-			}
-			
-			.directcita-img {
-				height: 45px;
-			}
-			
-			.directcita-text {
-				font-size: 15px;
-			}
-		}
-		
-		/* === CORRECCIÓN VISTA ESCRITORIO DESDE MÓVIL === */
-		@media (max-width: 1024px) and (min-width: 769px) {
-			.directcita-img {
-				height: 40px !important;
-				max-width: 40px !important;
-			}
-			
-			.directcita-text {
-				font-size: 14px !important;
-			}
-			
-			.directcita-logo a {
-				padding: 6px 10px !important;
-				gap: 8px !important;
-			}
-		}
-		
-		@media (max-width: 768px) {
-			.logo-with-buttons {
-				gap: 12px;
-			}
-			
-			.directcita-img {
-				height: 35px;
-			}
-			
-			.directcita-text {
-				font-size: 14px;
-			}
-			
-			.directcita-logo a {
-				gap: 8px;
-				padding: 6px 8px;
-			}
-		}
-		
-		@media (max-width: 480px) {
-			.logo-with-buttons {
-				gap: 10px;
-				flex-direction: column;
-				align-items: flex-start;
-			}
-			
-			.directcita-img {
-				height: 30px;
-			}
-			
-			.directcita-text {
-				font-size: 12px;
-			}
-			
-			.directcita-logo a {
-				gap: 6px;
-				padding: 4px 6px;
-			}
-		}
-		
-		@media (max-width: 360px) {
-			.directcita-img {
-				height: 25px;
-			}
-			
-			.directcita-text {
-				font-size: 11px;
-			}
-		}
-		
-		/* === REGLAS ESPECÍFICAS PARA VISTA ESCRITORIO FORZADA === */
-		/* Cuando se fuerza vista de escritorio desde móvil */
-		@media (max-width: 1200px) and (min-width: 769px) {
-			.directcita-img {
-				height: 35px !important;
-				max-width: 35px !important;
-			}
-			
-			.directcita-text {
-				font-size: 13px !important;
-			}
-			
-			.directcita-logo a {
-				padding: 5px 8px !important;
-				gap: 6px !important;
-			}
-		}
-		
-		/* Para tablets en vista de escritorio */
-		@media (max-width: 900px) and (min-width: 769px) {
-			.directcita-img {
-				height: 30px !important;
-				max-width: 30px !important;
-			}
-			
-			.directcita-text {
-				font-size: 12px !important;
-			}
-			
-			.directcita-logo a {
-				padding: 4px 6px !important;
-				gap: 5px !important;
-			}
-		}
-		
-		/* === CORRECCIÓN ADICIONAL PARA VISTA ESCRITORIO FORZADA === */
-		/* Asegurar que el logo se ajuste cuando se fuerza vista de escritorio */
-		@media screen and (max-width: 1024px) {
-			.directcita-img {
-				height: 35px !important;
-				max-width: 35px !important;
-				object-fit: contain !important;
-			}
-			
-			.directcita-text {
-				font-size: 13px !important;
-				white-space: nowrap !important;
-			}
-			
-			.directcita-logo a {
-				padding: 5px 8px !important;
-				gap: 6px !important;
-				max-width: 120px !important;
-			}
-		}
-		
-		/* Para pantallas muy pequeñas en vista de escritorio */
-		@media screen and (max-width: 800px) {
-			.directcita-img {
-				height: 30px !important;
-				max-width: 30px !important;
-			}
-			
-			.directcita-text {
-				font-size: 12px !important;
-			}
-			
-			.directcita-logo a {
-				padding: 4px 6px !important;
-				gap: 5px !important;
-				max-width: 100px !important;
-			}
-		}
+
 		
 		/* === REFUERZO OCULTAR BARRA EN MÓVILES === */
 		@media (max-width: 768px) {
@@ -860,48 +640,7 @@
 				transform: rotate(-45deg) translate(7px, -6px) !important;
 			}
 			
-			/* === DIRECTCITA FLOTANTE MÓVIL === */
-			.floating-directcita {
-				position: fixed !important;
-				top: 20px !important;
-				left: 20px !important;
-				z-index: 1000 !important;
-			}
-			
-			.directcita-mobile-btn {
-				background: linear-gradient(135deg, #28a745, #20c997) !important;
-				border: none !important;
-				border-radius: 8px !important;
-				width: 50px !important;
-				height: 50px !important;
-				display: flex !important;
-				justify-content: center !important;
-				align-items: center !important;
-				text-decoration: none !important;
-				box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4) !important;
-				transition: all 0.3s ease !important;
-				overflow: hidden !important;
-			}
-			
-			.directcita-mobile-btn:hover {
-				transform: scale(1.05) !important;
-				box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6) !important;
-			}
-			
-			.directcita-mobile-img {
-				width: 30px !important;
-				height: 30px !important;
-				object-fit: contain !important;
-				border-radius: 4px !important;
-			}
-			
-			.directcita-mobile-text {
-				display: none !important;
-				color: white !important;
-				font-weight: bold !important;
-				font-size: 14px !important;
-				font-family: 'Poppins', sans-serif !important;
-			}
+
 			
 			/* === MENÚ OVERLAY === */
 			.mobile-menu-overlay {
@@ -1266,28 +1005,14 @@
 			
 			/* En pantallas muy pequeñas, hacer los botones un poco más pequeños */
 			@media (max-width: 480px) {
-				.floating-hamburger,
-				.floating-directcita {
-					top: 15px !important;
-				}
-				
 				.floating-hamburger {
+					top: 15px !important;
 					right: 15px !important;
 				}
 				
-				.floating-directcita {
-					left: 15px !important;
-				}
-				
-				.hamburger-btn,
-				.directcita-mobile-btn {
+				.hamburger-btn {
 					width: 45px !important;
 					height: 45px !important;
-				}
-				
-				.directcita-mobile-img {
-					width: 25px !important;
-					height: 25px !important;
 				}
 				
 				.hamburger-line {
@@ -1297,17 +1022,9 @@
 			
 			/* Asegurar que no interfieran entre sí */
 			@media (max-width: 360px) {
-				.floating-hamburger,
-				.floating-directcita {
-					top: 10px !important;
-				}
-				
 				.floating-hamburger {
+					top: 10px !important;
 					right: 10px !important;
-				}
-				
-				.floating-directcita {
-					left: 10px !important;
 				}
 			}
 			
@@ -1879,23 +1596,13 @@
 <div id="sticky-header" class="mesud ozil_nav_manu">
 	<div class="row align-items-center">
 		<div class="col-lg-3">
-			<div class="logo-with-buttons">
-				<div class="logo">
-					<a class="logo_img" href="index.html" title="mesud ozil">
-						<img src="assets/images/yogrande.png" alt="logo" width="70" height="70">
-					</a>
-					<a class="main_sticky" href="index.html" title="mesud ozil">
-						<img src="assets/images/yogrande.png" alt="astute" width="70" height="70">
-					</a>
-				</div>
-				<!-- Logotipo DirectaCita -->
-				<div class="directcita-logo">
-					<a href="https://directcita.onrender.com" target="_blank" rel="noopener noreferrer" title="Ir a DirectCita - Sistema de citas online">
-						<img src="assets/images/directcita.png" alt="DirectaCita" class="directcita-img" 
-							 onerror="this.style.display='none'; this.nextElementSibling.style.background='linear-gradient(135deg, #28a745, #20c997)'; this.nextElementSibling.style.color='white'; this.nextElementSibling.style.padding='10px 15px'; this.nextElementSibling.style.borderRadius='8px';">
-						<span class="directcita-text">DirectCita</span>
-					</a>
-				</div>
+			<div class="logo">
+				<a class="logo_img" href="index.html" title="mesud ozil">
+					<img src="assets/images/yogrande.png" alt="logo" width="70" height="70">
+				</a>
+				<a class="main_sticky" href="index.html" title="mesud ozil">
+					<img src="assets/images/yogrande.png" alt="astute" width="70" height="70">
+				</a>
 			</div>
 		</div>
 		<div class="col-lg-9">
@@ -1927,14 +1634,7 @@
 	</button>
 </div>
 
-<!-- DirectCita Flotante (Solo Móvil) -->
-<div class="floating-directcita d-lg-none">
-	<a href="https://directcita.onrender.com" target="_blank" rel="noopener noreferrer" title="Ir a DirectCita - Sistema de citas online" class="directcita-mobile-btn">
-		<img src="assets/images/directcita.png" alt="DirectaCita" class="directcita-mobile-img" 
-			 onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
-		<span class="directcita-mobile-text">DC</span>
-	</a>
-</div>
+
 
 <!-- Menú Móvil Overlay -->
 <div class="mobile-menu-overlay d-lg-none" id="mobileMenuOverlay">
@@ -2254,30 +1954,30 @@
 			<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
 				<div class="tab">
 					 <ul class="tabs">
-						<li class="active"><a href="#">Educación</a></li>
+						<li><a href="#">Educación</a></li>
 						<li class="active"><a href="#">Professional Skills</a></li>
-						<li class="active"><a href="#">Experiencia</a></li>
+						<li><a href="#">Experiencia</a></li>
 						<!--<li class="active"><a href="#">Interview</a></li>-->
 					 </ul>
 					 <div class="tab_content tab-content tow">
-						<div class="tabs_item">
+						<div class="tabs_item" style="display: none;">
 							<div class="row upper">
 
 								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
 									<div class="tab-single-box ">
 										<div class="teb-content">
-											<h3 class="tab-title">Programación Python</h3>
-											<h4 class="tab-text">Tokio School / 2021 - 2022</h4>
-											<p class="tab-descrip">Python, Flask</p>
+											<h3 class="tab-title">Ingeniería Informática</h3>
+											<h4 class="tab-text">Universidad Europea Miguel De Cervantes 2023-2026</h4>
+											<p class="tab-descrip">Cursando...</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
 									<div class="tab-single-box two">
 										<div class="teb-content">
-											<h3 class="tab-title"> Full Stack Developer</h3>
-											<h4 class="tab-text">Deusto / cursando</h4>
-											<p class="tab-descrip">Javascript, Html, Css, React, Angular, Git</p>
+											<h3 class="tab-title"> Programación Python</h3>
+											<h4 class="tab-text">Tokio School / 2021 - 2022</h4>
+											<p class="tab-descrip">Python, Flask</p>
 										</div>
 									</div>
 								</div>
@@ -2299,7 +1999,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+								<!--<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
 									<div class="tab-single-box">
 										<div class="teb-content">
 											<h3 class="tab-title">Bachiller ciencias sociales</h3>
@@ -2307,7 +2007,7 @@
 											<p class="tab-descrip"></p>
 										</div>
 									</div>
-								</div>
+								</div>-->
 								<!--<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
 									<div class="tab-single-box two">
 										<div class="teb-content">
@@ -2438,41 +2138,40 @@
 								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
 									<div class="tab-single-box">
 										<div class="teb-content">
-											<h3 class="tab-title">Consultor IT</h3>
-											<h4 class="tab-text">Alditraex SL / 2021 - actualidad</h4>
-											<p class="tab-descrip">Desarrollo aplicaciones propias, gestión de servidores, integraciones, APIS, gestión de redes</p>
+											<h3 class="tab-title">Desarrollador web Freelance</h3>
+											<h4 class="tab-text">Alditraex SL / 2025 - actualidad</h4>
+											<p class="tab-descrip">Desarrollo aplicaciones personalizadas, páginas web, integraciones, APIS</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
 									<div class="tab-single-box two">
 										<div class="teb-content">
-											<h3 class="tab-title">Administración y Subdirección </h3>
-											<h4 class="tab-text">Alditraex SL / 2017 - 2021</h4>
-											<p class="tab-descrip">Planificación de rutas, gestión del persona,facturas, proveedores...</p>
+											<h3 class="tab-title">Consultor IT </h3>
+											<h4 class="tab-text">Alditraex SL / 2021 - 2024</h4>
+											<p class="tab-descrip">Desarrollo aplicaciones propias, gestión de servidores, integraciones, APIS, gestión de redes</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
 									<div class="tab-single-box ">
 										<div class="teb-content">
-											<h3 class="tab-title">Auxiliar administrativo</h3>
-											<h4 class="tab-text">Alditraex / 2005 - 2017</h4>
-											<p class="tab-descrip">Planificación de rutas,seguimineto expediciones, control almacén,</p>
-										</div>
-									</div>
-								</div>
-								<!--<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
-									<div class="tab-single-box two">
-										<div class="teb-content">
-											<h3 class="tab-title">Examples Of Personal Portfolio</h3>
-											<h4 class="tab-text">Cambridge University / 2005 - 2008</h4>
-											<p class="tab-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quo
-											repudiandae consectetur adipisicing elit.</p>
+											<h3 class="tab-title">Administración y Subdirección</h3>
+											<h4 class="tab-text">Alditraex SL / 2017 - 2021</h4>
+											<p class="tab-descrip">Planificación de rutas, gestión del persona,facturas, proveedores...</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box two">
+										<div class="teb-content">
+											<h3 class="tab-title">Auxiliar administrativo</h3>
+											<h4 class="tab-text">Alditraex / 2005 - 2017</h4>
+											<p class="tab-descrip">Planificación de rutas,seguimiento expediciones, control almacén</p>
+										</div>
+									</div>
+								</div>
+								<!--<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
 									<div class="tab-single-box">
 										<div class="teb-content">
 											<h3 class="tab-title">The Personal Portfolio Mystery</h3>
@@ -3381,6 +3080,50 @@
 				observer.observe(el);
 			});
 			
+			// === CONFIGURAR PESTAÑAS PARA ABRIR PROFESSIONAL SKILLS POR DEFECTO ===
+			setTimeout(() => {
+				// Asegurar que Professional Skills esté activo por defecto
+				const tabs = document.querySelectorAll('.tabs li');
+				const tabItems = document.querySelectorAll('.tabs_item');
+				
+				// Remover clase active de todas las pestañas
+				tabs.forEach(tab => tab.classList.remove('active'));
+				
+				// Ocultar todos los contenidos de pestañas
+				tabItems.forEach(item => item.style.display = 'none');
+				
+				// Activar la segunda pestaña (Professional Skills) - índice 1
+				if (tabs[1]) {
+					tabs[1].classList.add('active');
+				}
+				
+				// Mostrar el contenido de Professional Skills - índice 1
+				if (tabItems[1]) {
+					tabItems[1].style.display = 'block';
+				}
+				
+				// Agregar event listeners para las pestañas
+				tabs.forEach((tab, index) => {
+					tab.addEventListener('click', function(e) {
+						e.preventDefault();
+						
+						// Remover active de todas las pestañas
+						tabs.forEach(t => t.classList.remove('active'));
+						
+						// Ocultar todos los contenidos
+						tabItems.forEach(item => item.style.display = 'none');
+						
+						// Activar la pestaña clickeada
+						this.classList.add('active');
+						
+						// Mostrar el contenido correspondiente
+						if (tabItems[index]) {
+							tabItems[index].style.display = 'block';
+						}
+					});
+				});
+			}, 500); // Pequeño delay para asegurar que el DOM esté listo
+			
 
 			
 			// === MEJORAS ESPECÍFICAS PARA MÓVIL === 
@@ -3461,46 +3204,7 @@
 				console.log('✅ Página abierta en navegador normal');
 			}
 			
-			// === VERIFICACIÓN DIRECTCITA === 
-			
-			// Verificar que el botón DirectCita se carga correctamente
-			setTimeout(function() {
-				const directcitaLogo = document.querySelector('.directcita-logo');
-				const directcitaImg = document.querySelector('.directcita-img');
-				
-				if (!directcitaLogo) {
-					console.warn('⚠️ DirectCita logo container no encontrado');
-				} else {
-					console.log('✅ DirectCita logo container encontrado');
-					
-					// Forzar visibilidad si está oculto
-					directcitaLogo.style.display = 'flex';
-					directcitaLogo.style.visibility = 'visible';
-					directcitaLogo.style.opacity = '1';
-				}
-				
-				if (!directcitaImg) {
-					console.warn('⚠️ DirectCita imagen no encontrada');
-				} else {
-					console.log('✅ DirectCita imagen encontrada');
-					
-					// Verificar si la imagen se carga correctamente
-					if (directcitaImg.complete && directcitaImg.naturalWidth > 0) {
-						console.log('✅ DirectCita imagen cargada correctamente');
-					} else {
-						console.warn('⚠️ DirectCita imagen no se cargó correctamente');
-						// Fallback: mostrar solo texto estilizado
-						const directcitaText = document.querySelector('.directcita-text');
-						if (directcitaText) {
-							directcitaText.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-							directcitaText.style.color = 'white';
-							directcitaText.style.padding = '10px 15px';
-							directcitaText.style.borderRadius = '8px';
-							directcitaText.style.fontWeight = 'bold';
-						}
-					}
-				}
-			}, 1000);
+
 		});
 	</script>
 </body>
