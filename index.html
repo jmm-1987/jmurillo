@@ -425,7 +425,7 @@
 					height: 100vh !important;
 					min-height: 100vh !important;
 					background-attachment: fixed !important;
-					padding: 60px 0 40px !important;
+					padding: 100px 0 40px !important; /* Más padding para la barra de navegación */
 				}
 				
 				.hero .row {
@@ -451,6 +451,51 @@
 				.hero-contant h3, .hero-contant h2 {
 					text-align: left !important;
 				}
+			}
+		}
+		
+		/* === CORRECCIÓN ADICIONAL PARA VISTA ESCRITORIO FORZADA === */
+		/* Asegurar que todos los elementos se vean correctamente */
+		@media (min-width: 769px) and (max-width: 1600px) {
+			.hero-area {
+				height: 100vh !important;
+				min-height: 100vh !important;
+				background-attachment: fixed !important;
+				padding: 100px 0 40px !important;
+			}
+			
+			.hero .row {
+				flex-direction: row !important;
+			}
+			
+			.hero .col-lg-6 {
+				width: 50% !important;
+				max-width: 50% !important;
+			}
+			
+			.hero-image {
+				margin-top: 0 !important;
+				margin-bottom: 0 !important;
+				order: 0 !important;
+			}
+			
+			.hero-contant {
+				text-align: left !important;
+				margin-bottom: 0 !important;
+			}
+			
+			.hero-contant h3, .hero-contant h2 {
+				text-align: left !important;
+			}
+			
+			/* Asegurar que el logo de Jonatan se vea correctamente */
+			.jonatan-logo {
+				max-height: 400px !important;
+				width: auto !important;
+			}
+			
+			.jonatan-logo-container {
+				text-align: center !important;
 			}
 		}
 		
@@ -563,6 +608,66 @@
 			/* Ocultar menú móvil en desktop */
 			.mobile-menu-area {
 				display: none !important;
+			}
+		}
+		
+		/* === CORRECCIÓN PARA VISTA ESCRITORIO FORZADA === */
+		/* Cuando se fuerza vista escritorio, mostrar barra de navegación */
+		@media (min-width: 769px) and (max-width: 1600px) {
+			#sticky-header,
+			.mesud.ozil_nav_manu {
+				display: block !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+				height: auto !important;
+				position: fixed !important;
+				top: 0 !important;
+				left: 0 !important;
+				right: 0 !important;
+				z-index: 999 !important;
+				background: rgba(255, 255, 255, 0.95) !important;
+				backdrop-filter: blur(20px) !important;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+			}
+			
+			/* Ocultar elementos móviles cuando se fuerza vista escritorio */
+			.mobile-menu-area,
+			.floating-hamburger,
+			.floating-directcita {
+				display: none !important;
+			}
+			
+			/* Asegurar que el logo se vea correctamente */
+			.logo-with-buttons {
+				display: flex !important;
+				align-items: center !important;
+				gap: 20px !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+			}
+			
+			.directcita-logo {
+				display: flex !important;
+				align-items: center !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+			}
+			
+			.directcita-img {
+				height: 50px !important;
+				width: auto !important;
+				display: block !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+			}
+			
+			.directcita-text {
+				font-size: 16px !important;
+				font-weight: 700 !important;
+				color: #2c3e50 !important;
+				display: inline-block !important;
+				visibility: visible !important;
+				opacity: 1 !important;
 			}
 		}
 		
