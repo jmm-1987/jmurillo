@@ -348,7 +348,7 @@
 		
 		/* === CORRECCIÓN PARA VISTA ESCRITORIO FORZADA DESDE MÓVIL === */
 		/* Cuando se fuerza vista de escritorio desde móvil, ajustar la portada */
-		@media (max-width: 1024px) and (min-width: 769px) {
+		@media (max-width: 1200px) and (min-width: 769px) {
 			.hero-area {
 				height: 100vh !important;
 				min-height: 100vh !important;
@@ -378,6 +378,79 @@
 			
 			.hero-contant h3, .hero-contant h2 {
 				text-align: left !important;
+			}
+		}
+		
+		/* === CORRECCIÓN ADICIONAL PARA PANTALLAS GRANDES MÓVILES === */
+		/* Para dispositivos como OnePlus 8T y similares */
+		@media (max-width: 1400px) and (min-width: 769px) and (orientation: landscape) {
+			.hero-area {
+				height: 100vh !important;
+				min-height: 100vh !important;
+				background-attachment: fixed !important;
+				padding: 40px 0 30px !important;
+			}
+			
+			.hero .row {
+				flex-direction: row !important;
+			}
+			
+			.hero .col-lg-6 {
+				width: 50% !important;
+				max-width: 50% !important;
+			}
+			
+			.hero-image {
+				margin-top: 0 !important;
+				margin-bottom: 0 !important;
+				order: 0 !important;
+			}
+			
+			.hero-contant {
+				text-align: left !important;
+				margin-bottom: 0 !important;
+			}
+			
+			.hero-contant h3, .hero-contant h2 {
+				text-align: left !important;
+			}
+		}
+		
+		/* === DETECCIÓN DE VISTA ESCRITORIO FORZADA === */
+		/* Regla más amplia para capturar cuando se fuerza vista escritorio */
+		@media (min-width: 769px) and (max-width: 1600px) {
+			/* Solo aplicar si NO es un dispositivo móvil real */
+			@supports not (pointer: coarse) {
+				.hero-area {
+					height: 100vh !important;
+					min-height: 100vh !important;
+					background-attachment: fixed !important;
+					padding: 60px 0 40px !important;
+				}
+				
+				.hero .row {
+					flex-direction: row !important;
+				}
+				
+				.hero .col-lg-6 {
+					width: 50% !important;
+					max-width: 50% !important;
+				}
+				
+				.hero-image {
+					margin-top: 0 !important;
+					margin-bottom: 0 !important;
+					order: 0 !important;
+				}
+				
+				.hero-contant {
+					text-align: left !important;
+					margin-bottom: 0 !important;
+				}
+				
+				.hero-contant h3, .hero-contant h2 {
+					text-align: left !important;
+				}
 			}
 		}
 		
