@@ -3042,29 +3042,34 @@
 			
 			document.getElementById('modalBody').innerHTML = modalContent;
 			
-			// Mostrar modal
-			document.getElementById('projectModal').classList.add('active');
-			document.body.style.overflow = 'hidden';
-			
-			// Scroll al inicio en versión responsiva
+			// Scroll al inicio en versión responsiva ANTES de mostrar el modal
 			if (window.innerWidth <= 768) {
-				// Posicionar el scroll de la página arriba
+				// Posicionar el scroll de la página arriba primero
 				window.scrollTo({
 					top: 0,
 					behavior: 'smooth'
 				});
 				
+				// Esperar un poco para que el scroll se complete
 				setTimeout(() => {
+					// Mostrar modal después del scroll
+					document.getElementById('projectModal').classList.add('active');
+					document.body.style.overflow = 'hidden';
+					
+					// Posicionar el modal en la parte superior
 					const modal = document.getElementById('projectModal');
 					const modalContent = modal.querySelector('.modal-content');
 					if (modalContent) {
-						// Posicionar el modal en la parte superior
 						modal.scrollTo({
 							top: 0,
 							behavior: 'smooth'
 						});
 					}
-				}, 100); // Pequeño delay para asegurar que el modal esté renderizado
+				}, 300); // Tiempo suficiente para que el scroll se complete
+			} else {
+				// Para desktop, mostrar modal normalmente
+				document.getElementById('projectModal').classList.add('active');
+				document.body.style.overflow = 'hidden';
 			}
 		}
 		
@@ -3091,21 +3096,24 @@
 		// Función para posicionar el modal arriba en responsiva
 		function positionModalOnResponsive() {
 			if (window.innerWidth <= 768 && document.getElementById('projectModal').classList.contains('active')) {
-				// Posicionar el scroll de la página arriba
+				// Posicionar el scroll de la página arriba primero
 				window.scrollTo({
 					top: 0,
 					behavior: 'smooth'
 				});
 				
-				const modal = document.getElementById('projectModal');
-				const modalContent = modal.querySelector('.modal-content');
-				if (modalContent) {
-					// Posicionar el modal en la parte superior
-					modal.scrollTo({
-						top: 0,
-						behavior: 'smooth'
-					});
-				}
+				// Esperar un poco para que el scroll se complete
+				setTimeout(() => {
+					const modal = document.getElementById('projectModal');
+					const modalContent = modal.querySelector('.modal-content');
+					if (modalContent) {
+						// Posicionar el modal en la parte superior
+						modal.scrollTo({
+							top: 0,
+							behavior: 'smooth'
+						});
+					}
+				}, 300);
 			}
 		}
 		
