@@ -322,9 +322,28 @@
 			background: linear-gradient(135deg, rgba(40, 167, 69, 0.95), rgba(0, 198, 255, 0.95)) !important;
 		}
 		
-		/* Efecto parallax para hero */
-		.hero-area {
-			background-attachment: fixed !important;
+		/* Efecto parallax para hero - solo en desktop */
+		@media (min-width: 769px) {
+			.hero-area {
+				background-attachment: fixed !important;
+			}
+		}
+		
+		/* En móviles, usar scroll normal para evitar bloqueos */
+		@media (max-width: 768px) {
+			.hero-area {
+				background-attachment: scroll !important;
+				/* Asegurar que el scroll funcione correctamente */
+				overflow: visible !important;
+				position: relative !important;
+			}
+			
+			/* Asegurar que el body y html permitan scroll libre */
+			body, html {
+				overflow-x: hidden !important;
+				overflow-y: auto !important;
+				-webkit-overflow-scrolling: touch !important;
+			}
 		}
 		
 		/* Micro-interacciones */
@@ -632,7 +651,8 @@
 		/* Mobile Landscape (481px - 768px) */
 		@media (max-width: 768px) {
 			.hero-area {
-				height: 100vh !important;
+				min-height: 100vh !important;
+				height: auto !important;
 				padding: 80px 0 40px !important;
 				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
@@ -898,7 +918,8 @@
 		/* Mobile Portrait (320px - 480px) */
 		@media (max-width: 480px) {
 			.hero-area {
-				height: 100vh !important;
+				min-height: 100vh !important;
+				height: auto !important;
 				padding: 80px 0 40px !important;
 				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
@@ -1044,7 +1065,8 @@
 		/* Mobile Pequeño (máx 360px) */
 		@media (max-width: 360px) {
 			.hero-area {
-				height: 100vh !important;
+				min-height: 100vh !important;
+				height: auto !important;
 				padding: 80px 0 40px !important;
 				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
 				background-attachment: scroll !important;
@@ -3250,6 +3272,8 @@
 				el.classList.add('fade-in-up');
 				observer.observe(el);
 			});
+			
+
 			
 			// === MEJORAS ESPECÍFICAS PARA MÓVIL === 
 			
