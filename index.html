@@ -10,6 +10,7 @@
 
         gtag('config', 'G-9ZND42296P');
     </script>
+	
 	<meta charset="UTF-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>Jony Murillo</title>
@@ -66,6 +67,17 @@
 
 	<!-- Estilos para diseño moderno y profesional -->
 	<style>
+		/* === FONDO ANIMADO Y EFECTOS VISUALES === */
+		
+		/* Fondo principal blanco */
+		body {
+			background: #ffffff;
+			position: relative;
+			overflow-x: hidden;
+		}
+		
+		
+		
 		/* === MEJORAS COMPORTAMIENTO WEB MÓVIL === */
 		
 		/* Asegurar que se comporta como una web app */
@@ -138,6 +150,69 @@
 			scroll-behavior: smooth;
 		}
 		
+		/* === EFECTOS VISUALES PARA SECCIONES === */
+		
+		/* Efectos de ondas en las secciones */
+		.portfolio-area, .service-area, .tab-area, .contact-area {
+			position: relative;
+			overflow: hidden;
+		}
+		
+		.portfolio-area::before, .service-area::before, .tab-area::before, .contact-area::before {
+			content: '';
+			position: absolute;
+			top: -50px;
+			left: -50px;
+			right: -50px;
+			bottom: -50px;
+			background: 
+				radial-gradient(circle at 10% 20%, rgba(40, 167, 69, 0.05) 0%, transparent 30%),
+				radial-gradient(circle at 90% 80%, rgba(0, 198, 255, 0.05) 0%, transparent 30%);
+			animation: sectionFloat 25s ease-in-out infinite;
+			pointer-events: none;
+			z-index: -1;
+		}
+		
+		@keyframes sectionFloat {
+			0%, 100% { 
+				transform: translateY(0px) scale(1);
+				opacity: 0.5;
+			}
+			50% { 
+				transform: translateY(-15px) scale(1.02);
+				opacity: 0.8;
+			}
+		}
+		
+		/* Efectos de brillo en las cajas */
+		.service-single-box, .portfolio-single-box, .tab-single-box, .skills-single-box.two {
+			position: relative;
+			overflow: hidden;
+		}
+		
+		.service-single-box::before, .portfolio-single-box::before, .tab-single-box::before, .skills-single-box.two::before {
+			content: '';
+			position: absolute;
+			top: -50%;
+			left: -50%;
+			width: 200%;
+			height: 200%;
+			background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+			transform: rotate(45deg);
+			transition: all 0.6s ease;
+			opacity: 0;
+		}
+		
+		.service-single-box:hover::before, .portfolio-single-box:hover::before, .tab-single-box:hover::before, .skills-single-box.two:hover::before {
+			opacity: 1;
+			animation: shineEffect 0.8s ease-in-out;
+		}
+		
+		@keyframes shineEffect {
+			0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+			100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+		}
+		
 		/* === LOGO DE JONATAN EN HERO === */
 		.hero-image {
 			display: flex !important;
@@ -145,7 +220,9 @@
 			align-items: center !important;
 			height: 100% !important;
 			margin-top: 30px !important;
+			position: relative;
 		}
+		
 		
 		.jonatan-logo-container {
 			position: relative !important;
@@ -183,6 +260,44 @@
 			border: 1px solid rgba(255, 255, 255, 0.3) !important;
 			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
 			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+			position: relative;
+		}
+		
+		/* Efectos de partículas flotantes en las cajas */
+		.service-single-box::after, .portfolio-single-box::after, .tab-single-box::after, .skills-single-box.two::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: 
+				radial-gradient(circle at 20% 20%, rgba(40, 167, 69, 0.1) 0%, transparent 20%),
+				radial-gradient(circle at 80% 80%, rgba(0, 198, 255, 0.1) 0%, transparent 20%);
+			animation: particleMove 8s ease-in-out infinite;
+			pointer-events: none;
+			z-index: -1;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+		
+		.service-single-box:hover::after, .portfolio-single-box:hover::after, .tab-single-box:hover::after, .skills-single-box.two:hover::after {
+			opacity: 1;
+		}
+		
+		@keyframes particleMove {
+			0%, 100% { 
+				transform: translateY(0px) rotate(0deg);
+			}
+			25% { 
+				transform: translateY(-5px) rotate(90deg);
+			}
+			50% { 
+				transform: translateY(-10px) rotate(180deg);
+			}
+			75% { 
+				transform: translateY(-5px) rotate(270deg);
+			}
 		}
 		
 		/* Hover effects elegantes */
@@ -227,7 +342,29 @@
 			backdrop-filter: blur(20px) !important;
 			background: rgba(255, 255, 255, 0.95) !important;
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			position: relative;
+			overflow: hidden;
 		}
+		
+		/* Efectos de fondo animado en la navegación */
+		.mesud.ozil_nav_manu::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(40, 167, 69, 0.1), transparent);
+			animation: navShimmer 3s ease-in-out infinite;
+			pointer-events: none;
+		}
+		
+		@keyframes navShimmer {
+			0% { left: -100%; }
+			50% { left: 100%; }
+			100% { left: 100%; }
+		}
+		
 		
 		/* Botón contacto con efectos modernos */
 		.mesud.ozil-btn a {
@@ -425,17 +562,77 @@
 			50% { opacity: 0.7; transform: scale(1.1); }
 		}
 		
-		/* Scroll indicator */
+		/* Scroll indicator mejorado */
 		.scroll-progress {
 			position: fixed;
 			top: 0;
 			left: 0;
 			width: 0%;
 			height: 4px;
-			background: linear-gradient(90deg, #28a745, #00C6FF);
+			background: linear-gradient(90deg, #28a745, #00C6FF, #28a745);
+			background-size: 200% 100%;
+			animation: progressGradient 3s ease infinite;
 			z-index: 9999;
 			transition: width 0.1s ease;
+			box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
 		}
+		
+		@keyframes progressGradient {
+			0% { background-position: 0% 50%; }
+			50% { background-position: 100% 50%; }
+			100% { background-position: 0% 50%; }
+		}
+		
+		/* Efectos de scroll suave con parallax */
+		.hero-area {
+			background-attachment: fixed !important;
+		}
+		
+		/* Efectos de entrada para elementos */
+		.fade-in-up {
+			opacity: 0;
+			transform: translateY(50px);
+			transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+		
+		.fade-in-up.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		
+		/* Efectos de hover mejorados para enlaces */
+		.mesud.ozil_menu ul li a {
+			position: relative;
+			transition: all 0.3s ease;
+		}
+		
+		.mesud.ozil_menu ul li a::after {
+			content: '';
+			position: absolute;
+			bottom: -5px;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background: linear-gradient(90deg, #28a745, #00C6FF);
+			transition: width 0.3s ease;
+		}
+		
+		.mesud.ozil_menu ul li a:hover::after {
+			width: 100%;
+		}
+		
+		/* Efectos de pulsación para elementos importantes */
+		@keyframes pulse {
+			0%, 100% { 
+				transform: scale(1);
+				box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+			}
+			50% { 
+				transform: scale(1.05);
+				box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+			}
+		}
+		
 		
 		/* Animaciones de entrada */
 		.fade-in-up {
@@ -1789,7 +1986,7 @@
 								<p class="portfolio-text">Agenda con recordatorios</p>
 								<p class="portfolio-text">Control de visitas y actividad de comerciales</p>
 								<p class="portfolio-text">Avisos por Telegram</p>
-								<button class="ver-mas-btn" onclick="openProjectModal('cmr')">
+								<button class="ver-mas-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
 									<i class="bi bi-eye"></i> Ver más
 								</button>
 							</div>
@@ -1803,7 +2000,7 @@
 							<div class="portfolio-content">
 								<h3 class="portfolio-title">Web con chatboot y tarificador</h3>
 								<p class="portfolio-text">Diseño web</p>
-								<button class="ver-mas-btn" onclick="openProjectModal('alditraex')">
+								<button class="ver-mas-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
 									<i class="bi bi-eye"></i> Ver más
 								</button>
 							</div>
@@ -1817,7 +2014,7 @@
 							<div class="portfolio-content">
 								<h3 class="portfolio-title">Página web pastelería</h3>
 								<p class="portfolio-text">Diseño web</p>
-								<button class="ver-mas-btn" onclick="openProjectModal('pasteleria')">
+								<button class="ver-mas-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
 									<i class="bi bi-eye"></i> Ver más
 								</button>
 							</div>
