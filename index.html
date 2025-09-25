@@ -13,7 +13,7 @@
 	
 	<meta charset="UTF-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Jony Murillo</title>
+	<title>Jonatan Murillo</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover">
 	<!-- Meta tags para mejorar comportamiento móvil -->
@@ -410,8 +410,70 @@
 		}
 		
 		/* Portfolio con overlay mejorado */
+		.portfolio-thumb {
+			position: relative;
+			overflow: hidden;
+			border-radius: 15px;
+		}
+		
 		.portfolio-content {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
 			background: linear-gradient(135deg, rgba(40, 167, 69, 0.95), rgba(0, 198, 255, 0.95)) !important;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			padding: 20px;
+			opacity: 0;
+			transform: translateY(20px);
+			transition: all 0.4s ease;
+			border-radius: 15px;
+		}
+		
+		.proyecto-single-box:hover .portfolio-content {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		
+		.portfolio-title {
+			color: white;
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 15px;
+			line-height: 1.3;
+		}
+		
+		.portfolio-text {
+			color: rgba(255, 255, 255, 0.9);
+			font-size: 14px;
+			margin-bottom: 8px;
+			line-height: 1.4;
+		}
+		
+		.ver-mas-btn {
+			background: rgba(255, 255, 255, 0.2);
+			border: 2px solid rgba(255, 255, 255, 0.3);
+			color: white;
+			padding: 10px 20px;
+			border-radius: 25px;
+			font-size: 14px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			margin-top: 15px;
+			backdrop-filter: blur(10px);
+		}
+		
+		.ver-mas-btn:hover {
+			background: rgba(255, 255, 255, 0.3);
+			border-color: rgba(255, 255, 255, 0.5);
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 		}
 		
 		/* Efecto parallax para hero - solo en desktop */
@@ -1081,12 +1143,24 @@
 			}
 			
 			/* Portfolio móvil */
-			.portfolio-title a {
+			.portfolio-content {
+				padding: 15px;
+			}
+			
+			.portfolio-title {
 				font-size: 16px !important;
+				margin-bottom: 10px;
 			}
 			
 			.portfolio-text {
-				font-size: 14px !important;
+				font-size: 12px !important;
+				margin-bottom: 6px;
+			}
+			
+			.ver-mas-btn {
+				padding: 8px 16px;
+				font-size: 12px;
+				margin-top: 10px;
 			}
 			
 			/* Contacto móvil */
@@ -1160,6 +1234,27 @@
 			
 			.service-single-box, .proyecto-single-box, .tab-single-box {
 				padding: 15px 8px;
+			}
+			
+			/* Portfolio móvil muy pequeño */
+			.portfolio-content {
+				padding: 10px;
+			}
+			
+			.portfolio-title {
+				font-size: 14px !important;
+				margin-bottom: 8px;
+			}
+			
+			.portfolio-text {
+				font-size: 11px !important;
+				margin-bottom: 4px;
+			}
+			
+			.ver-mas-btn {
+				padding: 6px 12px;
+				font-size: 11px;
+				margin-top: 8px;
 			}
 			
 			.sticky {
@@ -1628,18 +1723,15 @@
 			background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 		}
 		
-		.contact-card {
-			background: white;
-			border-radius: 20px;
-			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-			overflow: hidden;
+		.contact-card-image {
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-			border: 3px solid transparent;
-			background-clip: padding-box;
 			position: relative;
 		}
 		
-		.contact-card::before {
+		.contact-card-image::before {
 			content: '';
 			position: absolute;
 			top: -3px;
@@ -1647,108 +1739,178 @@
 			right: -3px;
 			bottom: -3px;
 			background: linear-gradient(135deg, #00c6ff, #28a745, #00c6ff);
-			border-radius: 23px;
+			border-radius: 53px;
 			z-index: -1;
 			opacity: 0;
 			transition: opacity 0.4s ease;
 		}
 		
-		.contact-card:hover::before {
+		.contact-card-image:hover::before {
 			opacity: 1;
 		}
 		
-		.contact-card:hover {
+		.contact-card-image:hover {
 			transform: translateY(-10px) scale(1.02);
 			box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
 		}
 		
-		.contact-card-inner {
-			display: flex;
-			align-items: center;
-			padding: 30px;
-			gap: 25px;
-		}
-		
-		.contact-avatar {
-			position: relative;
-		}
-		
-		.avatar-img {
-			width: 80px;
-			height: 80px;
-			border-radius: 50%;
-			object-fit: cover;
-			border: 3px solid #e9ecef;
+		.contact-card-img {
+			max-width: 100%;
+			height: auto;
+			border-radius: 50px;
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
 			transition: all 0.3s ease;
 		}
 		
-		.contact-card:hover .avatar-img {
-			border-color: #28a745;
-			transform: scale(1.1);
+		.contact-card-image:hover .contact-card-img {
+			box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
 		}
 		
-		.contact-info {
-			flex: 1;
-		}
-		
-		.contact-name h3 {
-			margin: 0 0 8px 0;
-			font-size: 24px;
-			font-weight: 700;
-			color: #2c3e50;
-			font-family: 'Poppins', sans-serif;
-		}
-		
-		.contact-badges {
-			margin-bottom: 20px;
-		}
-		
-		.tech-badge {
-			background: linear-gradient(135deg, #28a745, #20c997);
-			color: white;
-			padding: 6px 12px;
-			border-radius: 20px;
-			font-size: 12px;
-			font-weight: 600;
-			display: inline-flex;
-			align-items: center;
-			gap: 5px;
-		}
-		
-		.contact-details {
-			display: flex;
-			flex-direction: column;
-			gap: 12px;
-		}
-		
-		.contact-item {
-			display: flex;
-			align-items: center;
-			gap: 12px;
-		}
-		
-		.contact-item i {
-			width: 20px;
-			height: 20px;
+		/* Overlay de contacto */
+		.contact-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(135deg, rgba(40, 167, 69, 0.95), rgba(0, 198, 255, 0.95));
+			border-radius: 50px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			color: #28a745;
-			font-size: 16px;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.4s ease;
+			backdrop-filter: blur(10px);
 		}
 		
-		.contact-item a {
-			color: #495057;
+		.contact-card-image:hover .contact-overlay {
+			opacity: 1;
+			visibility: visible;
+		}
+		
+		.contact-overlay-content {
+			text-align: center;
+			color: white;
+			padding: 20px;
+		}
+		
+		.contact-overlay-content h4 {
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 20px;
+			color: white;
+		}
+		
+		.contact-options {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+		}
+		
+		.contact-option {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			background: rgba(255, 255, 255, 0.2);
+			border: 2px solid rgba(255, 255, 255, 0.3);
+			border-radius: 25px;
+			padding: 12px 20px;
+			color: white;
 			text-decoration: none;
 			font-weight: 500;
 			transition: all 0.3s ease;
-			font-size: 15px;
+			backdrop-filter: blur(10px);
 		}
 		
-		.contact-item a:hover {
-			color: #28a745;
-			transform: translateX(5px);
+		.contact-option:hover {
+			background: rgba(255, 255, 255, 0.3);
+			border-color: rgba(255, 255, 255, 0.5);
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+			color: white;
 		}
+		
+		.contact-option i {
+			font-size: 20px;
+			width: 24px;
+			text-align: center;
+		}
+		
+		.contact-option.whatsapp i {
+			color: #25D366;
+		}
+		
+		.contact-option.phone i {
+			color: #28a745;
+		}
+		
+		.contact-option.email i {
+			color: #007bff;
+		}
+		
+		/* Responsive para la imagen de tarjeta de contacto */
+		@media (max-width: 768px) {
+			.contact-area {
+				padding: 60px 0;
+			}
+			
+			.contact-card-img {
+				max-width: 90%;
+			}
+			
+			.contact-overlay-content h4 {
+				font-size: 16px;
+				margin-bottom: 15px;
+			}
+			
+			.contact-options {
+				gap: 12px;
+			}
+			
+			.contact-option {
+				padding: 10px 16px;
+				font-size: 14px;
+			}
+			
+			.contact-option i {
+				font-size: 18px;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.contact-area {
+				padding: 40px 0;
+			}
+			
+			.contact-card-img {
+				max-width: 95%;
+			}
+			
+			.contact-overlay-content {
+				padding: 15px;
+			}
+			
+			.contact-overlay-content h4 {
+				font-size: 14px;
+				margin-bottom: 12px;
+			}
+			
+			.contact-options {
+				gap: 10px;
+			}
+			
+			.contact-option {
+				padding: 8px 12px;
+				font-size: 13px;
+				border-radius: 20px;
+			}
+			
+			.contact-option i {
+				font-size: 16px;
+			}
+		}
+		
 		
 		/* === MODAL DE VIDEO DE DEMOS === */
 		.video-modal {
@@ -2369,7 +2531,7 @@
 					<!-- Demo 1: Presupuesto -->
 					<div class="demo-item">
 						<div class="demo-title">
-							<h3>Sistema de Presupuestos</h3>
+							<h3>Sistema de presupuestos rápidos</h3>
 						</div>
 						<div class="demo-card">
 							<div class="demo-thumb">
@@ -2400,6 +2562,20 @@
 					<div class="demo-item">
 						<div class="demo-title">
 							<h3>Dashboard Interactivo</h3>
+						</div>
+						<div class="demo-card">
+							<div class="demo-thumb">
+								<video controls preload="metadata" class="demo-video" poster="assets/pildoras/Dashboard_imagen.png">
+									<source src="assets/pildoras/Dashboard_video.mp4" type="video/mp4">
+									Tu navegador no soporta el elemento video.
+								</video>
+							</div>
+						</div>
+					</div>
+					<!-- Demo 4: Ejemplo adicional -->
+					<div class="demo-item">
+						<div class="demo-title">
+							<h3>Dashboard Interactivo2</h3>
 						</div>
 						<div class="demo-card">
 							<div class="demo-thumb">
@@ -3232,37 +3408,24 @@
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-lg-6 col-md-8 col-sm-10">
-				<div class="contact-card" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
-					<div class="contact-card-inner">
-						<div class="contact-card-left">
-							<div class="contact-avatar">
-								<img src="assets/images/yogrande.png" alt="Jonatan Murillo" class="avatar-img">
-							</div>
-						</div>
-						<div class="contact-card-right">
-							<div class="contact-info">
-								<div class="contact-name">
-									<h3>Jonatan Murillo</h3>
-									<div class="contact-badges">
-										<span class="tech-badge">
-											<i class="bi bi-code-slash"></i> tech_studio
-										</span>
-									</div>
-								</div>
-								<div class="contact-details">
-									<div class="contact-item">
-										<i class="bi bi-envelope"></i>
-										<a href="mailto:jomma.tech@gmail.com">jomma.tech@gmail.com</a>
-									</div>
-									<div class="contact-item">
-										<i class="bi bi-telephone"></i>
-										<a href="tel:+34619639616">+34 625433667</a>
-									</div>
-									<div class="contact-item">
-										<i class="bi bi-whatsapp"></i>
-										<a href="https://wa.me/34619639616" target="_blank">WhatsApp</a>
-									</div>
-								</div>
+				<div class="contact-card-image" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+					<img src="assets/images/tarjeta.png" alt="Tarjeta de contacto de Jonatan Murillo" class="contact-card-img">
+					<div class="contact-overlay">
+						<div class="contact-overlay-content">
+							<h4>Contacta por:</h4>
+							<div class="contact-options">
+								<a href="https://wa.me/34625433667" target="_blank" class="contact-option whatsapp">
+									<i class="bi bi-whatsapp"></i>
+									<span>WhatsApp</span>
+								</a>
+								<a href="tel:+34625433667" class="contact-option phone">
+									<i class="bi bi-telephone"></i>
+									<span>Llamada</span>
+								</a>
+								<a href="mailto:jomma.tech@gmail.com" class="contact-option email">
+									<i class="bi bi-envelope"></i>
+									<span>Correo</span>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -3825,6 +3988,15 @@
 			// Ocultar el modal
 			modal.classList.remove('active');
 			document.body.style.overflow = 'auto';
+			
+			// Hacer scroll hacia la sección de demos
+			const demosSection = document.getElementById('demos');
+			if (demosSection) {
+				demosSection.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
+				});
+			}
 		}
 		
 		// Función para posicionar el modal de video arriba en responsiva
@@ -4012,7 +4184,7 @@
 		// Aplicar animaciones a elementos
 		document.addEventListener('DOMContentLoaded', function() {
 			// Agregar clase fade-in-up a elementos
-			const elementsToAnimate = document.querySelectorAll('.service-single-box, .proyecto-single-box, .tab-single-box, .section-title, .contact-card');
+			const elementsToAnimate = document.querySelectorAll('.service-single-box, .proyecto-single-box, .tab-single-box, .section-title, .contact-card-image');
 			elementsToAnimate.forEach(el => {
 				el.classList.add('fade-in-up');
 				observer.observe(el);
@@ -4143,6 +4315,109 @@
 			}
 			
 
+		});
+		
+		// === GOOGLE ANALYTICS - TRACKING DE CLICS ===
+		
+		// Función para enviar eventos a Google Analytics
+		function trackEvent(eventName, eventCategory, eventLabel, eventValue) {
+			if (typeof gtag !== 'undefined') {
+				gtag('event', eventName, {
+					'event_category': eventCategory,
+					'event_label': eventLabel,
+					'value': eventValue
+				});
+				console.log(`📊 Evento enviado: ${eventName} - ${eventCategory} - ${eventLabel}`);
+			}
+		}
+		
+		// Tracking de clics en enlaces de contacto
+		document.addEventListener('DOMContentLoaded', function() {
+			
+			// Tracking de clics en WhatsApp
+			const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+			whatsappLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					trackEvent('click', 'Contact', 'WhatsApp', 1);
+				});
+			});
+			
+			// Tracking de clics en teléfono
+			const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+			phoneLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					trackEvent('click', 'Contact', 'Phone Call', 1);
+				});
+			});
+			
+			// Tracking de clics en email
+			const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+			emailLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					trackEvent('click', 'Contact', 'Email', 1);
+				});
+			});
+			
+			// Tracking de clics en botones "Ver más" de proyectos
+			const verMasButtons = document.querySelectorAll('.ver-mas-btn');
+			verMasButtons.forEach(button => {
+				button.addEventListener('click', function() {
+					const projectTitle = this.closest('.proyecto-single-box')?.querySelector('.portfolio-title')?.textContent || 'Proyecto desconocido';
+					trackEvent('click', 'Project', `Ver más - ${projectTitle}`, 1);
+				});
+			});
+			
+			// Tracking de clics en videos de demos
+			const demoVideos = document.querySelectorAll('.demo-video');
+			demoVideos.forEach(video => {
+				video.addEventListener('play', function() {
+					const demoTitle = this.closest('.demo-item')?.querySelector('.demo-title h3')?.textContent || 'Demo desconocido';
+					trackEvent('video_play', 'Demo', demoTitle, 1);
+				});
+				
+				video.addEventListener('ended', function() {
+					const demoTitle = this.closest('.demo-item')?.querySelector('.demo-title h3')?.textContent || 'Demo desconocido';
+					trackEvent('video_complete', 'Demo', demoTitle, 1);
+				});
+			});
+			
+			// Tracking de clics en navegación
+			const navLinks = document.querySelectorAll('.nav_scroll a, .mobile-nav-link');
+			navLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					const section = this.getAttribute('href') || 'unknown';
+					trackEvent('click', 'Navigation', `Section: ${section}`, 1);
+				});
+			});
+			
+			// Tracking de clics en modales de proyectos
+			const projectModals = document.querySelectorAll('[onclick*="openProjectModal"]');
+			projectModals.forEach(button => {
+				button.addEventListener('click', function() {
+					const projectType = this.getAttribute('onclick').match(/'([^']+)'/)?.[1] || 'unknown';
+					trackEvent('click', 'Project Modal', `Open: ${projectType}`, 1);
+				});
+			});
+			
+			// Tracking de scroll en secciones importantes
+			const sections = ['#hero', '#demos', '#proyectos', '#service', '#contact'];
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const sectionName = entry.target.id || entry.target.className;
+						trackEvent('scroll', 'Section View', sectionName, 1);
+					}
+				});
+			}, { threshold: 0.5 });
+			
+			sections.forEach(sectionId => {
+				const section = document.querySelector(sectionId);
+				if (section) {
+					observer.observe(section);
+				}
+			});
+			
+			console.log('✅ Google Analytics tracking configurado correctamente');
 		});
 	</script>
 </body>
