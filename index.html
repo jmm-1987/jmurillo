@@ -27,8 +27,16 @@
 	<!-- Asegurar que se comporta como una página web normal -->
 	<meta name="mobile-web-app-status-bar-style" content="default">
 	<meta name="theme-color" content="#ffffff">
-	<!-- Manifest para comportamiento web estándar -->
-	<link rel="manifest" href="manifest.json">
+	<!-- Manifest para comportamiento web estándar (solo si se sirve desde HTTP/HTTPS) -->
+	<script>
+		// Solo cargar el manifest si no estamos en protocolo file://
+		if (window.location.protocol !== 'file:') {
+			const manifestLink = document.createElement('link');
+			manifestLink.rel = 'manifest';
+			manifestLink.href = 'manifest.json';
+			document.head.appendChild(manifestLink);
+		}
+	</script>
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" sizes="56x56" href="assets/images/fav-icon/icon.png">
 	<!-- bootstrap CSS -->
@@ -1824,15 +1832,18 @@
 		@media (max-width: 768px) {
 			.video-modal {
 				padding: 10px;
+				align-items: flex-start; /* Cambiar de center a flex-start */
+				padding-top: 70px; /* Añadir padding superior (30px más) */
 			}
 			
 			.video-modal-content {
 				max-width: 95vw;
 				max-height: 95vh;
+				margin-top: 0; /* Asegurar que no hay margen superior */
 			}
 			
 			.video-modal-video {
-				max-height: 70vh;
+				max-height: 60vh; /* Reducir altura para que quepa mejor */
 			}
 			
 			.video-modal-title {
@@ -1841,7 +1852,8 @@
 			}
 			
 			.video-modal-close {
-				top: -40px;
+				top: 10px; /* Cambiar posición a dentro del contenido */
+				right: 10px;
 				width: 35px;
 				height: 35px;
 				font-size: 16px;
@@ -1849,8 +1861,18 @@
 		}
 		
 		@media (max-width: 480px) {
+			.video-modal {
+				padding: 5px;
+				padding-top: 65px; /* Ajustar proporcionalmente (30px más) */
+			}
+			
+			.video-modal-content {
+				max-width: 100vw;
+				max-height: 100vh;
+			}
+			
 			.video-modal-video {
-				max-height: 60vh;
+				max-height: 50vh; /* Aún más pequeño para móviles muy pequeños */
 			}
 			
 			.video-modal-title {
@@ -1859,7 +1881,8 @@
 			}
 			
 			.video-modal-close {
-				top: -35px;
+				top: 5px; /* Posición dentro del contenido */
+				right: 5px;
 				width: 30px;
 				height: 30px;
 				font-size: 14px;
@@ -2155,6 +2178,10 @@
 				width: 70px;
 				height: 70px;
 			}
+			
+			.contact-item a {
+				font-size: 14px;
+			}
 		}
 		
 		@media (max-width: 480px) {
@@ -2332,7 +2359,7 @@
 			<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
 				<div class="section-title text-center">
 					<h5 class="section-sub-title">DEMOS</h5>
-					<h1 class="section-main-title">Videos de mis soluciones</h1>
+					<h1 class="section-main-title">Demostraciones en acción</h1>
 				</div>
 			</div>
 		</div>
@@ -3229,7 +3256,7 @@
 									</div>
 									<div class="contact-item">
 										<i class="bi bi-telephone"></i>
-										<a href="tel:+34619639616">+34 619639616</a>
+										<a href="tel:+34619639616">+34 625433667</a>
 									</div>
 									<div class="contact-item">
 										<i class="bi bi-whatsapp"></i>
@@ -3643,6 +3670,7 @@
 		
 		// Ajustar scroll al redimensionar ventana
 		window.addEventListener('resize', positionModalOnResponsive);
+		window.addEventListener('resize', positionVideoModalOnResponsive);
 		
 		// === CARRUSEL DE DEMOS ===
 		
@@ -3746,14 +3774,43 @@
 			modalVideo.src = videoSrc;
 			modalTitle.textContent = title;
 			
-			// Mostrar el modal
-			modal.classList.add('active');
-			document.body.style.overflow = 'hidden';
-			
-			// Reproducir automáticamente
-			modalVideo.play().catch(error => {
-				console.log('Error al reproducir video:', error);
-			});
+			// Scroll al inicio en versión responsiva ANTES de mostrar el modal
+			if (window.innerWidth <= 768) {
+				// Posicionar el scroll de la página arriba primero
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
+				
+				// Esperar un poco para que el scroll se complete antes de mostrar el modal
+				setTimeout(() => {
+					// Mostrar el modal
+					modal.classList.add('active');
+					document.body.style.overflow = 'hidden';
+					
+					// Forzar scroll hacia arriba una vez más después de mostrar el modal
+					setTimeout(() => {
+						window.scrollTo({
+							top: 0,
+							behavior: 'smooth'
+						});
+					}, 100);
+					
+					// Reproducir automáticamente
+					modalVideo.play().catch(error => {
+						console.log('Error al reproducir video:', error);
+					});
+				}, 300); // Tiempo suficiente para que el scroll se complete
+			} else {
+				// Mostrar el modal directamente en desktop
+				modal.classList.add('active');
+				document.body.style.overflow = 'hidden';
+				
+				// Reproducir automáticamente
+				modalVideo.play().catch(error => {
+					console.log('Error al reproducir video:', error);
+				});
+			}
 		}
 		
 		// Función para cerrar el modal de video
@@ -3768,6 +3825,17 @@
 			// Ocultar el modal
 			modal.classList.remove('active');
 			document.body.style.overflow = 'auto';
+		}
+		
+		// Función para posicionar el modal de video arriba en responsiva
+		function positionVideoModalOnResponsive() {
+			if (window.innerWidth <= 768 && document.getElementById('videoModal').classList.contains('active')) {
+				// Posicionar el scroll de la página arriba primero
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth'
+				});
+			}
 		}
 		
 		document.addEventListener('DOMContentLoaded', function() {
