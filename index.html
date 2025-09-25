@@ -1723,47 +1723,42 @@
 			background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 		}
 		
-		.contact-card-image {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-			position: relative;
-		}
+        .contact-card-image {
+            display: block;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            width: auto;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+            overflow: hidden;
+        }
 		
-		.contact-card-image::before {
-			content: '';
-			position: absolute;
-			top: -3px;
-			left: -3px;
-			right: -3px;
-			bottom: -3px;
-			background: linear-gradient(135deg, #00c6ff, #28a745, #00c6ff);
-			border-radius: 53px;
-			z-index: -1;
-			opacity: 0;
-			transition: opacity 0.4s ease;
-		}
-		
-		.contact-card-image:hover::before {
-			opacity: 1;
-		}
 		
 		.contact-card-image:hover {
 			transform: translateY(-10px) scale(1.02);
-			box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+			box-shadow: none;
+			overflow: visible;
 		}
 		
 		.contact-card-img {
-			max-width: 100%;
+			width: 100%;
 			height: auto;
 			border-radius: 50px;
-			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+			box-shadow: none;
 			transition: all 0.3s ease;
+			display: block;
+			margin: 0;
+			padding: 0;
+			border: none;
+			outline: none;
+			object-fit: contain;
+			background: transparent;
 		}
 		
 		.contact-card-image:hover .contact-card-img {
-			box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+			box-shadow: none;
 		}
 		
 		/* Overlay de contacto */
@@ -3406,8 +3401,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="row justify-content-center">
-			<div class="col-lg-6 col-md-8 col-sm-10">
+		<div class="row justify-content-center" style="margin: 0; padding: 0;">
+			<div class="col-lg-6 col-md-8 col-sm-10" style="margin: 0; padding: 0; display: flex; justify-content: center;">
 				<div class="contact-card-image" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
 					<img src="assets/images/tarjeta.png" alt="Tarjeta de contacto de Jonatan Murillo" class="contact-card-img">
 					<div class="contact-overlay">
@@ -3465,7 +3460,7 @@
 <div class="scroll-area">
 	<div class="top-wrap">
 		<div class="go-top-btn-wraper">
-			<div class="go-top go-top-button">
+			<div class="go-top go-top-button" onclick="scrollToTop()">
 				<i class="fas fa-arrow-up"></i>
 				<i class="fas fa-arrow-up"></i>
 			</div>
@@ -4320,6 +4315,16 @@
 		// === GOOGLE ANALYTICS - TRACKING DE CLICS ===
 		
 		// Función para enviar eventos a Google Analytics
+		// Función rápida para ir arriba
+		function scrollToTop() {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+			// Tracking del evento
+			trackEvent('scroll_to_top', 'navigation', 'back_to_top_button', 1);
+		}
+
 		function trackEvent(eventName, eventCategory, eventLabel, eventValue) {
 			if (typeof gtag !== 'undefined') {
 				gtag('event', eventName, {
