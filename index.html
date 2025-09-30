@@ -4447,8 +4447,19 @@
 			console.log('✅ Google Analytics tracking configurado correctamente');
 		});
 	</script>
-	<!-- Widget del Chatbot -->
-<script src="https://raul-chatbot.onrender.com/static/js/widget.js"></script>
+	<!-- Widget del Chatbot - Carga después de que la página esté lista -->
+<script>
+	window.addEventListener('load', function() {
+		// Esperar un poco más para asegurar que todo esté cargado
+		setTimeout(function() {
+			const script = document.createElement('script');
+			script.src = 'https://raul-chatbot.onrender.com/static/js/widget.js';
+			script.async = true;
+			document.body.appendChild(script);
+			console.log('🤖 Chatbot cargándose en segundo plano...');
+		}, 1000); // 1 segundo después de que la página esté lista
+	});
+</script>
 
 </body>
 </html>
