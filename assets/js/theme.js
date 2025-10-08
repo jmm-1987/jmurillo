@@ -18,17 +18,11 @@
         onePage: false,
     });	
 
-    // sticky
+    // sticky - Menú siempre fijo
     var wind = $(window);
     var sticky = $('#sticky-header');
-    wind.on('scroll', function () {
-        var scroll = wind.scrollTop();
-        if (scroll < 100) {
-            sticky.removeClass('sticky');
-        } else {
-            sticky.addClass('sticky');
-        }
-    });
+    // El menú siempre mantiene la clase 'sticky' desde el inicio
+    sticky.addClass('sticky');
     //Header Search
     if($('.search-box-outer').length) {
     $('.search-box-outer').on('click', function() {
@@ -57,7 +51,7 @@
         dots: false,
         nav: true,
         margin: 30,
-        navText: ["<i class='bi bi-arrow-right''></i>", "<i class='bi bi-arrow-left''></i>"],
+        navText: ["<i class='bi bi-arrow-right'></i>", "<i class='bi bi-arrow-left'></i>"],
         responsive: {
             0: {
                 items: 1
@@ -86,7 +80,7 @@
         dots: false,
         nav: false,
         margin: 30,
-        navText: ["<i class='bi bi-chevron-left''></i>", "<i class='bi bi-chevron-right''></i>"],
+        navText: ["<i class='bi bi-chevron-left'></i>", "<i class='bi bi-chevron-right'></i>"],
         responsive: {
 			320: {
                 items: 1
@@ -299,7 +293,7 @@
     });
 
 
-        // <!--barfiller script -->
+        // barfiller script
         $(document).ready(function () {
             function updateBars(durations) {
               for (var i = 1; i <= 12; i++) {
