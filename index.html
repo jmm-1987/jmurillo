@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html lang="en-US">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -89,6 +89,47 @@
 			font-family: 'Poppins', sans-serif;
 		}
 		
+		/* Canvas de fondo animado para todas las secciones excepto portada */
+		#sections-bg-canvas {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+			pointer-events: none;
+			display: none;
+		}
+		
+		body > *:not(#sections-bg-canvas) {
+			position: relative;
+			z-index: 1;
+		}
+		
+		/* Asegurar que la portada no tenga el efecto */
+		.hero-area-slider {
+			background: transparent;
+		}
+		
+		/* Menú de navegación siempre por encima */
+		#sticky-header,
+		.sticky,
+		.mesud.ozil_nav_manu,
+		.mesud.ozil_menu,
+		.floating-hamburger,
+		.mobile-menu-overlay {
+			z-index: 1000 !important;
+			position: relative;
+		}
+		
+		.sticky {
+			position: fixed !important;
+		}
+		
+		.hero-area-slider {
+			z-index: 100 !important;
+		}
+		
 		html {
 			overflow-x: hidden;
 			overflow-y: auto;
@@ -176,6 +217,37 @@
 			position: relative;
 			overflow: hidden;
 			background: #ffffff;
+		}
+		
+		/* Canvas de fondo animado para proyectos */
+		#proyectos-bg-canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+			pointer-events: none;
+		}
+		
+		.proyectos-area .container {
+			position: relative;
+			z-index: 2;
+		}
+		
+		.project-slide-item {
+			position: relative;
+			z-index: 3;
+		}
+		
+		.project-thumbnail {
+			position: relative;
+			z-index: 4;
+		}
+		
+		.thumbnail-image {
+			position: relative;
+			z-index: 5;
 		}
 		
 		.proyectos-area::before, .service-area::before, .tab-area::before, .contact-area::before, .demos-area::before {
@@ -280,37 +352,34 @@
 			height: 100vh;
 			min-height: 600px;
 			overflow: hidden;
+			z-index: 100 !important;
 		}
 		
-		/* Slider de fondo */
-		.hero-slider {
+		/* Canvas de fondo azul animado del hero */
+		#hero-bg-canvas {
 			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
 			height: 100%;
 			z-index: 1;
+			pointer-events: none;
 		}
 		
-		.hero-slide {
-			position: relative;
-			width: 100%;
-			height: 100vh;
-			min-height: 600px;
-			background-size: cover;
-			background-position: center;
-			background-repeat: no-repeat;
+		/* Video de fondo del hero (oculto) */
+		.hero-video-bg {
+			display: none;
 		}
 		
-		/* Overlay oscuro sobre las imágenes */
+		/* Overlay oscuro sobre el video */
 		.hero-overlay {
 			position: absolute;
 			top: 0;
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
-			z-index: 1;
+			background: transparent;
+			z-index: 2;
 		}
 		
 		/* Contenedor del contenido principal */
@@ -320,11 +389,43 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			z-index: 10;
+			z-index: 10 !important;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			padding: 80px 0 60px;
+			pointer-events: none;
+		}
+		
+		.hero-content-wrapper * {
+			pointer-events: auto;
+		}
+		
+		.hero-content-wrapper,
+		.hero-content-wrapper .container,
+		.hero-content-wrapper .row,
+		.hero-content-wrapper .col-lg-10,
+		.hero-content-center,
+		.hero-logo-floating,
+		.hero-slogan,
+		.hero-buttons,
+		.hero-btn {
+			position: relative;
+			z-index: 11 !important;
+		}
+		
+		/* Asegurar que el hero no bloquee el menú */
+		.hero-area-slider {
+			pointer-events: none;
+		}
+		
+		.hero-area-slider .hero-video-bg,
+		.hero-area-slider .hero-overlay {
+			pointer-events: none;
+		}
+		
+		.hero-area-slider .hero-content-wrapper {
+			pointer-events: auto;
 		}
 		
 		.hero-content-center {
@@ -394,21 +495,31 @@
 			color: #ffffff;
 			margin-bottom: 20px;
 			line-height: 1.2;
-			text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+			text-shadow: 
+				0 4px 20px rgba(0, 0, 0, 0.8),
+				0 2px 10px rgba(0, 0, 0, 0.6),
+				0 0 30px rgba(255, 255, 255, 0.3);
 			font-family: 'Poppins', sans-serif;
 			min-height: 86px;
 		}
 		
 		.slogan-typed {
-			color: #3b82f6;
+			color: #ffffff;
 			display: inline-block;
+			text-shadow: 
+				0 4px 20px rgba(0, 0, 0, 0.8),
+				0 2px 10px rgba(0, 0, 0, 0.6),
+				0 0 30px rgba(255, 255, 255, 0.4);
 		}
 		
 		.hero-subtitle {
 			font-size: 24px;
-			color: rgba(255, 255, 255, 0.95);
-			font-weight: 300;
-			text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+			color: #ffffff;
+			font-weight: 400;
+			text-shadow: 
+				0 2px 15px rgba(0, 0, 0, 0.7),
+				0 1px 5px rgba(0, 0, 0, 0.5),
+				0 0 20px rgba(255, 255, 255, 0.2);
 			font-family: 'Inter', sans-serif;
 		}
 		
@@ -435,31 +546,41 @@
 		}
 		
 		.hero-btn-primary {
-			background: #3b82f6;
-			color: #ffffff;
-			box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+			background: #ffffff;
+			color: #0a4bd6;
+			box-shadow: 
+				0 8px 25px rgba(0, 0, 0, 0.4),
+				0 0 20px rgba(255, 255, 255, 0.3);
 			font-weight: bold;
+			border: 2px solid #ffffff;
 		}
 		
 		.hero-btn-primary:hover {
 			transform: translateY(-3px) scale(1.05);
-			box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
-			background: #2563eb;
-			color: #ffffff;
+			box-shadow: 
+				0 12px 35px rgba(0, 0, 0, 0.5),
+				0 0 30px rgba(255, 255, 255, 0.5);
+			background: #f0f0f0;
+			color: #062b7a;
 		}
 		
 		.hero-btn-secondary {
-			background: transparent;
+			background: rgba(255, 255, 255, 0.15);
 			color: #ffffff;
 			border: 2px solid rgba(255, 255, 255, 0.9);
-			box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+			box-shadow: 
+				0 8px 25px rgba(0, 0, 0, 0.3),
+				0 0 15px rgba(255, 255, 255, 0.2);
+			backdrop-filter: blur(10px);
 		}
 		
 		.hero-btn-secondary:hover {
 			transform: translateY(-3px) scale(1.05);
-			background: rgba(255, 255, 255, 0.2);
+			background: rgba(255, 255, 255, 0.3);
 			border-color: #ffffff;
-			box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
+			box-shadow: 
+				0 12px 35px rgba(0, 0, 0, 0.4),
+				0 0 25px rgba(255, 255, 255, 0.4);
 			color: #ffffff;
 		}
 		
@@ -960,6 +1081,7 @@
 			backdrop-filter: blur(10px);
 			box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.7);
 			border-top: 2px solid rgba(59, 130, 246, 0.5);
+			z-index: 10;
 		}
 		
 		.project-thumbnail:hover .thumbnail-overlay {
@@ -1134,16 +1256,39 @@
 		
 		@media (max-width: 768px) {
 			.thumbnail-image {
-				height: 200px;
+				height: 400px;
 			}
 			
 			.projects-carousel .owl-item.center .project-slide-item {
-				transform: scale(1.05) translateZ(0);
+				transform: scale(1.4) translateZ(0);
 			}
 			
 			.projects-carousel .owl-item.prev .project-slide-item,
 			.projects-carousel .owl-item.next .project-slide-item {
-				transform: scale(0.85);
+				transform: scale(1.1);
+			}
+			
+			.projects-carousel-wrapper {
+				padding: 20px 10px 20px 10px !important;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.thumbnail-image {
+				height: 350px;
+			}
+			
+			.projects-carousel .owl-item.center .project-slide-item {
+				transform: scale(1.3) translateZ(0);
+			}
+			
+			.projects-carousel .owl-item.prev .project-slide-item,
+			.projects-carousel .owl-item.next .project-slide-item {
+				transform: scale(1.05);
+			}
+			
+			.projects-carousel-wrapper {
+				padding: 15px 5px 15px 5px !important;
 			}
 		}
 		
@@ -3168,11 +3313,6 @@
 				<a href="index.html" title="Jonatan Murillo">
 					<img src="assets/images/yogrande.png" alt="Jonatan Murillo" width="70" height="70" style="display: block;">
 				</a>
-				<a href="verifactu.html" title="Verifactu" style="display: flex; align-items: center; gap: 8px;">
-					<img src="assets/verifactu/logo_girar.png" alt="Logo Girar" width="70" height="70" style="display: block;">
-					<!--<img src="assets/verifactu/logo_facturas.png" alt="Logo Facturas" style="height:35px;">-->
-					<img src="assets/verifactu/verifactu.png" alt="Verifactu" style="height:35px;">
-				</a>
 			</div>
 		</div>
 		<div class="col-lg-9">
@@ -3200,10 +3340,6 @@
 <!-- Hamburguesa Flotante -->
 <div class="floating-hamburger d-lg-none" style="display: flex; justify-content: space-between; align-items: center; padding-left: 0; padding-right: 15px;">
 	<div class="mobile-logos">
-		<a href="verifactu.html" title="Verifactu" style="display: inline-flex; align-items: center;">
-			<img src="assets/verifactu/logo_facturas.png" alt="Logo Facturas" style="height:28px; margin-right:6px;">
-			<img src="assets/verifactu/verifactu.png" alt="Verifactu" style="height:28px;">
-		</a>
 	</div>
 	<button class="hamburger-btn" id="mobileMenuToggle">
 		<span class="hamburger-line"></span>
@@ -3225,7 +3361,6 @@
 				<li><a href="#proyectos" class="mobile-nav-link">PROYECTOS</a></li>
 				<li><a href="#service" class="mobile-nav-link">SERVICIOS IA</a></li>
 				<li><a href="#resume" class="mobile-nav-link">TRAYECTORIA</a></li>
-				<li><a href="verifactu.html" class="mobile-nav-link">VERIFACTU</a></li>
 				<li><a href="#contact" class="mobile-nav-link">CONTACTO</a></li>
 			</ul>
 		</nav>
@@ -3242,29 +3377,9 @@
 <!--==================================================-->
 
 	<div class="hero-area-slider" id="hero">
-		<!-- Slider de imágenes de fondo -->
-	<div class="hero-slider owl-carousel">
-		<!-- Slide 1 - Datos y análisis (gráficas) -->
-		<div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80');">
-			<div class="hero-overlay"></div>
-		</div>
-		<!-- Slide 2 - Oficina moderna -->
-		<div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80');">
-			<div class="hero-overlay"></div>
-		</div>
-		<!-- Slide 3 - Código y programación -->
-		<div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80');">
-			<div class="hero-overlay"></div>
-		</div>
-		<!-- Slide 4 - Equipo de trabajo -->
-		<div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80');">
-			<div class="hero-overlay"></div>
-		</div>
-		<!-- Slide 5 - Tecnología digital (chips) -->
-		<div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=80');">
-			<div class="hero-overlay"></div>
-		</div>
-	</div>
+		<!-- Canvas de fondo azul animado -->
+		<canvas id="hero-bg-canvas"></canvas>
+		<div class="hero-overlay"></div>
 
 		<!-- Contenido principal del hero -->
 		<div class="hero-content-wrapper">
@@ -3301,150 +3416,14 @@
 <!-- end Mesud Ozil hero Area -->
 <!--==================================================-->
 
+	<!-- Canvas de fondo animado para todas las secciones excepto portada -->
+	<canvas id="sections-bg-canvas"></canvas>
 
 
 
 
 
-	<!--==================================================-->
-	<!-- start Demos Area -->
-	<!-- COMENTADO: Sección de demos - puede que deje de usarse -->
-	<!--==================================================-->
-	<div class="demos-area" id="demos" style="display: none !important;">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-				<div class="section-title text-center">
-					<h5 class="section-sub-title">DEMOS</h5>
-					<h1 class="section-main-title">Demostraciones en acción</h1>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="demos-carousel owl-carousel" data-aos="zoom-in" data-aos-duration="2000">
-						<!-- Demo 1: Presupuesto -->
-						<div class="demo-item">
-							<div class="demo-title">
-								<h3>Panel de control flotas</h3>
-								<p class="demo-description">Ten todos los vencimientos de tu flota a un solo vistazo. Itv, tacógrafos, seguros, extintores...</p>
-							<br>
-							</div>
 
-						<div class="demo-card">
-							<div class="demo-thumb">
-								<video controls preload="metadata" class="demo-video" poster="assets/pildoras/camiones_imagen.png">
-									<source src="assets/pildoras/camiones_video.mp4" type="video/mp4">
-									Tu navegador no soporta el elemento video.
-								</video>
-							</div>
-						</div>
-					</div>
-
-					
-
-					<div class="demo-item">
-						<div class="demo-title">
-							<h3>Facturación con verifactu</h3>
-							<p class="demo-description">Generación de facturas cumpliendo con la normativa vigente. Presupuestos, clientes, estadisticas, stock... todo 100% personalizable</p>
-						
-						</div>
-					<div class="demo-card">
-						<div class="demo-thumb">
-							<video controls preload="metadata" class="demo-video" poster="assets/pildoras/facturas_imagen.png">
-								<source src="assets/pildoras/facturas_video.mp4" type="video/mp4">
-								Tu navegador no soporta el elemento video.
-							</video>
-							</div>
-						</div>
-					</div>
-					
-						<!-- Demo 2: Ropa -->
-						<div class="demo-item">
-							<div class="demo-title">
-								<h3>Ropa Personalizada</h3>
-								<p class="demo-description">Sistema de gestión para tiendas de ropa con personalización de productos</p>
-							<br>
-							</div>
-						<div class="demo-card">
-							<div class="demo-thumb">
-								<video controls preload="metadata" class="demo-video" poster="assets/pildoras/ropa_imagen.png">
-									<source src="assets/pildoras/ropa_video.mp4" type="video/mp4">
-									Tu navegador no soporta el elemento video.
-								</video>
-							</div>
-						</div>
-					</div>
-					
-						<!-- Demo 3: Ejemplo adicional -->
-						<div class="demo-item">
-							<div class="demo-title">
-								<h3>Dashboard Interactivo</h3>
-								<p class="demo-description">Panel de control dinámico con gráficos y métricas en tiempo real</p>
-							<br>
-							</div>
-						<div class="demo-card">
-							<div class="demo-thumb">
-								<video controls preload="metadata" class="demo-video" poster="assets/pildoras/Dashboard_imagen.png">
-									<source src="assets/pildoras/Dashboard_video.mp4" type="video/mp4">
-									Tu navegador no soporta el elemento video.
-								</video>
-							</div>
-						</div>
-					</div>
-						<!-- Demo 4: Ejemplo adicional -->
-						<div class="demo-item">
-							<div class="demo-title">
-								<h3>Fichero nóminas</h3>
-								<p class="demo-description">Sube un fichero con la información de las nóminas, graba en la base de datos y generar csv listo para importar en el banco. Todo en un paso.</p>
-							
-							</div>
-						<div class="demo-card">
-							<div class="demo-thumb">
-								<video controls preload="metadata" class="demo-video" poster="assets/pildoras/nominas_imagen.png">
-									<source src="assets/pildoras/nominas_video.mp4" type="video/mp4">
-									Tu navegador no soporta el elemento video.
-								</video>
-							</div>
-						</div>
-					</div>
-					<div class="demo-item">
-						<div class="demo-title">
-							<h3>Sistema de presupuestos rápidos</h3>
-							<p class="demo-description">Herramienta para generar presupuestos con cálculos complejos de forma rápida y eficiente</p>
-						<br>
-						</div>
-					<div class="demo-card">
-						<div class="demo-thumb">
-							<video controls preload="metadata" class="demo-video" poster="assets/pildoras/presupuesto_imagen.png">
-								<source src="assets/pildoras/presupuesto_video.mp4" type="video/mp4">
-								Tu navegador no soporta el elemento video.
-							</video>
-						</div>
-						</div>
-					</div>
-					<div class="demo-item">
-						<div class="demo-title">
-							<h3>Agenda inteligente con IA</h3>
-							<p class="demo-description">Sistema de gestión de citas inteligente con asistente de IA para optimizar tu agenda</p>
-						<br>
-						</div>
-					<div class="demo-card">
-						<div class="demo-thumb">
-							<video controls preload="metadata" class="demo-video" poster="assets/images/iara_bot.png">
-								<source src="assets/images/iara_bot.png" type="video/mp4">
-								Tu navegador no soporta el elemento video.
-							</video>
-						</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-	<!--==================================================-->
-	<!-- end Demos Area -->
 	<!--==================================================-->
 
 
@@ -3657,6 +3636,7 @@
 
 
 	<div class="proyectos-area" id="proyectos">
+		<canvas id="proyectos-bg-canvas"></canvas>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
@@ -4034,206 +4014,7 @@
 <!--==================================================-->
 
 
-	<!--<div class="testimonial-area" id="testimonial">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="section-title text-left">
-						<h5 class="section-sub-title">TESTIMONIALS</h5>
-						<h1 class="section-main-title">What Our Clients Say</h1>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="testimonial_list owl-carousel">
-					<div class="col-lg-12 col-md-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="testimonial-single-box">
-							<ul class="testi-rating">
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-							</ul>
-							<p class="testi-descrip">The education should be very interactual. Ut tincidunt est ac dolor aliquam
-								sodales. Phasellus sed mauris hendrerit, laoreetin, lobortis mauri hendrerit
-								ante. The education should  very interactual tincidunt est ac dolor aliquam
-								sodales. Phasellus sed mauris hendrerit,</p>
-							<div class="testimonials-auothor">
-								<div class="testimonial-auothor-thumb">
-									<img src="assets/images/testi-auothor.png" alt="testi-auothor">
-								</div>
-								<div class="testimonial-bio">
-									<h3 class="testimonials-auothor">Nila Monisha</h3>
-									<span class="testimonials-text">UI/UX Designer</span>
-								</div>
-							</div>
-							<div class="testimonial-icon">
-								<img src="assets/images/testi-icon.png" alt="testi-icon">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="testimonial-single-box">
-							<ul class="testi-rating">
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-							</ul>
-							<p class="testi-descrip">The education should be very interactual. Ut tincidunt est ac dolor aliquam
-								sodales. Phasellus sed mauris hendrerit, laoreetin, lobortis mauri hendrerit
-								ante. The education should  very interactual tincidunt est ac dolor aliquam
-								sodales. Phasellus sed mauris hendrerit,</p>
-							<div class="testimonials-auothor">
-								<div class="testimonial-auothor-thumb">
-									<img src="assets/images/testi-auothor2.png" alt="testi-auothor">
-								</div>
-								<div class="testimonial-bio">
-									<h3 class="testimonials-auothor">Mesud Ozill</h3>
-									<span class="testimonials-text">CEO Founder</span>
-								</div>
-							</div>
-							<div class="testimonial-icon">
-								<img src="assets/images/testi-icon.png" alt="testi-icon">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="testimonial-single-box">
-							<ul class="testi-rating">
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-							</ul>
-							<p class="testi-descrip">The education should be very interactual. Ut tincidunt est ac dolor aliquam
-								sodales. Phasellus sed mauris hendrerit, laoreetin, lobortis mauri hendrerit
-								ante. The education should  very interactual tincidunt est ac dolor aliquam
-								sodales. Phasellus sed mauris hendrerit,</p>
-							<div class="testimonials-auothor">
-								<div class="testimonial-auothor-thumb">
-									<img src="assets/images/testi-auothor.png" alt="testi-auothor">
-								</div>
-								<div class="testimonial-bio">
-									<h3 class="testimonials-auothor">Nila Monisha</h3>
-									<span class="testimonials-text">UI/UX Designer</span>
-								</div>
-							</div>
-							<div class="testimonial-icon">
-								<img src="assets/images/testi-icon.png" alt="testi-icon">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="testimonial-single-box">
-							<ul class="testi-rating">
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-							</ul>
-							<p class="testi-descrip">The education should be very interactual. Ut tincidunt est ac dolor aliquam
-								sodales. Phasellus sed mauris hendrerit, laoreetin, lobortis mauri hendrerit
-								ante. The education should  very interactual tincidunt est ac dolor aliquam
-								sodales. Phasellus sed mauris hendrerit,</p>
-							<div class="testimonials-auothor">
-								<div class="testimonial-auothor-thumb">
-									<img src="assets/images/testi-auothor2.png" alt="testi-auothor">
-								</div>
-								<div class="testimonial-bio">
-									<h3 class="testimonials-auothor">Mesud Ozill</h3>
-									<span class="testimonials-text">CEO Founder</span>
-								</div>
-							</div>
-							<div class="testimonial-icon">
-								<img src="assets/images/testi-icon.png" alt="testi-icon">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12 col-md-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="testimonial-single-box">
-							<ul class="testi-rating">
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-								<li><a href="#"><i class="bi bi-star-fill"></i></a></li>
-							</ul>
-							<p class="testi-descrip">The education should be very interactual. Ut tincidunt est ac dolor aliquam
-								sodales. Phasellus sed mauris hendrerit, laoreetin, lobortis mauri hendrerit
-								ante. The education should  very interactual tincidunt est ac dolor aliqumam
-								sodales. Phasellus sed mauris hendrerit,</p>
-							<div class="testimonials-auothor">
-								<div class="testimonial-auothor-thumb">
-									<img src="assets/images/testi-auothor.png" alt="testi-auothor">
-								</div>
-								<div class="testimonial-bio">
-									<h3 class="testimonials-auothor">Nila Monisha</h3>
-									<span class="testimonials-text">UI/UX Designer</span>
-								</div>
-							</div>
-							<div class="testimonial-icon">
-								<img src="assets/images/testi-icon.png" alt="testi-icon">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row align-items-center">
-				<div class="brand-title" data-aos="zoom-in" data-aos-duration="2000">
-					<h2>CCUSTOMERS & CLIENTS</h2>
-				</div>
-				<div class="brand_list owl-carousel">
-					<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="brand-box">
-							<div class="brand-thumb">
-								<img src="assets/images/brand-img.png" alt="brand img">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="brand-box">
-							<div class="brand-thumb">
-								<img src="assets/images/brand-img2.png" alt="brand img">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="brand-box">
-							<div class="brand-thumb">
-								<img src="assets/images/brand-img3.png" alt="brand img">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="brand-box">
-							<div class="brand-thumb">
-								<img src="assets/images/brand-img4.png" alt="brand img">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="brand-box">
-							<div class="brand-thumb">
-								<img src="assets/images/brand-img5.png" alt="brand img">
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-						<div class="brand-box">
-							<div class="brand-thumb">
-								<img src="assets/images/brand-img6.png" alt="brand img">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>-->
+	
 
 
 <!--==================================================-->
@@ -4248,56 +4029,7 @@
 <!--==================================================-->
 
 
-	<!--<div class="blog-area" id="blog">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="section-title text-center">
-						<h5 class="section-sub-title">MY BLOG & NEWS</h5>
-						<h1 class="section-main-title">Visit my blog and keep up</h1>
-						<h1 class="section-main-title">Your feedback</h1>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="blog-single-box">
-						<div class="blog-thumb">
-							<img src="assets/images/blog-img.png" alt="blog-img">
-						</div>
-						<div class="blog-content">
-							<h4 class="blog-text">CANADA</h4>
-							<p class="meta-blog-date"><i class="bi bi-calendar3"></i>JULY 23, 2023<span><i class="fas fa-comments"></i>1 COMMENT</span></p>
-							<h3 class="blog-title"><a href="#popup">T-shirt design is the part of design </a></h3>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="blog-single-box">
-						<div class="blog-thumb">
-							<img src="assets/images/blog-img2.png" alt="blog-img">
-						</div>
-						<div class="blog-content">
-							<h4 class="blog-text">DEVELOPMENT</h4>
-							<p class="meta-blog-date"><i class="bi bi-calendar3"></i>JULY 23, 2023<span><i class="fas fa-comments"></i>1 COMMENT</span></p>
-							<h3 class="blog-title"><a href="#popup">Services are provided to you
-								by the designers</a></h3>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="blog-single-box">
-						<div class="blog-thumb">
-							<img src="assets/images/blog-img3.png" alt="blog-img">
-						</div>
-						<div class="blog-content">
-							<h4 class="blog-text">APPLICATION</h4>
-							<p class="meta-blog-date"><i class="bi bi-calendar3"></i>JULY 23, 2023<span><i class="fas fa-comments"></i>1 COMMENT</span></p>
-							<h3 class="blog-title"><a href="#popup">Mobile app landing design & app maintain</a></h3>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>-->
+	
 
 
 
@@ -4378,16 +4110,6 @@
 	</div>
 </div>
 
-<!-- Modal de Video de Demos -->
-<div id="videoModal" class="video-modal">
-	<div class="video-modal-content">
-		<h3 class="video-modal-title" id="videoModalTitle">Título del Demo</h3>
-		<video id="videoModalVideo" class="video-modal-video" controls autoplay>
-			Tu navegador no soporta el elemento video.
-		</video>
-		<button class="video-modal-close" onclick="closeVideoModal()">✕</button>
-	</div>
-</div>
 
 <!-- scrollup section -->
 <div class="scroll-area">
@@ -4436,6 +4158,37 @@
 	<script src="assets/js/jquery.scrollUp.js"></script>
 	<!-- theme js -->	
 	<script src="assets/js/theme.js"></script>
+	<!-- Fallback para ocultar loader si theme.js no carga -->
+	<script>
+		// Asegurar que el loader se oculte incluso si theme.js falla
+		function hideLoader() {
+			document.body.classList.add('loaded');
+			// Forzar ocultación adicional
+			var loader = document.querySelector('.loader-wrapper');
+			if (loader) {
+				loader.style.display = 'none';
+				loader.style.visibility = 'hidden';
+				loader.style.opacity = '0';
+			}
+		}
+		// Intentar múltiples veces para asegurar que se ejecute
+		if (document.readyState === 'complete') {
+			hideLoader();
+		} else {
+			window.addEventListener('load', function() {
+				setTimeout(hideLoader, 100);
+			});
+		}
+		// También con jQuery si está disponible
+		if (typeof jQuery !== 'undefined') {
+			jQuery(function() {
+				jQuery('body').addClass('loaded');
+				jQuery('.loader-wrapper').hide();
+			});
+		}
+		// Fallback adicional después de un tiempo
+		setTimeout(hideLoader, 2000);
+	</script>
 	<script src="assets/js/jquery.barfiller.js"></script>
 	<script src="assets/js/typed.js"></script>
 	<!-- jquery js -->	
@@ -4463,37 +4216,6 @@
 					mouseDrag: false,
 					touchDrag: false,
 					pullDrag: false
-				});
-			}
-			
-			// === DEMOS CAROUSEL ===
-			if ($('.demos-carousel').length) {
-				$('.demos-carousel').owlCarousel({
-					loop: true,
-					margin: 30,
-					nav: true,
-					autoplay: true,
-					autoplayTimeout: 5000,
-					autoplayHoverPause: true,
-					responsive: {
-						0: {
-							items: 1,
-							margin: 15
-						},
-						768: {
-							items: 2,
-							margin: 20
-						},
-						1024: {
-							items: 3,
-							margin: 30
-						}
-					},
-					navText: [
-						'<i class="bi bi-chevron-left"></i>',
-						'<i class="bi bi-chevron-right"></i>'
-					],
-					navClass: ['owl-prev demo-nav-btn', 'owl-next demo-nav-btn']
 				});
 			}
 			
@@ -5031,141 +4753,6 @@
 		
 		// Ajustar scroll al redimensionar ventana
 		window.addEventListener('resize', positionModalOnResponsive);
-		window.addEventListener('resize', positionVideoModalOnResponsive);
-		
-		// === FUNCIONALIDAD DE REPRODUCCIÓN DE VIDEOS DE DEMOS ===
-		
-		// Función para abrir el modal de video
-		function openVideoModal(videoSrc, title) {
-			const modal = document.getElementById('videoModal');
-			const modalVideo = document.getElementById('videoModalVideo');
-			const modalTitle = document.getElementById('videoModalTitle');
-			
-			// Configurar el video y título
-			modalVideo.src = videoSrc;
-			modalTitle.textContent = title;
-			
-			// Scroll al inicio en versión responsiva ANTES de mostrar el modal
-			if (window.innerWidth <= 768) {
-				// Posicionar el scroll de la página arriba primero
-				window.scrollTo({
-					top: 0,
-					behavior: 'smooth'
-				});
-				
-				// Esperar un poco para que el scroll se complete antes de mostrar el modal
-				setTimeout(() => {
-					// Mostrar el modal
-					modal.classList.add('active');
-					document.body.style.overflow = 'hidden';
-					
-					// Forzar scroll hacia arriba una vez más después de mostrar el modal
-					setTimeout(() => {
-						window.scrollTo({
-							top: 0,
-							behavior: 'smooth'
-						});
-					}, 100);
-					
-					// Reproducir automáticamente
-					modalVideo.play().catch(error => {
-						console.log('Error al reproducir video:', error);
-					});
-				}, 300); // Tiempo suficiente para que el scroll se complete
-			} else {
-				// Mostrar el modal directamente en desktop
-				modal.classList.add('active');
-				document.body.style.overflow = 'hidden';
-				
-				// Reproducir automáticamente
-				modalVideo.play().catch(error => {
-					console.log('Error al reproducir video:', error);
-				});
-			}
-		}
-		
-		// Función para cerrar el modal de video
-		function closeVideoModal() {
-			const modal = document.getElementById('videoModal');
-			const modalVideo = document.getElementById('videoModalVideo');
-			
-			// Pausar el video
-			modalVideo.pause();
-			modalVideo.currentTime = 0;
-			
-			// Ocultar el modal
-			modal.classList.remove('active');
-			document.body.style.overflow = 'auto';
-			
-			// Hacer scroll hacia la sección de demos
-			const demosSection = document.getElementById('demos');
-			if (demosSection) {
-				demosSection.scrollIntoView({
-					behavior: 'smooth',
-					block: 'start'
-				});
-			}
-		}
-		
-		// Función para posicionar el modal de video arriba en responsiva
-		function positionVideoModalOnResponsive() {
-			if (window.innerWidth <= 768 && document.getElementById('videoModal').classList.contains('active')) {
-				// Posicionar el scroll de la página arriba primero
-				window.scrollTo({
-					top: 0,
-					behavior: 'smooth'
-				});
-			}
-		}
-		
-		document.addEventListener('DOMContentLoaded', function() {
-			setTimeout(() => {
-				const demoCards = document.querySelectorAll('.demo-card');
-				
-				demoCards.forEach(card => {
-					const video = card.querySelector('.demo-video');
-					const titleElement = card.closest('.demo-item').querySelector('.demo-title h3');
-					
-					if (video && titleElement) {
-						// Obtener la fuente del video
-						const videoSrc = video.querySelector('source').src;
-						const title = titleElement.textContent;
-						
-						// Agregar event listener para clic en la tarjeta
-						card.addEventListener('click', function(e) {
-							e.preventDefault();
-							e.stopPropagation();
-							
-							openVideoModal(videoSrc, title);
-						});
-						
-						// Agregar event listener para clic directo en el video
-						video.addEventListener('click', function(e) {
-							e.preventDefault();
-							e.stopPropagation();
-							
-							openVideoModal(videoSrc, title);
-						});
-					}
-				});
-				
-				// Cerrar modal con ESC
-				document.addEventListener('keydown', function(e) {
-					if (e.key === 'Escape' && document.getElementById('videoModal').classList.contains('active')) {
-						closeVideoModal();
-					}
-				});
-				
-				// Cerrar modal al hacer clic fuera del contenido
-				document.getElementById('videoModal').addEventListener('click', function(e) {
-					if (e.target === this) {
-						closeVideoModal();
-					}
-				});
-				
-				console.log('✅ Funcionalidad de videos de demos configurada');
-			}, 200);
-		});
 		
 		// === MENÚ HAMBURGUESA FLOTANTE === 
 		
@@ -5485,20 +5072,6 @@
 				});
 			});
 			
-			// Tracking de clics en videos de demos
-			const demoVideos = document.querySelectorAll('.demo-video');
-			demoVideos.forEach(video => {
-				video.addEventListener('play', function() {
-					const demoTitle = this.closest('.demo-item')?.querySelector('.demo-title h3')?.textContent || 'Demo desconocido';
-					trackEvent('video_play', 'Demo', demoTitle, 1);
-				});
-				
-				video.addEventListener('ended', function() {
-					const demoTitle = this.closest('.demo-item')?.querySelector('.demo-title h3')?.textContent || 'Demo desconocido';
-					trackEvent('video_complete', 'Demo', demoTitle, 1);
-				});
-			});
-			
 			// Tracking de clics en navegación
 			const navLinks = document.querySelectorAll('.nav_scroll a, .mobile-nav-link');
 			navLinks.forEach(link => {
@@ -5518,7 +5091,7 @@
 			});
 			
 			// Tracking de scroll en secciones importantes
-			const sections = ['#hero', '#demos', '#proyectos', '#service', '#contact'];
+			const sections = ['#hero', '#proyectos', '#service', '#contact'];
 			const observer = new IntersectionObserver((entries) => {
 				entries.forEach(entry => {
 					if (entry.isIntersecting) {
@@ -5548,10 +5121,538 @@
 			script.async = true;
 			document.body.appendChild(script);
 			console.log('🤖 Chatbot cargándose en segundo plano...');
-		}, 1000); // 1 segundo después de que la página esté lista
-	});
+	}, 1000); // 1 segundo después de que la página esté lista
+});
 </script>-->
 
+	<!-- Efecto de fondo animado para todas las secciones excepto portada -->
+	<script>
+	(function() {
+		function initSectionsBackground() {
+			const canvas = document.getElementById("sections-bg-canvas");
+			if (!canvas) return;
+			
+			const ctx = canvas.getContext("2d");
+			const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+			const heroArea = document.querySelector(".hero-area-slider");
+			
+			function updateVisibility() {
+				if (!heroArea) {
+					canvas.style.display = 'block';
+					return;
+				}
+				const heroRect = heroArea.getBoundingClientRect();
+				const scrollY = window.scrollY || window.pageYOffset;
+				const heroBottom = heroRect.bottom + scrollY;
+				
+				// Mostrar canvas solo después de la portada
+				if (scrollY > heroBottom - window.innerHeight) {
+					canvas.style.display = 'block';
+				} else {
+					canvas.style.display = 'none';
+				}
+			}
+			
+			function resize() {
+				canvas.width = Math.floor(window.innerWidth * DPR);
+				canvas.height = Math.floor(window.innerHeight * DPR);
+				canvas.style.width = window.innerWidth + 'px';
+				canvas.style.height = window.innerHeight + 'px';
+			}
+			
+			function handleResize() {
+				resize();
+				rebuild();
+				updateVisibility();
+			}
+			
+			addEventListener("resize", handleResize);
+			addEventListener("scroll", updateVisibility);
+			resize();
+			updateVisibility();
+
+			// Config
+			const LINE_COUNT = 18;
+			const NODE_PER_LINE = 5;
+			const SPEED = 50;
+			const GLOW = 10;
+
+			function makePath(y) {
+				const w = canvas.width, h = canvas.height;
+				const segs = [];
+				let x = -w * 0.2;
+				let yy = y;
+
+				for (let i = 0; i < 7; i++) {
+					const len = (0.15 + Math.random() * 0.25) * w;
+					segs.push({x1:x, y1:yy, x2:x+len, y2:yy});
+					x += len;
+
+					const step = (Math.random() < 0.5 ? -1 : 1) * (0.04 + Math.random()*0.10) * h;
+					segs.push({x1:x, y1:yy, x2:x, y2:yy+step});
+					yy += step;
+				}
+
+				segs.push({x1:x, y1:yy, x2:w*1.3, y2:yy});
+				return segs;
+			}
+
+			function posOnPath(segs, dist) {
+				for (const s of segs) {
+					const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
+					const L = Math.hypot(dx, dy);
+					if (dist <= L) {
+						const t = L === 0 ? 0 : dist / L;
+						return { x: s.x1 + dx*t, y: s.y1 + dy*t };
+					}
+					dist -= L;
+				}
+				const last = segs[segs.length - 1];
+				return { x: last.x2, y: last.y2 };
+			}
+
+			function pathLength(segs){
+				return segs.reduce((a,s)=>a+Math.hypot(s.x2-s.x1, s.y2-s.y1), 0);
+			}
+
+			let lines = [];
+			function rebuild() {
+				const h = canvas.height;
+				lines = [];
+				for (let i = 0; i < LINE_COUNT; i++) {
+					const y = (0.10 + (i/(LINE_COUNT-1))*0.80) * h + (Math.random()-0.5)*h*0.03;
+					const segs = makePath(y);
+					const len = pathLength(segs);
+
+					const nodes = Array.from({length: NODE_PER_LINE}, () => ({
+						d: Math.random()*len,
+						r: (2 + Math.random()*3) * DPR,
+						sp: (0.6 + Math.random()*1.2)
+					}));
+
+					lines.push({ segs, len, nodes });
+				}
+			}
+			rebuild();
+
+			function draw(tms) {
+				const t = tms / 1000;
+				const w = canvas.width, h = canvas.height;
+
+				// Fondo blanco
+				ctx.clearRect(0, 0, w, h);
+				ctx.fillStyle = "#ffffff";
+				ctx.fillRect(0, 0, w, h);
+
+				// estilo líneas
+				ctx.lineWidth = 2 * DPR;
+				ctx.lineJoin = "round";
+				ctx.lineCap = "round";
+
+				for (const L of lines) {
+					// líneas base (más oscuras para que se vean en blanco)
+					ctx.strokeStyle = "rgba(10, 110, 200, 0.28)";
+					ctx.beginPath();
+					for (const s of L.segs) {
+						ctx.moveTo(s.x1, s.y1);
+						ctx.lineTo(s.x2, s.y2);
+					}
+					ctx.stroke();
+
+					// highlight animado
+					const bandX = (t * SPEED * DPR) % (w * 1.4);
+					ctx.strokeStyle = "rgba(0, 140, 255, 0.22)";
+					ctx.lineWidth = 4 * DPR;
+					ctx.beginPath();
+					for (const s of L.segs) {
+						const minX = Math.min(s.x1, s.x2), maxX = Math.max(s.x1, s.x2);
+						if (bandX > minX - 200*DPR && bandX < maxX + 200*DPR) {
+							ctx.moveTo(s.x1, s.y1);
+							ctx.lineTo(s.x2, s.y2);
+						}
+					}
+					ctx.stroke();
+					ctx.lineWidth = 2 * DPR;
+
+					// nodos en movimiento
+					for (const n of L.nodes) {
+						const d = (n.d + t * SPEED * DPR * n.sp) % L.len;
+						const p = posOnPath(L.segs, d);
+
+						ctx.shadowBlur = GLOW * DPR;
+						ctx.shadowColor = "rgba(0, 140, 255, 0.55)";
+						ctx.fillStyle = "rgba(0, 120, 255, 0.65)";
+						ctx.beginPath();
+						ctx.arc(p.x, p.y, n.r, 0, Math.PI*2);
+						ctx.fill();
+						ctx.shadowBlur = 0;
+					}
+				}
+
+				requestAnimationFrame(draw);
+			}
+
+			requestAnimationFrame(draw);
+		}
+		
+		// Ejecutar cuando el DOM esté listo
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initSectionsBackground);
+		} else {
+			initSectionsBackground();
+		}
+	})();
+	</script>
+
+	<!-- Efecto de fondo azul animado para portada -->
+	<script>
+	(function() {
+		function initHeroBackground() {
+			const canvas = document.getElementById("hero-bg-canvas");
+			if (!canvas) return;
+			
+			const ctx = canvas.getContext("2d");
+			const heroArea = document.querySelector(".hero-area-slider");
+			if (!heroArea) return;
+
+			const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+			
+			function resize() {
+				const rect = heroArea.getBoundingClientRect();
+				canvas.width = Math.floor(rect.width * DPR);
+				canvas.height = Math.floor(rect.height * DPR);
+				canvas.style.width = rect.width + 'px';
+				canvas.style.height = rect.height + 'px';
+			}
+			
+			function handleResize() {
+				resize();
+				rebuild();
+			}
+			
+			addEventListener("resize", handleResize);
+			resize();
+
+			// Config
+			const LINE_COUNT = 35;
+			const NODE_PER_LINE = 5;
+			const SPEED = 70;
+			const GLOW = 10;
+
+			function makePath(y) {
+				const w = canvas.width, h = canvas.height;
+				const segs = [];
+				let x = -w * 0.2;
+				let yy = y;
+
+				for (let i = 0; i < 7; i++) {
+					const len = (0.15 + Math.random() * 0.25) * w;
+					segs.push({x1:x, y1:yy, x2:x+len, y2:yy});
+					x += len;
+
+					const step = (Math.random() < 0.5 ? -1 : 1) * (0.04 + Math.random()*0.10) * h;
+					segs.push({x1:x, y1:yy, x2:x, y2:yy+step});
+					yy += step;
+				}
+
+				segs.push({x1:x, y1:yy, x2:w*1.3, y2:yy});
+				return segs;
+			}
+
+			function posOnPath(segs, dist) {
+				for (const s of segs) {
+					const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
+					const L = Math.hypot(dx, dy);
+					if (dist <= L) {
+						const t = L === 0 ? 0 : dist / L;
+						return { x: s.x1 + dx*t, y: s.y1 + dy*t };
+					}
+					dist -= L;
+				}
+				const last = segs[segs.length - 1];
+				return { x: last.x2, y: last.y2 };
+			}
+
+			function pathLength(segs){
+				return segs.reduce((a,s)=>a+Math.hypot(s.x2-s.x1, s.y2-s.y1), 0);
+			}
+
+			let lines = [];
+			function rebuild() {
+				const h = canvas.height;
+				lines = [];
+				for (let i = 0; i < LINE_COUNT; i++) {
+					const y = (0.10 + (i/(LINE_COUNT-1))*0.80) * h + (Math.random()-0.5)*h*0.03;
+					const segs = makePath(y);
+					const len = pathLength(segs);
+
+					const nodes = Array.from({length: NODE_PER_LINE}, () => ({
+						d: Math.random()*len,
+						r: (2 + Math.random()*3) * DPR,
+						sp: (0.6 + Math.random()*1.2)
+					}));
+
+					lines.push({ segs, len, nodes });
+				}
+			}
+			rebuild();
+
+			function draw(tms) {
+				const t = tms / 1000;
+				const w = canvas.width, h = canvas.height;
+
+				// fondo gradiente azul
+				const grad = ctx.createLinearGradient(0,0,w,h);
+				grad.addColorStop(0, "#0a4bd6");
+				grad.addColorStop(1, "#062b7a");
+				ctx.fillStyle = grad;
+				ctx.fillRect(0,0,w,h);
+
+				// estilo líneas
+				ctx.lineWidth = 2 * DPR;
+				ctx.lineJoin = "round";
+				ctx.lineCap = "round";
+
+				for (const L of lines) {
+					// líneas base
+					ctx.strokeStyle = "rgba(120,200,255,0.35)";
+					ctx.beginPath();
+					for (const s of L.segs) {
+						ctx.moveTo(s.x1, s.y1);
+						ctx.lineTo(s.x2, s.y2);
+					}
+					ctx.stroke();
+
+					// highlight animado
+					const bandX = (t * SPEED * DPR) % (w * 1.4);
+					ctx.strokeStyle = "rgba(180,240,255,0.22)";
+					ctx.lineWidth = 4 * DPR;
+					ctx.beginPath();
+					for (const s of L.segs) {
+						const minX = Math.min(s.x1, s.x2), maxX = Math.max(s.x1, s.x2);
+						if (bandX > minX - 200*DPR && bandX < maxX + 200*DPR) {
+							ctx.moveTo(s.x1, s.y1);
+							ctx.lineTo(s.x2, s.y2);
+						}
+					}
+					ctx.stroke();
+					ctx.lineWidth = 2 * DPR;
+
+					// nodos en movimiento
+					for (const n of L.nodes) {
+						const d = (n.d + t * SPEED * DPR * n.sp) % L.len;
+						const p = posOnPath(L.segs, d);
+
+						ctx.shadowBlur = GLOW * DPR;
+						ctx.shadowColor = "rgba(170,240,255,0.9)";
+						ctx.fillStyle = "rgba(200,250,255,0.95)";
+						ctx.beginPath();
+						ctx.arc(p.x, p.y, n.r, 0, Math.PI*2);
+						ctx.fill();
+						ctx.shadowBlur = 0;
+					}
+				}
+
+				requestAnimationFrame(draw);
+			}
+
+			// Observar cambios en la sección para reajustar cuando sea visible
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						resize();
+						rebuild();
+					}
+				});
+			}, { threshold: 0.1 });
+			
+			observer.observe(heroArea);
+			
+			requestAnimationFrame(draw);
+		}
+		
+		// Ejecutar cuando el DOM esté listo
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initHeroBackground);
+		} else {
+			initHeroBackground();
+		}
+	})();
+	</script>
+
+	<!-- Efecto de fondo animado para sección de proyectos -->
+	<script>
+	(function() {
+		function initProyectosBackground() {
+			const canvas = document.getElementById("proyectos-bg-canvas");
+			if (!canvas) return;
+		
+		const ctx = canvas.getContext("2d");
+		const proyectosArea = document.querySelector(".proyectos-area");
+		if (!proyectosArea) return;
+
+		const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+		
+		function resize() {
+			const rect = proyectosArea.getBoundingClientRect();
+			canvas.width = Math.floor(rect.width * DPR);
+			canvas.height = Math.floor(rect.height * DPR);
+			canvas.style.width = rect.width + 'px';
+			canvas.style.height = rect.height + 'px';
+		}
+		
+		function handleResize() {
+			resize();
+			rebuild();
+		}
+		
+		addEventListener("resize", handleResize);
+		resize();
+
+		// Config
+		const LINE_COUNT = 18;
+		const NODE_PER_LINE = 5;
+		const SPEED = 50;
+		const GLOW = 10;
+
+		function makePath(y) {
+			const w = canvas.width, h = canvas.height;
+			const segs = [];
+			let x = -w * 0.2;
+			let yy = y;
+
+			for (let i = 0; i < 7; i++) {
+				const len = (0.15 + Math.random() * 0.25) * w;
+				segs.push({x1:x, y1:yy, x2:x+len, y2:yy});
+				x += len;
+
+				const step = (Math.random() < 0.5 ? -1 : 1) * (0.04 + Math.random()*0.10) * h;
+				segs.push({x1:x, y1:yy, x2:x, y2:yy+step});
+				yy += step;
+			}
+
+			segs.push({x1:x, y1:yy, x2:w*1.3, y2:yy});
+			return segs;
+		}
+
+		function posOnPath(segs, dist) {
+			for (const s of segs) {
+				const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
+				const L = Math.hypot(dx, dy);
+				if (dist <= L) {
+					const t = L === 0 ? 0 : dist / L;
+					return { x: s.x1 + dx*t, y: s.y1 + dy*t };
+				}
+				dist -= L;
+			}
+			const last = segs[segs.length - 1];
+			return { x: last.x2, y: last.y2 };
+		}
+
+		function pathLength(segs){
+			return segs.reduce((a,s)=>a+Math.hypot(s.x2-s.x1, s.y2-s.y1), 0);
+		}
+
+		let lines = [];
+		function rebuild() {
+			const h = canvas.height;
+			lines = [];
+			for (let i = 0; i < LINE_COUNT; i++) {
+				const y = (0.10 + (i/(LINE_COUNT-1))*0.80) * h + (Math.random()-0.5)*h*0.03;
+				const segs = makePath(y);
+				const len = pathLength(segs);
+
+				const nodes = Array.from({length: NODE_PER_LINE}, () => ({
+					d: Math.random()*len,
+					r: (2 + Math.random()*3) * DPR,
+					sp: (0.6 + Math.random()*1.2)
+				}));
+
+				lines.push({ segs, len, nodes });
+			}
+		}
+		rebuild();
+
+		function draw(tms) {
+			const t = tms / 1000;
+			const w = canvas.width, h = canvas.height;
+
+			// Fondo blanco
+			ctx.clearRect(0, 0, w, h);
+			ctx.fillStyle = "#ffffff";
+			ctx.fillRect(0, 0, w, h);
+
+			// estilo líneas
+			ctx.lineWidth = 2 * DPR;
+			ctx.lineJoin = "round";
+			ctx.lineCap = "round";
+
+			for (const L of lines) {
+				// líneas base (más oscuras para que se vean en blanco)
+				ctx.strokeStyle = "rgba(10, 110, 200, 0.28)";
+				ctx.beginPath();
+				for (const s of L.segs) {
+					ctx.moveTo(s.x1, s.y1);
+					ctx.lineTo(s.x2, s.y2);
+				}
+				ctx.stroke();
+
+				// highlight animado
+				const bandX = (t * SPEED * DPR) % (w * 1.4);
+				ctx.strokeStyle = "rgba(0, 140, 255, 0.22)";
+				ctx.lineWidth = 4 * DPR;
+				ctx.beginPath();
+				for (const s of L.segs) {
+					const minX = Math.min(s.x1, s.x2), maxX = Math.max(s.x1, s.x2);
+					if (bandX > minX - 200*DPR && bandX < maxX + 200*DPR) {
+						ctx.moveTo(s.x1, s.y1);
+						ctx.lineTo(s.x2, s.y2);
+					}
+				}
+				ctx.stroke();
+				ctx.lineWidth = 2 * DPR;
+
+				// nodos en movimiento
+				for (const n of L.nodes) {
+					const d = (n.d + t * SPEED * DPR * n.sp) % L.len;
+					const p = posOnPath(L.segs, d);
+
+					ctx.shadowBlur = GLOW * DPR;
+					ctx.shadowColor = "rgba(0, 140, 255, 0.55)";
+					ctx.fillStyle = "rgba(0, 120, 255, 0.65)";
+					ctx.beginPath();
+					ctx.arc(p.x, p.y, n.r, 0, Math.PI*2);
+					ctx.fill();
+					ctx.shadowBlur = 0;
+				}
+			}
+
+			requestAnimationFrame(draw);
+		}
+
+		// Observar cambios en la sección para reajustar cuando sea visible
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					resize();
+					rebuild();
+				}
+			});
+		}, { threshold: 0.1 });
+		
+		observer.observe(proyectosArea);
+		
+		requestAnimationFrame(draw);
+		}
+		
+		// Ejecutar cuando el DOM esté listo
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initProyectosBackground);
+		} else {
+			initProyectosBackground();
+		}
+	})();
+	</script>
 
 </body>
 </html>

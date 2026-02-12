@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fondo tech animado (blanco)</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body { background: #ffffff; overflow: hidden; }
+    canvas { display: block; width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<script>
+(() => {
+  const canvas = document.getElementById("bg");
+  const ctx = canvas.getContext("2d");
+
+  const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+  function resize() {
+    canvas.width  = Math.floor(innerWidth * DPR);
+    canvas.height = Math.floor(innerHeight * DPR);
+  }
+  addEventListener("resize", resize);
+  resize();
+
+  // Config
+  const LINE_COUNT = 35;
+  const NODE_PER_LINE = 5;
+  const SPEED = 140;
+  const GLOW = 10;
+
+  function makePath(y) {
+    const w = canvas.width, h = canvas.height;
+    const segs = [];
+    let x = -w * 0.2;
+    let yy = y;
+
+    for (let i = 0; i < 7; i++) {
+      const len = (0.15 + Math.random() * 0.25) * w;
+      segs.push({x1:x, y1:yy, x2:x+len, y2:yy});
+      x += len;
+
+      const step = (Math.random() < 0.5 ? -1 : 1) * (0.04 + Math.random()*0.10) * h;
+      segs.push({x1:x, y1:yy, x2:x, y2:yy+step});
+      yy += step;
+    }
+
+    segs.push({x1:x, y1:yy, x2:w*1.3, y2:yy});
+    return segs;
+  }
+
+  function posOnPath(segs, dist) {
+    for (const s of segs) {
+      const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
+      const L = Math.hypot(dx, dy);
+      if (dist <= L) {
+        const t = L === 0 ? 0 : dist / L;
+        return { x: s.x1 + dx*t, y: s.y1 + dy*t };
+      }
+      dist -= L;
+    }
+    const last = segs[segs.length - 1];
+    return { x: last.x2, y: last.y2 };
+  }
+
+  function pathLength(segs){
+    return segs.reduce((a,s)=>a+Math.hypot(s.x2-s.x1, s.y2-s.y1), 0);
+  }
+
+  let lines = [];
+  function rebuild() {
+    const h = canvas.height;
+    lines = [];
+    for (let i = 0; i < LINE_COUNT; i++) {
+      const y = (0.10 + (i/(LINE_COUNT-1))*0.80) * h + (Math.random()-0.5)*h*0.03;
+      const segs = makePath(y);
+      const len = pathLength(segs);
+
+      const nodes = Array.from({length: NODE_PER_LINE}, () => ({
+        d: Math.random()*len,
+        r: (2 + Math.random()*3) * DPR,
+        sp: (0.6 + Math.random()*1.2)
+      }));
+
+      lines.push({ segs, len, nodes });
+    }
+  }
+  rebuild();
+  addEventListener("resize", () => { resize(); rebuild(); });
+
+  function draw(tms) {
+    const t = tms / 1000;
+    const w = canvas.width, h = canvas.height;
+
+    // ===== Fondo blanco =====
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, w, h);
+
+    // estilo líneas
+    ctx.lineWidth = 2 * DPR;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    for (const L of lines) {
+      // líneas base (más oscuras para que se vean en blanco)
+      ctx.strokeStyle = "rgba(10, 110, 200, 0.28)";
+      ctx.beginPath();
+      for (const s of L.segs) {
+        ctx.moveTo(s.x1, s.y1);
+        ctx.lineTo(s.x2, s.y2);
+      }
+      ctx.stroke();
+
+      // highlight animado
+      const bandX = (t * SPEED * DPR) % (w * 1.4);
+      ctx.strokeStyle = "rgba(0, 140, 255, 0.22)";
+      ctx.lineWidth = 4 * DPR;
+      ctx.beginPath();
+      for (const s of L.segs) {
+        const minX = Math.min(s.x1, s.x2), maxX = Math.max(s.x1, s.x2);
+        if (bandX > minX - 200*DPR && bandX < maxX + 200*DPR) {
+          ctx.moveTo(s.x1, s.y1);
+          ctx.lineTo(s.x2, s.y2);
+        }
+      }
+      ctx.stroke();
+      ctx.lineWidth = 2 * DPR;
+
+      // nodos en movimiento
+      for (const n of L.nodes) {
+        const d = (n.d + t * SPEED * DPR * n.sp) % L.len;
+        const p = posOnPath(L.segs, d);
+
+        ctx.shadowBlur = GLOW * DPR;
+        ctx.shadowColor = "rgba(0, 140, 255, 0.55)";
+        ctx.fillStyle = "rgba(0, 120, 255, 0.65)";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, n.r, 0, Math.PI*2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>

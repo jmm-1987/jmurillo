@@ -1920,6 +1920,9 @@ p.footer-text span {
 
 .loaded .loader-wrapper {
   visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .loaded .loader {
