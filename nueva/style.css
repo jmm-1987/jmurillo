@@ -1,0 +1,2403 @@
+/*===============================================
+Template Name: Mesud ozil - Personal Portfolio HTML5 Template
+Author:  https://www.templatemonster.com/authors/unique-theme/
+Description: Description
+Version: 1.0.0
+Text Domain: mesud ozil
+Tags:   delivery company, grid, logistics, moving, moving company, shipping, courier, shipping company, storage, transport, transport company, warehouse.
+================================================*/
+    
+/*TABLE OF CONTENTS*/
+/*=====================
+01. mesud ozil Header Top Menu Area Css
+02. mesud ozil Nav Menu Area Css 
+03. mesud ozil hero Area Css
+04. mesud ozil contact-Area Css
+05. mesud ozil service-Area Css
+06. mesud ozil Section Title Cssr
+07. mesud ozil About Area Css
+08. mesud ozil testimonial Area Css
+09. mesud ozil event Area Css
+10. mesud ozil download- Area Css
+11. mesud ozil mission- Area Css
+12. mesud ozil dollar- Area Css
+13. mesud ozil team Area Css
+14. mesud ozil blog Area Css
+15. mesud ozil counter Area Css
+16. mesud ozil footer-Area Cssr
+17. mesud ozil copyright-Area Css
+
+=======================*/
+
+
+/*=====================================
+/*  Polytia Nav Menu Arrea Css */
+=======================================*/
+
+svg {
+    max-width: 80%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    display: block; /* Elimina espacios adicionales */
+}
+
+
+.mesud.ozil_nav_manu {
+    padding: 0 20px;
+}
+
+.sticky {
+    left: 0;
+    margin: auto;
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    -webkit-box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px -2px rgba(0, 0, 0, 0.1);
+    background: #0072FF!important;
+    z-index: 500;
+    padding: 0 20px;
+    transition: .5s !important;
+    z-index: 500;
+    -webkit-animation: 300ms running fadeInDown;
+    animation: 500ms running fadeInUp;
+    animation-name: slideInDown;
+    border: 2px solid #000000 !important;
+    border-radius: 15px;
+    margin: 10px;
+    width: calc(100% - 20px);
+}
+
+.sticky .logo {
+    margin-top: 0;
+}
+
+.sticky.mesud.ozil_nav_manu:before {
+    display: none;
+}
+
+/* Asegurar marco completo en sticky */
+.sticky.mesud.ozil_nav_manu {
+    border-top: 2px solid #000000 !important;
+    border-right: 2px solid #000000 !important;
+    border-bottom: 2px solid #000000 !important;
+    border-left: 2px solid #000000 !important;
+}
+
+/* mesud ozil Menu Css*/
+
+nav.mesud.ozil_menu {
+    align-items: center;
+    display: inline-flex;
+    float: right;
+    padding: 7px 0 0;
+}
+
+.mesud.ozil_menu ul {
+    list-style: none;
+    display: inline-block;
+	padding: 0;
+}
+
+.mesud.ozil_menu>ul>li {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+}
+
+.mesud.ozil_menu > ul > li > a {
+    display: block;
+    margin: 31px 23px 20px;
+    -webkit-transition: .5s;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 27px;
+    color: #000000;
+    font-weight: 700;
+}
+
+nav.mesud.ozil_menu ul li a i {
+    display: inline-block;
+    font-size: 11px;
+    padding-left: 6px;
+}
+
+nav.mesud.ozil_menu span {
+    font-size: 13px;
+    padding-left: 6px;
+    font-family: FontAwesome;
+    opacity: .5;
+}
+
+.mesud.ozil_menu > ul > li > a:hover {
+    color: #0072FF;
+}
+
+.sticky .mesud.ozil_menu > ul > li > a:hover {
+    color: #28a745;
+}
+
+
+
+/*** Sub Menu Style ***/
+.mesud.ozil_menu ul .sub-menu {
+    position: absolute;
+    left: 0;
+    top: 150%;
+    width: 217px;
+    text-align: left;
+    background: #fff;
+    margin: 0;
+    z-index: 1;
+    -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    transition: .5s;
+    visibility: hidden;
+    opacity: 0;
+    border-bottom: 3px solid #E11143;
+    border-top: 3px solid #E11143;
+}
+
+.mesud.ozil_menu ul li:hover > .sub-menu {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	visibility: visible;
+	top: 120%;
+	opacity: 1;
+	z-index: 9999;
+}
+
+.mesud.ozil_menu ul .sub-menu li {
+     position: relative;
+}
+
+.mesud.ozil_menu ul .sub-menu li a {
+    display: block;
+    padding: 12px 20px;
+    margin: 0;
+    line-height: 1.3;
+    letter-spacing: normal;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    -webkit-transition: .1s;
+    visibility: inherit !important;
+    color: #211e3b !important;
+    text-decoration: none;
+    transition: .5s;
+}
+
+.mesud.ozil_menu ul .sub-menu li:hover>a,
+.mesud.ozil_menu ul .sub-menu .sub-menu li:hover>a,
+.mesud.ozil_menu ul .sub-menu .sub-menu .sub-menu li:hover>a,
+.mesud.ozil_menu ul .sub-menu .sub-menu .sub-menu .sub-menu li:hover>a {
+     background:#E11143;
+     color: #fff !important;
+}
+
+/* sub menu 2 */
+
+.mesud.ozil_menu ul .sub-menu .sub-menu {
+     left: 100%;
+     top: 130%;
+     opacity: 0;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+     visibility: hidden;
+}
+
+.mesud.ozil_menu ul .sub-menu li:hover>.sub-menu {
+     opacity: 1;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+     visibility: visible;
+     top: 0%;
+}
+
+/* sub menu 3 */
+
+.mesud.ozil_menu ul .sub-menu .sub-menu li {
+    position: relative;
+}
+
+.mesud.ozil_menu ul .sub-menu .sub-menu .sub-menu {
+     right: 100%;
+     left: auto;
+     top: 130%;
+     opacity: 0;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+     visibility: hidden;
+}
+
+.mesud.ozil_menu ul .sub-menu .sub-menu li:hover>.sub-menu {
+     opacity: 1;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+     visibility: visible;
+     top: 0%;
+}
+
+/* sub menu 4 */
+
+.mesud.ozil_menu ul .sub-menu .sub-menu .sub-menu li {
+    position: relative;
+}
+
+.mesud.ozil_menu ul .sub-menu .sub-menu .sub-menu .sub-menu {
+}
+
+.mesud.ozil_menu ul .sub-menu .sub-menu .sub-menu li:hover>.sub-menu {
+     opacity: 1;
+     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+     visibility: visible;
+     top: 0%;
+}
+
+.mesud.ozil_menu li a:hover:before{
+    width:100%;
+}
+
+.mesud.ozil_nav_manu.sticky .logo_img {
+    display: none;
+
+}
+
+.main_sticky {
+    display: none;
+
+}
+
+.mesud.ozil_nav_manu.sticky .main_sticky {
+    display: inherit;
+}
+
+.sticky .mesud.ozil_menu li a {
+    color: #000000;
+}
+
+.mesud.ozil_nav_manu.sticky a.dtbtn {
+    color: #fff;
+    background: #F16722;
+    border: 2px solid #F16722;
+}
+
+.mesud.ozil_nav_manu.sticky a.dtbtn:hover {
+    color: #43baff;
+}
+
+.mobile-menu.mean-container {
+    overflow: hidden;
+}
+
+.mesud.ozil-search-btn {
+    display: inline-block;
+}
+
+
+.mesud.ozil-btn {
+    margin-left: 19px;
+}
+
+.mesud.ozil-btn a {
+    display: inline-block;
+    overflow: hidden;
+    background: #28a745;
+    border-radius: 5px;
+    transition: all 0.5s ease 0s;
+    z-index: 1;
+    font-size: 14px;
+    line-height: 22px;
+    color: white;
+    font-weight: 700;
+    padding: 14px 34px 14px;
+    text-decoration: none;
+    position: relative;
+    border: 1px solid #f3f9f7;
+}
+
+.mesud.ozil-btn a i {
+    display: inline-block;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+    margin-left: 6px;
+}
+
+.mesud.ozil-btn a::before {
+	content: "";
+	background: #101010;
+	height: 0;
+	width: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: auto;
+	transition: .5s;
+	z-index: -1;
+}
+
+.mesud.ozil-btn a::after {
+	content: "";
+	background: #101010;
+	height: 0;
+	width: 50%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: auto;
+	transition: .5s;
+	z-index: -1;
+}
+
+.sticky .mesud.ozil-btn a::before {
+    background: #101010;
+    border-radius: 0;
+}
+
+.sticky .mesud.ozil-btn a {
+    color: #28a745;
+    background: #fff;
+}
+
+
+
+.sticky .mesud.ozil-btn a:hover {
+    color: #fff;
+}
+
+.style-two .mesud.ozil-btn a {
+    color: #CD1345;
+    border: 1px solid #fff;
+}
+
+.style-two .mesud.ozil-btn a {
+    background: none;
+	color: #fff;
+}
+
+.style-two .mesud.ozil-btn a:hover{
+	color: #CD1345;
+}
+
+.style-two .mesud.ozil-btn a::before {
+    border-radius: 0;
+}
+
+.mesud.ozil-btn a:hover::before {
+	height: 100%;
+	right: 0;
+	left: auto;
+}
+
+.mesud.ozil-btn a:hover::after {
+	height: 100%;
+	left: 0;
+	right: auto;
+}
+
+/*=====================================
+/*  start Polytia hero Area Css */
+=======================================*/
+
+.hero-area {
+    height: 100vh;
+    background: url(assets/images/fondo2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: -101px;
+    overflow: hidden;
+}
+
+.hero-contant {
+    margin-top: 20px;
+}
+
+.row.hero {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-contant h1 {
+    font-size: 100px;
+    line-height: 70px;
+    color: #ffffff;
+    font-weight: 700;
+    font-family: "Montserrat";
+    margin-bottom: 30px;
+}
+
+.hero-contant h2 {
+    font-size: 60px;
+    line-height: 62px;
+    color: #ffffff;
+    font-weight: 700;
+    font-family: "Montserrat";
+}
+
+.hero-contant p {
+    font-size: 16px;
+    line-height: 28px;
+    color: #999999;
+    font-weight: 400;
+    font-family: "Montserrat";
+    padding: 16px 0 36px;
+    margin: 0;
+}
+
+.hero-area .mesud.ozil-btn {
+    margin-left: 0;
+    display: inline-block;
+    margin-right: 7px;
+}
+
+.mesud.ozil-btn2 {
+    display: inline-block;
+}
+
+.mesud.ozil-btn2 a {
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 5px;
+    transition: all 0.5s ease 0s;
+    z-index: 1;
+    font-size: 14px;
+    line-height: 22px;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 13px 34px 13px;
+    text-decoration: none;
+    position: relative;
+    border: 1px solid #0072FF;
+}
+
+.mesud.ozil-btn2 a i {
+    display: inline-block;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+    margin-left: 6px;
+}
+
+.mesud.ozil-btn2 a::before {
+	content: "";
+	background: #0072FF;
+	height: 0;
+	width: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: auto;
+	transition: .5s;
+	z-index: -1;
+}
+
+.mesud.ozil-btn2 a::after {
+	content: "";
+	background: #0072FF;
+	height: 0;
+	width: 50%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: auto;
+	transition: .5s;
+	z-index: -1;
+}
+
+.mesud.ozil-btn2 a:hover::before {
+	height: 100%;
+	right: 0;
+	left: auto;
+}
+
+.mesud.ozil-btn2 a:hover::after {
+	height: 100%;
+	left: 0;
+	right: auto;
+}
+
+.hero-area .mesud.ozil-btn a {
+    border: 1px solid #0072FF;
+}
+
+.hero-area .mesud.ozil-btn a:hover {
+    border: 1px solid #0072FF;
+}
+
+.hero-thumb {
+    text-align: center;
+    margin: 120px 0px 0 0;
+}
+
+.hero-social-icon {
+    position: absolute;
+    left: -18%;
+}
+
+.hero-social-icon ul {
+    padding: 0;
+    margin: 0;
+}
+
+.hero-social-icon ul li {
+    list-style: none;
+    padding: 11px 0;
+}
+
+.hero-social-icon ul li a i {
+    display: inline-block;
+    font-size: 14px;
+    color: #0072FF;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 1px solid #272727;
+    border-radius: 3px;
+    position: relative;
+    z-index: 1;
+    transition: .5s;
+}
+
+.hero-social-icon ul li a i:after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: #0072FF;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    border-radius: 3px;
+    transform: scale(0);
+    transition: .5s;
+}
+
+.hero-social-icon ul li a i:hover{
+    color: #fff;
+}
+
+.hero-social-icon ul li a i:hover:after {
+    transform: scale(1);
+}
+/*=====================================
+/*  end mesud ozil hero Area Css */
+=======================================*/
+
+
+
+
+
+/*=====================================
+/*  start mesud ozil section-title Area Css */
+=======================================*/
+
+h5.section-sub-title {
+    font-size: 16px;
+    line-height: 57px;
+    color: #000000;
+    font-weight: 600;
+    font-family: "Montserrat";
+    margin-bottom: 4px;
+}
+
+h1.section-main-title {
+    font-size: 45px;
+    color: #000000;
+    font-weight: 600;
+    font-family: "Montserrat";
+}
+
+.section-title.text-left {
+    margin-bottom: 61px;
+}
+
+.section-title.text-center {
+    margin-bottom: 60px;
+}
+
+.tab-area .section-title.text-center {
+    margin-bottom: 44px;
+}
+
+
+
+
+/*=====================================
+/*  end mesud ozil section-title Area Css */
+=======================================*/
+
+
+
+/*=====================================
+/*  start Polytia service Area Css */
+=======================================*/
+
+
+.service-area {
+    padding: 94px 0 88px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.service-single-box {
+    background: #f5f5f5;
+    border: 1px solid #dddddd;
+    border-radius: 20px;
+    padding: 46px 30px 17px;
+    transition: .5s;
+    margin-bottom: 30px;
+}
+
+.service-number h1 {
+    -webkit-text-stroke-color: #333333;
+    color: transparent;
+    -webkit-text-stroke-width: 1px;
+    font-size: 45px;
+    line-height: 26px;
+    font-weight: 600;
+    margin: 0;
+    transition: .5s;
+}
+
+h3.service-title {
+    font-size: 22px;
+    line-height: 26px;
+    color: #000000;
+    font-weight: 600;
+    font-family: "Montserrat";
+    margin: 0;
+    padding: 26px 0 17px;
+}
+
+h3.service-title {
+    font-size: 22px;
+    line-height: 26px;
+    color: #000000;
+    font-weight: 600;
+    font-family: "Montserrat";
+    margin: 0;
+    padding: 44px 0 17px;
+}
+
+.service-single-box:hover {
+    margin-top: -15px;
+    box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.15);
+}
+
+.mesud.ozil-btns {
+    float: right;
+}
+
+.mesud.ozil-btns a {
+    display: inline-block;
+    overflow: hidden;
+    background: #009D66;
+    border-radius: 5px;
+    transition: all 0.5s ease 0s;
+    z-index: 1;
+    font-size: 14px;
+    line-height: 22px;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 14px 34px 14px;
+    text-decoration: none;
+    position: relative;
+
+}
+
+.mesud.ozil-btns a i {
+    display: inline-block;
+    font-size: 18px;
+    position: relative;
+    top: 2px;
+    margin-left: 6px;
+}
+
+.mesud.ozil-btns a::before {
+	content: "";
+	background: #1C1B21;
+	height: 0;
+	width: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: auto;
+	transition: .5s;
+	z-index: -1;
+}
+
+.mesud.ozil-btns a::after {
+	content: "";
+	background: #1C1B21;
+	height: 0;
+	width: 50%;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: auto;
+	transition: .5s;
+	z-index: -1;
+}
+.mesud.ozil-btns a:hover::before {
+	height: 100%;
+	right: 0;
+	left: auto;
+}
+
+.mesud.ozil-btns a:hover::after {
+	height: 100%;
+	left: 0;
+	right: auto;
+}
+
+
+.service-single-box:hover .service-number h1{
+    color: #000;
+}
+
+
+/*=====================================
+/*  end mesud ozil service Area Css */
+=======================================*/
+
+
+
+/*=====================================
+/*  start mesud ozil portfolio Area Css */
+=======================================*/
+
+.portfolio-area {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+    padding: 94px 0 90px;
+}
+
+.portfolio-single-box {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.portfolio-thumb img {
+    width: 100%;
+}
+
+.portfolio-content {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: #0072FF;
+    padding: 30px 0 30px;
+    transform: perspective(500px)rotateX(90deg);
+    transition: .5s;
+}
+
+h3.portfolio-title {
+    margin: 0;
+}
+
+h3.portfolio-title a {
+    font-size: 22px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+p.portfolio-text {
+    font-size: 16px;
+    margin: 0;
+    color: #fff;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+.portfolio-single-box:hover .portfolio-content {
+    transform: perspective(500px)rotateX(0deg);
+}
+
+
+
+
+
+/*=====================================
+/*  end mesud ozil portfolio Css */
+=======================================*/
+
+
+
+
+/*=====================================
+/*  start dreamer tab-area Css */
+=======================================*/
+
+
+.tab-area {
+    padding: 96px 0 88px;
+    background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 50%, #f5f7fa 100%);
+}
+
+.tab-area.style-two {
+    padding: 207px 0 120px;
+    margin-top: -90px;
+}
+
+
+
+.tabs_item {
+    display: none;
+}
+
+.tabs_item:first-child {
+    display: block;
+}
+
+ul.tabs.active {
+    text-align: center;
+    margin-bottom: 69px;
+    padding: 0;
+}
+
+li.active.current {
+    background: #0072FF;
+    border-radius: 5px;
+}
+
+li.active.current {
+    background: #0072FF !important;
+    border-radius: 5px;
+}
+
+ul.tabs.active li {
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    background: #1C1B21;
+    border-radius: 5px;
+    margin: 0 8px 0;
+}
+
+ul.tabs.active li a {
+    display: inline-block;
+    text-decoration: none;
+    margin: 0;
+    padding: 15px 44px 15px;
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+    font-family: "Montserrat";
+}
+
+.row.upper {
+    position: relative;
+    z-index: 1;
+}
+
+.row.upper::before {
+    position: absolute;
+    content: "";
+    height: 96%;
+    width: 4px;
+    background: #1C1B21;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.tab-single-box {
+    background: #f5f5f5;
+    border: 1px solid #dddddd;
+    margin: 0 16px 30px 0;
+    padding: 38px 30px 34px;
+    position: relative;
+    z-index: 1;
+    border-radius: 20px;
+    transition: .5s;
+}
+
+.tab-single-box::before {
+    position: absolute;
+    content: "";
+    height: 4px;
+    width: 19px;
+    background: #1C1B21;
+    right: -20px;
+    top: 31px;
+}
+
+.tab-single-box:after {
+    position: absolute;
+    content: "";
+    right: -37px;
+    top: 24px;
+    border-radius: 50%;
+    height: 17px;
+    width: 17px;
+    border: 4px solid #1C1B21;
+    background: #141318;
+    transition: .5s;
+}
+
+.tab-single-box.two {
+    margin: 0 0 30px 16px;
+    position: relative;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.tab-single-box.two::before {
+    position: absolute;
+    content: "";
+    height: 4px;
+    width: 19px;
+    background: #1C1B21;
+    left: -20px;
+    top: 83%;
+}
+
+.tab-single-box.two:after {
+    position: absolute;
+    content: "";
+    left: -37px;
+    top: 80%;
+    border-radius: 50%;
+    height: 17px;
+    width: 17px;
+    border: 4px solid #1C1B21;
+    background: #141318;
+    transition: .5s;
+}
+
+h3.tab-title {
+    font-size: 19px;
+    color: #000000;
+    font-weight: 500;
+    font-family: "Montserrat";
+    margin: 0;
+}
+
+h4.tab-text {
+    font-size: 15px;
+    color: #999999;
+    font-weight: 400;
+    font-family: "Montserrat";
+    margin: 0;
+    padding: 12px 0 19px;
+}
+
+p.tab-descrip {
+    font-size: 15px;
+    line-height: 28px;
+    color: #999999;
+    font-weight: 400;
+    font-family: "Montserrat";
+    margin: 0;
+}
+
+
+
+
+.biographi-list {
+    margin: 0 34px 0;
+    padding: 31px 0 19px;
+}
+
+.biographi-list ul {
+    padding: 0;
+    margin: 0;
+}
+
+.biographi-list ul li {
+    list-style: none;
+    font-size: 18px;
+    color: #00c0ff;
+    font-weight: 500;
+    padding-bottom: 29px;
+    position: relative;
+    z-index: 1;
+}
+
+.biographi-list ul li::before {
+    position: absolute;
+    content: "";
+    height: 1px;
+    width: 100%;
+    background: #0377AE;
+    top: 34px;
+}
+
+.biographi-list span {
+    float: right;
+    opacity: 0.600;
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.row.tab {
+    background: #f5f5f5;
+    padding: 56px 18px 20px;
+    border: 1px solid #dddddd;
+    margin-bottom: 30px;
+}
+
+.tabs_item.style-three {
+    padding: 0 40px 0 0;
+}
+
+.skills-single-box.two {
+    padding: 0 0 0 22px;
+    margin: 0 22px 40px;
+    border: 1px solid #dddddd;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+}
+
+/*prossess-ber */
+
+span.prosses-bar {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    padding: 17px 0 20px 0;
+    display: inline-block;
+    color: #000000;
+}
+
+.prossess-ber-plugin span {
+    font-size: 16px;
+    line-height: 26px;
+    color: #080c20;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
+.barfiller {
+    width: 100%;
+    height: 3px;
+    position: relative;
+    filter: drop-shadow(0px 10px 10px rgba(60, 115, 206, 0.2));
+}
+
+.barfiller .tipWrap {
+    display: none;
+}
+
+.barfiller .fill {
+    display: block;
+    position: relative;
+    width: 0px;
+    height: 100%;
+    background: #333;
+    z-index: 1;
+}
+
+.barfiller .tip {
+    left: 0;
+    position: absolute;
+    z-index: 2;
+    top: -49px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 400;
+    padding: 5px 18px 4px;
+    border-radius: 5px;
+    margin-left: -43px;
+    background: rgba(0,158,102,0.3);
+}
+
+span.fill {
+    background: #0072FF!important;
+    border-radius: 0;
+}
+
+.portfolio_nav ul li:hover, .portfolio_nav ul li.current_menu_item {
+    background: #040837;
+}
+
+.tab-single-box:hover:after {
+    background: #0072FF;
+}
+
+.tab-single-box:hover {
+    box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.15);
+}
+
+
+
+/*=====================================
+/*  end dreamer tab-area Css */
+=======================================*/
+
+
+
+
+/*=====================================
+/*  start testimonial Area Css */
+=======================================*/
+
+
+.testimonial-area {
+    background: #101010;
+    padding: 94px 0 118px;
+}
+
+.testimonial-single-box {
+    background: #141318;
+    padding: 39px 33px 40px;
+    margin-bottom: 30px;
+    border: 1px solid #272727;
+    position: relative;
+    z-index: 1;
+    border-radius: 5p
+}
+
+ul.testi-rating {
+    padding: 0;
+    margin: 0;
+}
+
+ul.testi-rating li {
+    display: inline-block;
+    list-style: none;
+    margin-right: 7px;
+}
+
+ul.testi-rating li a i {
+    display: inline-block;
+    color: #D7AB7A;
+    font-size: 16px;
+}
+
+p.testi-descrip {
+    font-size: 15px;
+    line-height: 26px;
+    color: #999999;
+    font-weight: 400;
+    font-family: "Montserrat";
+    padding: 21px 0 17px;
+}
+
+.testimonial-auothor-thumb {
+    float: left;
+    margin-right: 25px;
+}
+
+.testimonia-bio {
+    position: relative;
+    top: 10px;
+}
+
+h3.testimonials-auothor {
+    font-size: 19px;
+    line-height: 35px;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: "Montserrat";
+    margin: 0;
+}
+
+span.testimonials-text {
+    font-size: 14px;
+    color: #999999;
+    font-weight: 400;
+    font-family: "Montserrat";
+}
+
+
+.testimonial-icon {
+    position: absolute;
+    bottom: 44px;
+    right: 24%;
+}
+
+.owl-nav {
+    position: relative;
+}
+
+.owl-prev {
+    position: absolute;
+    top: -473px;
+    right: 0;
+}
+
+.owl-next {
+    display: inline-block;
+    position: absolute;
+    right: 60px;
+    top: -473px;
+}
+
+.owl-prev, .owl-next {
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #1C1B21;
+    border-radius: 50%;
+    transition: .5s;
+}
+
+.owl-prev i, .owl-next i {
+    color: #fff;
+    display: inline-block;
+    font-size: 20px;
+}
+
+
+.owl-prev:hover, .owl-next:hover{
+    background: #0072FF;
+}
+
+.brand-title {
+    text-align: center;
+}
+
+.brand-box {
+    background: #1B1B21;
+    border: 1px solid #272727;
+    padding: 19px 0 19px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.brand-title h2 {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: "Montserrat";
+    padding: 84px 0 55px;
+    position: relative;
+    z-index: 1;
+}
+
+.brand-title h2::before {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 41%;
+    background: #141318;
+    left: 0;
+    top: 93px;
+}
+
+.brand-title h2:after {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 41%;
+    background: #141318;
+    right: 0;
+    top: 93px;
+}
+
+.owl-carousel .owl-item img {
+    display: inline-block;
+}
+
+
+
+/*=====================================
+/*  end mesud ozil testimonial Area Css */
+=======================================*/
+
+
+
+
+/*=====================================
+/*  start mesud ozil blog Area Css */
+=======================================*/
+
+
+.blog-area {
+    background: #ffffff;
+    padding: 94px 0 88px;
+}
+
+.blog-single-box {
+    background: #1c1b21;
+    padding: 40px 40px 32px 40px;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 30px;
+    transition: .5s;
+}
+
+.blog-content {
+    position: relative;
+    z-index: 1;
+}
+
+.blog-thumb img {
+    width: 100%;
+    margin-top: 100px;
+}
+
+h4.blog-text {
+    position: absolute;
+    bottom: 124px;
+    background: #1c1b21;
+    font-size: 14px;
+    color: #0072FF;
+    font-weight: 400;
+    font-family: "Montserrat";
+    padding: 22px 28px 0 0;
+    margin: 0;
+}
+
+p.meta-blog-date {
+    font-size: 14px;
+    line-height: 28px;
+    color: #999999;
+    font-weight: 400;
+    font-family: "Montserrat";
+    margin: 0;
+    padding: 21px 0 15px;
+}
+
+p.meta-blog-date i {
+    display: inline-block;
+    color: #0072FF;
+    font-size: 15px;
+    margin-right: 13px;
+}
+
+p.meta-blog-date span {
+    margin-left: 28px;
+}
+
+h3.blog-title {
+    margin: 0;
+}
+
+h3.blog-title a {
+    display: inline-block;
+    font-size: 22px;
+    line-height: 30px;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: "Montserrat";
+    transition: .5s;
+    text-decoration: none;
+}
+
+
+.blog-single-box:hover h3.blog-title a {
+    color: #0072FF;
+}
+
+.blog-single-box:hover {
+    box-shadow: 0px 10px 15px -5px rgba(255, 255, 255, 0.05);
+    margin-top: -10px;
+}
+
+
+
+/*=====================================
+/*  end mesud ozil blog Area Css */
+=======================================*/
+
+
+/*=====================================
+/*  stare mesud ozil contact Area Css */
+=======================================*/
+
+
+.contact-area {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+    padding: 118px 0 118px;
+}
+
+p.contact-desrip {
+    margin: 0;
+    font-size: 15px;
+    line-height: 26px;
+    color: #999999;
+    font-weight: 400;
+    font-family: "Montserrat";
+    width: 99%;
+    padding: 14px 0 0;
+    position: relative;
+    z-index: 1;
+}
+
+p.contact-desrip::before {
+    position: absolute;
+    content: "";
+    height: 1px;
+    width: 94%;
+    background: #272727;
+    bottom: -33px;
+}
+.contact-address ul {
+    padding: 0;
+    margin: 0;
+}
+
+.contact-address ul li {
+    list-style: none;
+    font-size: 18px;
+    color: #000000;
+    font-weight: 600;
+    font-family: "Montserrat";
+    line-height: 42px;
+}
+
+.contact-address ul li span {
+    color: #999999;
+    display: inline-block;
+}
+
+span.active {
+    color: #0072FF !important;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+span.active::before {
+    position: absolute;
+    content: "";
+    height: 1px;
+    width: 100%;
+    background: #0072FF;
+    bottom: 10px;
+}
+
+.contact-left {
+    margin-left: 62px;
+}
+
+.row.contact_bg {
+    background: #f5f5f5;
+    padding: 36px 64px 68px;
+    border-radius: 5px;
+}
+
+.row.contact_bg P {
+    font-size: 14px;
+    color: #999999;
+    font-weight: 500;
+    font-family: "Montserrat";
+    margin: 23px 0 13px;
+}
+
+.form_box input {
+    width: 100%;
+    background: #101010;
+    outline: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    height: 50px;
+    color: #fff;
+    padding: 0 0 0 14px;
+    border-radius: 5px;
+}
+
+.form_box textarea {
+    width: 100%;
+    background: #101010;
+    height: 130px;
+    border: 1px solid rgba(255,255,255,0.08);
+    outline: 0;
+    color: #fff;
+    padding: 7px 0 0 15px;
+    margin-bottom: 22px;
+    border-radius: 5px;
+}
+
+.contact-form-button button {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
+    font-family: "Montserrat";
+    background: #0072FF;
+    outline: 0;
+    border: none;
+    padding: 12px 35px 12px;
+    border-radius: 5px;
+}
+
+
+
+
+
+/*=====================================
+/*  end mesud ozil contact Area Css */
+=======================================*/
+
+
+
+
+/*=====================================
+/*  start mesud ozil footer Area Css */
+=======================================*/
+
+.footer-area {
+    background: linear-gradient(135deg, rgba(245, 247, 250, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%), url(assets/images/footer-bg.png);
+    padding: 117px 0 14px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.row.footer-bottom {
+    padding: 33px 0 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-logo {
+    text-align: center;
+    padding: 0 0 117px;
+}
+
+
+.footer-social-icon ul {
+    padding: 0;
+}
+
+.footer-social-icon ul li {
+    list-style: none;
+    padding-right: 7px;
+    display: inline-block;
+}
+
+.footer-social-icon ul li a i {
+    display: inline-block;
+    font-size: 14px;
+    color: blue;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 1px solid #272727;
+    position: relative;
+    z-index: 1;
+    transition: .5s;
+}
+
+.footer-social-icon ul li a i:after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    background: #009D66;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    transform: scale(0);
+    transition: .5s;
+}
+
+.footer-social-icon ul li a i:hover{
+    color: #fff;
+}
+
+.footer-social-icon ul li a i:hover:after {
+    transform: scale(1);
+}
+
+p.footer-text {
+    font-size: 15px;
+    line-height: 26px;
+    color: #999999;
+    font-weight: 400;
+    font-family: "Montserrat";
+    margin: 0;
+    text-align: right;
+}
+
+p.footer-text span {
+    color: #0072FF;
+}
+
+
+
+
+/*=====================================
+/*  end mesud ozil footer Area Css */
+=======================================*/
+
+.typed-cursor {
+    opacity: 1;
+    color: #0072FF;
+}
+
+
+
+
+
+/*
+<!-- ============================================================== -->
+<!-- mesud ozil Scrollup Section -->
+<!-- ============================================================== -->*/
+
+.scroll-area{
+  position: relative;
+  z-index: 999;
+ }
+
+.scroll-area .go-top {
+    position: fixed;
+    cursor: pointer;
+    top: 0;
+    right: 30px;
+    color: #ffffff;
+    background-image: -moz-linear-gradient(0deg, #d1651a 0%, #c1282a 100%);
+    background-image: -webkit-linear-gradient(0deg, #d1651a 0%, #c1282a 100%);
+    z-index: 9999;
+    width: 45px;
+    text-align: center;
+    height: 45px;
+    line-height: 42px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.9s ease-out 0s;
+    -moz-transition: all 0.9s ease-out 0s;
+    border-radius: 10px; 
+}
+
+.scroll-area .go-top i {
+      position: absolute;
+      top: 50%;
+      left: -4px;
+      right: 0;
+      margin: 0 auto;
+      font-size: 15px;
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-transition: all 0.5s ease-out 0s;
+      -moz-transition: all 0.5s ease-out 0s;
+  }
+
+.scroll-area .go-top i:last-child {
+    opacity: 0;
+    visibility: hidden;
+    top: 60%; 
+}
+
+.scroll-area .go-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: linear-gradient(to right, #0072FF 0%, #0072FF 100%);
+    background-image: -ms-linear-gradient(0deg, #0072FF 0%, #0072FF 100%);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.5s ease-out 0s;
+    -moz-transition: all 0.5s ease-out 0s;
+    border-radius: 100%;
+}
+
+.scroll-area .go-top:focus, .scroll-area .go-top:hover {
+      color: #fff; 
+  }
+
+.scroll-area .go-top:focus::before, .scroll-area .go-top:hover::before {
+        opacity: 1;
+        visibility: visible; 
+}
+
+.scroll-area .go-top:focus i:first-child, .scroll-area .go-top:hover i:first-child {
+        opacity: 0;
+        top: 0;
+        visibility: hidden;
+ }
+
+.scroll-area .go-top:focus i:last-child, .scroll-area .go-top:hover i:last-child {
+        opacity: 1;
+        visibility: visible;
+        top: 50%; 
+}
+
+.scroll-area .go-top.active {
+    top: 95%;
+    -webkit-transform: translateY(-98%);
+    -moz-transform: translateY(-98%);
+    opacity: 1;
+    visibility: visible;
+    border-radius: 0;
+    right: 30px;
+    border-radius:100%;
+}
+
+.top-wrap {
+  position: relative; 
+}
+
+.top-wrap .go-top-button {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    top: 3px;
+    z-index: 1;
+    background: #0072FF;
+}
+
+ .top-wrap .go-top-button i {
+      font-size: 20px;
+      font-weight: 700;
+      padding-left: 4px;
+      color: #fff;
+ }
+
+.top-wrap .go-top-button::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 45px;
+    height: 45px;
+    -webkit-animation: ripple 1.6s ease-out infinite;
+    -moz-animation: ripple 1.6s ease-out infinite;
+    opacity: 0;
+    background-image: -moz-linear-gradient(0deg, #0072FF 0%, #0072FF 100%);
+    background-image: -webkit-linear-gradient(0deg, #0072FF 0%, #0072FF 100%);
+    border-radius: 100%;
+}
+
+.top-wrap .go-top-button:hover {
+      background-color: #222;
+      color: #fff; 
+  }
+  
+.scroll-area.home-two .top-wrap .go-top-button {
+    background: #00AFF5;
+}
+ .scroll-area.home-two .top-wrap .go-top-button::after {
+    background-image: -moz-linear-gradient(0deg, #00AFF5 0%, #00AFF5 100%);
+    background-image: -webkit-linear-gradient(0deg, #00AFF5 0%, #00AFF5 100%);
+}
+
+@keyframes ripple {
+  0%, 35% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -ms-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+    opacity: 1; }
+  50% {
+    -webkit-transform: scale(1.5);
+    -moz-transform: scale(1.5);
+    -ms-transform: scale(1.5);
+    -o-transform: scale(1.5);
+    transform: scale(1.5);
+    opacity: 0.8; }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -ms-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2); } }
+
+
+
+
+/*===========================
+/* mesud ozil Loader Css */
+=============================*/
+
+.loader-wrapper {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.8s 1s ease;
+    z-index: 666;
+}
+
+.loader {
+    position: relative;
+    display: block;
+    z-index: 201;
+    top: 50%;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    margin: -50px 0 0 -50px;
+    border-radius: 50%;
+    transition: all 1s 1s ease;
+    font-weight: bold;
+    color: #263238;
+    box-sizing: border-box;
+    text-shadow: 0 0 2px #FFF, 0 0 1px #FFF, 0 0 1px #FFF;
+    letter-spacing: 2px;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    position: relative;
+  }
+  .loader::before , .loader::after{
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    width: 48em;
+    height: 48em;
+    background-image:
+      radial-gradient(circle 10px, #0072FF 100%, transparent 0),
+      radial-gradient(circle 10px, #00C6FF 100%, transparent 0),
+      radial-gradient(circle 10px, #0072FF 100%, transparent 0),
+      radial-gradient(circle 10px, #00C6FF 100%, transparent 0),
+      radial-gradient(circle 10px, #0072FF 100%, transparent 0),
+      radial-gradient(circle 10px, #00C6FF 100%, transparent 0),
+      radial-gradient(circle 10px, #0072FF 100%, transparent 0),
+      radial-gradient(circle 10px, #00C6FF 100%, transparent 0);
+    background-position: 0em -18em, 0em 18em, 18em 0em, -18em 0em,
+                         13em -13em, -13em -13em, 13em 13em, -13em 13em;
+      background-repeat: no-repeat;
+    font-size: 0.5px;
+    border-radius: 50%;
+    animation: blast 1s ease-in infinite;
+  }
+  .loader::after {
+    font-size: 1px;
+    background: #fff;
+    animation: bounce 1s ease-in infinite;
+  }
+  
+  @keyframes bounce {
+    0% , 100%{ font-size: 0.75px }
+    50% { font-size: 1.5px }
+  }
+  @keyframes blast {
+    0% , 40% {
+      font-size: 0.5px;
+    }
+    70% {
+      opacity: 1;
+      font-size: 4px;
+    }
+     100% {
+       font-size: 6px;
+      opacity: 0;
+    }
+  }
+
+.loader-wrapper .loder-section {
+    position: fixed;
+    top: 0;
+    width: 52%;
+    height: 100%;
+    background: #111;
+    z-index: 2;
+}
+
+.loader-wrapper .loder-section.left-section {
+  left: 0;
+  transition: 2s 1.4s ease;
+}
+
+.loader-wrapper .loder-section.right-section {
+  right: 0;
+  transition: 2s 1.4s ease;
+}
+
+/*/ When page loaded /*/
+.loaded .loder-section.left-section {
+  left: -100%;
+}
+
+.loaded .loder-section.right-section {
+  right: -100%;
+}
+
+.loaded .loader-wrapper {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.loaded .loader {
+  top: -100%;
+  opacity: 0;
+}
+
+
+
+
+
+
+
+
+
+
+/*<!-- ============================================================== -->
+<!-- corporate Bounce Animation Css -->
+<!-- ============================================================== -->*/
+/* bounce-animate */
+.bounce-animate {
+  animation-name: float-bob;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-animation-name: float-bob;
+  -moz-animation-duration: 2s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: float-bob;
+  -ms-animation-duration: 2s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  -o-animation-name: float-bob;
+  -o-animation-duration: 2s;
+  -o-animation-iteration-count: infinite;
+-o-animation-timing-function: linear;
+}
+.bounce-animate2 {
+  animation-name: float-bob2;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-animation-name: float-bob2;
+  -moz-animation-duration: 3s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: float-bob2;
+  -ms-animation-duration: 3s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  -o-animation-name: float-bob2;
+  -o-animation-duration: 3s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear; }
+.bounce-animate3 {
+  animation-name: float-bob3;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-animation-name: float-bob3;
+  -moz-animation-duration: 3s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: float-bob3;
+  -ms-animation-duration: 3s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  -o-animation-name: float-bob3;
+  -o-animation-duration: 3s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear; }
+.bounce-animate4 {
+  animation-name: float-bob4;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-animation-name: float-bob4;
+  -moz-animation-duration: 5s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: float-bob4;
+  -ms-animation-duration: 5s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  -o-animation-name: float-bob4;
+  -o-animation-duration: 5s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear; }
+ .bounce-animate5 {
+  animation-name: float-bob5;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  -moz-animation-name: float-bob5;
+  -moz-animation-duration: 6s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: float-bob5;
+  -ms-animation-duration: 6s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  -o-animation-name: float-bob5;
+  -o-animation-duration: 6s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-timing-function: linear; }
+.bounce-animate-slow {
+    animation-name: float-bob5;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -moz-animation-name: float-bob5;
+    -moz-animation-duration: 15s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: float-bob5;
+    -ms-animation-duration: 15s;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    -o-animation-name: float-bob5;
+    -o-animation-duration: 15s;
+    -o-animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+}
+.bounce-animate-3 {
+    animation-name: float-bob6;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    -moz-animation-name: float-bob6;
+    -moz-animation-duration: 6s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: float-bob6;
+    -ms-animation-duration: 6s;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+    -o-animation-name: float-bob6;
+    -o-animation-duration: 6s;
+    -o-animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+}
+@-webkit-keyframes float-bob {
+  0% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px); }
+  50% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px); }
+  100% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px); } }
+@-webkit-keyframes float-bob2 {
+  0% {
+    -webkit-transform: translateY(-60px);
+    transform: translateY(-60px); }
+  50% {
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px); }
+  100% {
+    -webkit-transform: translateY(-60px);
+    transform: translateY(-60px); } }
+@-webkit-keyframes float-bob3 {
+  0% {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px); }
+  50% {
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px); }
+  100% {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px); } }
+@-webkit-keyframes float-bob4 {
+  0% {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px); }
+  50% {
+    -webkit-transform: translateY(-15px);
+    transform: translateY(-15px); }
+  100% {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px); } }
+@-webkit-keyframes float-bob5 {
+  0% {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px); }
+  50% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px); }
+  100% {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px); } }
+@-webkit-keyframes float-bob6 {
+  0% {
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px); }
+  50% {
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px); }
+  100% {
+    -webkit-transform: translateY(-40px);
+    transform: translateY(-40px); } }   
+@-webkit-keyframes movebounce {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  50% {
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes movebounce {
+  0% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  50% {
+    -webkit-transform: translateY(20px);
+            transform: translateY(20px);
+  }
+  100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@-webkit-keyframes moveleftbounce {
+  0% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  50% {
+    -webkit-transform: translateX(20px);
+            transform: translateX(20px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+}
+
+@keyframes moveleftbounce {
+  0% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+  50% {
+    -webkit-transform: translateX(20px);
+            transform: translateX(20px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+}
+
+/*--==============================================->
+  <!-- corporate Animation Dance -->
+ ==================================================-*/
+/**/
+.dance3 {
+  -webkit-animation: dance3 8s alternate infinite;
+}
+@keyframes dance3 {
+  0% {
+    -webkit-transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
+}
+.dance {
+  -webkit-animation: dance 2s alternate infinite;
+}
+@keyframes dance {
+  0% {
+    -webkit-transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1.2);
+  }
+}
+.dance2 {
+  -webkit-animation: dance2 4s alternate infinite;
+}
+@keyframes dance2 {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  50% {
+    -webkit-transform: translate3d(25px, -25px, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, -25px, 25px);
+  }
+}
+.watermark-animate {
+  -webkit-animation: watermark-animate 8s infinite;
+  animation: watermark-animate 8s infinite;
+  animation-direction: alternate-reverse;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+}
+@keyframes watermark-animate {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+
+
+/*rotateme animation*/
+.rotateme {
+  -webkit-animation-name: rotateme;
+          animation-name: rotateme;
+  -webkit-animation-duration: 20s;
+          animation-duration: 20s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+}
+
+@keyframes rotateme {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes animatezoom {
+from {-webkit-transform: scale(0)} 
+to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+from {transform: scale(0)} 
+to {transform: scale(1)}
+}
+
+/*=====================================
+/*  start mesud ozil blog-details-area Area Css */
+=======================================*/
+
+.blog-details-area {
+    padding: 547px 47px 35px;
+}
+
+.blog-details-thumb img {
+    width: 100%;
+    position: relative;
+
+}
+
+span.blog-details-date {
+    font-size: 18px;
+    color: #000;
+    font-weight: 500;
+    margin: 0;
+    padding: 35px 0 0;
+    display: inline-block;
+}
+
+h3.blog-details-title a {
+    display: flex;
+    font-size: 30px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    padding: 250px 0 15px;
+}
+
+p.blog-details-descrip {
+    margin: 0;
+    font-size: 16px;
+}
+
+
+  .button {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    display: inline-block;
+    border-radius: 1.5rem;
+    background-color: #fff;
+    color: #9191e9;
+    padding: 1rem 2rem;
+  }
+  
+  .popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hiden;
+    transition: 0.64s ease-in-out;
+}
+.popup-inner {
+    padding-top: 480px;
+    position: relative;
+    bottom: -100vw;
+    right: -100vh;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 80%;
+    background-color: #fff;
+    transition: 0.64s ease-in-out;
+    overflow: scroll;
+}
+  
+  .popup:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  .popup:target .popup-inner {
+    bottom: 0;
+    right: 0;
+    transform: rotate(0);
+  }
+  .popup__close {
+    position: absolute;
+    right: 12px;
+    top: 1rem;
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.875rem;
+    font-weight: 300;
+    border-radius: 100%;
+    background-color: #0072FF;
+    z-index: 4;
+    color: #fff;
+    line-height: 2rem;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.popup__close:hover {
+    color: #fff;
+}
+
+.portfolio-details-area {
+    padding: 123px 47px 51px;
+}
+
+
+
+
+
+
+
+
+
+
+
