@@ -77,14 +77,16 @@
 	<style>
 		/* === FONDO ANIMADO Y EFECTOS VISUALES === */
 		
-		/* Fondo principal blanco */
+		/* Fondo principal blanco con estilo moderno */
 		body {
 			background: #ffffff;
+			color: #1a1a1a;
 			position: relative;
 			overflow-x: hidden;
 			overflow-y: auto;
 			height: auto;
 			min-height: 100vh;
+			font-family: 'Poppins', sans-serif;
 		}
 		
 		html {
@@ -169,13 +171,14 @@
 		
 		/* === EFECTOS VISUALES PARA SECCIONES === */
 		
-		/* Efectos de ondas en las secciones */
-		.proyectos-area, .service-area, .tab-area, .contact-area {
+		/* Efectos de ondas en las secciones - estilo moderno con verde */
+		.proyectos-area, .service-area, .tab-area, .contact-area, .demos-area {
 			position: relative;
 			overflow: hidden;
+			background: #ffffff;
 		}
 		
-		.proyectos-area::before, .service-area::before, .tab-area::before, .contact-area::before {
+		.proyectos-area::before, .service-area::before, .tab-area::before, .contact-area::before, .demos-area::before {
 			content: '';
 			position: absolute;
 			top: -50px;
@@ -183,8 +186,8 @@
 			right: -50px;
 			bottom: -50px;
 			background: 
-				radial-gradient(circle at 10% 20%, rgba(40, 167, 69, 0.05) 0%, transparent 30%),
-				radial-gradient(circle at 90% 80%, rgba(0, 198, 255, 0.05) 0%, transparent 30%);
+				radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 30%),
+				radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 30%);
 			animation: sectionFloat 25s ease-in-out infinite;
 			pointer-events: none;
 			z-index: -1;
@@ -397,10 +400,7 @@
 		}
 		
 		.slogan-typed {
-			background: linear-gradient(135deg, #28a745 0%, #00c6ff 100%);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
+			color: #3b82f6;
 			display: inline-block;
 		}
 		
@@ -435,31 +435,32 @@
 		}
 		
 		.hero-btn-primary {
-			background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-			color: white;
-			box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+			background: #3b82f6;
+			color: #ffffff;
+			box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+			font-weight: bold;
 		}
 		
 		.hero-btn-primary:hover {
-			transform: translateY(-3px);
-			box-shadow: 0 12px 35px rgba(40, 167, 69, 0.6);
-			background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
-			color: white;
+			transform: translateY(-3px) scale(1.05);
+			box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6);
+			background: #2563eb;
+			color: #ffffff;
 		}
 		
 		.hero-btn-secondary {
 			background: transparent;
-			color: white;
-			border: 2px solid rgba(255, 255, 255, 0.8);
+			color: #ffffff;
+			border: 2px solid rgba(255, 255, 255, 0.9);
 			box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 		}
 		
 		.hero-btn-secondary:hover {
-			transform: translateY(-3px);
-			background: rgba(255, 255, 255, 0.15);
-			border-color: white;
+			transform: translateY(-3px) scale(1.05);
+			background: rgba(255, 255, 255, 0.2);
+			border-color: #ffffff;
 			box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
-			color: white;
+			color: #ffffff;
 		}
 		
 		/* Indicador de scroll */
@@ -481,7 +482,7 @@
 		}
 		
 		.scroll-down-link:hover {
-			color: #28a745;
+			color: #3b82f6;
 			transform: translateY(5px);
 		}
 		
@@ -603,13 +604,46 @@
 		}
 
 		
-		/* Efectos glassmorphism para las cajas */
+		/* Efectos glassmorphism para las cajas - estilo blanco con verde */
 		.service-single-box, .proyecto-single-box, .tab-single-box, .skills-single-box.two {
 			backdrop-filter: blur(15px);
-			border: 1px solid rgba(255, 255, 255, 0.3) !important;
-			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+			background: #ffffff !important;
+			border: 1px solid #e0e0e0 !important;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
 			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 			position: relative;
+			color: #1a1a1a !important;
+		}
+		
+		.service-single-box:hover, .proyecto-single-box:hover, .tab-single-box:hover {
+			border-color: #3b82f6 !important;
+			box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2) !important;
+			transform: translateY(-5px) !important;
+		}
+		
+		/* Efecto de brillo en iconos al hacer hover */
+		.service-single-box:hover img[alt*="Desarrollo Web"],
+		.service-single-box:hover img[alt*="Reconocimiento"],
+		.service-single-box:hover img[alt*="Chatbots"],
+		.service-single-box:hover img[alt*="Automatizaciones"] {
+			filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+			transform: scale(1.1);
+			transition: all 0.3s ease;
+		}
+		
+		/* Asegurar transición suave para los iconos */
+		.service-single-box img[alt*="Desarrollo Web"],
+		.service-single-box img[alt*="Reconocimiento"],
+		.service-single-box img[alt*="Chatbots"],
+		.service-single-box img[alt*="Automatizaciones"] {
+			transition: all 0.3s ease;
+		}
+		
+		/* Efecto de brillo para la bombilla en Soluciones Personalizadas */
+		.service-single-box:hover .bombilla-icon {
+			filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.6));
+			transform: scale(1.1);
+			opacity: 0.8 !important;
 		}
 		
 		/* Efectos de partículas flotantes en las cajas */
@@ -649,19 +683,40 @@
 			}
 		}
 		
-		/* Hover effects elegantes */
-		.service-single-box:hover, .proyecto-single-box:hover, .tab-single-box:hover {
-			transform: translateY(-15px) scale(1.03) !important;
-			box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
+		/* Gradientes en títulos principales - estilo moderno */
+		.section-main-title {
+			color: #000000 !important;
 		}
 		
-		/* Gradientes en títulos principales */
-		.section-main-title {
-			background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
-			-webkit-background-clip: text !important;
-			-webkit-text-fill-color: transparent !important;
-			background-clip: text !important;
-			position: relative;
+		.section-main-title span {
+			color: #3b82f6 !important;
+		}
+		
+		.section-sub-title {
+			color: #3b82f6 !important;
+			border-color: #3b82f6 !important;
+		}
+		
+		/* Mejorar contraste de textos en secciones */
+		.service-title, .tab-title {
+			color: #1a1a1a !important;
+		}
+		
+		.service-descr, .tab-text, .tab-descrip {
+			color: #666666 !important;
+		}
+		
+		.service-number h1 {
+			color: rgba(59, 130, 246, 0.2) !important;
+		}
+		
+		/* Asegurar que los textos sean visibles */
+		p, .service-descr, .tab-descrip {
+			color: #666666 !important;
+		}
+		
+		h1, h2, h3, h4, h5, h6 {
+			color: #1a1a1a !important;
 		}
 		
 		/* Líneas decorativas bajo títulos */
@@ -677,7 +732,7 @@
 			transform: translateX(-50%);
 			width: 80px;
 			height: 4px;
-			background: linear-gradient(90deg, #28a745, #00C6FF);
+			background: linear-gradient(90deg, #3b82f6, rgba(59, 130, 246, 0.5));
 			border-radius: 2px;
 		}
 		
@@ -686,13 +741,21 @@
 			transform: none;
 		}
 		
-		/* Navegación con glassmorphism */
+		/* Navegación con glassmorphism - estilo blanco */
 		.mesud.ozil_nav_manu {
 			backdrop-filter: blur(20px) !important;
 			background: rgba(255, 255, 255, 0.95) !important;
-			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			border-bottom: 1px solid rgba(59, 130, 246, 0.2);
 			position: relative;
 			overflow: hidden;
+		}
+		
+		.mesud.ozil_nav_manu .nav_scroll li a {
+			color: #1a1a1a !important;
+		}
+		
+		.mesud.ozil_nav_manu .nav_scroll li a:hover {
+			color: #3b82f6 !important;
 		}
 		
 		/* Efectos de fondo animado en la navegación */
@@ -715,15 +778,22 @@
 		}
 		
 		
-		/* Botón contacto con efectos modernos */
+		/* Botón contacto con efectos modernos - estilo neón verde */
 		.mesud.ozil-btn a {
-			box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4) !important;
+			background: #3b82f6 !important;
+			color: #ffffff !important;
+			box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important;
 			position: relative;
 			overflow: hidden;
 			font-family: 'Poppins', sans-serif !important;
 			font-weight: 600 !important;
 			font-size: 13px !important;
 			letter-spacing: 0.5px !important;
+		}
+		
+		.mesud.ozil-btn a:hover {
+			background: #ffffff !important;
+			box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6) !important;
 		}
 		
 		.mesud.ozil-btn a::after {
@@ -742,38 +812,343 @@
 		}
 		
 		/* Portfolio con overlay mejorado */
-		.portfolio-thumb {
+		/* Slider de proyectos con efecto 3D */
+		.projects-carousel-wrapper {
+			perspective: 1200px;
 			position: relative;
-			overflow: hidden;
-			border-radius: 15px;
 		}
 		
-		.portfolio-content {
+		.projects-carousel {
+			position: relative;
+		}
+		
+		.projects-carousel .owl-stage {
+			display: flex;
+			align-items: center;
+			padding: 40px 0;
+		}
+		
+		.projects-carousel .owl-item {
+			transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			transform-style: preserve-3d;
+		}
+		
+		/* Proyecto central - más grande y recto */
+		.projects-carousel .owl-item.center .project-slide-item {
+			transform: scale(1.15) translateZ(0);
+			z-index: 3;
+		}
+		
+		.projects-carousel .owl-item.center .project-thumbnail {
+			border-color: #3b82f6;
+			box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+		}
+		
+		.projects-carousel .owl-item.center .thumbnail-image img,
+		.projects-carousel .owl-item.center .thumbnail-image video {
+			transform: rotateY(0deg) scale(1);
+		}
+		
+		/* Proyecto izquierdo - girado hacia la izquierda */
+		.projects-carousel .owl-item.prev .project-slide-item {
+			transform: scale(0.9) translateX(-20px) translateZ(-50px) rotateY(25deg);
+			z-index: 1;
+			opacity: 0.8;
+			transform-style: preserve-3d;
+		}
+		
+		.projects-carousel .owl-item.prev .project-thumbnail {
+			transform-style: preserve-3d;
+		}
+		
+		/* Proyecto derecho - girado hacia la derecha */
+		.projects-carousel .owl-item.next .project-slide-item {
+			transform: scale(0.9) translateX(20px) translateZ(-50px) rotateY(-25deg);
+			z-index: 1;
+			opacity: 0.8;
+			transform-style: preserve-3d;
+		}
+		
+		.projects-carousel .owl-item.next .project-thumbnail {
+			transform-style: preserve-3d;
+		}
+		
+		/* Items no visibles */
+		.projects-carousel .owl-item:not(.center):not(.prev):not(.next) {
+			opacity: 0.3;
+		}
+		
+		.project-slide-item {
+			padding: 0 15px;
+			transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			transform-style: preserve-3d;
+		}
+		
+		.project-thumbnail {
+			position: relative;
+			border-radius: 15px;
+			overflow: hidden;
+			cursor: pointer;
+			transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			border: 3px solid transparent;
+			background: #ffffff;
+			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+		}
+		
+		.project-thumbnail:hover {
+			transform: translateY(-10px) scale(1.05);
+			border-color: #3b82f6;
+			box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+		}
+		
+		.thumbnail-image {
+			position: relative;
+			width: 100%;
+			height: 300px;
+			overflow: hidden;
+			transform-style: preserve-3d;
+			perspective: 1000px;
+		}
+		
+		.thumbnail-image img,
+		.thumbnail-image video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			transform-style: preserve-3d;
+		}
+		
+		/* Asegurar que las imágenes iara_bot y weark cubran completamente el contenedor */
+		.thumbnail-image img[src*="iara_bot"],
+		.thumbnail-image img[src*="weark"] {
+			object-fit: cover;
+			object-position: center;
+		}
+		
+		.thumbnail-video {
+			position: relative;
+		}
+		
+		.play-icon {
 			position: absolute;
-			top: 0;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 50px;
+			height: 50px;
+			background: rgba(59, 130, 246, 0.9);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #ffffff;
+			font-size: 20px;
+			pointer-events: none;
+			z-index: 2;
+		}
+		
+		.thumbnail-overlay {
+			position: absolute;
+			bottom: 0;
 			left: 0;
 			right: 0;
-			bottom: 0;
-			background: linear-gradient(135deg, rgba(40, 167, 69, 0.95), rgba(0, 198, 255, 0.95)) !important;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			text-align: center;
-			padding: 20px;
-			opacity: 0;
-			transform: translateY(20px);
-			transition: all 0.4s ease;
-			border-radius: 15px;
+			background: rgba(0, 0, 0, 0.95);
+			padding: 25px 20px;
+			transform: translateY(100%);
+			transition: transform 0.4s ease;
+			backdrop-filter: blur(10px);
+			box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.7);
+			border-top: 2px solid rgba(59, 130, 246, 0.5);
 		}
 		
-		.proyecto-single-box:hover .portfolio-content {
-			opacity: 1;
+		.project-thumbnail:hover .thumbnail-overlay {
 			transform: translateY(0);
 		}
 		
+		.thumbnail-overlay h4 {
+			color: #ffffff;
+			font-size: 18px;
+			font-weight: 700;
+			margin: 0;
+			text-align: center;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+			letter-spacing: 0.5px;
+			-webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
+		}
+		
+		/* Botones de navegación del carousel - a los lados */
+		.projects-carousel-wrapper {
+			position: relative;
+		}
+		
+		.projects-carousel-wrapper .owl-nav,
+		.projects-nav-container {
+			position: relative !important;
+			width: 100% !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			margin: 30px 0 20px 0 !important;
+			gap: 20px !important;
+			pointer-events: none;
+			z-index: 10;
+			padding: 0 !important;
+			top: auto !important;
+			bottom: auto !important;
+			left: auto !important;
+			right: auto !important;
+		}
+		
+		.projects-dots-container {
+			text-align: center;
+			margin-top: 20px;
+			display: block !important;
+		}
+		
+		.projects-carousel-wrapper .owl-nav button,
+		.projects-nav-container button,
+		.projects-carousel-wrapper .owl-nav .owl-prev,
+		.projects-carousel-wrapper .owl-nav .owl-next,
+		.projects-nav-container .owl-prev,
+		.projects-nav-container .owl-next {
+			width: 60px !important;
+			height: 60px !important;
+			background: rgba(59, 130, 246, 0.9) !important;
+			color: #ffffff !important;
+			border-radius: 50% !important;
+			font-size: 28px !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			transition: all 0.3s ease !important;
+			border: 3px solid rgba(255, 255, 255, 0.3) !important;
+			cursor: pointer !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4) !important;
+			pointer-events: all;
+			position: relative !important;
+			margin: 0 !important;
+		}
+		
+		.projects-carousel-wrapper .owl-nav .owl-prev,
+		.projects-nav-container .owl-prev {
+			order: 1;
+		}
+		
+		.projects-carousel-wrapper .owl-nav .owl-next,
+		.projects-nav-container .owl-next {
+			order: 2;
+		}
+		
+		/* Botones centrados debajo del slider */
+		.projects-nav-container .owl-prev,
+		.projects-nav-container .owl-next {
+			position: relative !important;
+			left: auto !important;
+			right: auto !important;
+		}
+		
+		/* Asegurar que los botones siempre sean visibles */
+		.projects-nav-container .owl-prev,
+		.projects-nav-container .owl-next,
+		.projects-nav-container button.owl-prev,
+		.projects-nav-container button.owl-next {
+			display: flex !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			z-index: 100 !important;
+		}
+		
+		.projects-carousel-wrapper .owl-nav button:hover,
+		.projects-nav-container button:hover {
+			background: #3b82f6 !important;
+			transform: scale(1.15);
+			box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6) !important;
+			border-color: rgba(255, 255, 255, 0.5) !important;
+		}
+		
+		.projects-carousel-wrapper .owl-nav button span,
+		.projects-nav-container button span {
+			display: block;
+			line-height: 1;
+		}
+		
+		.projects-carousel-wrapper .projects-nav-btn {
+			width: 60px !important;
+			height: 60px !important;
+			background: rgba(59, 130, 246, 0.9) !important;
+			color: #ffffff !important;
+			border-radius: 50% !important;
+			font-size: 28px !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			transition: all 0.3s ease !important;
+			border: 3px solid rgba(255, 255, 255, 0.3) !important;
+			cursor: pointer !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4) !important;
+		}
+		
+		.projects-carousel-wrapper .projects-nav-btn:hover {
+			background: #3b82f6 !important;
+			transform: scale(1.15);
+			box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6) !important;
+		}
+		
+		@media (max-width: 768px) {
+			.projects-carousel-wrapper .owl-nav button,
+			.projects-nav-container button {
+				width: 50px !important;
+				height: 50px !important;
+				font-size: 24px !important;
+			}
+			
+			.projects-nav-container {
+				margin: 20px 0 0 0 !important;
+				gap: 15px;
+			}
+		}
+		
+		.projects-carousel-wrapper .owl-dots {
+			text-align: center;
+			margin-top: 20px;
+		}
+		
+		.projects-carousel-wrapper .owl-dots button {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: rgba(59, 130, 246, 0.3) !important;
+			margin: 0 5px;
+			transition: all 0.3s ease;
+		}
+		
+		.projects-carousel-wrapper .owl-dots button.active {
+			background: #3b82f6 !important;
+			transform: scale(1.3);
+		}
+		
+		@media (max-width: 768px) {
+			.thumbnail-image {
+				height: 200px;
+			}
+			
+			.projects-carousel .owl-item.center .project-slide-item {
+				transform: scale(1.05) translateZ(0);
+			}
+			
+			.projects-carousel .owl-item.prev .project-slide-item,
+			.projects-carousel .owl-item.next .project-slide-item {
+				transform: scale(0.85);
+			}
+		}
+		
 		.portfolio-title {
-			color: white;
+			color: #000000;
 			font-size: 18px;
 			font-weight: 600;
 			margin-bottom: 15px;
@@ -781,16 +1156,16 @@
 		}
 		
 		.portfolio-text {
-			color: rgba(255, 255, 255, 0.9);
+			color: rgba(0, 0, 0, 0.9);
 			font-size: 14px;
 			margin-bottom: 8px;
 			line-height: 1.4;
 		}
 		
 		.ver-mas-btn {
-			background: rgba(255, 255, 255, 0.2);
-			border: 2px solid rgba(255, 255, 255, 0.3);
-			color: white;
+			background: rgba(0, 0, 0, 0.2);
+			border: 2px solid rgba(0, 0, 0, 0.3);
+			color: #000000;
 			padding: 10px 20px;
 			border-radius: 25px;
 			font-size: 14px;
@@ -802,8 +1177,8 @@
 		}
 		
 		.ver-mas-btn:hover {
-			background: rgba(255, 255, 255, 0.3);
-			border-color: rgba(255, 255, 255, 0.5);
+			background: rgba(0, 0, 0, 0.3);
+			border-color: rgba(0, 0, 0, 0.5);
 			transform: translateY(-2px);
 			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 		}
@@ -2760,10 +3135,11 @@
 				height: 60px;
 			}
 			
-			.contact-item a {
-				font-size: 14px;
-			}
+		.contact-item a {
+			font-size: 14px;
 		}
+	}
+	
 
 		
 	</style>
@@ -2803,9 +3179,9 @@
 			<nav class="mesud ozil_menu">
 				<ul class="nav_scroll">
 					<li><a href="#hero">HOME</a></li>
-					<li><a href="#demos">DEMOS</a></li>
+					<!--<li><a href="#demos">DEMOS</a></li>-->
 					<li><a href="#proyectos">PROYECTOS</a></li>
-					<li><a href="#service">SERVICIOS</a></li>
+					<li><a href="#service">SERVICIOS IA</a></li>
 					<li><a href="#resume">TRAYECTORIA</a></li>
 					
 					<!--<li><a href="#testimonial">CLIENTS</a></li>
@@ -2845,9 +3221,9 @@
 		<nav class="mobile-nav">
 			<ul>
 				<li><a href="#hero" class="mobile-nav-link">HOME</a></li>
-				<li><a href="#demos" class="mobile-nav-link">DEMOS</a></li>
+				<!--<li><a href="#demos" class="mobile-nav-link">DEMOS</a></li>-->
 				<li><a href="#proyectos" class="mobile-nav-link">PROYECTOS</a></li>
-				<li><a href="#service" class="mobile-nav-link">SERVICIOS</a></li>
+				<li><a href="#service" class="mobile-nav-link">SERVICIOS IA</a></li>
 				<li><a href="#resume" class="mobile-nav-link">TRAYECTORIA</a></li>
 				<li><a href="verifactu.html" class="mobile-nav-link">VERIFACTU</a></li>
 				<li><a href="#contact" class="mobile-nav-link">CONTACTO</a></li>
@@ -2904,12 +3280,12 @@
 							<!-- Slogan principal con animación -->
 							<div class="hero-slogan" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
 								<h1 class="hero-main-slogan"><span class="slogan-typed"></span></h1>
-								<p class="hero-subtitle">Soluciones tecnológicas para tu empresa</p>
+								<p class="hero-subtitle">Desarrollo e implementación de sistemas de IA aplicados a negocio</p>
 							</div>
 
 							<!-- Botones de acción -->
 						<div class="hero-buttons" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
-							<a href="#demos" class="hero-btn hero-btn-primary">Proyectos y Demos</a>
+							<a href="#proyectos" class="hero-btn hero-btn-primary">Ver Proyectos</a>
 							<a href="#contact" class="hero-btn hero-btn-secondary">Agendar consultoría</a>
 						</div>
 						</div>
@@ -2932,9 +3308,9 @@
 
 	<!--==================================================-->
 	<!-- start Demos Area -->
+	<!-- COMENTADO: Sección de demos - puede que deje de usarse -->
 	<!--==================================================-->
-
-	<div class="demos-area" id="demos">
+	<div class="demos-area" id="demos" style="display: none !important;">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
@@ -3055,8 +3431,8 @@
 						</div>
 					<div class="demo-card">
 						<div class="demo-thumb">
-							<video controls preload="metadata" class="demo-video">
-								<source src="assets/pildoras/iara.mp4" type="video/mp4">
+							<video controls preload="metadata" class="demo-video" poster="assets/images/iara_bot.png">
+								<source src="assets/images/iara_bot.png" type="video/mp4">
 								Tu navegador no soporta el elemento video.
 							</video>
 						</div>
@@ -3067,14 +3443,213 @@
 		</div>
 	</div>
 </div>
-
-
 	<!--==================================================-->
 	<!-- end Demos Area -->
 	<!--==================================================-->
 
 
 
+
+<!--==================================================-->
+<!-- Start Servicios con IA Area -->
+<!--==================================================-->
+
+<div class="service-area" id="service" style="background: #ffffff; padding: 100px 0;">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
+				<div class="section-title text-center">
+					<h5 class="section-sub-title" style="display: inline-block; padding: 8px 20px; border: 1px solid #3b82f6; color: #3b82f6; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Inteligencia Artificial</h5>
+					<h1 class="section-main-title">IA Aplicada a <span style="color: #3b82f6;">Tu Negocio</span></h1>
+					<p style="color: #666666; font-size: 18px; margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+						Transformación de tu empresa con soluciones de inteligencia artificial personalizadas. Automatización de procesos, optimización de operaciones y potenciación de tu productividad.
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- Primera fila: Servicios -->
+		<div class="row" style="margin-top: 60px; display: flex; flex-wrap: wrap;">
+			<div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="2000" style="display: flex;">
+				<div class="service-single-box" style="padding: 40px; display: flex; flex-direction: column; width: 100%; position: relative; background-image: url('assets/images/web.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+					<div style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 10px; margin: -20px; margin-bottom: 20px;">
+						<div style="margin-bottom: 20px;">
+							<img src="assets/images/web.png" alt="Desarrollo Web" style="width: 48px; height: 48px;">
+						</div>
+						<h3 style="color: #000000; font-size: 22px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase;">Desarrollo Web</h3>
+						<p style="color: #666666; font-size: 14px; margin-bottom: 20px; line-height: 1.6;">
+							Aplicaciones web potenciadas con inteligencia artificial. Desarrollo de soluciones que aprenden, se adaptan y optimizan automáticamente para tu negocio.
+						</p>
+						<ul style="color: #666666; font-size: 12px; list-style: none; padding: 0; margin-top: auto;">
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Diseño responsive y adaptativo</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Optimización automática con IA</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Integración con sistemas existentes</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="2000" style="display: flex;">
+				<div class="service-single-box" style="padding: 40px; display: flex; flex-direction: column; width: 100%; position: relative; background-image: url('assets/images/reco.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+					<div style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 10px; margin: -20px; margin-bottom: 20px;">
+						<div style="margin-bottom: 20px;">
+							<img src="assets/images/reco.png" alt="Reconocimiento de Imágenes" style="width: 48px; height: 48px;">
+						</div>
+						<h3 style="color: #000000; font-size: 22px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase;">Reconocimiento de Imágenes</h3>
+						<p style="color: #666666; font-size: 14px; margin-bottom: 20px; line-height: 1.6; flex-grow: 1;">
+							IA que analiza imágenes y documentos para extraer información automáticamente. La inteligencia artificial convierte facturas, formularios, tickets y cualquier documento en datos estructurados listos para usar.
+						</p>
+						<ul style="color: #666666; font-size: 12px; list-style: none; padding: 0;">
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>OCR avanzado con precisión del 99%</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Extracción automática de datos</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Integración con tus sistemas</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="2000" style="display: flex;">
+				<div class="service-single-box" style="padding: 40px; display: flex; flex-direction: column; width: 100%; position: relative; background-image: url('assets/images/chat.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+					<div style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 10px; margin: -20px; margin-bottom: 20px;">
+						<div style="margin-bottom: 20px;">
+							<img src="assets/images/chat.png" alt="Chatbots Inteligentes" style="width: 48px; height: 48px;">
+						</div>
+						<h3 style="color: #000000; font-size: 22px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase;">Chatbots Inteligentes</h3>
+						<p style="color: #666666; font-size: 14px; margin-bottom: 20px; line-height: 1.6; flex-grow: 1;">
+							Chatbots con IA que entienden el contexto y responden de forma natural. La inteligencia artificial atiende clientes 24/7, resuelve dudas y automatiza procesos de atención al cliente.
+						</p>
+						<ul style="color: #666666; font-size: 12px; list-style: none; padding: 0;">
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Integración con WhatsApp, Telegram y web</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Procesamiento de lenguaje natural</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Aprendizaje continuo y personalización</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="2000" style="display: flex;">
+				<div class="service-single-box" style="padding: 40px; display: flex; flex-direction: column; width: 100%; position: relative; background-image: url('assets/images/auto.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+					<div style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 10px; margin: -20px; margin-bottom: 20px;">
+						<div style="margin-bottom: 20px;">
+							<img src="assets/images/auto.png" alt="Automatizaciones con IA" style="width: 48px; height: 48px;">
+						</div>
+						<h3 style="color: #000000; font-size: 22px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase;">Automatizaciones con IA</h3>
+						<p style="color: #666666; font-size: 14px; margin-bottom: 20px; line-height: 1.6; flex-grow: 1;">
+							Automatiza procesos complejos con IA que aprende y se adapta. Desde gestión de inventario hasta análisis predictivo, optimizamos tus operaciones diarias.
+						</p>
+						<ul style="color: #666666; font-size: 12px; list-style: none; padding: 0;">
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Flujos de trabajo automatizados</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Análisis predictivo y toma de decisiones</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Integración con múltiples plataformas</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 60px;">
+			<div class="col-lg-12">
+				<div class="service-single-box" style="padding: 50px; border: 2px solid #3b82f6; background: 
+					linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)),
+					radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.15) 1px, transparent 0),
+					linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent),
+					linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent);
+					background-size: 20px 20px, 40px 40px, 40px 40px, 40px 40px;
+					background-position: 0 0, 0 0, 0 0, 0 0;
+					position: relative;
+					overflow: hidden;">
+					<div class="row align-items-center">
+						<div class="col-lg-8">
+							<h3 style="color: #000000; font-size: 28px; font-weight: bold; margin-bottom: 20px; text-transform: uppercase;">Soluciones Personalizadas</h3>
+							<p style="color: #666666; font-size: 16px; margin-bottom: 30px; line-height: 1.8;">
+								Cada negocio es único. Desarrollo software a medida que se adapta perfectamente a tus necesidades específicas. Desde sistemas de gestión hasta herramientas de análisis avanzado; la solución perfecta para tu empresa.
+							</p>
+							<div class="row">
+								<div class="col-md-6" style="margin-bottom: 20px;">
+									<div style="display: flex; align-items: start; gap: 15px;">
+										<span style="color: #3b82f6; font-size: 24px;">→</span>
+										<div>
+											<p style="color: #1a1a1a; font-weight: bold; margin-bottom: 5px;">Desarrollo a Medida</p>
+											<p style="color: #666666; font-size: 14px;">Software diseñado específicamente para tu negocio</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6" style="margin-bottom: 20px;">
+									<div style="display: flex; align-items: start; gap: 15px;">
+										<span style="color: #3b82f6; font-size: 24px;">→</span>
+										<div>
+											<p style="color: #1a1a1a; font-weight: bold; margin-bottom: 5px;">Integración Completa</p>
+											<p style="color: #666666; font-size: 14px;">Conectamos con tus sistemas existentes</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6" style="margin-bottom: 20px;">
+									<div style="display: flex; align-items: start; gap: 15px;">
+										<span style="color: #3b82f6; font-size: 24px;">→</span>
+										<div>
+											<p style="color: #1a1a1a; font-weight: bold; margin-bottom: 5px;">Soporte Continuo</p>
+											<p style="color: #666666; font-size: 14px;">Mantenimiento y actualizaciones incluidas</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6" style="margin-bottom: 20px;">
+									<div style="display: flex; align-items: start; gap: 15px;">
+										<span style="color: #3b82f6; font-size: 24px;">→</span>
+										<div>
+											<p style="color: #1a1a1a; font-weight: bold; margin-bottom: 5px;">Escalabilidad</p>
+											<p style="color: #666666; font-size: 14px;">Crece con tu negocio sin límites</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a href="#contact" style="display: inline-block; background: #3b82f6; color: #ffffff; padding: 15px 40px; border-radius: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; margin-top: 20px; transition: all 0.3s;">
+								Consulta tu Proyecto
+							</a>
+						</div>
+						<div class="col-lg-4 text-center">
+							<img src="assets/images/bombilla.png" alt="Soluciones Personalizadas" class="bombilla-icon" style="width: 240px; height: 240px; opacity: 0.5; transition: all 0.3s ease;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--==================================================-->
+<!-- End Servicios con IA Area -->
+<!--==================================================-->
 
 <!--==================================================-->
 <!-- start Mesud Ozil proyectos Area -->
@@ -3090,122 +3665,76 @@
 						<h1 class="section-main-title">Mis últimos trabajos</h1>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="proyecto-single-box">
-						<div class="portfolio-thumb">
-							<img src="assets/images/proyecto_vehiculos.png" alt="portfolio-thumb" style="border-radius: 10px;">
-							<div class="portfolio-content">
-								<h3 class="portfolio-title">Aplicación web para el control de vehiculos</h3>
-								<p class="portfolio-text">Avisos fechas vencimientos</p>
-								<p class="portfolio-text">Registros de talleres</p>
-								<p class="portfolio-text">Análisis de consumos por vehículo</p>
-								<p class="portfolio-text">Seguros, Itv, tacógrafos...</p>
-								<button class="ver-mas-btn" onclick="openProjectModal('vehiculos')">
-									<i class="bi bi-eye"></i> Ver más
-								</button>
+			</div>
+			
+			<!-- Slider de Proyectos con efecto 3D -->
+			<div class="projects-carousel-wrapper" style="margin-top: 60px; padding: 40px 80px 20px 80px; position: relative;">
+				<div class="projects-carousel owl-carousel" id="projectsCarousel">
+					<div class="project-slide-item" data-project="vehiculos" onclick="showProject('vehiculos')">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/alditraex.png" alt="Control de vehículos">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>Control de Vehículos</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="barber" onclick="showProject('barber')">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/proyecto_barber.png" alt="Gestión de citas">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>Gestión de Citas</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="ficheros" onclick="showProject('ficheros')">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/sfm.png" alt="Gestión de expediciones">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>Gestión de Expediciones</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="ftp" onclick="showProject('ftp')">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/proyecto_ftp.png" alt="CMR Inmobiliaria">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>CMR Inmobiliaria</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="weark" onclick="showProject('weark')">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/weark.png" alt="ERP para fábrica de ropa">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>ERP para Fábrica de Ropa</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="iara" onclick="showProject('iara')">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/iara_bot.png" alt="Agenda Inteligente con IA">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>Agenda Inteligente con IA</h4>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="proyecto-single-box">
-						<div class="portfolio-thumb">
-							<img src="assets/images/proyecto_barber.png" alt="portfolio-thumb" style="border-radius: 10px;">
-							<div class="portfolio-content">
-								<h3 class="portfolio-title">Aplicaciones gestión de citas peluquerías</h3>
-								<p class="portfolio-text">Versión movil sencilla y eficiente</p>
-								<p class="portfolio-text">Panel de control propio</p>
-								<p class="portfolio-text">Recordatorios para clientes y profesionales</p>
-								<p class="portfolio-text">Personalización completo por cada negocio</p>
-								<button class="ver-mas-btn" onclick="openProjectModal('barber')">
-									<i class="bi bi-eye"></i> Ver más
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="proyecto-single-box">
-						<div class="portfolio-thumb">
-							<img src="assets/images/proyecto_ficheros.png" alt="portfolio-thumb" style="border-radius: 10px;">
-							<div class="portfolio-content">
-								<h3 class="portfolio-title">Aplicación web gestión de expediciones</h3>
-								<p class="portfolio-text">Asignación y entrega de repartos</p>
-								<p class="portfolio-text">Control de costes e ingresos por expedición</p>
-								<p class="portfolio-text">Base de datos de clientes</p>
-								<p class="portfolio-text">Impresión de albaranes</p>
-								<p class="portfolio-text">Versión movil para subida de documentos</p>
-								<button class="ver-mas-btn" onclick="openProjectModal('ficheros')">
-									<i class="bi bi-eye"></i> Ver más
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="proyecto-single-box">
-						<div class="portfolio-thumb">
-							<img src="assets/images/proyecto_ftp.png" alt="portfolio-thumb" style="border-radius: 10px;">
-							<div class="portfolio-content">
-								<h3 class="portfolio-title">CMR inmobiliaria</h3>
-								<p class="portfolio-text">Base de datos de clientes</p>
-								<p class="portfolio-text">Agenda con recordatorios</p>
-								<p class="portfolio-text">Control de visitas y actividad de comerciales</p>
-								<p class="portfolio-text">Avisos por Telegram</p>
-								<button class="ver-mas-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
-									<i class="bi bi-eye"></i> Ver más
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="proyecto-single-box">
-						<div class="portfolio-thumb">
-							<img src="assets/images/alditraex.png" alt="portfolio-thumb" style="border-radius: 10px;">
-							<div class="portfolio-content">
-								<h3 class="portfolio-title">Web con chatboot y tarificador</h3>
-								<p class="portfolio-text">Diseño web</p>
-								<button class="ver-mas-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
-									<i class="bi bi-eye"></i> Ver más
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="proyecto-single-box">
-						<div class="portfolio-thumb">
-							<img src="assets/images/paste.png" alt="portfolio-thumb" style="border-radius: 10px;">
-							<div class="portfolio-content">
-								<h3 class="portfolio-title">Página web pastelería</h3>
-								<p class="portfolio-text">Diseño web</p>
-								<button class="ver-mas-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
-									<i class="bi bi-eye"></i> Ver más
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="proyecto-single-box">
-						<div class="portfolio-thumb">
-							<video controls preload="metadata" style="width: 100%; border-radius: 10px;">
-								<source src="assets/pildoras/iara.mp4" type="video/mp4">
-								Tu navegador no soporta el elemento video.
-							</video>
-							<div class="portfolio-content">
-								<h3 class="portfolio-title">Agenda inteligente con IA</h3>
-								<p class="portfolio-text">Sistema de gestión de citas inteligente</p>
-								<p class="portfolio-text">Asistente de IA integrado</p>
-								<p class="portfolio-text">Optimización automática de agenda</p>
-								<button class="ver-mas-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
-									<i class="bi bi-eye"></i> Ver más
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
+				<!-- Contenedor para botones de navegación -->
+				<div class="owl-nav projects-nav-container"></div>
+				<!-- Contenedor para dots -->
+				<div class="owl-dots projects-dots-container"></div>
 			</div>
 		</div>
 	</div>
@@ -3218,102 +3747,6 @@
 <!--==================================================-->
 
 
-
-
-
-<!--==================================================-->
-<!-- Start Mesud Ozil service Area -->
-<!--==================================================-->
-
-	
-	<div class="service-area" id="service">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-8" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="section-title text-left">
-						<h5 class="section-sub-title">MIS SERVICIOS</h5>
-						<h1 class="section-main-title">Habilidades y conocimientos</h1>
-					</div>
-				</div>
-				<div class="col-lg-4" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="mesud ozil-btns">
-						<!--<a href="#">VIEW SERVICES <i class="bi bi-arrow-right"></i></a>-->
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="service-single-box wow fadeInUp">
-						<div class="service-number">
-							<h1>01</h1>
-						</div>
-						<div class="service-contact">
-							<h3 class="service-title">Desarrollo web</h3>
-							<p class="service-descr">Aplicaciones web personalizadas</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="service-single-box wow fadeInUp">
-						<div class="service-number">
-							<h1>02</h1>
-						</div>
-						<div class="service-contact">
-							<h3 class="service-title">Páginas web</h3>
-							<p class="service-descr">Diseños responsivos, sencillos y atractivos</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="service-single-box wow fadeInUp">
-						<div class="service-number">
-							<h1>03</h1>
-						</div>
-						<div class="service-contact">
-							<h3 class="service-title">Aplicaciones móviles</h3>
-							<p class="service-descr">Para todas las plataformas</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="service-single-box wow fadeInUp">
-						<div class="service-number">
-							<h1>04</h1>
-						</div>
-						<div class="service-contact">
-							<h3 class="service-title">Automatización</h3>
-							<p class="service-descr">Automatización de procesos de negocio</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="service-single-box wow fadeInUp">
-						<div class="service-number">
-							<h1>05</h1>
-						</div>
-						<div class="service-contact">
-							<h3 class="service-title">Servidores</h3>
-							<p class="service-descr">Mantenimiento de servidores y correo</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-duration="2000">
-					<div class="service-single-box wow fadeInUp">
-						<div class="service-number">
-							<h1>06</h1>
-						</div>
-						<div class="service-contact">
-							<h3 class="service-title">Procesamiento de ficheros</h3>
-							<p class="service-descr"> Extracción y conversión de datos</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-<!--==================================================-->
-<!-- end Mesud Ozil service Area -->
-<!--==================================================-->
 
 
 
@@ -4064,6 +4497,100 @@
 				});
 			}
 			
+			// === PROJECTS CAROUSEL con efecto 3D ===
+			if ($('.projects-carousel').length) {
+				var projectsCarousel = $('.projects-carousel').owlCarousel({
+					loop: true,
+					margin: 30,
+					nav: true,
+					dots: true,
+					center: true,
+					autoplay: false,
+					responsive: {
+						0: {
+							items: 1,
+							margin: 15
+						},
+						768: {
+							items: 3,
+							margin: 20
+						},
+						1024: {
+							items: 3,
+							margin: 30
+						}
+					},
+					navText: [
+						'<span style="font-size: 28px; color: #ffffff; display: block; line-height: 1;">←</span>',
+						'<span style="font-size: 28px; color: #ffffff; display: block; line-height: 1;">→</span>'
+					],
+					navContainer: '.projects-nav-container',
+					dotsContainer: '.projects-dots-container',
+					navClass: ['owl-prev projects-nav-btn', 'owl-next projects-nav-btn'],
+					onInitialized: function(event) {
+						updateCarouselItems(event);
+					},
+					onChanged: function(event) {
+						updateCarouselItems(event);
+					}
+				});
+				
+				// Función para actualizar las clases de los items
+				function updateCarouselItems(event) {
+					setTimeout(function() {
+						var activeItems = $('.projects-carousel .owl-item.active');
+						
+						activeItems.each(function(index) {
+							$(this).removeClass('center prev next');
+							
+							// El item del medio (índice 1) es el central
+							if (index === 1) {
+								$(this).addClass('center');
+							} else if (index === 0) {
+								$(this).addClass('prev');
+							} else if (index === 2) {
+								$(this).addClass('next');
+							}
+						});
+					}, 50);
+				}
+				
+				// Actualizar también en eventos de transición
+				projectsCarousel.on('changed.owl.carousel', function(event) {
+					updateCarouselItems(event);
+				});
+				
+				// Forzar creación y visibilidad de botones después de inicialización
+				setTimeout(function() {
+					// Verificar si los botones existen, si no, crearlos manualmente
+					if ($('.projects-nav-container .owl-prev').length === 0) {
+						$('.projects-nav-container').html(
+							'<button class="owl-prev projects-nav-btn" aria-label="Previous">' +
+							'<span style="font-size: 28px; color: #ffffff; display: block; line-height: 1;">←</span>' +
+							'</button>' +
+							'<button class="owl-next projects-nav-btn" aria-label="Next">' +
+							'<span style="font-size: 28px; color: #ffffff; display: block; line-height: 1;">→</span>' +
+							'</button>'
+						);
+						
+						// Conectar eventos manualmente
+						$('.projects-nav-container .owl-prev').on('click', function() {
+							projectsCarousel.trigger('prev.owl.carousel');
+						});
+						$('.projects-nav-container .owl-next').on('click', function() {
+							projectsCarousel.trigger('next.owl.carousel');
+						});
+					}
+					
+					// Forzar visibilidad
+					$('.projects-nav-container .owl-prev, .projects-nav-container .owl-next').css({
+						'display': 'flex !important',
+						'opacity': '1 !important',
+						'visibility': 'visible !important'
+					});
+				}, 500);
+			}
+			
 			// === SLOGANS ANIMADOS ===
 			if ($('.slogan-typed').length) {
 				var sloganTyped = new Typed('.slogan-typed', {
@@ -4191,24 +4718,23 @@
 				status: 'En desarrollo',
 				year: '2024'
 			},
-			alditraex: {
-				title: 'Web con chatbot y tarificador',
-				subtitle: 'Sitio web corporativo con IA',
-				description: 'Página web corporativa con chatbot inteligente y sistema de tarificación automática para servicios de transporte.',
+			weark: {
+				title: 'ERP para fábrica de ropa',
+				subtitle: 'Sistema integral de gestión empresarial',
+				description: 'Sistema ERP completo desarrollado para la gestión integral de una fábrica de ropa, incluyendo control de producción, inventario, pedidos y recursos humanos.',
 				features: [
-					'Chatbot inteligente',
-					'Sistema de tarificación',
-					'Diseño web responsivo',
-					'Integración con servicios',
-					'Panel de administración',
-					'Análisis de datos'
+					'Gestión de producción',
+					'Control de inventario',
+					'Gestión de pedidos',
+					'Recursos humanos',
+					'Análisis y reportes',
+					'Integración de módulos'
 				],
 				tech: ['HTML', 'CSS', 'JavaScript', 'Python', 'Flask'],
-				videoUrl: 'assets/images/expe.mp4', // Video local
+				videoUrl: 'assets/images/weark.png', // Imagen local
 				videoType: 'local', // Indicador de tipo de video
 				status: 'En producción',
-				year: '2024',
-				liveUrl: 'https://jmm-1987.github.io/webalditraex/'
+				year: '2024'
 			},
 			pasteleria: {
 				title: 'Página web pastelería',
@@ -4228,8 +4754,108 @@
 				status: 'En producción',
 				year: '2024',
 				liveUrl: 'https://jmm-1987.github.io/pasteleria/'
+			},
+			iara: {
+				title: 'Agenda inteligente con IA',
+				subtitle: 'Sistema de gestión de citas inteligente',
+				description: 'Sistema de gestión de citas inteligente con asistente de IA para optimizar tu agenda y mejorar la productividad.',
+				features: [
+					'Asistente de IA integrado',
+					'Optimización automática de agenda',
+					'Gestión de citas inteligente',
+					'Análisis predictivo',
+					'Recordatorios automáticos',
+					'Integración con múltiples plataformas'
+				],
+				tech: ['Python', 'Flask', 'IA', 'HTML', 'CSS', 'JavaScript'],
+				videoUrl: 'assets/pildoras/iara.mp4', // Video local
+				videoType: 'local', // Indicador de tipo de video
+				status: 'En desarrollo',
+				year: '2024'
 			}
 		};
+		
+		// Datos de proyectos para el showcase
+		const showcaseData = {
+			vehiculos: {
+				img: 'assets/images/alditraex.png',
+				title: 'Aplicación web para el control de vehiculos',
+				features: ['Avisos fechas vencimientos', 'Registros de talleres', 'Análisis de consumos', 'Seguros, Itv, tacógrafos'],
+				description: 'Sistema completo de gestión para flotas de vehículos con control de vencimientos, mantenimientos y análisis de costes.',
+				btnAction: "openProjectModal('vehiculos')"
+			},
+			barber: {
+				img: 'assets/images/proyecto_barber.png',
+				title: 'Aplicaciones gestión de citas peluquerías',
+				features: ['Versión móvil sencilla', 'Panel de control propio', 'Recordatorios automáticos', 'Personalización completa'],
+				description: 'Sistema de gestión de citas para peluquerías con aplicación móvil, panel de administración y recordatorios automáticos.',
+				btnAction: "openProjectModal('barber')"
+			},
+			ficheros: {
+				img: 'assets/images/proyecto_ficheros.png',
+				title: 'Aplicación web gestión de expediciones',
+				features: ['Asignación de repartos', 'Control de costes', 'Base de datos', 'Versión móvil'],
+				description: 'Sistema completo para gestión de expediciones y repartos con control de costes, ingresos y seguimiento en tiempo real.',
+				btnAction: "openProjectModal('ficheros')"
+			},
+			ftp: {
+				img: 'assets/images/proyecto_ftp.png',
+				title: 'CMR inmobiliaria',
+				features: ['Base de datos de clientes', 'Agenda con recordatorios', 'Control de visitas', 'Avisos por Telegram'],
+				description: 'Sistema de gestión inmobiliaria con control de clientes, agenda inteligente y seguimiento de actividades comerciales.',
+				btnAction: "openProjectModal('cmr')"
+			},
+			weark: {
+				img: 'assets/images/weark.png',
+				title: 'ERP para fábrica de ropa',
+				features: ['Gestión de producción', 'Control de inventario', 'Gestión de pedidos', 'Recursos humanos'],
+				description: 'Sistema ERP completo desarrollado para la gestión integral de una fábrica de ropa, incluyendo control de producción, inventario, pedidos y recursos humanos.',
+				btnAction: "openProjectModal('weark')"
+			},
+			paste: {
+				img: 'assets/images/paste.png',
+				title: 'Página web pastelería',
+				features: ['Diseño moderno', 'Catálogo de productos', 'Galería de imágenes', 'Formulario de contacto'],
+				description: 'Página web moderna y atractiva para una pastelería local, con diseño responsivo y optimizada para dispositivos móviles.',
+				btnAction: "openProjectModal('pasteleria')"
+			},
+			iara: {
+				img: 'assets/pildoras/iara_bot.png',
+				title: 'Agenda inteligente con IA',
+				features: ['Asistente de IA integrado', 'Optimización automática', 'Gestión de citas', 'Análisis predictivo'],
+				description: 'Sistema de gestión de citas inteligente con asistente de IA para optimizar tu agenda y mejorar la productividad.',
+				btnAction: "openProjectModal('iara')"
+			}
+		};
+		
+		// Mapeo de IDs de showcase a IDs de modal
+		const projectIdMap = {
+			'vehiculos': 'vehiculos',
+			'barber': 'barber',
+			'ficheros': 'ficheros',
+			'ftp': 'cmr',
+			'weark': 'weark',
+			'paste': 'pasteleria',
+			'iara': 'iara'
+		};
+		
+		// Función para abrir modal al seleccionar proyecto
+		function showProject(projectId) {
+			// Mapear el ID del showcase al ID del modal
+			const modalProjectId = projectIdMap[projectId] || projectId;
+			
+			// Actualizar estado activo de miniaturas
+			document.querySelectorAll('.project-thumbnail').forEach(thumb => {
+				thumb.classList.remove('active');
+			});
+			const selectedThumb = document.querySelector(`[data-project="${projectId}"]`);
+			if (selectedThumb) {
+				selectedThumb.classList.add('active');
+			}
+			
+			// Abrir el modal directamente
+			openProjectModal(modalProjectId);
+		}
 		
 		// Función para abrir modal
 		function openProjectModal(projectId) {
@@ -4925,6 +5551,7 @@
 		}, 1000); // 1 segundo después de que la página esté lista
 	});
 </script>-->
+
 
 </body>
 </html>
