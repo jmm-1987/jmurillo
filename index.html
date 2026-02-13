@@ -1,6 +1,30 @@
 ﻿<!DOCTYPE HTML>
 <html lang="en-US">
 <head>
+<!-- Habilitar scroll inmediatamente - debe ser lo primero -->
+<script>
+(function() {
+	// Habilitar scroll inmediatamente, antes de cualquier otro script
+	if (document.documentElement) {
+		document.documentElement.style.overflowY = 'auto';
+		document.documentElement.style.overflowX = 'hidden';
+	}
+	if (document.body) {
+		document.body.style.overflowY = 'auto';
+		document.body.style.overflowX = 'hidden';
+	}
+	// Prevenir que cualquier script bloquee el scroll
+	var originalSetProperty = CSSStyleDeclaration.prototype.setProperty;
+	CSSStyleDeclaration.prototype.setProperty = function(property, value, priority) {
+		if ((property === 'overflow' || property === 'overflow-y') && value === 'hidden' && 
+			(this === document.documentElement.style || this === document.body.style)) {
+			// Ignorar intentos de ocultar el scroll
+			return;
+		}
+		return originalSetProperty.call(this, property, value, priority);
+	};
+})();
+</script>
 <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZND42296P"></script>
     <script>
@@ -97,8 +121,16 @@
 			width: 100%;
 			height: 100%;
 			z-index: 0;
-			pointer-events: none;
+			pointer-events: none !important;
 			display: none;
+			will-change: contents;
+			touch-action: none; /* Prevenir gestos de touch en el canvas */
+		}
+		
+		@media (max-width: 768px) {
+			#sections-bg-canvas {
+				will-change: auto; /* Reducir will-change en móvil */
+			}
 		}
 		
 		body > *:not(#sections-bg-canvas) {
@@ -165,16 +197,38 @@
 			scroll-behavior: smooth;
 			-webkit-overflow-scrolling: touch;
 			overflow-x: hidden;
+			overflow-y: auto !important; /* Asegurar que el scroll esté siempre habilitado */
+		}
+		
+		/* Asegurar que el loader no bloquee el scroll */
+		.loader-wrapper {
+			pointer-events: none !important;
+		}
+		
+		.loader-wrapper.loading {
+			pointer-events: auto;
 		}
 		
 		/* Prevenir problemas de viewport en móviles */
 		@media (max-width: 768px) {
 			html {
 				height: auto;
+				scroll-behavior: auto; /* Desactivar smooth scroll en móvil para mejor rendimiento */
+				-webkit-overflow-scrolling: touch;
+				overflow-y: auto !important;
 			}
 			
 			body {
 				min-height: 100vh;
+				scroll-behavior: auto; /* Desactivar smooth scroll en móvil */
+				-webkit-overflow-scrolling: touch;
+				overflow-x: hidden;
+				overflow-y: auto !important; /* Asegurar scroll siempre habilitado */
+				/* Optimizaciones para mejor rendimiento de scroll */
+				-webkit-transform: translateZ(0);
+				transform: translateZ(0);
+				-webkit-backface-visibility: hidden;
+				backface-visibility: hidden;
 				height: auto;
 			}
 			
@@ -227,18 +281,35 @@
 			width: 100%;
 			height: 100%;
 			z-index: 0;
-			pointer-events: none;
+			pointer-events: none !important;
+			touch-action: none; /* Prevenir gestos de touch en el canvas */
 		}
 		
 		.proyectos-area .container {
 			position: relative;
-			z-index: 2;
+			z-index: 10;
 		}
 		
 		.project-slide-item {
 			position: relative;
-			z-index: 3;
+			z-index: 15;
 		}
+		
+		.project-thumbnail {
+			position: relative;
+			z-index: 16;
+		}
+		
+		.thumbnail-image {
+			position: relative;
+			z-index: 17;
+		}
+		
+		.thumbnail-overlay {
+			position: relative;
+			z-index: 18;
+		}
+		
 		
 		.project-thumbnail {
 			position: relative;
@@ -363,7 +434,15 @@
 			width: 100%;
 			height: 100%;
 			z-index: 1;
-			pointer-events: none;
+			pointer-events: none !important;
+			will-change: contents;
+			touch-action: none; /* Prevenir gestos de touch en el canvas */
+		}
+		
+		@media (max-width: 768px) {
+			#hero-bg-canvas {
+				will-change: auto; /* Reducir will-change en móvil */
+			}
 		}
 		
 		/* Video de fondo del hero (oculto) */
@@ -514,12 +593,12 @@
 		
 		.hero-subtitle {
 			font-size: 24px;
-			color: #ffffff;
+			color: #ffffff !important;
 			font-weight: 400;
 			text-shadow: 
-				0 2px 15px rgba(0, 0, 0, 0.7),
-				0 1px 5px rgba(0, 0, 0, 0.5),
-				0 0 20px rgba(255, 255, 255, 0.2);
+				0 2px 15px rgba(0, 0, 0, 0.8),
+				0 1px 5px rgba(0, 0, 0, 0.6),
+				0 0 25px rgba(255, 255, 255, 0.4);
 			font-family: 'Inter', sans-serif;
 		}
 		
@@ -1009,7 +1088,6 @@
 			position: relative;
 			border-radius: 15px;
 			overflow: hidden;
-			cursor: pointer;
 			transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 			border: 3px solid transparent;
 			background: #ffffff;
@@ -1255,40 +1333,110 @@
 		}
 		
 		@media (max-width: 768px) {
+			/* Asegurar que el canvas esté detrás en móvil */
+			#proyectos-bg-canvas {
+				z-index: 0 !important;
+			}
+			
+			.proyectos-area .container {
+				z-index: 20 !important;
+			}
+			
+			.project-slide-item {
+				z-index: 25 !important;
+			}
+			
+			.project-thumbnail {
+				z-index: 26 !important;
+			}
+			
 			.thumbnail-image {
 				height: 400px;
+				z-index: 27 !important;
 			}
 			
+			.thumbnail-overlay {
+				z-index: 28 !important;
+			}
+			
+			/* Eliminar transparencia en móvil - proyecto central completamente opaco */
 			.projects-carousel .owl-item.center .project-slide-item {
 				transform: scale(1.4) translateZ(0);
+				z-index: 30 !important;
+				opacity: 1 !important;
 			}
 			
+			/* Eliminar transparencia en móvil - proyectos laterales completamente opacos */
 			.projects-carousel .owl-item.prev .project-slide-item,
 			.projects-carousel .owl-item.next .project-slide-item {
 				transform: scale(1.1);
+				z-index: 25 !important;
+				opacity: 1 !important;
+			}
+			
+			/* Eliminar transparencia en móvil - todos los proyectos opacos */
+			.projects-carousel .owl-item .project-slide-item {
+				opacity: 1 !important;
 			}
 			
 			.projects-carousel-wrapper {
 				padding: 20px 10px 20px 10px !important;
+				position: relative;
+				z-index: 20 !important;
 			}
 		}
 		
 		@media (max-width: 480px) {
+			/* Asegurar que el canvas esté detrás en móvil pequeño */
+			#proyectos-bg-canvas {
+				z-index: 0 !important;
+			}
+			
+			.proyectos-area .container {
+				z-index: 20 !important;
+			}
+			
+			.project-slide-item {
+				z-index: 25 !important;
+			}
+			
+			.project-thumbnail {
+				z-index: 26 !important;
+			}
+			
 			.thumbnail-image {
 				height: 350px;
+				z-index: 27 !important;
 			}
 			
+			.thumbnail-overlay {
+				z-index: 28 !important;
+			}
+			
+			/* Eliminar transparencia en móvil pequeño - proyecto central completamente opaco */
 			.projects-carousel .owl-item.center .project-slide-item {
 				transform: scale(1.3) translateZ(0);
+				z-index: 30 !important;
+				opacity: 1 !important;
 			}
 			
+			/* Eliminar transparencia en móvil pequeño - proyectos laterales completamente opacos */
 			.projects-carousel .owl-item.prev .project-slide-item,
 			.projects-carousel .owl-item.next .project-slide-item {
 				transform: scale(1.05);
+				z-index: 25 !important;
+				opacity: 1 !important;
+			}
+			
+			/* Eliminar transparencia en móvil pequeño - todos los proyectos opacos */
+			.projects-carousel .owl-item .project-slide-item {
+				opacity: 1 !important;
 			}
 			
 			.projects-carousel-wrapper {
 				padding: 15px 5px 15px 5px !important;
+				position: relative;
+				z-index: 20 !important;
 			}
 		}
 		
@@ -2230,345 +2378,6 @@
 			font-size: 16px;
 		}
 		
-		/* === MODALES DE PROYECTOS === */
-		.project-modal {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(0, 0, 0, 0.8);
-			z-index: 10000;
-			opacity: 0;
-			visibility: hidden;
-			transition: all 0.3s ease;
-			display: flex;
-			align-items: flex-start;
-			justify-content: center;
-			padding: 20px;
-			padding-top: 8vh;
-		}
-		
-		.project-modal.active {
-			opacity: 1;
-			visibility: visible;
-		}
-		
-		.modal-content {
-			background: white;
-			border-radius: 20px;
-			max-width: 900px;
-			width: 100%;
-			max-height: 90vh;
-			overflow: hidden;
-			position: relative;
-			box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-			display: flex;
-			flex-direction: column;
-		}
-		
-
-		
-		.modal-header {
-			background: linear-gradient(135deg, #28a745, #20c997);
-			color: white;
-			padding: 15px 20px;
-			border-radius: 20px 20px 0 0;
-			position: relative;
-			flex-shrink: 0;
-		}
-		
-		.modal-title {
-			font-size: 28px;
-			font-weight: 700;
-			margin: 0;
-			font-family: 'Poppins', sans-serif;
-		}
-		
-		.modal-subtitle {
-			font-size: 16px;
-			opacity: 0.9;
-			margin: 8px 0 0 0;
-			font-weight: 400;
-		}
-		
-		.close-modal {
-			position: absolute;
-			top: 20px;
-			right: 25px;
-			background: rgba(255, 255, 255, 0.2);
-			border: none;
-			color: white;
-			width: 40px;
-			height: 40px;
-			border-radius: 50%;
-			cursor: pointer;
-			transition: all 0.3s ease;
-			font-size: 18px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
-		
-		.close-modal:hover {
-			background: rgba(255, 255, 255, 0.3);
-			transform: scale(1.1);
-		}
-		
-		.modal-body {
-			padding: 20px;
-			flex: 1;
-			overflow-y: auto;
-			min-height: 0;
-		}
-		
-		.project-gallery {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-			gap: 20px;
-			margin-bottom: 30px;
-		}
-		
-		.project-video-container {
-			margin-bottom: 30px;
-			border-radius: 15px;
-			overflow: hidden;
-			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-			position: relative;
-		}
-		
-		.project-video-container iframe {
-			width: 100%;
-			height: 300px;
-			border: none;
-			display: block;
-		}
-		
-		.project-video-container video {
-			width: 100%;
-			height: 300px;
-			border: none;
-			display: block;
-			object-fit: contain;
-		}
-		
-
-		
-		.project-image {
-			border-radius: 15px;
-			overflow: hidden;
-			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-			transition: all 0.3s ease;
-		}
-		
-		.project-image:hover {
-			transform: translateY(-5px);
-			box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-		}
-		
-		.project-image img {
-			width: 100%;
-			height: 200px;
-			object-fit: cover;
-		}
-		
-		.project-details {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 30px;
-			margin-bottom: 30px;
-		}
-		
-		.project-info h3 {
-			color: #2c3e50;
-			font-size: 20px;
-			font-weight: 600;
-			margin-bottom: 15px;
-			font-family: 'Poppins', sans-serif;
-		}
-		
-		.project-info ul {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-		}
-		
-		.project-info li {
-			padding: 8px 0;
-			border-bottom: 1px solid #f0f0f0;
-			display: flex;
-			align-items: center;
-			gap: 10px;
-		}
-		
-		.project-info li:last-child {
-			border-bottom: none;
-		}
-		
-		.project-info li i {
-			color: #28a745;
-			font-size: 16px;
-			width: 20px;
-		}
-		
-		.tech-stack {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 10px;
-			margin-top: 15px;
-		}
-		
-		.tech-badge {
-			background: linear-gradient(135deg, #28a745, #20c997);
-			color: white;
-			padding: 6px 12px;
-			border-radius: 20px;
-			font-size: 12px;
-			font-weight: 600;
-		}
-		
-		.project-links {
-			display: flex;
-			gap: 15px;
-			margin-top: 20px;
-		}
-		
-		.project-link {
-			background: linear-gradient(135deg, #28a745, #20c997);
-			color: white;
-			text-decoration: none;
-			padding: 12px 25px;
-			border-radius: 25px;
-			font-weight: 600;
-			transition: all 0.3s ease;
-			display: flex;
-			align-items: center;
-			gap: 8px;
-		}
-		
-		.project-link:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
-			color: white;
-		}
-		
-		/* Responsive para modales */
-		@media (max-width: 768px) {
-			.project-modal {
-				padding: 20px;
-				padding-top: 20px;
-				align-items: flex-start;
-			}
-			
-			.modal-content {
-				max-width: 95%;
-				max-height: calc(100vh - 40px);
-				border-radius: 15px;
-			}
-			
-
-			
-			.modal-header {
-				padding: 15px;
-				border-radius: 15px 15px 0 0;
-				flex-shrink: 0;
-			}
-			
-			.modal-title {
-				font-size: 20px;
-			}
-			
-			.modal-subtitle {
-				font-size: 14px;
-			}
-			
-			.modal-body {
-				padding: 15px;
-				flex: 1;
-				overflow-y: auto;
-				-webkit-overflow-scrolling: touch;
-				min-height: 0;
-			}
-			
-			.project-details {
-				grid-template-columns: 1fr;
-				gap: 20px;
-			}
-			
-			.project-gallery {
-				grid-template-columns: 1fr;
-			}
-			
-			.project-video-container iframe {
-				height: 120px;
-			}
-			
-			.project-video-container video {
-				height: 120px;
-			}
-			
-			.project-links {
-				flex-direction: column;
-			}
-			
-			.close-modal {
-				top: 15px;
-				right: 15px;
-				width: 35px;
-				height: 35px;
-				font-size: 16px;
-			}
-		}
-		
-		/* Responsive para móviles muy pequeños */
-		@media (max-width: 480px) {
-			.project-modal {
-				padding: 10px;
-				padding-top: 10px;
-				align-items: flex-start;
-			}
-			
-			.modal-content {
-				max-width: 100%;
-				max-height: calc(100vh - 20px);
-			}
-			
-			.modal-header {
-				padding: 10px;
-			}
-			
-			.modal-title {
-				font-size: 18px;
-			}
-			
-			.modal-subtitle {
-				font-size: 13px;
-			}
-			
-			.modal-body {
-				padding: 10px;
-				flex: 1;
-				overflow-y: auto;
-				min-height: 0;
-			}
-			
-			.project-video-container iframe {
-				height: 100px;
-			}
-			
-			.project-video-container video {
-				height: 100px;
-			}
-			
-			.close-modal {
-				top: 10px;
-				right: 10px;
-				width: 30px;
-				height: 30px;
-				font-size: 14px;
-			}
-		}
-		
 		/* === TARJETA DE CONTACTO === */
 		.contact-area {
 			padding: 80px 0;
@@ -3392,9 +3201,8 @@
 								<img src="assets/images/logo jonatan.png" alt="Jonatan Murillo" class="hero-logo-img">
 							</div>
 							
-							<!-- Slogan principal con animación -->
+							<!-- Slogan principal -->
 							<div class="hero-slogan" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
-								<h1 class="hero-main-slogan"><span class="slogan-typed"></span></h1>
 								<p class="hero-subtitle">Desarrollo e implementación de sistemas de IA aplicados a negocio</p>
 							</div>
 
@@ -3650,7 +3458,7 @@
 			<!-- Slider de Proyectos con efecto 3D -->
 			<div class="projects-carousel-wrapper" style="margin-top: 60px; padding: 40px 80px 20px 80px; position: relative;">
 				<div class="projects-carousel owl-carousel" id="projectsCarousel">
-					<div class="project-slide-item" data-project="vehiculos" onclick="showProject('vehiculos')">
+					<div class="project-slide-item" data-project="vehiculos">
 						<div class="project-thumbnail">
 							<div class="thumbnail-image">
 								<img src="assets/images/alditraex.png" alt="Control de vehículos">
@@ -3660,7 +3468,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="project-slide-item" data-project="barber" onclick="showProject('barber')">
+					<div class="project-slide-item" data-project="barber">
 						<div class="project-thumbnail">
 							<div class="thumbnail-image">
 								<img src="assets/images/proyecto_barber.png" alt="Gestión de citas">
@@ -3670,7 +3478,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="project-slide-item" data-project="ficheros" onclick="showProject('ficheros')">
+					<div class="project-slide-item" data-project="ficheros">
 						<div class="project-thumbnail">
 							<div class="thumbnail-image">
 								<img src="assets/images/sfm.png" alt="Gestión de expediciones">
@@ -3680,7 +3488,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="project-slide-item" data-project="ftp" onclick="showProject('ftp')">
+					<div class="project-slide-item" data-project="ftp">
 						<div class="project-thumbnail">
 							<div class="thumbnail-image">
 								<img src="assets/images/proyecto_ftp.png" alt="CMR Inmobiliaria">
@@ -3690,7 +3498,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="project-slide-item" data-project="weark" onclick="showProject('weark')">
+					<div class="project-slide-item" data-project="weark">
 						<div class="project-thumbnail">
 							<div class="thumbnail-image">
 								<img src="assets/images/weark.png" alt="ERP para fábrica de ropa">
@@ -3700,7 +3508,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="project-slide-item" data-project="iara" onclick="showProject('iara')">
+					<div class="project-slide-item" data-project="iara">
 						<div class="project-thumbnail">
 							<div class="thumbnail-image">
 								<img src="assets/images/iara_bot.png" alt="Agenda Inteligente con IA">
@@ -3718,6 +3526,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 
 
@@ -4097,20 +3906,6 @@
 
 
 <!-- Modales de Proyectos -->
-<div id="projectModal" class="project-modal">
-	<div class="modal-content">
-		<div class="modal-header">
-			<h2 class="modal-title" id="modalTitle">Título del Proyecto</h2>
-			<p class="modal-subtitle" id="modalSubtitle">Descripción del proyecto</p>
-			<button class="close-modal" onclick="closeProjectModal()">✕</button>
-		</div>
-		<div class="modal-body" id="modalBody">
-			<!-- Contenido dinámico -->
-		</div>
-	</div>
-</div>
-
-
 <!-- scrollup section -->
 <div class="scroll-area">
 	<div class="top-wrap">
@@ -4158,8 +3953,57 @@
 	<script src="assets/js/jquery.scrollUp.js"></script>
 	<!-- theme js -->	
 	<script src="assets/js/theme.js"></script>
+	<!-- Habilitar scroll inmediatamente - debe ejecutarse ANTES de cualquier otro script -->
+	<script>
+		// Ejecutar inmediatamente, sin esperar nada
+		(function() {
+			// Habilitar scroll inmediatamente en html y body
+			if (document.documentElement) {
+				document.documentElement.style.overflowY = 'auto';
+				document.documentElement.style.overflowX = 'hidden';
+			}
+			if (document.body) {
+				document.body.style.overflowY = 'auto';
+				document.body.style.overflowX = 'hidden';
+			}
+			
+			// Asegurar que el loader no bloquee el scroll
+			var loader = document.querySelector('.loader-wrapper');
+			if (loader) {
+				loader.style.pointerEvents = 'none';
+				loader.style.zIndex = '-1';
+			}
+		})();
+	</script>
+	
 	<!-- Fallback para ocultar loader si theme.js no carga -->
 	<script>
+		// Asegurar que el scroll funcione inmediatamente
+		(function() {
+			// Habilitar scroll inmediatamente
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
+			document.body.style.overflowX = 'hidden';
+			
+			// Asegurar que el loader no bloquee el scroll
+			var loader = document.querySelector('.loader-wrapper');
+			if (loader) {
+				loader.style.pointerEvents = 'none';
+				loader.style.zIndex = '-1';
+			}
+		})();
+		
+		// Forzar scroll habilitado en eventos de touch
+		document.addEventListener('touchstart', function() {
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
+		}, { passive: true });
+		
+		document.addEventListener('touchmove', function() {
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
+		}, { passive: true });
+		
 		// Asegurar que el loader se oculte incluso si theme.js falla
 		function hideLoader() {
 			document.body.classList.add('loaded');
@@ -4169,25 +4013,46 @@
 				loader.style.display = 'none';
 				loader.style.visibility = 'hidden';
 				loader.style.opacity = '0';
+				loader.style.pointerEvents = 'none';
+				loader.style.zIndex = '-1';
 			}
+			// Asegurar que el scroll esté habilitado
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
 		}
+		
+		// Habilitar scroll inmediatamente al cargar el DOM
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', function() {
+				document.documentElement.style.overflowY = 'auto';
+				document.body.style.overflowY = 'auto';
+				hideLoader();
+			}, { once: true });
+		} else {
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
+			hideLoader();
+		}
+		
 		// Intentar múltiples veces para asegurar que se ejecute
 		if (document.readyState === 'complete') {
 			hideLoader();
 		} else {
 			window.addEventListener('load', function() {
-				setTimeout(hideLoader, 100);
-			});
+				setTimeout(hideLoader, 10); // Reducido a 10ms
+			}, { once: true });
 		}
 		// También con jQuery si está disponible
 		if (typeof jQuery !== 'undefined') {
 			jQuery(function() {
 				jQuery('body').addClass('loaded');
 				jQuery('.loader-wrapper').hide();
+				document.documentElement.style.overflowY = 'auto';
+				document.body.style.overflowY = 'auto';
 			});
 		}
-		// Fallback adicional después de un tiempo
-		setTimeout(hideLoader, 2000);
+		// Fallback adicional después de un tiempo más corto
+		setTimeout(hideLoader, 100); // Reducido a 100ms
 	</script>
 	<script src="assets/js/jquery.barfiller.js"></script>
 	<script src="assets/js/typed.js"></script>
@@ -4313,26 +4178,6 @@
 				}, 500);
 			}
 			
-			// === SLOGANS ANIMADOS ===
-			if ($('.slogan-typed').length) {
-				var sloganTyped = new Typed('.slogan-typed', {
-					strings: [
-						'Controla tu negocio',
-						'Invierte en tiempo libre', 
-						'Automatiza tu empresa',
-						'Optimiza tus recursos',
-						'Tecnología que impulsa resultados'
-					],
-					typeSpeed: 80,
-					backSpeed: 50,
-					backDelay: 2000,
-					startDelay: 500,
-					loop: true,
-					showCursor: true,
-					cursorChar: '|',
-					autoInsertCss: true
-				});
-			}
 			
 			// Texto animado antiguo (ya no se usa, pero lo mantengo por si acaso)
 			if ($('.type').length) {
@@ -4345,414 +4190,64 @@
 			}
 		});
 		
-		// === MODALES DE PROYECTOS ===
-		
-		// Datos de los proyectos
-		const projectData = {
-			vehiculos: {
-				title: 'Aplicación web para el control de vehículos',
-				subtitle: 'Sistema completo de gestión de flotas',
-				description: 'Aplicación web desarrollada para el control integral de flotas de vehículos, incluyendo gestión de documentación, mantenimiento y análisis de consumos.',
-				features: [
-					'Avisos de fechas de vencimiento',
-					'Registros de talleres',
-					'Análisis de consumos por vehículo',
-					'Seguros, ITV, tacógrafos',
-					'Control de repostajes',
-					'Sistema de notificaciones'
-				],
-				tech: ['Python', 'Flask', 'HTML', 'CSS', 'SQLAlchemy', 'SQLite'],
-				videoUrl: 'assets/images/alditraex.mp4', // Video local
-				videoType: 'local', // Indicador de tipo de video
-				status: 'En producción',
-				year: '2024'
-			},
-			barber: {
-				title: 'Aplicación gestión de citas peluquerías',
-				subtitle: 'Sistema de citas online para salones de belleza',
-				description: 'Aplicación web y móvil para la gestión de citas en peluquerías y salones de belleza, con panel de control personalizado.',
-				features: [
-					'Versión móvil sencilla y eficiente',
-					'Panel de control propio',
-					'Recordatorios para clientes y profesionales',
-					'Personalización completa por cada negocio',
-					'Sistema de reservas online',
-					'Gestión de horarios'
-				],
-				tech: ['Python', 'Flask', 'HTML', 'CSS', 'JavaScript', 'SQLite'],
-				videoUrl: 'assets/images/pelu.mp4', // Video local
-				videoType: 'local', // Indicador de tipo de video
-				status: 'En producción',
-				year: '2024',
-				liveUrl: 'https://barber-c5cl.onrender.com/'
-			},
-			ficheros: {
-				title: 'Aplicación web gestión de expediciones',
-				subtitle: 'Sistema de procesamiento de ficheros',
-				description: 'Aplicación web para la gestión de expediciones y repartos, con procesamiento automático de ficheros CSV y Excel.',
-				features: [
-					'Asignación y entrega de repartos',
-					'Control de costes e ingresos por expedición',
-					'Base de datos de clientes',
-					'Impresión de albaranes',
-					'Versión móvil para subida de documentos',
-					'Procesamiento automático de ficheros'
-				],
-				tech: ['Python', 'Flask', 'HTML', 'CSS', 'Pandas', 'OpenPyXL'],
-				videoUrl: 'assets/images/expe.mp4', // Video local
-				videoType: 'local', // Indicador de tipo de video
-				status: 'En producción',
-				year: '2024'
-			},
-			cmr: {
-				title: 'CMR Inmobiliaria',
-				subtitle: 'Sistema de gestión inmobiliaria',
-				description: 'Aplicación web para la gestión de inmobiliarias, incluyendo base de datos de clientes, agenda y control de visitas.',
-				features: [
-					'Base de datos de clientes',
-					'Agenda con recordatorios',
-					'Control de visitas y actividad de comerciales',
-					'Avisos por Telegram',
-					'Gestión de propiedades',
-					'Seguimiento de ventas'
-				],
-				tech: ['Python', 'Flask', 'HTML', 'CSS', 'Telegram API', 'SQLite'],
-				videoUrl: 'assets/images/inmo.mp4', // Video local
-				videoType: 'local', // Indicador de tipo de video
-				status: 'En producción',
-				year: '2024'
-			},
-			cmr: {
-				title: 'Aplicación web gestión CMR',
-				subtitle: 'Sistema de gestión de documentos CMR',
-				description: 'Aplicación web para la gestión de documentos CMR (Carta de Porte por Carretera), incluyendo generación automática y seguimiento de envíos.',
-				features: [
-					'Generación automática de CMR',
-					'Base de datos de transportistas',
-					'Seguimiento de envíos',
-					'Impresión de documentos',
-					'Gestión de rutas',
-					'Control de entregas'
-				],
-				tech: ['Python', 'Flask', 'HTML', 'CSS', 'JavaScript', 'SQLite'],
-				videoUrl: 'assets/images/alditraex.mp4', // Video local
-				videoType: 'local', // Indicador de tipo de video
-				status: 'En desarrollo',
-				year: '2024'
-			},
-			weark: {
-				title: 'ERP para fábrica de ropa',
-				subtitle: 'Sistema integral de gestión empresarial',
-				description: 'Sistema ERP completo desarrollado para la gestión integral de una fábrica de ropa, incluyendo control de producción, inventario, pedidos y recursos humanos.',
-				features: [
-					'Gestión de producción',
-					'Control de inventario',
-					'Gestión de pedidos',
-					'Recursos humanos',
-					'Análisis y reportes',
-					'Integración de módulos'
-				],
-				tech: ['HTML', 'CSS', 'JavaScript', 'Python', 'Flask'],
-				videoUrl: 'assets/images/weark.png', // Imagen local
-				videoType: 'local', // Indicador de tipo de video
-				status: 'En producción',
-				year: '2024'
-			},
-			pasteleria: {
-				title: 'Página web pastelería',
-				subtitle: 'Sitio web para negocio local',
-				description: 'Página web moderna y atractiva para una pastelería local, con diseño responsivo y optimizada para dispositivos móviles.',
-				features: [
-					'Diseño web responsivo',
-					'Catálogo de productos',
-					'Información de contacto',
-					'Horarios y ubicación',
-					'Galería de imágenes',
-					'Formulario de contacto'
-				],
-				tech: ['HTML', 'CSS', 'JavaScript'],
-				videoUrl: 'assets/images/alditraex.mp4', // Video local
-				videoType: 'local', // Indicador de tipo de video
-				status: 'En producción',
-				year: '2024',
-				liveUrl: 'https://jmm-1987.github.io/pasteleria/'
-			},
-			iara: {
-				title: 'Agenda inteligente con IA',
-				subtitle: 'Sistema de gestión de citas inteligente',
-				description: 'Sistema de gestión de citas inteligente con asistente de IA para optimizar tu agenda y mejorar la productividad.',
-				features: [
-					'Asistente de IA integrado',
-					'Optimización automática de agenda',
-					'Gestión de citas inteligente',
-					'Análisis predictivo',
-					'Recordatorios automáticos',
-					'Integración con múltiples plataformas'
-				],
-				tech: ['Python', 'Flask', 'IA', 'HTML', 'CSS', 'JavaScript'],
-				videoUrl: 'assets/pildoras/iara.mp4', // Video local
-				videoType: 'local', // Indicador de tipo de video
-				status: 'En desarrollo',
-				year: '2024'
-			}
-		};
-		
 		// Datos de proyectos para el showcase
 		const showcaseData = {
 			vehiculos: {
-				img: 'assets/images/alditraex.png',
-				title: 'Aplicación web para el control de vehiculos',
+				title: 'Control de Vehículos',
+				images: [
+					'assets/images/alditraex.png',
+					'assets/images/alditraex.png'
+				],
 				features: ['Avisos fechas vencimientos', 'Registros de talleres', 'Análisis de consumos', 'Seguros, Itv, tacógrafos'],
-				description: 'Sistema completo de gestión para flotas de vehículos con control de vencimientos, mantenimientos y análisis de costes.',
-				btnAction: "openProjectModal('vehiculos')"
+				description: 'Sistema completo de gestión para flotas de vehículos con control de vencimientos, mantenimientos y análisis de costes. Permite gestionar toda la documentación de los vehículos, recibir alertas de vencimientos y realizar un seguimiento detallado de los gastos.',
 			},
 			barber: {
-				img: 'assets/images/proyecto_barber.png',
-				title: 'Aplicaciones gestión de citas peluquerías',
+				title: 'Gestión de Citas para Peluquerías',
+				images: [
+					'assets/images/proyecto_barber.png',
+					'assets/images/proyecto_barber.png'
+				],
 				features: ['Versión móvil sencilla', 'Panel de control propio', 'Recordatorios automáticos', 'Personalización completa'],
-				description: 'Sistema de gestión de citas para peluquerías con aplicación móvil, panel de administración y recordatorios automáticos.',
-				btnAction: "openProjectModal('barber')"
+				description: 'Sistema de gestión de citas para peluquerías con aplicación móvil intuitiva, panel de administración completo y recordatorios automáticos. Facilita la gestión diaria de citas y mejora la experiencia del cliente.',
 			},
 			ficheros: {
-				img: 'assets/images/proyecto_ficheros.png',
-				title: 'Aplicación web gestión de expediciones',
+				title: 'Gestión de Expediciones',
+				images: [
+					'assets/images/sfm.png',
+					'assets/images/sfm.png'
+				],
 				features: ['Asignación de repartos', 'Control de costes', 'Base de datos', 'Versión móvil'],
-				description: 'Sistema completo para gestión de expediciones y repartos con control de costes, ingresos y seguimiento en tiempo real.',
-				btnAction: "openProjectModal('ficheros')"
+				description: 'Sistema completo para gestión de expediciones y repartos con control de costes, ingresos y seguimiento en tiempo real. Optimiza las rutas de reparto y mejora la eficiencia operativa.',
 			},
 			ftp: {
-				img: 'assets/images/proyecto_ftp.png',
-				title: 'CMR inmobiliaria',
+				title: 'CMR Inmobiliaria',
+				images: [
+					'assets/images/proyecto_ftp.png',
+					'assets/images/proyecto_ftp.png'
+				],
 				features: ['Base de datos de clientes', 'Agenda con recordatorios', 'Control de visitas', 'Avisos por Telegram'],
-				description: 'Sistema de gestión inmobiliaria con control de clientes, agenda inteligente y seguimiento de actividades comerciales.',
-				btnAction: "openProjectModal('cmr')"
+				description: 'Sistema de gestión inmobiliaria con control de clientes, agenda inteligente y seguimiento de actividades comerciales. Integración con Telegram para notificaciones instantáneas.',
 			},
 			weark: {
-				img: 'assets/images/weark.png',
-				title: 'ERP para fábrica de ropa',
+				title: 'ERP para Fábrica de Ropa',
+				images: [
+					'assets/images/weark.png',
+					'assets/images/weark.png'
+				],
 				features: ['Gestión de producción', 'Control de inventario', 'Gestión de pedidos', 'Recursos humanos'],
-				description: 'Sistema ERP completo desarrollado para la gestión integral de una fábrica de ropa, incluyendo control de producción, inventario, pedidos y recursos humanos.',
-				btnAction: "openProjectModal('weark')"
-			},
-			paste: {
-				img: 'assets/images/paste.png',
-				title: 'Página web pastelería',
-				features: ['Diseño moderno', 'Catálogo de productos', 'Galería de imágenes', 'Formulario de contacto'],
-				description: 'Página web moderna y atractiva para una pastelería local, con diseño responsivo y optimizada para dispositivos móviles.',
-				btnAction: "openProjectModal('pasteleria')"
+				description: 'Sistema ERP completo desarrollado para la gestión integral de una fábrica de ropa, incluyendo control de producción, inventario, pedidos y recursos humanos. Optimiza todos los procesos de la empresa.',
 			},
 			iara: {
-				img: 'assets/pildoras/iara_bot.png',
-				title: 'Agenda inteligente con IA',
+				title: 'Agenda Inteligente con IA',
+				images: [
+					'assets/images/iara_bot.png',
+					'assets/images/iara_bot.png'
+				],
 				features: ['Asistente de IA integrado', 'Optimización automática', 'Gestión de citas', 'Análisis predictivo'],
-				description: 'Sistema de gestión de citas inteligente con asistente de IA para optimizar tu agenda y mejorar la productividad.',
-				btnAction: "openProjectModal('iara')"
+				description: 'Sistema de gestión de citas inteligente con asistente de IA para optimizar tu agenda y mejorar la productividad. Utiliza inteligencia artificial para sugerir mejores horarios y prevenir conflictos.',
 			}
 		};
 		
-		// Mapeo de IDs de showcase a IDs de modal
-		const projectIdMap = {
-			'vehiculos': 'vehiculos',
-			'barber': 'barber',
-			'ficheros': 'ficheros',
-			'ftp': 'cmr',
-			'weark': 'weark',
-			'paste': 'pasteleria',
-			'iara': 'iara'
-		};
-		
-		// Función para abrir modal al seleccionar proyecto
-		function showProject(projectId) {
-			// Mapear el ID del showcase al ID del modal
-			const modalProjectId = projectIdMap[projectId] || projectId;
-			
-			// Actualizar estado activo de miniaturas
-			document.querySelectorAll('.project-thumbnail').forEach(thumb => {
-				thumb.classList.remove('active');
-			});
-			const selectedThumb = document.querySelector(`[data-project="${projectId}"]`);
-			if (selectedThumb) {
-				selectedThumb.classList.add('active');
-			}
-			
-			// Abrir el modal directamente
-			openProjectModal(modalProjectId);
-		}
-		
-		// Función para abrir modal
-		function openProjectModal(projectId) {
-			console.log('Intentando abrir modal para proyecto:', projectId);
-			const project = projectData[projectId];
-			if (!project) {
-				console.error('Proyecto no encontrado:', projectId);
-				return;
-			}
-			console.log('Proyecto encontrado:', project);
-			
-			// Actualizar contenido del modal
-			document.getElementById('modalTitle').textContent = project.title;
-			document.getElementById('modalSubtitle').textContent = project.subtitle;
-			
-						// Construir contenido del modal
-			let modalContent = `
-				<div class="project-video-container">
-			`;
-			
-			// Agregar video si existe
-			if (project.videoUrl) {
-				if (project.videoType === 'local') {
-					// Video local - usar elemento video
-										modalContent += `
-						<video
-							src="${project.videoUrl}"
-							title="Video del proyecto ${project.title}"
-							controls
-							preload="metadata"
-							style="width: 100%; height: 300px; object-fit: contain;">
-							Tu navegador no soporta el elemento video.
-						</video>
-					`;
-				} else {
-					// Video externo (YouTube) - usar iframe
-					modalContent += `
-						<iframe 
-							src="${project.videoUrl}" 
-							title="Video del proyecto ${project.title}"
-							frameborder="0" 
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-							allowfullscreen>
-						</iframe>
-					`;
-				}
-			}
-			
-			modalContent += `
-				</div>
-				<div class="project-details">
-					<div class="project-info">
-						<h3>Características principales</h3>
-						<ul>
-			`;
-			
-			// Agregar características
-			project.features.forEach(feature => {
-				modalContent += `
-					<li><i class="bi bi-check-circle"></i> ${feature}</li>
-				`;
-			});
-			
-			modalContent += `
-						</ul>
-					</div>
-					<div class="project-info">
-						<h3>Información técnica</h3>
-						<p><strong>Descripción:</strong> ${project.description}</p>
-						<p><strong>Estado:</strong> <span style="color: #28a745; font-weight: 600;">${project.status}</span></p>
-						<p><strong>Año:</strong> ${project.year}</p>
-						<div class="tech-stack">
-			`;
-			
-			// Agregar tecnologías
-			project.tech.forEach(tech => {
-				modalContent += `<span class="tech-badge">${tech}</span>`;
-			});
-			
-			modalContent += `
-						</div>
-					</div>
-				</div>
-			`;
-			
-			// Agregar enlaces si existen
-			if (project.liveUrl) {
-				modalContent += `
-					<div class="project-links">
-						<a href="${project.liveUrl}" target="_blank" class="project-link">
-							<i class="bi bi-box-arrow-up-right"></i> Ver proyecto en vivo
-						</a>
-					</div>
-				`;
-			}
-			
-			document.getElementById('modalBody').innerHTML = modalContent;
-			
-			// Scroll al inicio en versión responsiva ANTES de mostrar el modal
-			if (window.innerWidth <= 768) {
-				// Posicionar el scroll de la página arriba primero
-				window.scrollTo({
-					top: 0,
-					behavior: 'smooth'
-				});
-				
-				// Esperar un poco para que el scroll se complete
-				setTimeout(() => {
-					// Mostrar modal después del scroll
-					document.getElementById('projectModal').classList.add('active');
-					document.body.style.overflow = 'hidden';
-					
-					// Posicionar el modal en la parte superior
-					const modal = document.getElementById('projectModal');
-					const modalContent = modal.querySelector('.modal-content');
-					if (modalContent) {
-						modal.scrollTo({
-							top: 0,
-							behavior: 'smooth'
-						});
-					}
-				}, 300); // Tiempo suficiente para que el scroll se complete
-			} else {
-				// Para desktop, mostrar modal normalmente
-				document.getElementById('projectModal').classList.add('active');
-				document.body.style.overflow = 'hidden';
-			}
-		}
-		
-		// Función para cerrar modal
-		function closeProjectModal() {
-			document.getElementById('projectModal').classList.remove('active');
-			document.body.style.overflow = 'auto';
-		}
-		
-		// Cerrar modal con ESC
-		document.addEventListener('keydown', function(e) {
-			if (e.key === 'Escape' && document.getElementById('projectModal').classList.contains('active')) {
-				closeProjectModal();
-			}
-		});
-		
-		// Cerrar modal al hacer clic fuera
-		document.getElementById('projectModal').addEventListener('click', function(e) {
-			if (e.target === this) {
-				closeProjectModal();
-			}
-		});
-		
-		// Función para posicionar el modal arriba en responsiva
-		function positionModalOnResponsive() {
-			if (window.innerWidth <= 768 && document.getElementById('projectModal').classList.contains('active')) {
-				// Posicionar el scroll de la página arriba primero
-				window.scrollTo({
-					top: 0,
-					behavior: 'smooth'
-				});
-				
-				// Esperar un poco para que el scroll se complete
-				setTimeout(() => {
-					const modal = document.getElementById('projectModal');
-					const modalContent = modal.querySelector('.modal-content');
-					if (modalContent) {
-						// Posicionar el modal en la parte superior
-						modal.scrollTo({
-							top: 0,
-							behavior: 'smooth'
-						});
-					}
-				}, 300);
-			}
-		}
-		
-		// Ajustar scroll al redimensionar ventana
-		window.addEventListener('resize', positionModalOnResponsive);
 		
 		// === MENÚ HAMBURGUESA FLOTANTE === 
 		
@@ -4830,20 +4325,32 @@
 		});
 		
 		// Mostrar logo al hacer scroll
-		window.addEventListener('scroll', function() {
-			if (window.scrollY > 100) {
-				document.body.classList.add('show-logo');
-			} else {
-				document.body.classList.remove('show-logo');
+		// Throttle para optimizar scroll en móvil
+		let scrollTicking = false;
+		function handleScroll() {
+			if (!scrollTicking) {
+				requestAnimationFrame(function() {
+					if (window.scrollY > 100) {
+						document.body.classList.add('show-logo');
+					} else {
+						document.body.classList.remove('show-logo');
+					}
+					
+					// Actualizar barra de progreso
+					const scrollProgress = document.querySelector('.scroll-progress');
+					if (scrollProgress) {
+						const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+						const scrolled = window.scrollY;
+						const progress = (scrolled / scrollable) * 100;
+						scrollProgress.style.width = progress + '%';
+					}
+					scrollTicking = false;
+				});
+				scrollTicking = true;
 			}
-			
-			// Actualizar barra de progreso
-			const scrollProgress = document.querySelector('.scroll-progress');
-			const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-			const scrolled = window.scrollY;
-			const progress = (scrolled / scrollable) * 100;
-			scrollProgress.style.width = progress + '%';
-		});
+		}
+		
+		window.addEventListener('scroll', handleScroll, { passive: true });
 		
 		// Animaciones de entrada
 		const observerOptions = {
@@ -5081,15 +4588,6 @@
 				});
 			});
 			
-			// Tracking de clics en modales de proyectos
-			const projectModals = document.querySelectorAll('[onclick*="openProjectModal"]');
-			projectModals.forEach(button => {
-				button.addEventListener('click', function() {
-					const projectType = this.getAttribute('onclick').match(/'([^']+)'/)?.[1] || 'unknown';
-					trackEvent('click', 'Project Modal', `Open: ${projectType}`, 1);
-				});
-			});
-			
 			// Tracking de scroll en secciones importantes
 			const sections = ['#hero', '#proyectos', '#service', '#contact'];
 			const observer = new IntersectionObserver((entries) => {
@@ -5135,23 +4633,8 @@
 			const ctx = canvas.getContext("2d");
 			const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
 			const heroArea = document.querySelector(".hero-area-slider");
-			
-			function updateVisibility() {
-				if (!heroArea) {
-					canvas.style.display = 'block';
-					return;
-				}
-				const heroRect = heroArea.getBoundingClientRect();
-				const scrollY = window.scrollY || window.pageYOffset;
-				const heroBottom = heroRect.bottom + scrollY;
-				
-				// Mostrar canvas solo después de la portada
-				if (scrollY > heroBottom - window.innerHeight) {
-					canvas.style.display = 'block';
-				} else {
-					canvas.style.display = 'none';
-				}
-			}
+			let isCanvasVisible = false;
+			let animationId = null;
 			
 			function resize() {
 				canvas.width = Math.floor(window.innerWidth * DPR);
@@ -5163,17 +4646,49 @@
 			function handleResize() {
 				resize();
 				rebuild();
-				updateVisibility();
 			}
 			
 			addEventListener("resize", handleResize);
-			addEventListener("scroll", updateVisibility);
 			resize();
-			updateVisibility();
+			
+			// Usar IntersectionObserver en lugar de scroll events para mejor rendimiento
+			if (heroArea) {
+				// Observar cuando la portada sale completamente del viewport
+				const heroObserver = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						// Cuando la portada sale completamente del viewport (isIntersecting = false)
+						if (!entry.isIntersecting) {
+							// Activar el canvas inmediatamente pero de forma asíncrona para no bloquear el scroll
+							requestAnimationFrame(() => {
+								canvas.style.display = 'block';
+								isCanvasVisible = true;
+								if (!animationId) {
+									animationId = requestAnimationFrame(draw);
+								}
+							});
+						} else {
+							// Cuando la portada vuelve a ser visible, ocultar el canvas
+							canvas.style.display = 'none';
+							isCanvasVisible = false;
+						}
+					});
+				}, { 
+					threshold: 0, // Activar cuando cualquier parte sale del viewport
+					rootMargin: '-10% 0px' // Activar un poco antes de que salga completamente
+				});
+				
+				heroObserver.observe(heroArea);
+			} else {
+				// Si no hay portada, activar inmediatamente
+				canvas.style.display = 'block';
+				isCanvasVisible = true;
+				animationId = requestAnimationFrame(draw);
+			}
 
-			// Config
-			const LINE_COUNT = 18;
-			const NODE_PER_LINE = 5;
+			// Config - Reducir complejidad en móvil
+			const isMobile = window.innerWidth <= 768;
+			const LINE_COUNT = isMobile ? 12 : 18; // Menos líneas en móvil
+			const NODE_PER_LINE = isMobile ? 3 : 5; // Menos nodos en móvil
 			const SPEED = 50;
 			const GLOW = 10;
 
@@ -5216,6 +4731,12 @@
 			}
 
 			let lines = [];
+			
+			// Reducir frecuencia de animación en móvil
+			let lastFrameTimeSections = 0;
+			const targetFPSSections = isMobile ? 30 : 60;
+			const frameIntervalSections = 1000 / targetFPSSections;
+			
 			function rebuild() {
 				const h = canvas.height;
 				lines = [];
@@ -5236,6 +4757,22 @@
 			rebuild();
 
 			function draw(tms) {
+				// Pausar si el canvas no es visible
+				if (!isCanvasVisible || canvas.style.display === 'none') {
+					animationId = requestAnimationFrame(draw);
+					return;
+				}
+				
+				// Throttle de frames en móvil para mejor rendimiento
+				if (isMobile) {
+					const elapsed = tms - lastFrameTimeSections;
+					if (elapsed < frameIntervalSections) {
+						animationId = requestAnimationFrame(draw);
+						return;
+					}
+					lastFrameTimeSections = tms - (elapsed % frameIntervalSections);
+				}
+				
 				const t = tms / 1000;
 				const w = canvas.width, h = canvas.height;
 
@@ -5289,10 +4826,34 @@
 					}
 				}
 
-				requestAnimationFrame(draw);
+				animationId = requestAnimationFrame(draw);
 			}
 
-			requestAnimationFrame(draw);
+			// Observar cambios en la sección de proyectos para reajustar cuando sea visible
+			const proyectosArea = document.querySelector(".proyectos-area");
+			if (proyectosArea) {
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							resize();
+							rebuild();
+							isCanvasVisible = true;
+							if (!animationId) {
+								animationId = requestAnimationFrame(draw);
+							}
+						} else {
+							isCanvasVisible = false;
+						}
+					});
+				}, { threshold: 0.1 });
+				
+				observer.observe(proyectosArea);
+			}
+			
+			// Solo iniciar animación si el canvas debe estar visible
+			if (isCanvasVisible) {
+				animationId = requestAnimationFrame(draw);
+			}
 		}
 		
 		// Ejecutar cuando el DOM esté listo
@@ -5333,127 +4894,251 @@
 			addEventListener("resize", handleResize);
 			resize();
 
-			// Config
-			const LINE_COUNT = 35;
-			const NODE_PER_LINE = 5;
-			const SPEED = 70;
-			const GLOW = 10;
-
-			function makePath(y) {
+			// Config - Patrón tipo circuito de tarjeta (más organizado) - Igual que móvil
+			const GRID_SIZE = 100; // Cuadrícula más grande para menos elementos (igual que móvil)
+			const NODE_RADIUS = 2.5;
+			const LINE_WIDTH = 1.2;
+			const SPEED = 20; // Velocidad base para animaciones
+			const LINE_ANIMATION_SPEED = 50; // Velocidad más lenta (igual que móvil)
+			const NODE_SPEED = 15; // Velocidad más lenta (igual que móvil)
+			
+			// Crear una cuadrícula de nodos tipo circuito más organizada
+			function createCircuitGrid() {
 				const w = canvas.width, h = canvas.height;
-				const segs = [];
-				let x = -w * 0.2;
-				let yy = y;
-
-				for (let i = 0; i < 7; i++) {
-					const len = (0.15 + Math.random() * 0.25) * w;
-					segs.push({x1:x, y1:yy, x2:x+len, y2:yy});
-					x += len;
-
-					const step = (Math.random() < 0.5 ? -1 : 1) * (0.04 + Math.random()*0.10) * h;
-					segs.push({x1:x, y1:yy, x2:x, y2:yy+step});
-					yy += step;
-				}
-
-				segs.push({x1:x, y1:yy, x2:w*1.3, y2:yy});
-				return segs;
-			}
-
-			function posOnPath(segs, dist) {
-				for (const s of segs) {
-					const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
-					const L = Math.hypot(dx, dy);
-					if (dist <= L) {
-						const t = L === 0 ? 0 : dist / L;
-						return { x: s.x1 + dx*t, y: s.y1 + dy*t };
+				const nodes = [];
+				const connections = [];
+				
+				// Crear nodos en una cuadrícula más organizada (menos aleatoriedad)
+				const cols = Math.ceil(w / GRID_SIZE) + 2;
+				const rows = Math.ceil(h / GRID_SIZE) + 2;
+				
+				for (let row = 0; row < rows; row++) {
+					for (let col = 0; col < cols; col++) {
+						// Menos variación aleatoria para líneas más rectas
+						const x = (col - 1) * GRID_SIZE + (Math.random() - 0.5) * GRID_SIZE * 0.15;
+						const y = (row - 1) * GRID_SIZE + (Math.random() - 0.5) * GRID_SIZE * 0.15;
+						
+						// Solo crear nodos dentro del canvas
+						if (x >= -GRID_SIZE && x <= w + GRID_SIZE && y >= -GRID_SIZE && y <= h + GRID_SIZE) {
+							nodes.push({ x, y, id: row * cols + col });
+						}
 					}
-					dist -= L;
 				}
-				const last = segs[segs.length - 1];
-				return { x: last.x2, y: last.y2 };
+				
+				// Conectar nodos de forma más organizada (principalmente horizontal y vertical)
+				for (let i = 0; i < nodes.length; i++) {
+					for (let j = i + 1; j < nodes.length; j++) {
+						const dx = nodes[j].x - nodes[i].x;
+						const dy = nodes[j].y - nodes[i].y;
+						const dist = Math.hypot(dx, dy);
+						
+						// Priorizar conexiones horizontales y verticales (más rectas)
+						const isHorizontal = Math.abs(dy) < GRID_SIZE * 0.2 && Math.abs(dx) < GRID_SIZE * 1.2;
+						const isVertical = Math.abs(dx) < GRID_SIZE * 0.2 && Math.abs(dy) < GRID_SIZE * 1.2;
+						
+						if ((isHorizontal || isVertical) && dist < GRID_SIZE * 1.3) {
+							// Menor probabilidad de conexión (igual que móvil)
+							const connectionProb = 0.2;
+							if (Math.random() < connectionProb) {
+								connections.push({ 
+									from: nodes[i], 
+									to: nodes[j],
+									length: dist,
+									// Agregar nodos animados que viajan por esta conexión (igual que móvil)
+									animatedNodes: Array.from({length: 1}, () => ({
+										progress: Math.random(), // Posición inicial aleatoria (0-1)
+										speed: 0.3 + Math.random() * 0.4, // Velocidad variable
+										size: 1.5 + Math.random() * 1.5 // Tamaño variable
+									}))
+								});
+							}
+						}
+					}
+				}
+				
+				return { nodes, connections };
 			}
 
-			function pathLength(segs){
-				return segs.reduce((a,s)=>a+Math.hypot(s.x2-s.x1, s.y2-s.y1), 0);
-			}
-
-			let lines = [];
+			let circuitGrid = null;
+			let heroAnimationId = null;
+			let isHeroVisible = true;
+			
+			// Reducir frecuencia de animación (igual que móvil)
+			let lastFrameTime = 0;
+			const targetFPS = 30; // Igual que móvil
+			const frameInterval = 1000 / targetFPS;
+			
 			function rebuild() {
-				const h = canvas.height;
-				lines = [];
-				for (let i = 0; i < LINE_COUNT; i++) {
-					const y = (0.10 + (i/(LINE_COUNT-1))*0.80) * h + (Math.random()-0.5)*h*0.03;
-					const segs = makePath(y);
-					const len = pathLength(segs);
-
-					const nodes = Array.from({length: NODE_PER_LINE}, () => ({
-						d: Math.random()*len,
-						r: (2 + Math.random()*3) * DPR,
-						sp: (0.6 + Math.random()*1.2)
-					}));
-
-					lines.push({ segs, len, nodes });
-				}
+				circuitGrid = createCircuitGrid();
 			}
 			rebuild();
 
 			function draw(tms) {
+				// Pausar si el hero no es visible
+				if (!isHeroVisible) {
+					heroAnimationId = requestAnimationFrame(draw);
+					return;
+				}
+				
+				// Throttle de frames para mejor rendimiento (igual que móvil)
+				const elapsed = tms - lastFrameTime;
+				if (elapsed < frameInterval) {
+					heroAnimationId = requestAnimationFrame(draw);
+					return;
+				}
+				lastFrameTime = tms - (elapsed % frameInterval);
+				
 				const t = tms / 1000;
 				const w = canvas.width, h = canvas.height;
 
-				// fondo gradiente azul
+				// Primero dibujar el fondo azul completo con el patrón de circuito
 				const grad = ctx.createLinearGradient(0,0,w,h);
-				grad.addColorStop(0, "#0a4bd6");
+				grad.addColorStop(0, "#0b3aa8");
+				grad.addColorStop(0.5, "#0a4bd6");
 				grad.addColorStop(1, "#062b7a");
 				ctx.fillStyle = grad;
 				ctx.fillRect(0,0,w,h);
 
-				// estilo líneas
-				ctx.lineWidth = 2 * DPR;
-				ctx.lineJoin = "round";
-				ctx.lineCap = "round";
-
-				for (const L of lines) {
-					// líneas base
-					ctx.strokeStyle = "rgba(120,200,255,0.35)";
-					ctx.beginPath();
-					for (const s of L.segs) {
-						ctx.moveTo(s.x1, s.y1);
-						ctx.lineTo(s.x2, s.y2);
-					}
-					ctx.stroke();
-
-					// highlight animado
-					const bandX = (t * SPEED * DPR) % (w * 1.4);
-					ctx.strokeStyle = "rgba(180,240,255,0.22)";
-					ctx.lineWidth = 4 * DPR;
-					ctx.beginPath();
-					for (const s of L.segs) {
-						const minX = Math.min(s.x1, s.x2), maxX = Math.max(s.x1, s.x2);
-						if (bandX > minX - 200*DPR && bandX < maxX + 200*DPR) {
-							ctx.moveTo(s.x1, s.y1);
-							ctx.lineTo(s.x2, s.y2);
+				if (circuitGrid) {
+					// Dibujar conexiones (líneas del circuito) con efecto de barrido animado
+					ctx.lineJoin = "round";
+					ctx.lineCap = "round";
+					
+					for (const conn of circuitGrid.connections) {
+						const dx = conn.to.x - conn.from.x;
+						const dy = conn.to.y - conn.from.y;
+						const dist = Math.hypot(dx, dy);
+						
+						// Línea base (más oscura) - siempre visible
+						ctx.globalAlpha = 0.25;
+						ctx.strokeStyle = "rgba(120,180,255,0.35)";
+						ctx.lineWidth = LINE_WIDTH * DPR;
+						ctx.beginPath();
+						ctx.moveTo(conn.from.x, conn.from.y);
+						ctx.lineTo(conn.to.x, conn.to.y);
+						ctx.stroke();
+						
+						// Efecto de barrido animado que recorre la línea (como en efectoazul.html)
+						// El barrido se mueve a lo largo de cada línea desde el inicio
+						const sweepDist = (t * LINE_ANIMATION_SPEED * DPR) % (dist * 1.5);
+						const sweepRadius = 100 * DPR; // Ancho del barrido
+						
+						// Calcular posición del barrido a lo largo de la línea (0 a dist)
+						const sweepPos = sweepDist % dist;
+						
+						// Calcular los límites del segmento visible del barrido
+						const sweepStart = Math.max(0, sweepPos - sweepRadius);
+						const sweepEnd = Math.min(dist, sweepPos + sweepRadius);
+						
+						if (sweepEnd > sweepStart) {
+							// Calcular posición en la línea (0 a 1)
+							const startProgress = sweepStart / dist;
+							const endProgress = sweepEnd / dist;
+							
+							// Puntos de inicio y fin del segmento brillante
+							const segStartX = conn.from.x + dx * startProgress;
+							const segStartY = conn.from.y + dy * startProgress;
+							const segEndX = conn.from.x + dx * endProgress;
+							const segEndY = conn.from.y + dy * endProgress;
+							
+							// Intensidad máxima en el centro del barrido
+							const centerProgress = sweepPos / dist;
+							const centerX = conn.from.x + dx * centerProgress;
+							const centerY = conn.from.y + dy * centerProgress;
+							
+							// Dibujar el segmento brillante de la línea
+							ctx.globalAlpha = 0.6;
+							ctx.strokeStyle = "rgba(180,240,255,0.85)";
+							ctx.lineWidth = (LINE_WIDTH + 2.5) * DPR;
+							ctx.beginPath();
+							ctx.moveTo(segStartX, segStartY);
+							ctx.lineTo(segEndX, segEndY);
+							ctx.stroke();
+							
+							// Punto brillante en el centro del barrido
+							ctx.globalAlpha = 1;
+							ctx.shadowBlur = 15 * DPR;
+							ctx.shadowColor = "rgba(200,240,255,1)";
+							ctx.fillStyle = "rgba(220,250,255,1)";
+							ctx.beginPath();
+							ctx.arc(centerX, centerY, 6 * DPR, 0, Math.PI*2);
+							ctx.fill();
+							ctx.shadowBlur = 0;
 						}
 					}
-					ctx.stroke();
-					ctx.lineWidth = 2 * DPR;
+					ctx.globalAlpha = 1;
+					ctx.lineWidth = LINE_WIDTH * DPR;
 
-					// nodos en movimiento
-					for (const n of L.nodes) {
-						const d = (n.d + t * SPEED * DPR * n.sp) % L.len;
-						const p = posOnPath(L.segs, d);
-
-						ctx.shadowBlur = GLOW * DPR;
-						ctx.shadowColor = "rgba(170,240,255,0.9)";
-						ctx.fillStyle = "rgba(200,250,255,0.95)";
+					// Dibujar nodos estáticos (puntos del circuito) - más pequeños y visibles como en la tarjeta
+					for (const node of circuitGrid.nodes) {
+						// Nodos con sombra sutil
+						ctx.shadowBlur = 3 * DPR;
+						ctx.shadowColor = "rgba(180,220,255,0.5)";
+						ctx.fillStyle = "rgba(200,235,255,0.9)"; // Más opacos y visibles
 						ctx.beginPath();
-						ctx.arc(p.x, p.y, n.r, 0, Math.PI*2);
+						ctx.arc(node.x, node.y, NODE_RADIUS * DPR, 0, Math.PI*2);
 						ctx.fill();
+						
+						// Núcleo más brillante pero más pequeño
 						ctx.shadowBlur = 0;
+						ctx.fillStyle = "rgba(220,245,255,1)"; // Completamente opaco
+						ctx.beginPath();
+						ctx.arc(node.x, node.y, (NODE_RADIUS * 0.4) * DPR, 0, Math.PI*2);
+						ctx.fill();
+					}
+					
+					// Dibujar nodos animados que viajan por las conexiones
+					for (const conn of circuitGrid.connections) {
+						if (!conn.animatedNodes) continue;
+						
+						const dx = conn.to.x - conn.from.x;
+						const dy = conn.to.y - conn.from.y;
+						
+						for (const animNode of conn.animatedNodes) {
+							// Actualizar posición del nodo animado
+							animNode.progress = (animNode.progress + t * NODE_SPEED * DPR * animNode.speed / conn.length) % 1;
+							
+							// Calcular posición actual
+							const nodeX = conn.from.x + dx * animNode.progress;
+							const nodeY = conn.from.y + dy * animNode.progress;
+							
+							// Dibujar nodo animado con glow más intenso
+							ctx.shadowBlur = 10 * DPR;
+							ctx.shadowColor = "rgba(170,240,255,0.9)";
+							ctx.fillStyle = "rgba(200,250,255,0.95)";
+							ctx.beginPath();
+							ctx.arc(nodeX, nodeY, animNode.size * DPR, 0, Math.PI*2);
+							ctx.fill();
+							
+							// Núcleo brillante
+							ctx.shadowBlur = 0;
+							ctx.fillStyle = "rgba(220,255,255,1)";
+							ctx.beginPath();
+							ctx.arc(nodeX, nodeY, (animNode.size * 0.5) * DPR, 0, Math.PI*2);
+							ctx.fill();
+						}
 					}
 				}
 
-				requestAnimationFrame(draw);
+				// Dibujar fondo blanco que se mete desde la derecha sobre el azul - más terreno
+				ctx.save();
+				ctx.beginPath();
+				// Curva diagonal más redondeada desde la derecha hacia la izquierda (más hacia la izquierda)
+				ctx.moveTo(w, 0);
+				ctx.lineTo(w, h);
+				// Usar bezier curve para una curva más suave y redondeada, más hacia la izquierda
+				ctx.bezierCurveTo(
+					w * 0.75, h * 0.75,  // punto de control 1 (más hacia la izquierda)
+					w * 0.55, h * 0.55,  // punto de control 2 (más hacia la izquierda)
+					w * 0.4, h * 0.2     // punto final de la curva (más hacia la izquierda)
+				);
+				ctx.lineTo(w * 0.45, 0);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+				ctx.fill();
+				ctx.restore();
+
+				heroAnimationId = requestAnimationFrame(draw);
 			}
 
 			// Observar cambios en la sección para reajustar cuando sea visible
@@ -5462,13 +5147,19 @@
 					if (entry.isIntersecting) {
 						resize();
 						rebuild();
+						isHeroVisible = true;
+						if (!heroAnimationId) {
+							heroAnimationId = requestAnimationFrame(draw);
+						}
+					} else {
+						isHeroVisible = false;
 					}
 				});
 			}, { threshold: 0.1 });
 			
 			observer.observe(heroArea);
 			
-			requestAnimationFrame(draw);
+			heroAnimationId = requestAnimationFrame(draw);
 		}
 		
 		// Ejecutar cuando el DOM esté listo
@@ -5509,9 +5200,10 @@
 		addEventListener("resize", handleResize);
 		resize();
 
-		// Config
-		const LINE_COUNT = 18;
-		const NODE_PER_LINE = 5;
+		// Config - Reducir complejidad en móvil
+		const isMobileProyectos = window.innerWidth <= 768;
+		const LINE_COUNT = isMobileProyectos ? 12 : 18; // Menos líneas en móvil
+		const NODE_PER_LINE = isMobileProyectos ? 3 : 5; // Menos nodos en móvil
 		const SPEED = 50;
 		const GLOW = 10;
 
@@ -5554,6 +5246,9 @@
 		}
 
 		let lines = [];
+		let proyectosAnimationId = null;
+		let isProyectosVisible = true;
+		
 		function rebuild() {
 			const h = canvas.height;
 			lines = [];
@@ -5574,6 +5269,12 @@
 		rebuild();
 
 		function draw(tms) {
+			// Pausar si el canvas no es visible
+			if (!isProyectosVisible) {
+				proyectosAnimationId = requestAnimationFrame(draw);
+				return;
+			}
+			
 			const t = tms / 1000;
 			const w = canvas.width, h = canvas.height;
 
@@ -5627,22 +5328,30 @@
 				}
 			}
 
-			requestAnimationFrame(draw);
+			proyectosAnimationId = requestAnimationFrame(draw);
 		}
 
 		// Observar cambios en la sección para reajustar cuando sea visible
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					resize();
-					rebuild();
-				}
-			});
-		}, { threshold: 0.1 });
+		if (proyectosArea) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						resize();
+						rebuild();
+						isProyectosVisible = true;
+						if (!proyectosAnimationId) {
+							proyectosAnimationId = requestAnimationFrame(draw);
+						}
+					} else {
+						isProyectosVisible = false;
+					}
+				});
+			}, { threshold: 0.1 });
+			
+			observer.observe(proyectosArea);
+		}
 		
-		observer.observe(proyectosArea);
-		
-		requestAnimationFrame(draw);
+		proyectosAnimationId = requestAnimationFrame(draw);
 		}
 		
 		// Ejecutar cuando el DOM esté listo
