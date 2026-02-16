@@ -1,0 +1,905 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+<!-- Habilitar scroll inmediatamente - debe ser lo primero -->
+<script>
+(function() {
+	if (document.documentElement) {
+		document.documentElement.style.overflowY = 'auto';
+		document.documentElement.style.overflowX = 'hidden';
+	}
+	if (document.body) {
+		document.body.style.overflowY = 'auto';
+		document.body.style.overflowX = 'hidden';
+	}
+})();
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZND42296P"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-9ZND42296P');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Casos de Uso - Jonatan Murillo</title>
+<meta name="description" content="Descubre cómo aplicar la IA en tu negocio con casos de uso reales">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover">
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="56x56" href="assets/images/fav-icon/icon.png">
+<!-- bootstrap CSS -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" media="all">
+<!-- animate CSS -->
+<link rel="stylesheet" href="assets/css/animate.css" type="text/css" media="all">
+<!-- font-awesome CSS -->
+<link rel="stylesheet" href="assets/css/all.min.css" type="text/css" media="all">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="style.css" type="text/css" media="all">
+<!-- responsive CSS -->
+<link rel="stylesheet" href="assets/css/responsive.css" type="text/css" media="all">
+<!-- bootstrap icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+	body {
+		background: #ffffff !important;
+		color: #1a1a1a !important;
+		font-family: 'Poppins', sans-serif;
+		overflow-x: hidden !important;
+		overflow-y: auto !important;
+		position: relative !important;
+		z-index: 1 !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+	
+	/* Canvas de fondo efecto blanco */
+	#efecto-blanco-canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		pointer-events: none !important;
+		display: block !important;
+	}
+	
+	body > *:not(#efecto-blanco-canvas) {
+		position: relative;
+		z-index: 1;
+	}
+	
+	/* Ocultar loader completamente - sobrescribir style.css */
+	.loader-wrapper,
+	.loader-wrapper.loaded,
+	body .loader-wrapper,
+	body.loaded .loader-wrapper {
+		display: none !important;
+		visibility: hidden !important;
+		opacity: 0 !important;
+		pointer-events: none !important;
+		z-index: -9999 !important;
+		position: fixed !important;
+		top: -9999px !important;
+		left: -9999px !important;
+		width: 0 !important;
+		height: 0 !important;
+		overflow: hidden !important;
+	}
+	
+	/* Asegurar que body.loaded muestre el contenido */
+	body.loaded,
+	body.loaded * {
+		visibility: visible !important;
+	}
+	
+	body.loaded .casos-hero,
+	body.loaded .casos-section,
+	body.loaded footer,
+	body.loaded #sticky-header {
+		display: block !important;
+		opacity: 1 !important;
+		visibility: visible !important;
+	}
+	
+	/* Asegurar que el contenido sea visible */
+	.casos-hero,
+	.casos-section,
+	footer,
+	#sticky-header {
+		position: relative !important;
+		z-index: 1 !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+		display: block !important;
+	}
+	
+	/* Header igual que index */
+	#sticky-header,
+	.sticky,
+	.mesud.ozil_nav_manu {
+		z-index: 1000 !important;
+		position: relative;
+	}
+	
+	@media (max-width: 991px) {
+		.mesud.ozil_menu {
+			display: none !important;
+		}
+	}
+	
+	.sticky {
+		position: fixed !important;
+	}
+	
+	/* Menú móvil - igual que index.html */
+	@media (max-width: 991px) {
+		.floating-hamburger {
+			position: fixed !important;
+			top: 20px !important;
+			right: 20px !important;
+			z-index: 1000 !important;
+		}
+		
+		.hamburger-btn {
+			background: #28a745 !important;
+			border: none !important;
+			border-radius: 8px !important;
+			width: 50px !important;
+			height: 50px !important;
+			display: flex !important;
+			flex-direction: column !important;
+			justify-content: center !important;
+			align-items: center !important;
+			cursor: pointer !important;
+			box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4) !important;
+			transition: all 0.3s ease !important;
+		}
+		
+		.hamburger-btn:hover {
+			background: #218838 !important;
+			transform: scale(1.05) !important;
+			box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6) !important;
+		}
+		
+		.hamburger-line {
+			width: 22px !important;
+			height: 3px !important;
+			background: white !important;
+			margin: 2px 0 !important;
+			border-radius: 2px !important;
+			transition: all 0.3s ease !important;
+		}
+		
+		.hamburger-btn.active .hamburger-line:nth-child(1) {
+			transform: rotate(45deg) translate(5px, 5px) !important;
+		}
+		
+		.hamburger-btn.active .hamburger-line:nth-child(2) {
+			opacity: 0 !important;
+		}
+		
+		.hamburger-btn.active .hamburger-line:nth-child(3) {
+			transform: rotate(-45deg) translate(7px, -6px) !important;
+		}
+		
+		.mobile-menu-overlay {
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			width: 100% !important;
+			height: 100% !important;
+			background: rgba(0, 0, 0, 0.95) !important;
+			z-index: 9999 !important;
+			opacity: 0 !important;
+			visibility: hidden !important;
+			transition: all 0.3s ease !important;
+		}
+		
+		.mobile-menu-overlay.active {
+			opacity: 1 !important;
+			visibility: visible !important;
+		}
+		
+		.mobile-menu-content {
+			position: relative !important;
+			width: 100% !important;
+			height: 100% !important;
+			display: flex !important;
+			flex-direction: column !important;
+			justify-content: flex-start !important;
+			align-items: center !important;
+			padding-top: 120px !important;
+			overflow-y: auto !important;
+		}
+		
+		.close-btn {
+			position: absolute !important;
+			top: 20px !important;
+			right: 20px !important;
+			background: transparent !important;
+			border: none !important;
+			color: white !important;
+			font-size: 30px !important;
+			cursor: pointer !important;
+			width: 50px !important;
+			height: 50px !important;
+			border-radius: 50% !important;
+			display: flex !important;
+			justify-content: center !important;
+			align-items: center !important;
+			transition: all 0.3s ease !important;
+		}
+		
+		.close-btn:hover {
+			background: rgba(255, 255, 255, 0.1) !important;
+		}
+		
+		.mobile-nav {
+			width: 100%;
+			padding: 0 20px;
+		}
+		
+		.mobile-nav ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		
+		.mobile-nav-link {
+			display: block;
+			color: white;
+			font-size: 24px;
+			font-weight: 600;
+			text-decoration: none;
+			padding: 20px 0;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			transition: all 0.3s ease;
+		}
+		
+		.mobile-nav-link:hover {
+			color: #28a745;
+			padding-left: 20px;
+		}
+		
+		/* Ocultar menú desktop en móvil */
+		.mesud.ozil_menu {
+			display: none !important;
+		}
+	}
+	
+	@media (max-width: 576px) {
+		.floating-hamburger {
+			top: 15px !important;
+			right: 15px !important;
+		}
+		
+		.hamburger-btn {
+			width: 45px !important;
+			height: 45px !important;
+		}
+		
+		.hamburger-line {
+			width: 20px !important;
+			height: 2.5px !important;
+		}
+	}
+	
+	@media (max-width: 400px) {
+		.floating-hamburger {
+			top: 10px !important;
+			right: 10px !important;
+		}
+	}
+	
+	/* Hero section para casos de uso */
+	.casos-hero {
+		background: transparent !important;
+		padding: 150px 0 100px !important;
+		text-align: center !important;
+		color: #1a1a1a !important;
+		margin-top: 80px !important;
+		display: block !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+	
+	.casos-hero h1 {
+		text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
+	}
+	
+	.casos-hero p {
+		text-shadow: 0 1px 5px rgba(255, 255, 255, 0.8);
+	}
+	
+	.casos-hero h1 {
+		font-size: 48px;
+		font-weight: 700;
+		margin-bottom: 20px;
+		text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+	}
+	
+	.casos-hero p {
+		font-size: 20px;
+		opacity: 0.95;
+		max-width: 700px;
+		margin: 0 auto;
+	}
+	
+	/* Sección de casos de uso */
+	.casos-section {
+		padding: 80px 0 !important;
+		background: transparent !important;
+		display: block !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+	
+	.caso-item {
+		margin-bottom: 100px;
+		background: #ffffff;
+		border-radius: 20px;
+		overflow: hidden;
+		box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		border: 2px solid #000000;
+		color: #1a1a1a;
+	}
+	
+	.caso-item:hover {
+		transform: translateY(-10px);
+		box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+		border-color: #333333;
+	}
+	
+	.caso-imagen {
+		width: 100%;
+		height: 400px;
+		object-fit: cover;
+		display: block;
+	}
+	
+	.caso-content {
+		padding: 50px;
+	}
+	
+	.caso-numero {
+		font-size: 14px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		opacity: 0.8;
+		margin-bottom: 15px;
+	}
+	
+	.caso-titulo {
+		font-size: 36px;
+		font-weight: 700;
+		margin-bottom: 20px;
+		line-height: 1.2;
+	}
+	
+	.caso-descripcion {
+		font-size: 18px;
+		line-height: 1.8;
+		opacity: 0.95;
+	}
+	
+	.caso-descripcion p {
+		margin-bottom: 15px;
+	}
+	
+	.caso-descripcion ul {
+		margin-top: 20px;
+		padding-left: 25px;
+	}
+	
+	.caso-descripcion li {
+		margin-bottom: 10px;
+	}
+	
+	@media (max-width: 768px) {
+		.casos-hero {
+			padding: 120px 0 60px;
+			margin-top: 70px;
+		}
+		
+		.casos-hero h1 {
+			font-size: 32px;
+		}
+		
+		.casos-hero p {
+			font-size: 16px;
+			padding: 0 20px;
+		}
+		
+		.casos-section {
+			padding: 40px 0;
+		}
+		
+		.caso-item {
+			margin-bottom: 50px;
+			border-radius: 15px;
+		}
+		
+		.caso-imagen {
+			height: 250px;
+		}
+		
+		.caso-content {
+			padding: 30px 20px;
+		}
+		
+		.caso-titulo {
+			font-size: 24px;
+		}
+		
+		.caso-descripcion {
+			font-size: 16px;
+		}
+	}
+</style>
+</head>
+<body class="loaded">
+	<!-- Canvas de fondo efecto blanco -->
+	<canvas id="efecto-blanco-canvas"></canvas>
+	
+	<!-- Indicador de progreso de scroll -->
+	<div class="scroll-progress"></div>
+
+<!--==================================================-->
+<!-- Start Mesud Ozil Main Menu Area -->
+<!--==================================================-->
+<div id="sticky-header" class="mesud ozil_nav_manu sticky">
+	<div class="row align-items-center">
+		<div class="col-lg-3">
+			<div class="logo" style="display: flex; align-items: center; gap: 15px;">
+				<a href="index.html" title="Jonatan Murillo">
+					<img src="assets/images/yogrande.png" alt="Jonatan Murillo" width="70" height="70" style="display: block;">
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-9">
+			<nav class="mesud ozil_menu">
+				<ul class="nav_scroll">
+					<li><a href="index.html#hero">HOME</a></li>
+					<li><a href="index.html#proyectos">PROYECTOS</a></li>
+					<li><a href="index.html#service">SERVICIOS IA</a></li>
+					<li><a href="index.html#resume">TRAYECTORIA</a></li>
+				</ul>
+				<div class="mesud ozil-btn">
+					<a href="index.html#contact">Contacto<i class="bi bi-arrow-right"></i></a>
+				</div>
+			</nav>
+		</div>
+	</div>
+</div>
+
+<!-- Hamburguesa Flotante -->
+<div class="floating-hamburger d-lg-none" style="display: flex; justify-content: space-between; align-items: center; padding-left: 0; padding-right: 15px;">
+	<div class="mobile-logos">
+	</div>
+	<button class="hamburger-btn" id="mobileMenuToggle">
+		<span class="hamburger-line"></span>
+		<span class="hamburger-line"></span>
+		<span class="hamburger-line"></span>
+	</button>
+</div>
+
+<!-- Menú Móvil Overlay -->
+<div class="mobile-menu-overlay d-lg-none" id="mobileMenuOverlay">
+	<div class="mobile-menu-content">
+		<button class="close-btn" id="closeMenu">✕</button>
+		<nav class="mobile-nav">
+			<ul>
+				<li><a href="index.html#hero" class="mobile-nav-link">HOME</a></li>
+				<li><a href="index.html#proyectos" class="mobile-nav-link">PROYECTOS</a></li>
+				<li><a href="index.html#service" class="mobile-nav-link">SERVICIOS IA</a></li>
+				<li><a href="index.html#resume" class="mobile-nav-link">TRAYECTORIA</a></li>
+				<li><a href="index.html#contact" class="mobile-nav-link">CONTACTO</a></li>
+			</ul>
+		</nav>
+	</div>
+</div>
+
+<!-- Hero Section -->
+<section class="casos-hero">
+	<div class="container">
+		<h1 data-aos="fade-up">¿Cómo aplicar la IA en mi negocio?</h1>
+		<p data-aos="fade-up" data-aos-delay="200">Descubre casos de uso reales que transforman empresas y generan resultados medibles</p>
+	</div>
+</section>
+
+<!-- Casos de Uso -->
+<section class="casos-section">
+	<div class="container">
+		
+		<!-- Caso 1 -->
+		<div class="caso-item" data-aos="fade-up">
+			<img src="assets/images/file_000000003fb4720ea4541fdc31bfd929.png" alt="Sistema Automático de Confirmación de Entrega con POD" class="caso-imagen">
+			<div class="caso-content">
+				<div class="caso-numero">Caso de Uso 01</div>
+				<h2 class="caso-titulo">Confirmación Automática de Entrega con POD Inteligente</h2>
+				<div class="caso-descripcion">
+					<p>Optimiza tu proceso de logística y entrega con un sistema inteligente que automatiza la confirmación de entregas mediante reconocimiento de imágenes. Cuando el repartidor entrega la mercancía, simplemente toma una foto del POD (Proof of Delivery) con su dispositivo móvil. La inteligencia artificial procesa automáticamente la imagen, extrae la información relevante y actualiza el estado de la expedición en tiempo real.</p>
+					<p>El sistema utiliza visión por computadora para reconocer y validar las firmas, códigos de barras, números de referencia y otros datos del comprobante de entrega. Una vez procesada la imagen, se adjunta automáticamente a la expedición correspondiente y el pedido se marca como entregado sin intervención manual, eliminando retrasos y errores en el proceso de confirmación.</p>
+					<ul>
+						<li>Confirmación automática de entregas en menos de 30 segundos</li>
+						<li>Eliminación del 100% de errores de registro manual</li>
+						<li>Reducción del 80% en tiempo de procesamiento administrativo</li>
+						<li>Disponibilidad inmediata de comprobantes para clientes y auditorías</li>
+						<li>Mejora del 95% en precisión de estados de entrega</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Caso 2 -->
+		<div class="caso-item" data-aos="fade-up">
+			<img src="assets/images/file_0000000082bc71f5b10a08b755b2c6e9.png" alt="Control Automático de Consumos y Gastos de Combustible" class="caso-imagen">
+			<div class="caso-content">
+				<div class="caso-numero">Caso de Uso 02</div>
+				<h2 class="caso-titulo">Control Automático de Consumos y Gastos de Combustible</h2>
+				<div class="caso-descripcion">
+					<p>Gestiona de forma inteligente los gastos de combustible de tu flota vehicular con un sistema automatizado de reconocimiento de imágenes. Cuando un empleado que trabaja con vehículo realiza una carga de combustible, simplemente toma una foto del ticket de gasolina con su dispositivo móvil. La inteligencia artificial procesa automáticamente la imagen, extrae la información relevante (monto, litros, fecha, estación de servicio) y registra los datos en tiempo real.</p>
+					<p>El sistema utiliza visión por computadora y OCR (reconocimiento óptico de caracteres) para leer y validar toda la información del ticket, independientemente del formato o la calidad de la imagen. Los datos se integran automáticamente en un dashboard de control centralizado donde puedes visualizar consumos por vehículo, gastos por conductor, tendencias de consumo, comparativas entre períodos y alertas de anomalías, todo sin necesidad de introducir datos manualmente.</p>
+					<ul>
+						<li>Registro automático de gastos en menos de 20 segundos</li>
+						<li>Eliminación del 100% de errores de digitación manual</li>
+						<li>Dashboard en tiempo real con análisis de consumos y gastos</li>
+						<li>Detección automática de anomalías y gastos inusuales</li>
+						<li>Reducción del 90% en tiempo de gestión administrativa de gastos</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Caso 3 -->
+		<div class="caso-item" data-aos="fade-up">
+			<img src="assets/images/file_0000000087c471f78a968887bfc2bcba.png" alt="Gestión Automática de Gastos Comerciales" class="caso-imagen">
+			<div class="caso-content">
+				<div class="caso-numero">Caso de Uso 03</div>
+				<h2 class="caso-titulo">Gestión Automática de Gastos Comerciales</h2>
+				<div class="caso-descripcion">
+					<p>Simplifica la gestión de gastos de tu equipo comercial con un sistema inteligente de reconocimiento de documentos. Cuando un comercial realiza gastos durante sus viajes o visitas a clientes (dietas, gasolina, hoteles, restaurantes, peajes, etc.), simplemente toma una foto del ticket o factura con su dispositivo móvil. La inteligencia artificial procesa automáticamente la imagen, identifica el tipo de gasto, extrae la información relevante y la clasifica correctamente.</p>
+					<p>El sistema utiliza reconocimiento de imágenes avanzado y OCR para leer y validar toda la información de diferentes tipos de documentos: tickets de restaurante, facturas de hotel, recibos de gasolina, peajes, y más. Los datos se integran automáticamente en un dashboard de control donde puedes visualizar gastos por comercial, categorías de gastos, presupuestos vs reales, análisis de tendencias y reportes automáticos para contabilidad, todo sin necesidad de introducir datos manualmente ni procesar montones de papeles.</p>
+					<ul>
+						<li>Registro automático de gastos comerciales en menos de 15 segundos</li>
+						<li>Clasificación automática por tipo de gasto (dietas, combustible, alojamiento, etc.)</li>
+						<li>Dashboard completo con análisis de gastos por comercial y categoría</li>
+						<li>Eliminación del 100% de errores de digitación y pérdida de documentos</li>
+						<li>Reducción del 85% en tiempo de gestión administrativa y contable</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Caso 4 -->
+		<div class="caso-item" data-aos="fade-up">
+			<img src="assets/images/file_0000000088e071f5b7d241e27299c617.png" alt="Generación Automática de Presupuestos para Instalaciones Eléctricas" class="caso-imagen">
+			<div class="caso-content">
+				<div class="caso-numero">Caso de Uso 04</div>
+				<h2 class="caso-titulo">Generación Automática de Presupuestos para Instalaciones Eléctricas</h2>
+				<div class="caso-descripcion">
+					<p>Optimiza el proceso de presupuestación para instalaciones eléctricas con un sistema inteligente que combina reconocimiento de imágenes y procesamiento de lenguaje natural. Cuando un electricista llega a una instalación, toma fotografías de los puntos clave (cuadros eléctricos, puntos de luz, tomas de corriente, cableado existente, etc.) y graba un audio describiendo los requisitos y necesidades específicas del cliente.</p>
+					<p>El sistema procesa automáticamente las imágenes para identificar componentes, materiales necesarios y complejidad de la instalación, mientras que la inteligencia artificial transcribe y analiza el audio para entender los requisitos detallados. Con toda esta información, el sistema genera automáticamente varios borradores de presupuesto con diferentes opciones: básico, estándar y premium, cada uno con materiales, mano de obra y tiempos estimados, permitiendo al electricista presentar al cliente múltiples alternativas de forma inmediata.</p>
+					<ul>
+						<li>Generación automática de presupuestos en menos de 2 minutos</li>
+						<li>Múltiples opciones de presupuesto (básico, estándar, premium) generadas automáticamente</li>
+						<li>Análisis inteligente de imágenes para identificar materiales y componentes necesarios</li>
+						<li>Transcripción y comprensión automática de requisitos mediante audio</li>
+						<li>Reducción del 90% en tiempo de elaboración manual de presupuestos</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Caso 5 -->
+		<div class="caso-item" data-aos="fade-up">
+			<img src="assets/images/file_00000000b6c871f58d3e1c75078526f2.png" alt="Gestor de Tareas Inteligente por Voz" class="caso-imagen">
+			<div class="caso-content">
+				<div class="caso-numero">Caso de Uso 05</div>
+				<h2 class="caso-titulo">Gestor de Tareas Inteligente por Voz</h2>
+				<div class="caso-descripcion">
+					<p>Gestiona tus tareas de forma eficiente y natural con un sistema inteligente que convierte tu voz en tareas organizadas automáticamente. Los empleados pueden crear tareas simplemente hablando desde su dispositivo móvil, sin necesidad de escribir o navegar por interfaces complejas. El sistema utiliza procesamiento de lenguaje natural avanzado para entender el contexto y extraer automáticamente la información clave de cada tarea.</p>
+					<p>La inteligencia artificial analiza el audio y detecta automáticamente elementos como fechas (hoy, mañana, el próximo viernes, en dos semanas), títulos de tareas y categorías (urgente, importante, seguimiento, reunión, etc.). Toda esta información se estructura y se vuelca automáticamente en un panel de control centralizado de oficina, donde los equipos pueden visualizar, organizar y gestionar todas las tareas en tiempo real, con recordatorios automáticos y seguimiento de progreso.</p>
+					<ul>
+						<li>Creación de tareas en menos de 10 segundos mediante voz</li>
+						<li>Detección automática de fechas, títulos y categorías sin intervención manual</li>
+						<li>Panel de control centralizado visible para todo el equipo de oficina</li>
+						<li>Eliminación del 100% de errores de escritura y olvidos de tareas</li>
+						<li>Reducción del 70% en tiempo de gestión y organización de tareas</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</section>
+
+<!-- Footer simple -->
+<footer style="background: #1a1a1a; color: white; padding: 40px 0; text-align: center;">
+	<div class="container">
+		<p>&copy; 2025 Jonatan Murillo. Todos los derechos reservados.</p>
+		<p style="margin-top: 10px;">
+			<a href="index.html" style="color: #667eea; text-decoration: none;">Volver al inicio</a>
+		</p>
+	</div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+	// Asegurar que el contenido sea visible antes de inicializar AOS
+	document.addEventListener('DOMContentLoaded', function() {
+		// Forzar visibilidad
+		document.body.classList.add('loaded');
+		document.body.style.visibility = 'visible';
+		document.body.style.opacity = '1';
+		
+		// Inicializar AOS
+		if (typeof AOS !== 'undefined') {
+			AOS.init({
+				duration: 800,
+				easing: 'ease-in-out',
+				once: true
+			});
+		}
+	});
+</script>
+
+<!-- Script del menú móvil - igual que index.html -->
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+		const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+		const closeMenu = document.getElementById('closeMenu');
+		const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+		
+		if (mobileMenuToggle && mobileMenuOverlay) {
+			mobileMenuToggle.addEventListener('click', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+				mobileMenuOverlay.classList.add('active');
+				mobileMenuToggle.classList.add('active');
+				document.body.style.overflow = 'hidden';
+			});
+		}
+		
+		function closeMenuFunction() {
+			if (mobileMenuOverlay && mobileMenuToggle) {
+				mobileMenuOverlay.classList.remove('active');
+				mobileMenuToggle.classList.remove('active');
+				document.body.style.overflow = 'auto';
+			}
+		}
+		
+		if (closeMenu) {
+			closeMenu.addEventListener('click', closeMenuFunction);
+		}
+		
+		if (mobileMenuOverlay) {
+			mobileMenuOverlay.addEventListener('click', function(e) {
+				if (e.target === mobileMenuOverlay) {
+					closeMenuFunction();
+				}
+			});
+		}
+		
+		mobileNavLinks.forEach((link) => {
+			link.addEventListener('click', function() {
+				closeMenuFunction();
+			});
+		});
+		
+		document.addEventListener('keydown', function(e) {
+			if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
+				closeMenuFunction();
+			}
+		});
+	});
+</script>
+
+<!-- Script para asegurar que todo sea visible -->
+<script>
+	(function() {
+		// Asegurar que el body tenga la clase loaded
+		document.body.classList.add('loaded');
+		
+		// Forzar visibilidad del contenido
+		document.documentElement.style.overflowY = 'auto';
+		document.body.style.overflowY = 'auto';
+		document.body.style.visibility = 'visible';
+		document.body.style.opacity = '1';
+		
+		// Ocultar cualquier loader
+		var loaders = document.querySelectorAll('.loader-wrapper');
+		loaders.forEach(function(loader) {
+			loader.style.display = 'none';
+			loader.style.visibility = 'hidden';
+			loader.style.opacity = '0';
+			loader.style.pointerEvents = 'none';
+			loader.style.zIndex = '-9999';
+		});
+		
+		// Asegurar que el contenido sea visible
+		var contenido = document.querySelectorAll('.casos-hero, .casos-section, footer, #sticky-header');
+		contenido.forEach(function(el) {
+			if (el) {
+				el.style.visibility = 'visible';
+				el.style.opacity = '1';
+				el.style.display = 'block';
+			}
+		});
+	})();
+</script>
+
+<!-- Script del efecto blanco -->
+<script>
+(function() {
+	const canvas = document.getElementById("efecto-blanco-canvas");
+	if (!canvas) return;
+	
+	const ctx = canvas.getContext("2d");
+
+	const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+	function resize() {
+		canvas.width  = Math.floor(innerWidth * DPR);
+		canvas.height = Math.floor(innerHeight * DPR);
+	}
+	addEventListener("resize", resize);
+	resize();
+
+	// Config - velocidad reducida en móvil
+	let LINE_COUNT = 35;
+	let NODE_PER_LINE = 5;
+	let SPEED = 140;
+	const GLOW = 10;
+	
+	// Función para actualizar configuración según tamaño de pantalla
+	function updateConfig() {
+		const isMobile = window.innerWidth <= 768;
+		LINE_COUNT = isMobile ? 25 : 35; // Menos líneas en móvil
+		NODE_PER_LINE = isMobile ? 3 : 5; // Menos nodos en móvil
+		SPEED = isMobile ? 60 : 140; // Velocidad más lenta en móvil (60 en lugar de 140)
+	}
+	
+	updateConfig(); // Configurar inicialmente
+
+	function makePath(y) {
+		const w = canvas.width, h = canvas.height;
+		const segs = [];
+		let x = -w * 0.2;
+		let yy = y;
+
+		for (let i = 0; i < 7; i++) {
+			const len = (0.15 + Math.random() * 0.25) * w;
+			segs.push({x1:x, y1:yy, x2:x+len, y2:yy});
+			x += len;
+
+			const step = (Math.random() < 0.5 ? -1 : 1) * (0.04 + Math.random()*0.10) * h;
+			segs.push({x1:x, y1:yy, x2:x, y2:yy+step});
+			yy += step;
+		}
+
+		segs.push({x1:x, y1:yy, x2:w*1.3, y2:yy});
+		return segs;
+	}
+
+	function posOnPath(segs, dist) {
+		for (const s of segs) {
+			const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
+			const L = Math.hypot(dx, dy);
+			if (dist <= L) {
+				const t = L === 0 ? 0 : dist / L;
+				return { x: s.x1 + dx*t, y: s.y1 + dy*t };
+			}
+			dist -= L;
+		}
+		const last = segs[segs.length - 1];
+		return { x: last.x2, y: last.y2 };
+	}
+
+	function pathLength(segs){
+		return segs.reduce((a,s)=>a+Math.hypot(s.x2-s.x1, s.y2-s.y1), 0);
+	}
+
+	let lines = [];
+	function rebuild() {
+		const h = canvas.height;
+		lines = [];
+		for (let i = 0; i < LINE_COUNT; i++) {
+			const y = (0.10 + (i/(LINE_COUNT-1))*0.80) * h + (Math.random()-0.5)*h*0.03;
+			const segs = makePath(y);
+			const len = pathLength(segs);
+
+			const nodes = Array.from({length: NODE_PER_LINE}, () => ({
+				d: Math.random()*len,
+				r: (2 + Math.random()*3) * DPR,
+				sp: (0.6 + Math.random()*1.2)
+			}));
+
+			lines.push({ segs, len, nodes });
+		}
+	}
+	rebuild();
+	addEventListener("resize", () => { 
+		updateConfig(); // Actualizar configuración según tamaño
+		resize(); 
+		rebuild();
+	});
+
+	function draw(tms) {
+		const t = tms / 1000;
+		const w = canvas.width, h = canvas.height;
+
+		// Fondo blanco
+		ctx.clearRect(0, 0, w, h);
+		ctx.fillStyle = "#ffffff";
+		ctx.fillRect(0, 0, w, h);
+
+		// estilo líneas
+		ctx.lineWidth = 2 * DPR;
+		ctx.lineJoin = "round";
+		ctx.lineCap = "round";
+
+		for (const L of lines) {
+			// líneas base (más oscuras para que se vean en blanco)
+			ctx.strokeStyle = "rgba(10, 110, 200, 0.28)";
+			ctx.beginPath();
+			for (const s of L.segs) {
+				ctx.moveTo(s.x1, s.y1);
+				ctx.lineTo(s.x2, s.y2);
+			}
+			ctx.stroke();
+
+			// highlight animado
+			const bandX = (t * SPEED * DPR) % (w * 1.4);
+			ctx.strokeStyle = "rgba(0, 140, 255, 0.22)";
+			ctx.lineWidth = 4 * DPR;
+			ctx.beginPath();
+			for (const s of L.segs) {
+				const minX = Math.min(s.x1, s.x2), maxX = Math.max(s.x1, s.x2);
+				if (bandX > minX - 200*DPR && bandX < maxX + 200*DPR) {
+					ctx.moveTo(s.x1, s.y1);
+					ctx.lineTo(s.x2, s.y2);
+				}
+			}
+			ctx.stroke();
+			ctx.lineWidth = 2 * DPR;
+
+			// nodos en movimiento
+			for (const n of L.nodes) {
+				const d = (n.d + t * SPEED * DPR * n.sp) % L.len;
+				const p = posOnPath(L.segs, d);
+
+				ctx.shadowBlur = GLOW * DPR;
+				ctx.shadowColor = "rgba(0, 140, 255, 0.55)";
+				ctx.fillStyle = "rgba(0, 120, 255, 0.65)";
+				ctx.beginPath();
+				ctx.arc(p.x, p.y, n.r, 0, Math.PI*2);
+				ctx.fill();
+				ctx.shadowBlur = 0;
+			}
+		}
+
+		requestAnimationFrame(draw);
+	}
+
+	requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>

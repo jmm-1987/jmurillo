@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Circuit Background</title>
+    <style>
+        :root {
+            --bg-blue: #0052cc;
+            --line-light: #4facfe;
+            --glow: rgba(79, 172, 254, 0.8);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: var(--bg-blue);
+        }
+
+        /* Contenedor del fondo */
+        .circuit-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #003a94 0%, #0052cc 100%);
+            overflow: hidden;
+        }
+
+        /* Capa de las líneas (SVG para precisión técnica) */
+        .circuit-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%; /* Más ancho para el movimiento infinito */
+            height: 100%;
+            opacity: 0.6;
+            animation: slide 20s linear infinite;
+        }
+
+        /* Estilo de los trazos */
+        .path-line {
+            fill: none;
+            stroke: var(--line-light);
+            stroke-width: 2;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 5px var(--glow));
+        }
+
+        /* Estilo de los nodos (puntos) */
+        .node {
+            fill: var(--line-light);
+            filter: drop-shadow(0 0 8px white);
+        }
+
+        /* Animación de desplazamiento lento */
+        @keyframes slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Overlay blanco de la derecha (estilo tarjeta) */
+        .card-overlay {
+            position: absolute;
+            right: -10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 80%;
+            background: white;
+            border-radius: 100px 0 0 100px;
+            box-shadow: -20px 0 50px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="circuit-container">
+        <svg class="circuit-svg" viewBox="0 0 1000 500" preserveAspectRatio="none">
+            <path class="path-line" d="M0,100 L200,100 L250,150 L400,150 L450,100 L1000,100" />
+            <circle class="node" cx="250" cy="150" r="4" />
+            <circle class="node" cx="450" cy="100" r="4" />
+
+            <path class="path-line" d="M0,250 L150,250 L200,200 L350,200 L400,250 L600,250 L650,300 L1000,300" />
+            <circle class="node" cx="200" cy="200" r="5" />
+            <circle class="node" cx="650" cy="300" r="5" />
+
+            <path class="path-line" d="M0,400 L300,400 L350,350 L500,350 L550,400 L1000,400" />
+            <circle class="node" cx="350" cy="350" r="4" />
+
+            <g transform="translate(1000, 0)">
+                <path class="path-line" d="M0,100 L200,100 L250,150 L400,150 L450,100 L1000,100" />
+                <path class="path-line" d="M0,250 L150,250 L200,200 L350,200 L400,250 L600,250 L650,300 L1000,300" />
+                <circle class="node" cx="200" cy="200" r="5" />
+            </g>
+        </svg>
+
+        <div class="card-overlay"></div>
+    </div>
+
+</body>
+</html>

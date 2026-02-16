@@ -192,12 +192,23 @@
 			-webkit-tap-highlight-color: rgba(40, 167, 69, 0.3);
 		}
 		
-		/* Asegurar scroll suave en toda la página */
+		/* Scroll suave solo en desktop */
 		html, body {
-			scroll-behavior: smooth;
 			-webkit-overflow-scrolling: touch;
 			overflow-x: hidden;
-			overflow-y: auto !important; /* Asegurar que el scroll esté siempre habilitado */
+			overflow-y: auto !important;
+		}
+		
+		@media (min-width: 769px) {
+			html, body {
+				scroll-behavior: smooth;
+			}
+		}
+		
+		@media (max-width: 768px) {
+			html, body {
+				scroll-behavior: auto !important;
+			}
 		}
 		
 		/* Asegurar que el loader no bloquee el scroll */
@@ -213,23 +224,45 @@
 		@media (max-width: 768px) {
 			html {
 				height: auto;
-				scroll-behavior: auto; /* Desactivar smooth scroll en móvil para mejor rendimiento */
+				scroll-behavior: auto;
 				-webkit-overflow-scrolling: touch;
-				overflow-y: auto !important;
+				overflow-y: scroll !important;
+				touch-action: pan-y;
 			}
 			
 			body {
 				min-height: 100vh;
-				scroll-behavior: auto; /* Desactivar smooth scroll en móvil */
+				scroll-behavior: auto !important;
 				-webkit-overflow-scrolling: touch;
 				overflow-x: hidden;
-				overflow-y: auto !important; /* Asegurar scroll siempre habilitado */
-				/* Optimizaciones para mejor rendimiento de scroll */
-				-webkit-transform: translateZ(0);
-				transform: translateZ(0);
-				-webkit-backface-visibility: hidden;
-				backface-visibility: hidden;
+				overflow-y: scroll !important;
+				touch-action: pan-y;
 				height: auto;
+				/* Quitar transform/backface que pueden causar problemas de renderizado */
+			}
+			
+			/* Hero: scroll al primer toque aunque toques botones/enlaces */
+			.hero-area-slider,
+			.hero-content-wrapper,
+			.hero-content-center,
+			.hero-buttons,
+			.hero-btn {
+				touch-action: pan-y !important;
+			}
+			
+			/* Reducir animaciones del hero en móvil para mejor rendimiento */
+			.hero-logo-floating {
+				animation-duration: 6s !important; /* Más lento = menos trabajo */
+			}
+			
+			.loader-wrapper {
+				pointer-events: none !important;
+				z-index: -1 !important;
+			}
+			
+			/* Optimizar renderizado en móvil */
+			.hero-area-slider {
+				contain: layout style paint;
 			}
 			
 			/* Asegurar que el contenido principal sea scrolleable */
@@ -259,9 +292,18 @@
 		
 		/* === EFECTOS MODERNOS Y PROFESIONALES === */
 		
-		/* Scroll suave */
-		* {
-			scroll-behavior: smooth;
+		/* Scroll suave solo en desktop */
+		@media (min-width: 769px) {
+			* {
+				scroll-behavior: smooth;
+			}
+		}
+		
+		/* En móvil: scroll instantáneo */
+		@media (max-width: 768px) {
+			* {
+				scroll-behavior: auto !important;
+			}
 		}
 		
 		/* === EFECTOS VISUALES PARA SECCIONES === */
@@ -661,6 +703,53 @@
 				0 12px 35px rgba(0, 0, 0, 0.4),
 				0 0 25px rgba(255, 255, 255, 0.4);
 			color: #ffffff;
+		}
+		
+		/* Enlace principal del hero */
+		.hero-link-wrapper {
+			text-align: center;
+			margin-top: 30px;
+		}
+		
+		.hero-main-link {
+			display: inline-block;
+			font-size: 20px;
+			font-weight: 600;
+			color: #ffffff;
+			text-decoration: none;
+			padding: 18px 45px;
+			border-radius: 50px;
+			background: rgba(255, 255, 255, 0.15);
+			border: 2px solid rgba(255, 255, 255, 0.9);
+			box-shadow: 
+				0 8px 25px rgba(0, 0, 0, 0.3),
+				0 0 15px rgba(255, 255, 255, 0.2);
+			backdrop-filter: blur(10px);
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			font-family: 'Poppins', sans-serif;
+			text-shadow: 
+				0 2px 10px rgba(0, 0, 0, 0.5),
+				0 0 20px rgba(255, 255, 255, 0.3);
+		}
+		
+		.hero-main-link:hover {
+			transform: translateY(-3px) scale(1.02);
+			background: rgba(255, 255, 255, 0.25);
+			border-color: #ffffff;
+			box-shadow: 
+				0 12px 35px rgba(0, 0, 0, 0.4),
+				0 0 25px rgba(255, 255, 255, 0.4);
+			color: #ffffff;
+			text-shadow: 
+				0 2px 15px rgba(0, 0, 0, 0.6),
+				0 0 30px rgba(255, 255, 255, 0.5);
+		}
+		
+		@media (max-width: 768px) {
+			.hero-main-link {
+				font-size: 18px;
+				padding: 16px 35px;
+			}
 		}
 		
 		/* Indicador de scroll */
@@ -3105,11 +3194,30 @@
 	<div class="scroll-progress"></div>
 	
 	<!-- loder -->
-	<div class="loader-wrapper">
+	<div class="loader-wrapper" id="loaderWrapper">
 	  <div class="loader"></div>
 	  <div class="loder-section left-section"></div>
 	  <div class="loder-section right-section"></div>
 	</div>
+	<script>
+		// En móvil: ocultar loader y habilitar scroll de inmediato, sin esperar a nada
+		(function() {
+			var isMobile = window.innerWidth <= 768;
+			if (isMobile) {
+				document.documentElement.style.overflowY = 'auto';
+				document.body.style.overflowY = 'auto';
+				document.body.classList.add('loaded');
+				var w = document.getElementById('loaderWrapper');
+				if (w) {
+					w.style.display = 'none';
+					w.style.visibility = 'hidden';
+					w.style.opacity = '0';
+					w.style.pointerEvents = 'none';
+					w.style.zIndex = '-1';
+				}
+			}
+		})();
+	</script>
 
 
 <!--==================================================-->
@@ -3206,10 +3314,9 @@
 								<p class="hero-subtitle">Desarrollo e implementación de sistemas de IA aplicados a negocio</p>
 							</div>
 
-							<!-- Botones de acción -->
-						<div class="hero-buttons" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
-							<a href="#proyectos" class="hero-btn hero-btn-primary">Ver Proyectos</a>
-							<a href="#contact" class="hero-btn hero-btn-secondary">Agendar consultoría</a>
+							<!-- Enlace principal -->
+						<div class="hero-link-wrapper" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
+							<a href="casos-de-uso.html" class="hero-main-link">¿Cómo aplicar IA en mi negocio?</a>
 						</div>
 						</div>
 					</div>
@@ -3993,7 +4100,7 @@
 			}
 		})();
 		
-		// Forzar scroll habilitado en eventos de touch
+		// Forzar scroll habilitado en eventos de touch - completamente pasivo
 		document.addEventListener('touchstart', function() {
 			document.documentElement.style.overflowY = 'auto';
 			document.body.style.overflowY = 'auto';
@@ -4324,25 +4431,45 @@
 			});
 		});
 		
-		// Mostrar logo al hacer scroll
-		// Throttle para optimizar scroll en móvil
+		// Mostrar logo al hacer scroll - optimizado para móvil
 		let scrollTicking = false;
+		let lastScrollY = 0;
+		const isMobile = window.innerWidth <= 768;
+		const scrollThrottle = isMobile ? 100 : 16; // Más throttle en móvil
+		let lastUpdateTime = 0;
+		
 		function handleScroll() {
+			const now = Date.now();
+			if (now - lastUpdateTime < scrollThrottle) {
+				return; // Skip si no ha pasado suficiente tiempo
+			}
+			lastUpdateTime = now;
+			
 			if (!scrollTicking) {
 				requestAnimationFrame(function() {
-					if (window.scrollY > 100) {
+					const currentScrollY = window.scrollY;
+					
+					// Solo actualizar si el scroll cambió significativamente (móvil)
+					if (isMobile && Math.abs(currentScrollY - lastScrollY) < 5) {
+						scrollTicking = false;
+						return;
+					}
+					lastScrollY = currentScrollY;
+					
+					if (currentScrollY > 100) {
 						document.body.classList.add('show-logo');
 					} else {
 						document.body.classList.remove('show-logo');
 					}
 					
-					// Actualizar barra de progreso
+					// Actualizar barra de progreso solo si es necesario
 					const scrollProgress = document.querySelector('.scroll-progress');
 					if (scrollProgress) {
 						const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-						const scrolled = window.scrollY;
-						const progress = (scrolled / scrollable) * 100;
-						scrollProgress.style.width = progress + '%';
+						if (scrollable > 0) {
+							const progress = (currentScrollY / scrollable) * 100;
+							scrollProgress.style.width = progress + '%';
+						}
 					}
 					scrollTicking = false;
 				});
@@ -4465,19 +4592,9 @@
 						requestAnimationFrame(updateScrollProgress);
 						ticking = true;
 					}
-				});
+				}, { passive: true });
 				
-				// Añadir eventos táctiles para mejorar la experiencia
-				const touchElements = document.querySelectorAll('a, button, .service-single-box, .proyecto-single-box');
-				touchElements.forEach(element => {
-					element.addEventListener('touchstart', function() {
-						this.style.transform = 'scale(0.98)';
-					});
-					
-					element.addEventListener('touchend', function() {
-						this.style.transform = 'scale(1)';
-					});
-				});
+				// No añadir touchstart/touchend que escalan: pueden retrasar el scroll en móvil
 			}
 			
 			// === VERIFICACIÓN MODO STANDALONE === 
