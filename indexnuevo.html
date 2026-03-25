@@ -1,0 +1,5484 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<!-- Habilitar scroll inmediatamente - debe ser lo primero -->
+<script>
+(function() {
+	// Habilitar scroll inmediatamente, antes de cualquier otro script
+	if (document.documentElement) {
+		document.documentElement.style.overflowY = 'auto';
+		document.documentElement.style.overflowX = 'hidden';
+	}
+	if (document.body) {
+		document.body.style.overflowY = 'auto';
+		document.body.style.overflowX = 'hidden';
+	}
+	// Prevenir que cualquier script bloquee el scroll
+	var originalSetProperty = CSSStyleDeclaration.prototype.setProperty;
+	CSSStyleDeclaration.prototype.setProperty = function(property, value, priority) {
+		if ((property === 'overflow' || property === 'overflow-y') && value === 'hidden' && 
+			(this === document.documentElement.style || this === document.body.style)) {
+			// Ignorar intentos de ocultar el scroll
+			return;
+		}
+		return originalSetProperty.call(this, property, value, priority);
+	};
+})();
+</script>
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9ZND42296P"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-9ZND42296P');
+    </script>
+	
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Jonatan Murillo</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover">
+	<!-- Meta tags para mejorar comportamiento móvil -->
+	<meta name="mobile-web-app-capable" content="no">
+	<meta name="apple-mobile-web-app-capable" content="no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta name="apple-mobile-web-app-title" content="Jony Murillo">
+	<meta name="format-detection" content="telephone=yes">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="MobileOptimized" content="width">
+	<!-- Asegurar que se comporta como una página web normal -->
+	<meta name="mobile-web-app-status-bar-style" content="default">
+	<meta name="theme-color" content="#ffffff">
+	<!-- Manifest para comportamiento web estándar (solo si se sirve desde HTTP/HTTPS) -->
+	<script>
+		// Solo cargar el manifest si no estamos en protocolo file://
+		if (window.location.protocol !== 'file:') {
+			const manifestLink = document.createElement('link');
+			manifestLink.rel = 'manifest';
+			manifestLink.href = 'manifest.json';
+			document.head.appendChild(manifestLink);
+		}
+	</script>
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" sizes="56x56" href="assets/images/fav-icon/icon.png">
+	<!-- bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" media="all">
+	<!-- carousel CSS -->
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css" media="all">	
+	<!-- animate CSS -->
+	<link rel="stylesheet" href="assets/css/animate.css" type="text/css" media="all">	
+	<!-- animated-text CSS -->
+	<link rel="stylesheet" href="assets/css/animated-text.css" type="text/css" media="all">	
+	<!-- font-awesome CSS -->
+	<link rel="stylesheet" href="assets/css/all.min.css" type="text/css" media="all">	
+	<!-- font-flaticon CSS -->
+	<link rel="stylesheet" href="assets/css/flaticon.css" type="text/css" media="all">	
+	<!-- theme-default CSS -->
+	<link rel="stylesheet" href="assets/css/theme-default.css" type="text/css" media="all">	
+	<!-- meanmenu CSS -->
+	<link rel="stylesheet" href="assets/css/meanmenu.min.css" type="text/css" media="all">	
+	<!-- Main Style CSS -->
+	<link rel="stylesheet"  href="style.css" type="text/css" media="all">
+	<!-- transitions CSS -->
+	<link rel="stylesheet" href="assets/css/owl.transitions.css" type="text/css" media="all">
+	<!-- venobox CSS -->
+	<link rel="stylesheet" href="venobox/venobox.css" type="text/css" media="all">
+	<!-- responsive CSS -->
+	<link rel="stylesheet" href="assets/css/responsive.css" type="text/css" media="all">
+	<!-- modernizr js -->	
+	<script src="assets/js/vendor/modernizr-3.5.0.min.js"></script>	
+	<!-- bootstrap icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<!-- Google Fonts para el nombre -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+	<!-- Estilos para diseño moderno y profesional -->
+	<style>
+		/* === FONDO ANIMADO Y EFECTOS VISUALES === */
+		
+		/* Fondo principal blanco con estilo moderno */
+		body {
+			background: #ffffff;
+			color: #1a1a1a;
+			position: relative;
+			overflow-x: hidden;
+			overflow-y: auto;
+			height: auto;
+			min-height: 100vh;
+			font-family: 'Poppins', sans-serif;
+		}
+		
+		/* Canvas de fondo animado para todas las secciones excepto portada */
+		#sections-bg-canvas {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+			pointer-events: none !important;
+			display: none;
+			will-change: contents;
+			touch-action: none; /* Prevenir gestos de touch en el canvas */
+		}
+		
+		@media (max-width: 768px) {
+			#sections-bg-canvas {
+				will-change: auto; /* Reducir will-change en móvil */
+			}
+		}
+		
+		body > *:not(#sections-bg-canvas) {
+			position: relative;
+			z-index: 1;
+		}
+		
+		/* Asegurar que la portada no tenga el efecto */
+		.hero-area-slider {
+			background: transparent;
+		}
+		
+		/* Menú de navegación siempre por encima */
+		#sticky-header,
+		.sticky,
+		.mesud.ozil_nav_manu,
+		.mesud.ozil_menu,
+		.floating-hamburger,
+		.mobile-menu-overlay {
+			z-index: 1000 !important;
+			position: relative;
+		}
+		
+		.sticky {
+			position: fixed !important;
+		}
+		
+		.hero-area-slider {
+			z-index: 100 !important;
+		}
+		
+		html {
+			overflow-x: hidden;
+			overflow-y: auto;
+			height: auto;
+		}
+		
+		
+		
+		/* === MEJORAS COMPORTAMIENTO WEB MÓVIL === */
+		
+		/* Asegurar que se comporta como una web app */
+		html {
+			-webkit-text-size-adjust: 100%;
+			-ms-text-size-adjust: 100%;
+			text-size-adjust: 100%;
+		}
+		
+		/* Prevenir selección accidental en elementos de navegación */
+		nav, .mobile-menu-area, .sticky {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		
+		/* Mejorar toque en dispositivos móviles */
+		a, button, input, select, textarea {
+			-webkit-tap-highlight-color: rgba(40, 167, 69, 0.3);
+		}
+		
+		/* Scroll suave solo en desktop */
+		html, body {
+			-webkit-overflow-scrolling: touch;
+			overflow-x: hidden;
+			overflow-y: auto !important;
+		}
+		
+		@media (min-width: 769px) {
+			html, body {
+				scroll-behavior: smooth;
+			}
+		}
+		
+		@media (max-width: 768px) {
+			html, body {
+				scroll-behavior: auto !important;
+			}
+		}
+		
+		/* Asegurar que el loader no bloquee el scroll */
+		.loader-wrapper {
+			pointer-events: none !important;
+		}
+		
+		.loader-wrapper.loading {
+			pointer-events: auto;
+		}
+		
+		/* Prevenir problemas de viewport en móviles */
+		@media (max-width: 768px) {
+			html {
+				height: auto;
+				scroll-behavior: auto;
+				-webkit-overflow-scrolling: touch;
+				overflow-y: scroll !important;
+				touch-action: pan-y;
+			}
+			
+			body {
+				min-height: 100vh;
+				scroll-behavior: auto !important;
+				-webkit-overflow-scrolling: touch;
+				overflow-x: hidden;
+				overflow-y: scroll !important;
+				touch-action: pan-y;
+				height: auto;
+				/* Quitar transform/backface que pueden causar problemas de renderizado */
+			}
+			
+			/* Hero: scroll al primer toque aunque toques botones/enlaces */
+			.hero-area-slider,
+			.hero-content-wrapper,
+			.hero-content-center,
+			.hero-buttons,
+			.hero-btn {
+				touch-action: pan-y !important;
+			}
+			
+			/* Reducir animaciones del hero en móvil para mejor rendimiento */
+			.hero-logo-floating {
+				animation-duration: 6s !important; /* Más lento = menos trabajo */
+			}
+			
+			.loader-wrapper {
+				pointer-events: none !important;
+				z-index: -1 !important;
+			}
+			
+			/* Optimizar renderizado en móvil */
+			.hero-area-slider {
+				contain: layout style paint;
+			}
+			
+			/* Asegurar que el contenido principal sea scrolleable */
+			.hero-area {
+				position: relative;
+				overflow: visible;
+				min-height: 100vh;
+			}
+			
+			/* Mejorar el comportamiento del contenedor */
+			.container {
+				max-width: 100%;
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+		}
+		/* Ocultar logo inicialmente */
+		.logo_img {
+			opacity: 0;
+			transition: opacity 0.5s ease-in-out;
+		}
+		
+		/* Mostrar logo después del scroll */
+		.show-logo .logo_img {
+			opacity: 1;
+		}
+		
+		/* === EFECTOS MODERNOS Y PROFESIONALES === */
+		
+		/* Scroll suave solo en desktop */
+		@media (min-width: 769px) {
+			* {
+				scroll-behavior: smooth;
+			}
+		}
+		
+		/* En móvil: scroll instantáneo */
+		@media (max-width: 768px) {
+			* {
+				scroll-behavior: auto !important;
+			}
+		}
+		
+		/* === EFECTOS VISUALES PARA SECCIONES === */
+		
+		/* Efectos de ondas en las secciones - estilo moderno con verde */
+		.proyectos-area, .service-area, .tab-area, .contact-area, .demos-area {
+			position: relative;
+			overflow: hidden;
+			background: #ffffff;
+		}
+		
+		/* Canvas de fondo animado para proyectos */
+		#proyectos-bg-canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+			pointer-events: none !important;
+			touch-action: none; /* Prevenir gestos de touch en el canvas */
+		}
+		
+		.proyectos-area .container {
+			position: relative;
+			z-index: 10;
+		}
+		
+		.project-slide-item {
+			position: relative;
+			z-index: 15;
+		}
+		
+		.project-thumbnail {
+			position: relative;
+			z-index: 16;
+		}
+		
+		.thumbnail-image {
+			position: relative;
+			z-index: 17;
+		}
+		
+		.thumbnail-overlay {
+			position: relative;
+			z-index: 18;
+		}
+		
+		
+		.project-thumbnail {
+			position: relative;
+			z-index: 4;
+		}
+		
+		.thumbnail-image {
+			position: relative;
+			z-index: 5;
+		}
+		
+		.proyectos-area::before, .service-area::before, .tab-area::before, .contact-area::before, .demos-area::before {
+			content: '';
+			position: absolute;
+			top: -50px;
+			left: -50px;
+			right: -50px;
+			bottom: -50px;
+			background: 
+				radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 30%),
+				radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 30%);
+			animation: sectionFloat 25s ease-in-out infinite;
+			pointer-events: none;
+			z-index: -1;
+		}
+		
+		@keyframes sectionFloat {
+			0%, 100% { 
+				transform: translateY(0px) scale(1);
+				opacity: 0.5;
+			}
+			50% { 
+				transform: translateY(-15px) scale(1.02);
+				opacity: 0.8;
+			}
+		}
+		
+		/* Efectos de brillo en las cajas */
+		.service-single-box, .proyecto-single-box, .tab-single-box, .skills-single-box.two {
+			position: relative;
+			overflow: hidden;
+		}
+		
+		.service-single-box::before, .proyecto-single-box::before, .tab-single-box::before, .skills-single-box.two::before {
+			content: '';
+			position: absolute;
+			top: -50%;
+			left: -50%;
+			width: 200%;
+			height: 200%;
+			background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+			transform: rotate(45deg);
+			transition: all 0.6s ease;
+			opacity: 0;
+		}
+		
+		.service-single-box:hover::before, .proyecto-single-box:hover::before, .tab-single-box:hover::before, .skills-single-box.two:hover::before {
+			opacity: 1;
+			animation: shineEffect 0.8s ease-in-out;
+		}
+		
+		@keyframes shineEffect {
+			0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+			100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+		}
+		
+		/* === LOGO DE JONATAN EN HERO === */
+		.hero-image {
+			display: flex !important;
+			justify-content: center !important;
+			align-items: center !important;
+			height: 100% !important;
+			margin-top: 30px !important;
+			position: relative;
+		}
+		
+		
+		.jonatan-logo-container {
+			position: relative !important;
+			display: flex !important;
+			justify-content: center !important;
+			align-items: center !important;
+			animation: float 3s ease-in-out infinite !important;
+		}
+		
+		.jonatan-logo {
+			max-width: 100% !important;
+			height: auto !important;
+			max-height: 400px !important;
+			border-radius: 20px !important;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+			transition: all 0.3s ease !important;
+			object-fit: contain !important;
+		}
+		
+		.jonatan-logo:hover {
+			transform: scale(1.05) !important;
+			box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+		}
+		
+		@keyframes float {
+			0%, 100% { transform: translateY(0px); }
+			50% { transform: translateY(-20px); }
+		}
+		
+		/* === ESTILOS PARA NUEVO HERO SLIDER === */
+		
+		.hero-area-slider {
+			position: relative;
+			width: 100%;
+			height: 100vh;
+			min-height: 600px;
+			overflow: hidden;
+			z-index: 100 !important;
+		}
+		
+		/* Canvas de fondo azul animado del hero */
+		#hero-bg-canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			pointer-events: none !important;
+			will-change: contents;
+			touch-action: none; /* Prevenir gestos de touch en el canvas */
+		}
+		
+		@media (max-width: 768px) {
+			#hero-bg-canvas {
+				will-change: auto; /* Reducir will-change en móvil */
+			}
+		}
+		
+		/* Video de fondo del hero (oculto) */
+		.hero-video-bg {
+			display: none;
+		}
+		
+		/* Overlay oscuro sobre el video */
+		.hero-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: transparent;
+			z-index: 2;
+		}
+		
+		/* Contenedor del contenido principal */
+		.hero-content-wrapper {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 10 !important;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 80px 0 60px;
+			pointer-events: none;
+		}
+		
+		.hero-content-wrapper * {
+			pointer-events: auto;
+		}
+		
+		.hero-content-wrapper,
+		.hero-content-wrapper .container,
+		.hero-content-wrapper .row,
+		.hero-content-wrapper .col-lg-10,
+		.hero-content-center,
+		.hero-logo-floating,
+		.hero-slogan,
+		.hero-buttons,
+		.hero-btn {
+			position: relative;
+			z-index: 11 !important;
+		}
+		
+		/* Asegurar que el hero no bloquee el menú */
+		.hero-area-slider {
+			pointer-events: none;
+		}
+		
+		.hero-area-slider .hero-video-bg,
+		.hero-area-slider .hero-overlay {
+			pointer-events: none;
+		}
+		
+		.hero-area-slider .hero-content-wrapper {
+			pointer-events: auto;
+		}
+		
+		.hero-content-center {
+			text-align: center;
+			color: white;
+		}
+		
+	/* Logo flotante */
+	.hero-logo-floating {
+		margin-top: 60px;
+		margin-bottom: 40px;
+		animation: gentleFloat 4s ease-in-out infinite;
+		display: inline-block;
+		padding: 30px;
+			background: rgba(255, 255, 255, 0.75);
+			backdrop-filter: blur(15px);
+			border-radius: 20px;
+			box-shadow: 
+				0 20px 60px rgba(0, 0, 0, 0.3),
+				0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+			transition: all 0.4s ease;
+		}
+		
+		.hero-logo-floating:hover {
+			background: rgba(255, 255, 255, 0.9);
+			box-shadow: 
+				0 25px 80px rgba(0, 0, 0, 0.4),
+				0 0 0 1px rgba(40, 167, 69, 0.3) inset;
+			transform: translateY(-5px);
+		}
+		
+		.hero-logo-img {
+			max-width: 280px;
+			width: 100%;
+			height: auto;
+			display: block;
+			transition: all 0.4s ease;
+		}
+		
+		.hero-logo-floating:hover .hero-logo-img {
+			transform: scale(1.05);
+		}
+		
+		@keyframes gentleFloat {
+			0%, 100% { 
+				transform: translateY(0px) rotate(0deg);
+			}
+			25% {
+				transform: translateY(-10px) rotate(1deg);
+			}
+			50% { 
+				transform: translateY(-20px) rotate(0deg);
+			}
+			75% {
+				transform: translateY(-10px) rotate(-1deg);
+			}
+		}
+		
+		/* Slogan principal */
+		.hero-slogan {
+			margin-bottom: 40px;
+		}
+		
+		.hero-main-slogan {
+			font-size: 72px;
+			font-weight: 700;
+			color: #ffffff;
+			margin-bottom: 20px;
+			line-height: 1.2;
+			text-shadow: 
+				0 4px 20px rgba(0, 0, 0, 0.8),
+				0 2px 10px rgba(0, 0, 0, 0.6),
+				0 0 30px rgba(255, 255, 255, 0.3);
+			font-family: 'Poppins', sans-serif;
+			min-height: 86px;
+		}
+		
+		.slogan-typed {
+			color: #ffffff;
+			display: inline-block;
+			text-shadow: 
+				0 4px 20px rgba(0, 0, 0, 0.8),
+				0 2px 10px rgba(0, 0, 0, 0.6),
+				0 0 30px rgba(255, 255, 255, 0.4);
+		}
+		
+		.hero-subtitle {
+			font-size: 24px;
+			color: #ffffff !important;
+			font-weight: 400;
+			text-shadow: 
+				0 2px 15px rgba(0, 0, 0, 0.8),
+				0 1px 5px rgba(0, 0, 0, 0.6),
+				0 0 25px rgba(255, 255, 255, 0.4);
+			font-family: 'Inter', sans-serif;
+		}
+		
+		/* Botones del hero */
+		.hero-buttons {
+			display: flex;
+			gap: 20px;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+		
+		.hero-btn {
+			display: inline-block;
+			padding: 16px 40px;
+			font-size: 16px;
+			font-weight: 600;
+			text-decoration: none;
+			border-radius: 50px;
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			font-family: 'Poppins', sans-serif;
+		}
+		
+		.hero-btn-primary {
+			background: #ffffff;
+			color: #0a4bd6;
+			box-shadow: 
+				0 8px 25px rgba(0, 0, 0, 0.4),
+				0 0 20px rgba(255, 255, 255, 0.3);
+			font-weight: bold;
+			border: 2px solid #ffffff;
+		}
+		
+		.hero-btn-primary:hover {
+			transform: translateY(-3px) scale(1.05);
+			box-shadow: 
+				0 12px 35px rgba(0, 0, 0, 0.5),
+				0 0 30px rgba(255, 255, 255, 0.5);
+			background: #f0f0f0;
+			color: #062b7a;
+		}
+		
+		.hero-btn-secondary {
+			background: rgba(255, 255, 255, 0.15);
+			color: #ffffff;
+			border: 2px solid rgba(255, 255, 255, 0.9);
+			box-shadow: 
+				0 8px 25px rgba(0, 0, 0, 0.3),
+				0 0 15px rgba(255, 255, 255, 0.2);
+			backdrop-filter: blur(10px);
+		}
+		
+		.hero-btn-secondary:hover {
+			transform: translateY(-3px) scale(1.05);
+			background: rgba(255, 255, 255, 0.3);
+			border-color: #ffffff;
+			box-shadow: 
+				0 12px 35px rgba(0, 0, 0, 0.4),
+				0 0 25px rgba(255, 255, 255, 0.4);
+			color: #ffffff;
+		}
+		
+		/* Enlace principal del hero */
+		.hero-link-wrapper {
+			text-align: center;
+			margin-top: 30px;
+		}
+		
+		.hero-main-link {
+			display: inline-block;
+			font-size: 20px;
+			font-weight: 600;
+			color: #ffffff;
+			text-decoration: none;
+			padding: 18px 45px;
+			border-radius: 50px;
+			background: rgba(255, 255, 255, 0.15);
+			border: 2px solid rgba(255, 255, 255, 0.9);
+			box-shadow: 
+				0 8px 25px rgba(0, 0, 0, 0.3),
+				0 0 15px rgba(255, 255, 255, 0.2);
+			backdrop-filter: blur(10px);
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			font-family: 'Poppins', sans-serif;
+			text-shadow: 
+				0 2px 10px rgba(0, 0, 0, 0.5),
+				0 0 20px rgba(255, 255, 255, 0.3);
+		}
+		
+		.hero-main-link:hover {
+			transform: translateY(-3px) scale(1.02);
+			background: rgba(255, 255, 255, 0.25);
+			border-color: #ffffff;
+			box-shadow: 
+				0 12px 35px rgba(0, 0, 0, 0.4),
+				0 0 25px rgba(255, 255, 255, 0.4);
+			color: #ffffff;
+			text-shadow: 
+				0 2px 15px rgba(0, 0, 0, 0.6),
+				0 0 30px rgba(255, 255, 255, 0.5);
+		}
+		
+		@media (max-width: 768px) {
+			.hero-main-link {
+				font-size: 18px;
+				padding: 16px 35px;
+			}
+		}
+		
+		/* Indicador de scroll */
+		.hero-scroll-indicator {
+			position: absolute;
+			bottom: 30px;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 20;
+		}
+		
+		.scroll-down-link {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-decoration: none;
+			color: white;
+			transition: all 0.3s ease;
+		}
+		
+		.scroll-down-link:hover {
+			color: #3b82f6;
+			transform: translateY(5px);
+		}
+		
+		.scroll-text {
+			font-size: 14px;
+			margin-bottom: 8px;
+			font-weight: 500;
+			text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+		}
+		
+		.scroll-arrow {
+			font-size: 24px;
+			animation: bounceArrow 2s ease-in-out infinite;
+		}
+		
+		@keyframes bounceArrow {
+			0%, 100% { 
+				transform: translateY(0px);
+			}
+			50% { 
+				transform: translateY(10px);
+			}
+		}
+		
+	/* Controles del slider de Owl Carousel */
+	.hero-slider .owl-dots {
+		display: none !important;
+	}
+		
+		.hero-slider .owl-dot {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.5);
+			border: 2px solid transparent;
+			transition: all 0.3s ease;
+		}
+		
+		.hero-slider .owl-dot:hover {
+			background: rgba(255, 255, 255, 0.8);
+		}
+		
+		.hero-slider .owl-dot.active {
+			background: #28a745;
+			border-color: white;
+			width: 40px;
+			border-radius: 20px;
+		}
+		
+		/* === RESPONSIVE PARA MÓVILES === */
+		
+		@media (max-width: 768px) {
+			.hero-area-slider {
+				height: 100vh;
+				min-height: 500px;
+			}
+			
+			.hero-slide {
+				height: 100vh;
+				min-height: 500px;
+			}
+			
+			.hero-logo-img {
+				max-width: 180px;
+			}
+			
+			.hero-logo-floating {
+				margin-bottom: 30px;
+				padding: 20px;
+			}
+			
+			.hero-main-slogan {
+				font-size: 36px;
+				min-height: 44px;
+			}
+			
+			.hero-subtitle {
+				font-size: 16px;
+			}
+			
+			.hero-buttons {
+				flex-direction: column;
+				gap: 15px;
+			}
+			
+			.hero-btn {
+				padding: 14px 32px;
+				font-size: 14px;
+				width: 100%;
+				max-width: 280px;
+			}
+			
+			.hero-scroll-indicator {
+				bottom: 20px;
+			}
+			
+			.hero-slider .owl-dots {
+				bottom: 60px;
+			}
+		}
+		
+		/* === TABLETS === */
+		@media (min-width: 769px) and (max-width: 1024px) {
+			.hero-main-slogan {
+				font-size: 56px;
+			}
+			
+			.hero-subtitle {
+				font-size: 20px;
+			}
+			
+			.hero-logo-img {
+				max-width: 220px;
+			}
+			
+			.hero-logo-floating {
+				padding: 25px;
+			}
+		}
+
+		
+		/* Efectos glassmorphism para las cajas - estilo blanco con verde */
+		.service-single-box, .proyecto-single-box, .tab-single-box, .skills-single-box.two {
+			backdrop-filter: blur(15px);
+			background: #ffffff !important;
+			border: 1px solid #e0e0e0 !important;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+			position: relative;
+			color: #1a1a1a !important;
+		}
+		
+		.service-single-box:hover, .proyecto-single-box:hover, .tab-single-box:hover {
+			border-color: #3b82f6 !important;
+			box-shadow: 0 8px 32px rgba(59, 130, 246, 0.2) !important;
+			transform: translateY(-5px) !important;
+		}
+		
+		/* Efecto de brillo en iconos al hacer hover */
+		.service-single-box:hover img[alt*="Desarrollo Web"],
+		.service-single-box:hover img[alt*="Reconocimiento"],
+		.service-single-box:hover img[alt*="Chatbots"],
+		.service-single-box:hover img[alt*="Automatizaciones"] {
+			filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 20px rgba(59, 130, 246, 0.6));
+			transform: scale(1.1);
+			transition: all 0.3s ease;
+		}
+		
+		/* Asegurar transición suave para los iconos */
+		.service-single-box img[alt*="Desarrollo Web"],
+		.service-single-box img[alt*="Reconocimiento"],
+		.service-single-box img[alt*="Chatbots"],
+		.service-single-box img[alt*="Automatizaciones"] {
+			transition: all 0.3s ease;
+		}
+		
+		/* Efecto de brillo para la bombilla en Soluciones Personalizadas */
+		.service-single-box:hover .bombilla-icon {
+			filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.6));
+			transform: scale(1.1);
+			opacity: 0.8 !important;
+		}
+		
+		/* Efectos de partículas flotantes en las cajas */
+		.service-single-box::after, .proyecto-single-box::after, .tab-single-box::after, .skills-single-box.two::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: 
+				radial-gradient(circle at 20% 20%, rgba(40, 167, 69, 0.1) 0%, transparent 20%),
+				radial-gradient(circle at 80% 80%, rgba(0, 198, 255, 0.1) 0%, transparent 20%);
+			animation: particleMove 8s ease-in-out infinite;
+			pointer-events: none;
+			z-index: -1;
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+		
+		.service-single-box:hover::after, .proyecto-single-box:hover::after, .tab-single-box:hover::after, .skills-single-box.two:hover::after {
+			opacity: 1;
+		}
+		
+		@keyframes particleMove {
+			0%, 100% { 
+				transform: translateY(0px) rotate(0deg);
+			}
+			25% { 
+				transform: translateY(-5px) rotate(90deg);
+			}
+			50% { 
+				transform: translateY(-10px) rotate(180deg);
+			}
+			75% { 
+				transform: translateY(-5px) rotate(270deg);
+			}
+		}
+		
+		/* Gradientes en títulos principales - estilo moderno */
+		.section-main-title {
+			color: #000000 !important;
+		}
+		
+		.section-main-title span {
+			color: #3b82f6 !important;
+		}
+		
+		.section-sub-title {
+			color: #3b82f6 !important;
+			border-color: #3b82f6 !important;
+		}
+		
+		/* Mejorar contraste de textos en secciones */
+		.service-title, .tab-title {
+			color: #1a1a1a !important;
+		}
+		
+		.service-descr, .tab-text, .tab-descrip {
+			color: #666666 !important;
+		}
+		
+		.service-number h1 {
+			color: rgba(59, 130, 246, 0.2) !important;
+		}
+		
+		/* Asegurar que los textos sean visibles */
+		p, .service-descr, .tab-descrip {
+			color: #666666 !important;
+		}
+		
+		h1, h2, h3, h4, h5, h6 {
+			color: #1a1a1a !important;
+		}
+		
+		/* Líneas decorativas bajo títulos */
+		.section-title {
+			position: relative;
+		}
+		
+		.section-title::after {
+			content: '';
+			position: absolute;
+			bottom: -15px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 80px;
+			height: 4px;
+			background: linear-gradient(90deg, #3b82f6, rgba(59, 130, 246, 0.5));
+			border-radius: 2px;
+		}
+		
+		.section-title.text-left::after {
+			left: 0;
+			transform: none;
+		}
+		
+		/* Navegación con glassmorphism - estilo blanco */
+		.mesud.ozil_nav_manu {
+			backdrop-filter: blur(20px) !important;
+			background: rgba(255, 255, 255, 0.95) !important;
+			border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+			position: relative;
+			overflow: hidden;
+		}
+		
+		.mesud.ozil_nav_manu .nav_scroll li a {
+			color: #1a1a1a !important;
+		}
+		
+		.mesud.ozil_nav_manu .nav_scroll li a:hover {
+			color: #3b82f6 !important;
+		}
+		
+		/* Efectos de fondo animado en la navegación */
+		.mesud.ozil_nav_manu::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(40, 167, 69, 0.1), transparent);
+			animation: navShimmer 3s ease-in-out infinite;
+			pointer-events: none;
+		}
+		
+		@keyframes navShimmer {
+			0% { left: -100%; }
+			50% { left: 100%; }
+			100% { left: 100%; }
+		}
+		
+		
+		/* Botón contacto con efectos modernos - estilo neón verde */
+		.mesud.ozil-btn a {
+			background: #3b82f6 !important;
+			color: #ffffff !important;
+			box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important;
+			position: relative;
+			overflow: hidden;
+			font-family: 'Poppins', sans-serif !important;
+			font-weight: 600 !important;
+			font-size: 13px !important;
+			letter-spacing: 0.5px !important;
+		}
+		
+		.mesud.ozil-btn a:hover {
+			background: #ffffff !important;
+			box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6) !important;
+		}
+		
+		.mesud.ozil-btn a::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+			transition: left 0.6s ease;
+		}
+		
+		.mesud.ozil-btn a:hover::after {
+			left: 100%;
+		}
+		
+		/* Portfolio con overlay mejorado */
+		/* Slider de proyectos con efecto 3D */
+		.projects-carousel-wrapper {
+			perspective: 1200px;
+			position: relative;
+		}
+		
+		.projects-carousel {
+			position: relative;
+		}
+		
+		.projects-carousel .owl-stage {
+			display: flex;
+			align-items: center;
+			padding: 40px 0;
+		}
+		
+		.projects-carousel .owl-item {
+			transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			transform-style: preserve-3d;
+		}
+		
+		/* Proyecto central - más grande y recto */
+		.projects-carousel .owl-item.center .project-slide-item {
+			transform: scale(1.15) translateZ(0);
+			z-index: 3;
+		}
+		
+		.projects-carousel .owl-item.center .project-thumbnail {
+			border-color: #3b82f6;
+			box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+		}
+		
+		.projects-carousel .owl-item.center .thumbnail-image img,
+		.projects-carousel .owl-item.center .thumbnail-image video {
+			transform: rotateY(0deg) scale(1);
+		}
+		
+		/* Proyecto izquierdo - girado hacia la izquierda */
+		.projects-carousel .owl-item.prev .project-slide-item {
+			transform: scale(0.9) translateX(-20px) translateZ(-50px) rotateY(25deg);
+			z-index: 1;
+			opacity: 0.8;
+			transform-style: preserve-3d;
+		}
+		
+		.projects-carousel .owl-item.prev .project-thumbnail {
+			transform-style: preserve-3d;
+		}
+		
+		/* Proyecto derecho - girado hacia la derecha */
+		.projects-carousel .owl-item.next .project-slide-item {
+			transform: scale(0.9) translateX(20px) translateZ(-50px) rotateY(-25deg);
+			z-index: 1;
+			opacity: 0.8;
+			transform-style: preserve-3d;
+		}
+		
+		.projects-carousel .owl-item.next .project-thumbnail {
+			transform-style: preserve-3d;
+		}
+		
+		/* Items no visibles */
+		.projects-carousel .owl-item:not(.center):not(.prev):not(.next) {
+			opacity: 0.3;
+		}
+		
+		.project-slide-item {
+			padding: 0 15px;
+			transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			transform-style: preserve-3d;
+		}
+		
+		.project-thumbnail {
+			position: relative;
+			border-radius: 15px;
+			overflow: hidden;
+			transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			border: 3px solid transparent;
+			background: #ffffff;
+			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+		}
+		
+		.project-thumbnail:hover {
+			transform: translateY(-10px) scale(1.05);
+			border-color: #3b82f6;
+			box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+		}
+		
+		.thumbnail-image {
+			position: relative;
+			width: 100%;
+			height: 300px;
+			overflow: hidden;
+			transform-style: preserve-3d;
+			perspective: 1000px;
+		}
+		
+		.thumbnail-image img,
+		.thumbnail-image video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+			transform-style: preserve-3d;
+		}
+		
+		/* Asegurar que las imágenes iara_bot y weark cubran completamente el contenedor */
+		.thumbnail-image img[src*="iara_bot"],
+		.thumbnail-image img[src*="weark"] {
+			object-fit: cover;
+			object-position: center;
+		}
+		
+		.thumbnail-video {
+			position: relative;
+		}
+		
+		.play-icon {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 50px;
+			height: 50px;
+			background: rgba(59, 130, 246, 0.9);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #ffffff;
+			font-size: 20px;
+			pointer-events: none;
+			z-index: 2;
+		}
+		
+		.thumbnail-overlay {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: rgba(0, 0, 0, 0.95);
+			padding: 25px 20px;
+			transform: translateY(100%);
+			transition: transform 0.4s ease;
+			backdrop-filter: blur(10px);
+			box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.7);
+			border-top: 2px solid rgba(59, 130, 246, 0.5);
+			z-index: 10;
+		}
+		
+		.project-thumbnail:hover .thumbnail-overlay {
+			transform: translateY(0);
+		}
+		
+		.thumbnail-overlay h4 {
+			color: #ffffff;
+			font-size: 18px;
+			font-weight: 700;
+			margin: 0;
+			text-align: center;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+			letter-spacing: 0.5px;
+			-webkit-text-stroke: 0.3px rgba(255, 255, 255, 0.3);
+		}
+		
+		/* Botones de navegación del carousel - a los lados */
+		.projects-carousel-wrapper {
+			position: relative;
+		}
+		
+		.projects-carousel-wrapper .owl-nav,
+		.projects-nav-container {
+			position: relative !important;
+			width: 100% !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			margin: 30px 0 20px 0 !important;
+			gap: 20px !important;
+			pointer-events: none;
+			z-index: 10;
+			padding: 0 !important;
+			top: auto !important;
+			bottom: auto !important;
+			left: auto !important;
+			right: auto !important;
+		}
+		
+		.projects-dots-container {
+			text-align: center;
+			margin-top: 20px;
+			display: block !important;
+		}
+		
+		.projects-carousel-wrapper .owl-nav button,
+		.projects-nav-container button,
+		.projects-carousel-wrapper .owl-nav .owl-prev,
+		.projects-carousel-wrapper .owl-nav .owl-next,
+		.projects-nav-container .owl-prev,
+		.projects-nav-container .owl-next {
+			width: 60px !important;
+			height: 60px !important;
+			background: rgba(59, 130, 246, 0.9) !important;
+			color: #ffffff !important;
+			border-radius: 50% !important;
+			font-size: 28px !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			transition: all 0.3s ease !important;
+			border: 3px solid rgba(255, 255, 255, 0.3) !important;
+			cursor: pointer !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4) !important;
+			pointer-events: all;
+			position: relative !important;
+			margin: 0 !important;
+		}
+		
+		.projects-carousel-wrapper .owl-nav .owl-prev,
+		.projects-nav-container .owl-prev {
+			order: 1;
+		}
+		
+		.projects-carousel-wrapper .owl-nav .owl-next,
+		.projects-nav-container .owl-next {
+			order: 2;
+		}
+		
+		/* Botones centrados debajo del slider */
+		.projects-nav-container .owl-prev,
+		.projects-nav-container .owl-next {
+			position: relative !important;
+			left: auto !important;
+			right: auto !important;
+		}
+		
+		/* Asegurar que los botones siempre sean visibles */
+		.projects-nav-container .owl-prev,
+		.projects-nav-container .owl-next,
+		.projects-nav-container button.owl-prev,
+		.projects-nav-container button.owl-next {
+			display: flex !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			z-index: 100 !important;
+		}
+		
+		.projects-carousel-wrapper .owl-nav button:hover,
+		.projects-nav-container button:hover {
+			background: #3b82f6 !important;
+			transform: scale(1.15);
+			box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6) !important;
+			border-color: rgba(255, 255, 255, 0.5) !important;
+		}
+		
+		.projects-carousel-wrapper .owl-nav button span,
+		.projects-nav-container button span {
+			display: block;
+			line-height: 1;
+		}
+		
+		.projects-carousel-wrapper .projects-nav-btn {
+			width: 60px !important;
+			height: 60px !important;
+			background: rgba(59, 130, 246, 0.9) !important;
+			color: #ffffff !important;
+			border-radius: 50% !important;
+			font-size: 28px !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			transition: all 0.3s ease !important;
+			border: 3px solid rgba(255, 255, 255, 0.3) !important;
+			cursor: pointer !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4) !important;
+		}
+		
+		.projects-carousel-wrapper .projects-nav-btn:hover {
+			background: #3b82f6 !important;
+			transform: scale(1.15);
+			box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6) !important;
+		}
+		
+		@media (max-width: 768px) {
+			.projects-carousel-wrapper .owl-nav button,
+			.projects-nav-container button {
+				width: 50px !important;
+				height: 50px !important;
+				font-size: 24px !important;
+			}
+			
+			.projects-nav-container {
+				margin: 20px 0 0 0 !important;
+				gap: 15px;
+			}
+		}
+		
+		.projects-carousel-wrapper .owl-dots {
+			text-align: center;
+			margin-top: 20px;
+		}
+		
+		.projects-carousel-wrapper .owl-dots button {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background: rgba(59, 130, 246, 0.3) !important;
+			margin: 0 5px;
+			transition: all 0.3s ease;
+		}
+		
+		.projects-carousel-wrapper .owl-dots button.active {
+			background: #3b82f6 !important;
+			transform: scale(1.3);
+		}
+		
+		@media (max-width: 768px) {
+			/* Asegurar que el canvas esté detrás en móvil */
+			#proyectos-bg-canvas {
+				z-index: 0 !important;
+			}
+			
+			.proyectos-area .container {
+				z-index: 20 !important;
+			}
+			
+			.project-slide-item {
+				z-index: 25 !important;
+			}
+			
+			.project-thumbnail {
+				z-index: 26 !important;
+			}
+			
+			.thumbnail-image {
+				height: 400px;
+				z-index: 27 !important;
+			}
+			
+			.thumbnail-overlay {
+				z-index: 28 !important;
+			}
+			
+			/* Eliminar transparencia en móvil - proyecto central completamente opaco */
+			.projects-carousel .owl-item.center .project-slide-item {
+				transform: scale(1.4) translateZ(0);
+				z-index: 30 !important;
+				opacity: 1 !important;
+			}
+			
+			/* Eliminar transparencia en móvil - proyectos laterales completamente opacos */
+			.projects-carousel .owl-item.prev .project-slide-item,
+			.projects-carousel .owl-item.next .project-slide-item {
+				transform: scale(1.1);
+				z-index: 25 !important;
+				opacity: 1 !important;
+			}
+			
+			/* Eliminar transparencia en móvil - todos los proyectos opacos */
+			.projects-carousel .owl-item .project-slide-item {
+				opacity: 1 !important;
+			}
+			
+			.projects-carousel-wrapper {
+				padding: 20px 10px 20px 10px !important;
+				position: relative;
+				z-index: 20 !important;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			/* Asegurar que el canvas esté detrás en móvil pequeño */
+			#proyectos-bg-canvas {
+				z-index: 0 !important;
+			}
+			
+			.proyectos-area .container {
+				z-index: 20 !important;
+			}
+			
+			.project-slide-item {
+				z-index: 25 !important;
+			}
+			
+			.project-thumbnail {
+				z-index: 26 !important;
+			}
+			
+			.thumbnail-image {
+				height: 350px;
+				z-index: 27 !important;
+			}
+			
+			.thumbnail-overlay {
+				z-index: 28 !important;
+			}
+			
+			/* Eliminar transparencia en móvil pequeño - proyecto central completamente opaco */
+			.projects-carousel .owl-item.center .project-slide-item {
+				transform: scale(1.3) translateZ(0);
+				z-index: 30 !important;
+				opacity: 1 !important;
+			}
+			
+			/* Eliminar transparencia en móvil pequeño - proyectos laterales completamente opacos */
+			.projects-carousel .owl-item.prev .project-slide-item,
+			.projects-carousel .owl-item.next .project-slide-item {
+				transform: scale(1.05);
+				z-index: 25 !important;
+				opacity: 1 !important;
+			}
+			
+			/* Eliminar transparencia en móvil pequeño - todos los proyectos opacos */
+			.projects-carousel .owl-item .project-slide-item {
+				opacity: 1 !important;
+			}
+			
+			.projects-carousel-wrapper {
+				padding: 15px 5px 15px 5px !important;
+				position: relative;
+				z-index: 20 !important;
+			}
+		}
+		
+		.portfolio-title {
+			color: #000000;
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 15px;
+			line-height: 1.3;
+		}
+		
+		.portfolio-text {
+			color: rgba(0, 0, 0, 0.9);
+			font-size: 14px;
+			margin-bottom: 8px;
+			line-height: 1.4;
+		}
+		
+		.ver-mas-btn {
+			background: rgba(0, 0, 0, 0.2);
+			border: 2px solid rgba(0, 0, 0, 0.3);
+			color: #000000;
+			padding: 10px 20px;
+			border-radius: 25px;
+			font-size: 14px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			margin-top: 15px;
+			backdrop-filter: blur(10px);
+		}
+		
+		.ver-mas-btn:hover {
+			background: rgba(0, 0, 0, 0.3);
+			border-color: rgba(0, 0, 0, 0.5);
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+		}
+		
+		/* Efecto parallax para hero - solo en desktop */
+		@media (min-width: 769px) {
+			.hero-area {
+				background-attachment: scroll !important;
+				min-height: 80vh !important;
+			}
+		}
+		
+		/* En móviles, usar scroll normal para evitar bloqueos */
+		@media (max-width: 768px) {
+			.hero-area {
+				background-attachment: scroll !important;
+				/* Asegurar que el scroll funcione correctamente */
+				overflow: visible !important;
+				position: relative !important;
+			}
+			
+			/* Asegurar que el body y html permitan scroll libre */
+			body, html {
+				overflow-x: hidden !important;
+				overflow-y: auto !important;
+				-webkit-overflow-scrolling: touch !important;
+			}
+		}
+		
+		/* === CORRECCIÓN PARA VISTA ESCRITORIO FORZADA DESDE MÓVIL === */
+		/* Cuando se fuerza vista de escritorio desde móvil, ajustar la portada */
+		@media (max-width: 1200px) and (min-width: 769px) {
+			.hero-area {
+				height: auto !important;
+				min-height: 80vh !important;
+				background-attachment: scroll !important;
+				padding: 60px 0 40px !important;
+			}
+			
+			.hero .row {
+				flex-direction: row !important;
+			}
+			
+			.hero .col-lg-6 {
+				width: 50% !important;
+				max-width: 50% !important;
+			}
+			
+			.hero-image {
+				margin-top: 0 !important;
+				margin-bottom: 0 !important;
+				order: 0 !important;
+			}
+			
+			.hero-contant {
+				text-align: left !important;
+				margin-bottom: 0 !important;
+			}
+			
+			.hero-contant h3, .hero-contant h2 {
+				text-align: left !important;
+			}
+		}
+		
+		/* === CORRECCIÓN ADICIONAL PARA PANTALLAS GRANDES MÓVILES === */
+		/* Para dispositivos como OnePlus 8T y similares */
+		@media (max-width: 1400px) and (min-width: 769px) and (orientation: landscape) {
+			.hero-area {
+				height: auto !important;
+				min-height: 80vh !important;
+				background-attachment: scroll !important;
+				padding: 40px 0 30px !important;
+			}
+			
+			.hero .row {
+				flex-direction: row !important;
+			}
+			
+			.hero .col-lg-6 {
+				width: 50% !important;
+				max-width: 50% !important;
+			}
+			
+			.hero-image {
+				margin-top: 0 !important;
+				margin-bottom: 0 !important;
+				order: 0 !important;
+			}
+			
+			.hero-contant {
+				text-align: left !important;
+				margin-bottom: 0 !important;
+			}
+			
+			.hero-contant h3, .hero-contant h2 {
+				text-align: left !important;
+			}
+		}
+		
+		/* === DETECCIÓN DE VISTA ESCRITORIO FORZADA === */
+		/* Regla más amplia para capturar cuando se fuerza vista escritorio */
+		@media (min-width: 769px) and (max-width: 1600px) {
+			/* Solo aplicar si NO es un dispositivo móvil real */
+			@supports not (pointer: coarse) {
+				.hero-area {
+					height: auto !important;
+					min-height: 80vh !important;
+					background-attachment: scroll !important;
+					padding: 60px 0 40px !important;
+				}
+				
+				.hero .row {
+					flex-direction: row !important;
+				}
+				
+				.hero .col-lg-6 {
+					width: 50% !important;
+					max-width: 50% !important;
+				}
+				
+				.hero-image {
+					margin-top: 0 !important;
+					margin-bottom: 0 !important;
+					order: 0 !important;
+				}
+				
+				.hero-contant {
+					text-align: left !important;
+					margin-bottom: 0 !important;
+				}
+				
+				.hero-contant h3, .hero-contant h2 {
+					text-align: left !important;
+				}
+			}
+		}
+		
+		/* Micro-interacciones */
+		.service-number h1 {
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+		}
+		
+		.service-single-box:hover .service-number h1 {
+			transform: scale(1.2) rotate(10deg) !important;
+			color: #28a745 !important;
+		}
+		
+		/* Efectos en skills bars */
+		.skills-single-box.two:hover {
+			transform: translateX(10px) !important;
+		}
+		
+		/* Sombras dinámicas en imágenes */
+		.portfolio-thumb img {
+			transition: all 0.4s ease !important;
+			border-radius: 15px !important;
+		}
+		
+		.proyecto-single-box:hover .portfolio-thumb img {
+			transform: scale(1.05) !important;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+		}
+		
+		/* Efectos de texto typing mejorados */
+		.typed-cursor {
+			color: #28a745 !important;
+			animation: pulse 1.5s infinite !important;
+		}
+		
+		@keyframes pulse {
+			0%, 100% { opacity: 1; transform: scale(1); }
+			50% { opacity: 0.7; transform: scale(1.1); }
+		}
+		
+		/* Scroll indicator mejorado */
+		.scroll-progress {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 0%;
+			height: 4px;
+			background: linear-gradient(90deg, #28a745, #00C6FF, #28a745);
+			background-size: 200% 100%;
+			animation: progressGradient 3s ease infinite;
+			z-index: 9999;
+			transition: width 0.1s ease;
+			box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+		}
+		
+		@keyframes progressGradient {
+			0% { background-position: 0% 50%; }
+			50% { background-position: 100% 50%; }
+			100% { background-position: 0% 50%; }
+		}
+		
+		/* Efectos de scroll suave con parallax */
+		.hero-area {
+			background-attachment: scroll !important;
+		}
+		
+		/* Efectos de entrada para elementos */
+		.fade-in-up {
+			opacity: 0;
+			transform: translateY(50px);
+			transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+		
+		.fade-in-up.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		
+		/* Efectos de hover mejorados para enlaces */
+		.mesud.ozil_menu ul li a {
+			position: relative;
+			transition: all 0.3s ease;
+			font-family: 'Poppins', sans-serif !important;
+			font-weight: 500 !important;
+			font-size: 14px !important;
+			letter-spacing: 0.5px !important;
+		}
+		
+		.mesud.ozil_menu ul li a::after {
+			content: '';
+			position: absolute;
+			bottom: -5px;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background: linear-gradient(90deg, #28a745, #00C6FF);
+			transition: width 0.3s ease;
+		}
+		
+		.mesud.ozil_menu ul li a:hover::after {
+			width: 100%;
+		}
+		
+		/* Efectos de pulsación para elementos importantes */
+		@keyframes pulse {
+			0%, 100% { 
+				transform: scale(1);
+				box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+			}
+			50% { 
+				transform: scale(1.05);
+				box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+			}
+		}
+		
+		
+		/* Animaciones de entrada */
+		.fade-in-up {
+			opacity: 0;
+			transform: translateY(50px);
+			transition: all 0.8s ease;
+		}
+		
+		.fade-in-up.visible {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		
+		/* === DISEÑO RESPONSIVO MODERNO === */
+		
+		/* Tablets (768px - 1024px) */
+		@media (max-width: 1024px) {
+			.jonatan-logo {
+				max-height: 350px !important;
+			}
+			
+			.hero-image {
+				margin-top: 20px !important;
+			}
+			.hero-area {
+				height: 80vh;
+				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
+				background-attachment: scroll !important;
+			}
+			
+			.sticky {
+				padding: 0 50px !important;
+				margin: 5px !important;
+				width: calc(100% - 10px) !important;
+			}
+			
+			.service-single-box, .proyecto-single-box, .tab-single-box {
+				margin-bottom: 25px;
+				padding: 30px 20px;
+			}
+			
+			.section-main-title {
+				font-size: 35px !important;
+			}
+			
+
+		}
+		
+		/* === ASEGURAR BARRA VISIBLE EN DESKTOP === */
+		@media (min-width: 1025px) {
+			#sticky-header,
+			.mesud.ozil_nav_manu {
+				display: block !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+				height: auto !important;
+			}
+			
+			/* Ocultar menú móvil en desktop */
+			.mobile-menu-area {
+				display: none !important;
+			}
+		}
+		
+		/* === OCULTAR BARRA SUPERIOR EN RESPONSIVO === */
+		@media (max-width: 1024px) {
+			#sticky-header,
+			div#sticky-header,
+			.mesud.ozil_nav_manu,
+			div.mesud.ozil_nav_manu,
+			.sticky {
+				display: none !important;
+				visibility: hidden !important;
+				opacity: 0 !important;
+				height: 0 !important;
+				overflow: hidden !important;
+			}
+			
+			/* Asegurar que el menú móvil esté visible */
+			.mobile-menu-area {
+				display: block !important;
+				visibility: visible !important;
+				opacity: 1 !important;
+			}
+		}
+		
+
+		
+		/* === REFUERZO OCULTAR BARRA EN MÓVILES === */
+		@media (max-width: 768px) {
+			#sticky-header,
+			.mesud.ozil_nav_manu,
+			.sticky {
+				display: none !important;
+				visibility: hidden !important;
+				opacity: 0 !important;
+				height: 0 !important;
+			}
+		}
+		
+		/* Mobile Landscape (481px - 768px) */
+		@media (max-width: 768px) {
+			.hero-area {
+				min-height: 100vh !important;
+				height: auto !important;
+				padding: 80px 0 40px !important;
+				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
+				background-attachment: scroll !important;
+				margin-top: 0 !important;
+				display: flex !important;
+				align-items: center !important;
+			}
+			
+			.hero-contant {
+				text-align: center;
+				margin-bottom: 30px;
+			}
+			
+
+			
+			.sticky {
+				padding: 0 20px !important;
+				margin: 5px !important;
+				border-radius: 10px !important;
+			}
+			
+			.mesud.ozil_nav_manu {
+				padding: 0 20px !important;
+			}
+			
+			.section-main-title {
+				font-size: 28px !important;
+				line-height: 1.2 !important;
+			}
+			
+			.section-sub-title {
+				font-size: 14px !important;
+			}
+			
+			.service-single-box, .proyecto-single-box, .tab-single-box {
+				margin-bottom: 20px;
+				padding: 25px 15px;
+				transform: none !important;
+			}
+			
+			.service-single-box:hover, .proyecto-single-box:hover, .tab-single-box:hover {
+				transform: translateY(-5px) scale(1.01) !important;
+			}
+			
+			.section-title::after {
+				width: 60px;
+				height: 3px;
+			}
+			
+			/* === HAMBURGUESA FLOTANTE === */
+			.floating-hamburger {
+				position: fixed !important;
+				top: 20px !important;
+				right: 20px !important;
+				z-index: 1000 !important;
+			}
+			
+			.hamburger-btn {
+				background: #28a745 !important;
+				border: none !important;
+				border-radius: 8px !important;
+				width: 50px !important;
+				height: 50px !important;
+				display: flex !important;
+				flex-direction: column !important;
+				justify-content: center !important;
+				align-items: center !important;
+				cursor: pointer !important;
+				box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4) !important;
+				transition: all 0.3s ease !important;
+			}
+			
+			.hamburger-btn:hover {
+				background: #218838 !important;
+				transform: scale(1.05) !important;
+				box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6) !important;
+			}
+			
+			.hamburger-line {
+				width: 22px !important;
+				height: 3px !important;
+				background: white !important;
+				margin: 2px 0 !important;
+				border-radius: 2px !important;
+				transition: all 0.3s ease !important;
+			}
+			
+			.hamburger-btn.active .hamburger-line:nth-child(1) {
+				transform: rotate(45deg) translate(5px, 5px) !important;
+			}
+			
+			.hamburger-btn.active .hamburger-line:nth-child(2) {
+				opacity: 0 !important;
+			}
+			
+			.hamburger-btn.active .hamburger-line:nth-child(3) {
+				transform: rotate(-45deg) translate(7px, -6px) !important;
+			}
+			
+
+			
+			/* === MENÚ OVERLAY === */
+			.mobile-menu-overlay {
+				position: fixed !important;
+				top: 0 !important;
+				left: 0 !important;
+				width: 100% !important;
+				height: 100% !important;
+				background: rgba(0, 0, 0, 0.95) !important;
+				z-index: 9999 !important;
+				opacity: 0 !important;
+				visibility: hidden !important;
+				transition: all 0.3s ease !important;
+			}
+			
+			.mobile-menu-overlay.active {
+				opacity: 1 !important;
+				visibility: visible !important;
+			}
+			
+			.mobile-menu-content {
+				position: relative !important;
+				width: 100% !important;
+				height: 100% !important;
+				display: flex !important;
+				flex-direction: column !important;
+				justify-content: flex-start !important;
+				align-items: center !important;
+				padding-top: 120px !important;
+				overflow-y: auto !important;
+			}
+			
+			.close-btn {
+				position: absolute !important;
+				top: 20px !important;
+				right: 20px !important;
+				background: transparent !important;
+				border: none !important;
+				color: white !important;
+				font-size: 30px !important;
+				cursor: pointer !important;
+				width: 50px !important;
+				height: 50px !important;
+				border-radius: 50% !important;
+				display: flex !important;
+				justify-content: center !important;
+				align-items: center !important;
+				transition: all 0.3s ease !important;
+			}
+			
+			.close-btn:hover {
+				background: rgba(255, 255, 255, 0.1) !important;
+			}
+			
+			.mobile-nav ul {
+				list-style: none !important;
+				padding: 0 !important;
+				margin: 0 !important;
+				text-align: center !important;
+			}
+			
+			.mobile-nav ul li {
+				margin: 20px 0 !important;
+			}
+			
+			.mobile-nav-link {
+				color: white !important;
+				text-decoration: none !important;
+				font-size: 18px !important;
+				font-weight: 500 !important;
+				padding: 15px 30px !important;
+				border-radius: 12px !important;
+				transition: all 0.3s ease !important;
+				display: block !important;
+				background: rgba(255, 255, 255, 0.1) !important;
+				border: 2px solid rgba(255, 255, 255, 0.2) !important;
+				margin: 10px 0 !important;
+				font-family: 'Poppins', sans-serif !important;
+				letter-spacing: 0.5px !important;
+			}
+			
+			.mobile-nav-link:hover {
+				background: #28a745 !important;
+				color: white !important;
+				transform: translateY(-3px) !important;
+				box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4) !important;
+				border-color: #28a745 !important;
+			}
+			
+			/* Portfolio responsivo */
+			.proyecto-single-box {
+				margin-bottom: 25px;
+			}
+			
+			.portfolio-thumb img {
+				border-radius: 10px !important;
+			}
+			
+			/* Skills responsivo */
+			.skills-single-box.two {
+				margin: 0 10px 25px;
+				padding: 15px;
+			}
+			
+			.skills-single-box.two:hover {
+				transform: translateY(-5px) !important;
+			}
+			
+			/* Tabs responsivo */
+			ul.tabs.active li {
+				margin: 5px 2px;
+				display: block;
+				width: 100%;
+			}
+			
+			ul.tabs.active li a {
+				padding: 12px 20px;
+				font-size: 14px;
+			}
+		}
+		
+		/* Mobile Portrait (320px - 480px) */
+		@media (max-width: 480px) {
+			.hero-area {
+				min-height: 100vh !important;
+				height: auto !important;
+				padding: 80px 0 40px !important;
+				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
+				background-attachment: scroll !important;
+				margin-top: 0 !important;
+				display: flex !important;
+				align-items: center !important;
+			}
+			
+			.hero-contant {
+				text-align: center !important;
+				margin-bottom: 20px !important;
+			}
+			
+			.hero-contant h3, .hero-contant h2 {
+				font-size: 18px !important;
+				padding: 8px 15px !important;
+				margin-bottom: 15px !important;
+				text-align: center !important;
+			}
+			
+			/* Layout móvil: imagen arriba, texto abajo */
+			.hero .row {
+				flex-direction: column-reverse !important;
+			}
+			
+			.hero .col-lg-6 {
+				width: 100% !important;
+				max-width: 100% !important;
+			}
+			
+			.hero-image {
+				margin-bottom: 30px !important;
+				margin-top: 140px !important;
+				order: -1 !important;
+			}
+			
+			.jonatan-logo {
+				max-height: 250px !important;
+				width: auto !important;
+				margin: 0 auto !important;
+				margin-top: 70px !important;
+			}
+			
+			.jonatan-logo-container {
+				text-align: center !important;
+			}
+			
+
+			
+			.sticky {
+				padding: 0 15px !important;
+				margin: 3px !important;
+				border-radius: 8px !important;
+			}
+			
+			.mesud.ozil-btn a {
+				padding: 10px 20px !important;
+				font-size: 12px !important;
+			}
+			
+			.section-main-title {
+				font-size: 24px !important;
+				text-align: center;
+			}
+			
+			.section-sub-title {
+				font-size: 12px !important;
+				text-align: center;
+			}
+			
+			.service-single-box, .proyecto-single-box, .tab-single-box {
+				padding: 20px 10px;
+				margin-bottom: 15px;
+				border-radius: 15px;
+			}
+			
+			.service-number h1 {
+				font-size: 35px !important;
+			}
+			
+			.service-title {
+				font-size: 18px !important;
+			}
+			
+			/* Navegación móvil compacta */
+			.logo img {
+				width: 50px !important;
+				height: 50px !important;
+			}
+			
+			/* Portfolio móvil */
+			.portfolio-content {
+				padding: 15px;
+			}
+			
+			.portfolio-title {
+				font-size: 16px !important;
+				margin-bottom: 10px;
+			}
+			
+			.portfolio-text {
+				font-size: 12px !important;
+				margin-bottom: 6px;
+			}
+			
+			.ver-mas-btn {
+				padding: 8px 16px;
+				font-size: 12px;
+				margin-top: 10px;
+			}
+			
+			/* Contacto móvil */
+			.contact-address ul li {
+				font-size: 14px !important;
+				line-height: 35px;
+			}
+			
+			/* Scroll progress responsivo */
+			.scroll-progress {
+				height: 3px;
+			}
+			
+			/* Efectos reducidos en móvil */
+			.service-single-box:hover .service-number h1 {
+				transform: scale(1.1) rotate(5deg) !important;
+			}
+			
+			/* Tabs móvil */
+			ul.tabs.active {
+				text-align: center;
+				margin-bottom: 30px;
+			}
+			
+			ul.tabs.active li {
+				margin: 3px 1px;
+			}
+			
+			ul.tabs.active li a {
+				padding: 8px 15px;
+				font-size: 12px;
+			}
+			
+			/* Footer responsivo */
+			.footer-text {
+				text-align: center !important;
+				font-size: 12px !important;
+			}
+			
+			.footer-social-icon {
+				text-align: center;
+				margin-bottom: 15px;
+			}
+		}
+		
+		/* Mobile Pequeño (máx 360px) */
+		@media (max-width: 360px) {
+			.hero-area {
+				min-height: 100vh !important;
+				height: auto !important;
+				padding: 80px 0 40px !important;
+				background: url('assets/images/fondo3.png') center center/cover no-repeat !important;
+				background-attachment: scroll !important;
+				margin-top: 0 !important;
+				display: flex !important;
+				align-items: center !important;
+			}
+			
+			.container {
+				padding: 0 10px;
+			}
+			
+			.hero-contant h3, .hero-contant h2 {
+				font-size: 16px !important;
+				padding: 6px 12px !important;
+			}
+			
+			.section-main-title {
+				font-size: 20px !important;
+			}
+			
+			.service-single-box, .proyecto-single-box, .tab-single-box {
+				padding: 15px 8px;
+			}
+			
+			/* Portfolio móvil muy pequeño */
+			.portfolio-content {
+				padding: 10px;
+			}
+			
+			.portfolio-title {
+				font-size: 14px !important;
+				margin-bottom: 8px;
+			}
+			
+			.portfolio-text {
+				font-size: 11px !important;
+				margin-bottom: 4px;
+			}
+			
+			.ver-mas-btn {
+				padding: 6px 12px;
+				font-size: 11px;
+				margin-top: 8px;
+			}
+			
+			.sticky {
+				margin: 2px !important;
+				padding: 0 10px !important;
+			}
+			
+			/* Glassmorphism reducido en móviles muy pequeños */
+			.service-single-box, .proyecto-single-box, .tab-single-box, .skills-single-box.two {
+				backdrop-filter: blur(10px);
+			}
+		}
+		
+		/* === MEJORAS ESPECÍFICAS PARA MÓVIL === */
+		@media (max-width: 768px) {
+			/* Optimizaciones de performance */
+			* {
+				-webkit-transform: translateZ(0);
+				transform: translateZ(0);
+			}
+			
+			.fade-in-up {
+				transform: translateY(20px);
+			}
+			
+			/* Reducir animaciones en móvil para mejor performance */
+			.service-single-box, .proyecto-single-box, .tab-single-box {
+				transition: all 0.3s ease !important;
+			}
+			
+			/* Mejoras táctiles para móvil */
+			body {
+				-webkit-touch-callout: default;
+				-webkit-user-select: text;
+				user-select: text;
+				-webkit-tap-highlight-color: rgba(40, 167, 69, 0.3);
+				touch-action: manipulation;
+			}
+			
+			/* Áreas táctiles más grandes para móvil */
+			a, button, .service-single-box, .proyecto-single-box {
+				min-height: 44px;
+				min-width: 44px;
+				padding: 12px;
+			}
+			
+			/* Enlaces telefónicos mejorados */
+			a[href^="tel:"] {
+				color: #28a745;
+				text-decoration: none;
+				border-bottom: 1px dashed #28a745;
+			}
+			
+			/* Mejor scroll en móviles */
+			html {
+				-webkit-overflow-scrolling: touch;
+				scroll-behavior: smooth;
+			}
+			
+			/* Prevenir zoom accidental en inputs */
+			input, select, textarea {
+				font-size: 16px !important;
+			}
+			
+			/* === AJUSTES PARA BOTONES FLOTANTES MÓVILES === */
+			
+			/* En pantallas muy pequeñas, hacer los botones un poco más pequeños */
+			@media (max-width: 480px) {
+				.floating-hamburger {
+					top: 15px !important;
+					right: 15px !important;
+				}
+				
+				.hamburger-btn {
+					width: 45px !important;
+					height: 45px !important;
+				}
+				
+				.hamburger-line {
+					width: 18px !important;
+				}
+			}
+			
+			/* Asegurar que no interfieran entre sí */
+			@media (max-width: 360px) {
+				.floating-hamburger {
+					top: 10px !important;
+					right: 10px !important;
+				}
+			}
+			
+
+		}
+		
+		/* === BOTONES VER MÁS === */
+		.ver-mas-btn {
+			background: linear-gradient(135deg, #28a745, #20c997);
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 25px;
+			font-size: 14px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			margin-top: 15px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+			font-family: 'Poppins', sans-serif;
+		}
+		
+		.ver-mas-btn:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
+			background: linear-gradient(135deg, #218838, #1e7e34);
+		}
+		
+		.ver-mas-btn i {
+			font-size: 16px;
+		}
+		
+		/* === TARJETA DE CONTACTO === */
+		.contact-area {
+			padding: 80px 0;
+			background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+		}
+		
+        .contact-card-image {
+            display: block;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            width: auto;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+            overflow: hidden;
+        }
+		
+		
+		.contact-card-image:hover {
+			transform: translateY(-10px) scale(1.02);
+			box-shadow: none;
+			overflow: visible;
+		}
+		
+		.contact-card-img {
+			width: 100%;
+			height: auto;
+			border-radius: 50px;
+			box-shadow: none;
+			transition: all 0.3s ease;
+			display: block;
+			margin: 0;
+			padding: 0;
+			border: none;
+			outline: none;
+			object-fit: contain;
+			background: transparent;
+		}
+		
+		.contact-card-image:hover .contact-card-img {
+			box-shadow: none;
+		}
+		
+		/* Overlay de contacto */
+		.contact-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(135deg, rgba(40, 167, 69, 0.95), rgba(0, 198, 255, 0.95));
+			border-radius: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.4s ease;
+			backdrop-filter: blur(10px);
+		}
+		
+		.contact-card-image:hover .contact-overlay {
+			opacity: 1;
+			visibility: visible;
+		}
+		
+		.contact-overlay-content {
+			text-align: center;
+			color: white;
+			padding: 20px;
+		}
+		
+		.contact-overlay-content h4 {
+			font-size: 18px;
+			font-weight: 600;
+			margin-bottom: 20px;
+			color: white;
+		}
+		
+		.contact-options {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+		}
+		
+		.contact-option {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			background: rgba(255, 255, 255, 0.2);
+			border: 2px solid rgba(255, 255, 255, 0.3);
+			border-radius: 25px;
+			padding: 12px 20px;
+			color: white;
+			text-decoration: none;
+			font-weight: 500;
+			transition: all 0.3s ease;
+			backdrop-filter: blur(10px);
+		}
+		
+		.contact-option:hover {
+			background: rgba(255, 255, 255, 0.3);
+			border-color: rgba(255, 255, 255, 0.5);
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+			color: white;
+		}
+		
+		.contact-option i {
+			font-size: 20px;
+			width: 24px;
+			text-align: center;
+		}
+		
+		.contact-option.whatsapp i {
+			color: #25D366;
+		}
+		
+		.contact-option.phone i {
+			color: #28a745;
+		}
+		
+		.contact-option.email i {
+			color: #007bff;
+		}
+		
+		/* Responsive para la imagen de tarjeta de contacto */
+		@media (max-width: 768px) {
+			.contact-area {
+				padding: 60px 0;
+			}
+			
+			.contact-card-img {
+				max-width: 90%;
+			}
+			
+			.contact-overlay-content h4 {
+				font-size: 16px;
+				margin-bottom: 15px;
+			}
+			
+			.contact-options {
+				gap: 12px;
+			}
+			
+			.contact-option {
+				padding: 10px 16px;
+				font-size: 14px;
+			}
+			
+			.contact-option i {
+				font-size: 18px;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.contact-area {
+				padding: 40px 0;
+			}
+			
+			.contact-card-img {
+				max-width: 95%;
+			}
+			
+			.contact-overlay-content {
+				padding: 15px;
+			}
+			
+			.contact-overlay-content h4 {
+				font-size: 14px;
+				margin-bottom: 12px;
+			}
+			
+			.contact-options {
+				gap: 10px;
+			}
+			
+			.contact-option {
+				padding: 8px 12px;
+				font-size: 13px;
+				border-radius: 20px;
+			}
+			
+			.contact-option i {
+				font-size: 16px;
+			}
+		}
+		
+		
+		/* === MODAL DE VIDEO DE DEMOS === */
+		.video-modal {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.9);
+			z-index: 10001;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.3s ease;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 20px;
+		}
+		
+		.video-modal.active {
+			opacity: 1;
+			visibility: visible;
+		}
+		
+		.video-modal-content {
+			background: transparent;
+			border-radius: 15px;
+			max-width: 90vw;
+			max-height: 90vh;
+			width: auto;
+			height: auto;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		
+		.video-modal-video {
+			width: 100%;
+			height: auto;
+			max-height: 80vh;
+			border-radius: 15px;
+			box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+		}
+		
+		.video-modal-close {
+			position: absolute;
+			top: -50px;
+			right: 0;
+			background: rgba(255, 255, 255, 0.2);
+			border: 2px solid rgba(255, 255, 255, 0.3);
+			color: white;
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			font-size: 18px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			backdrop-filter: blur(10px);
+		}
+		
+		.video-modal-close:hover {
+			background: rgba(255, 255, 255, 0.3);
+			border-color: rgba(255, 255, 255, 0.5);
+			transform: scale(1.1);
+		}
+		
+		.video-modal-title {
+			color: white;
+			font-size: 24px;
+			font-weight: 600;
+			margin-bottom: 20px;
+			text-align: center;
+			font-family: 'Poppins', sans-serif;
+		}
+		
+		/* Responsive para modal de video */
+		@media (max-width: 768px) {
+			.video-modal {
+				padding: 10px;
+				align-items: flex-start; /* Cambiar de center a flex-start */
+				padding-top: 70px; /* Añadir padding superior (30px más) */
+			}
+			
+			.video-modal-content {
+				max-width: 95vw;
+				max-height: 95vh;
+				margin-top: 0; /* Asegurar que no hay margen superior */
+			}
+			
+			.video-modal-video {
+				max-height: 60vh; /* Reducir altura para que quepa mejor */
+			}
+			
+			.video-modal-title {
+				font-size: 20px;
+				margin-bottom: 15px;
+			}
+			
+			.video-modal-close {
+				top: 10px; /* Cambiar posición a dentro del contenido */
+				right: 10px;
+				width: 35px;
+				height: 35px;
+				font-size: 16px;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.video-modal {
+				padding: 5px;
+				padding-top: 65px; /* Ajustar proporcionalmente (30px más) */
+			}
+			
+			.video-modal-content {
+				max-width: 100vw;
+				max-height: 100vh;
+			}
+			
+			.video-modal-video {
+				max-height: 50vh; /* Aún más pequeño para móviles muy pequeños */
+			}
+			
+			.video-modal-title {
+				font-size: 18px;
+				margin-bottom: 10px;
+			}
+			
+			.video-modal-close {
+				top: 5px; /* Posición dentro del contenido */
+				right: 5px;
+				width: 30px;
+				height: 30px;
+				font-size: 14px;
+			}
+		}
+		
+		/* === CARRUSEL DE PÍLDORAS === */
+		.demos-area {
+			padding: 80px 0;
+			background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+			position: relative;
+			overflow: hidden;
+		}
+		
+		.pildoras-area::before {
+			content: '';
+			position: absolute;
+			top: -50px;
+			left: -50px;
+			right: -50px;
+			bottom: -50px;
+			background: 
+				radial-gradient(circle at 10% 20%, rgba(40, 167, 69, 0.05) 0%, transparent 30%),
+				radial-gradient(circle at 90% 80%, rgba(0, 198, 255, 0.05) 0%, transparent 30%);
+			animation: sectionFloat 25s ease-in-out infinite;
+			pointer-events: none;
+			z-index: -1;
+		}
+		
+		.demos-carousel {
+			margin-top: 50px;
+		}
+		
+		.demo-item {
+			padding: 0 15px;
+			display: flex;
+			flex-direction: column;
+		}
+		
+		.demo-title {
+			text-align: center;
+			margin-bottom: 15px;
+		}
+		
+		.demo-title h3 {
+			font-size: 18px;
+			font-weight: 600;
+			color: #2c3e50;
+			margin: 0;
+			font-family: 'Poppins', sans-serif;
+			line-height: 1.3;
+		}
+		
+		.demo-description {
+			font-size: 14px;
+			color: #666;
+			margin: 8px 0 0 0;
+			font-family: 'Poppins', sans-serif;
+			line-height: 1.4;
+			font-weight: 400;
+		}
+		
+		.demo-card {
+			background: white;
+			border-radius: 20px;
+			box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+			overflow: hidden;
+			transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			border: 3px solid transparent;
+			background-clip: padding-box;
+			position: relative;
+			height: 100%;
+		}
+		
+		.demo-card::before {
+			content: '';
+			position: absolute;
+			top: 4px;
+			left: 4px;
+			right: 4px;
+			bottom: 4px;
+			background: linear-gradient(135deg, #00c6ff, #28a745, #00c6ff);
+			border-radius: 16px;
+			z-index: -1;
+			opacity: 0;
+			transition: opacity 0.4s ease;
+		}
+		
+		.demo-card:hover::before {
+			opacity: 1;
+		}
+		
+		.demo-card:hover {
+			transform: translateY(-15px) scale(1.03);
+			box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+			cursor: pointer;
+		}
+		
+		.demo-thumb {
+			position: relative;
+			overflow: hidden;
+			height: 100%;
+			width: 100%;
+			aspect-ratio: 1;
+		}
+		
+		/* Botón de play personalizado */
+		.demo-thumb::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 80px;
+			height: 80px;
+			background: linear-gradient(135deg, #28a745, #20c997);
+			border-radius: 50%;
+			opacity: 0;
+			transition: all 0.3s ease;
+			pointer-events: none;
+			z-index: 10;
+		}
+		
+		.demo-thumb::before {
+			content: '▶';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			color: white;
+			font-size: 24px;
+			opacity: 0;
+			transition: all 0.3s ease;
+			pointer-events: none;
+			z-index: 11;
+			margin-left: 4px; /* Ajuste visual para centrar el icono */
+		}
+		
+		.demo-card:hover .demo-thumb::after,
+		.demo-card:hover .demo-thumb::before {
+			opacity: 1;
+		}
+		
+		.demo-video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center center;
+			border-radius: 0;
+			transition: all 0.4s ease;
+			display: block;
+			cursor: pointer;
+		}
+		
+		.demo-card:hover .demo-video {
+			transform: scale(1.02);
+		}
+		
+		/* Ocultar completamente todos los controles nativos del navegador */
+		.demo-video::-webkit-media-controls {
+			display: none !important;
+		}
+		
+		.demo-video::-webkit-media-controls-panel {
+			display: none !important;
+		}
+		
+		.demo-video::-webkit-media-controls-play-button {
+			display: none !important;
+		}
+		
+		.demo-video::-webkit-media-controls-start-playback-button {
+			display: none !important;
+		}
+		
+		.demo-video::-webkit-media-controls-overlay-play-button {
+			display: none !important;
+		}
+		
+		.demo-video::-webkit-media-controls-enclosure {
+			display: none !important;
+		}
+		
+		/* Ocultar también en otros navegadores */
+		.demo-video::-moz-media-controls {
+			display: none !important;
+		}
+		
+		.demo-video::-ms-media-controls {
+			display: none !important;
+		}
+		
+		/* Optimización específica para videos cuadrados 1012x1014 */
+		.demo-video {
+			/* Asegurar que los videos cuadrados mantengan su proporción */
+			object-fit: cover;
+			object-position: center center;
+			/* Forzar que todas las imágenes poster se vean igual */
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+		
+		/* Asegurar que las imágenes poster se vean consistentes */
+		.demo-video[poster] {
+			object-fit: cover !important;
+			object-position: center center !important;
+		}
+		
+		/* Forzar comportamiento consistente en todos los videos */
+		.demo-thumb video {
+			width: 100% !important;
+			height: 100% !important;
+			object-fit: cover !important;
+			object-position: center center !important;
+			display: block !important;
+		}
+		
+		
+		
+		/* Responsive para demos */
+		@media (max-width: 768px) {
+			.demos-area {
+				padding: 60px 0;
+			}
+			
+			.demo-title h3 {
+				font-size: 16px;
+			}
+			
+			.demo-description {
+				font-size: 13px;
+			}
+			
+			.demo-thumb {
+				height: 250px;
+				aspect-ratio: 1;
+			}
+			
+			.demo-video {
+				height: 250px;
+			}
+			
+			/* Botón de play personalizado responsive */
+			.demo-thumb::after {
+				width: 60px;
+				height: 60px;
+			}
+			
+			.demo-thumb::before {
+				font-size: 18px;
+			}
+			
+			
+		}
+		
+		@media (max-width: 480px) {
+			.demos-area {
+				padding: 40px 0;
+			}
+			
+			.demo-title h3 {
+				font-size: 14px;
+			}
+			
+			.demo-description {
+				font-size: 12px;
+			}
+			
+			.demo-thumb {
+				height: 200px;
+				aspect-ratio: 1;
+			}
+			
+			.demo-video {
+				height: 200px;
+			}
+			
+			/* Botón de play personalizado para móviles pequeños */
+			.demo-thumb::after {
+				width: 50px;
+				height: 50px;
+			}
+			
+			.demo-thumb::before {
+				font-size: 16px;
+			}
+			
+			
+		}
+		
+		/* === BOTONES DE NAVEGACIÓN DEL DEMOS CAROUSEL === */
+		
+		.demo-nav-btn {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			background: linear-gradient(135deg, #28a745, #20c997) !important;
+			color: white !important;
+			border: none !important;
+			border-radius: 50% !important;
+			width: 50px !important;
+			height: 50px !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			cursor: pointer !important;
+			transition: all 0.3s ease !important;
+			box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3) !important;
+			z-index: 10 !important;
+			font-size: 20px !important;
+		}
+		
+		.demo-nav-btn:hover {
+			background: linear-gradient(135deg, #20c997, #28a745) !important;
+			transform: translateY(-50%) scale(1.1) !important;
+			box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5) !important;
+		}
+		
+		.demos-carousel .owl-prev.demo-nav-btn {
+			left: 15px !important;
+		}
+		
+		.demos-carousel .owl-next.demo-nav-btn {
+			right: 15px !important;
+		}
+		
+		@media (max-width: 768px) {
+			.demo-nav-btn {
+				width: 40px !important;
+				height: 40px !important;
+				font-size: 16px !important;
+			}
+			
+			.demos-carousel .owl-prev.demo-nav-btn {
+				left: 5px !important;
+			}
+			
+			.demos-carousel .owl-next.demo-nav-btn {
+				right: 5px !important;
+			}
+		}
+		
+		/* Responsive para la tarjeta */
+		@media (max-width: 768px) {
+			.contact-area {
+				padding: 60px 0;
+			}
+			
+			.contact-card-inner {
+				flex-direction: column;
+				text-align: center;
+				padding: 25px 20px;
+				gap: 20px;
+			}
+			
+			.contact-name h3 {
+				font-size: 20px;
+			}
+			
+			.avatar-img {
+				width: 70px;
+				height: 70px;
+			}
+			
+			.contact-item a {
+				font-size: 14px;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.contact-area {
+				padding: 40px 0;
+			}
+			
+			.contact-card-inner {
+				padding: 20px 15px;
+			}
+			
+			.contact-name h3 {
+				font-size: 18px;
+			}
+			
+			.avatar-img {
+				width: 60px;
+				height: 60px;
+			}
+			
+		.contact-item a {
+			font-size: 14px;
+		}
+	}
+	
+
+		
+	</style>
+
+	
+</head>
+<body>
+	<!-- Indicador de progreso de scroll -->
+	<div class="scroll-progress"></div>
+	
+	<!-- loder -->
+	<div class="loader-wrapper" id="loaderWrapper">
+	  <div class="loader"></div>
+	  <div class="loder-section left-section"></div>
+	  <div class="loder-section right-section"></div>
+	</div>
+	<script>
+		// En móvil: ocultar loader y habilitar scroll de inmediato, sin esperar a nada
+		(function() {
+			var isMobile = window.innerWidth <= 768;
+			if (isMobile) {
+				document.documentElement.style.overflowY = 'auto';
+				document.body.style.overflowY = 'auto';
+				document.body.classList.add('loaded');
+				var w = document.getElementById('loaderWrapper');
+				if (w) {
+					w.style.display = 'none';
+					w.style.visibility = 'hidden';
+					w.style.opacity = '0';
+					w.style.pointerEvents = 'none';
+					w.style.zIndex = '-1';
+				}
+			}
+		})();
+	</script>
+
+
+<!--==================================================-->
+<!-- Start Mesud Ozil Main Menu Area -->
+<!--==================================================-->
+<div id="sticky-header" class="mesud ozil_nav_manu sticky">
+	<div class="row align-items-center">
+		<div class="col-lg-3">
+			<div class="logo" style="display: flex; align-items: center; gap: 15px;">
+				<a href="index.html" title="Jonatan Murillo">
+					<img src="assets/images/yogrande.png" alt="Jonatan Murillo" width="70" height="70" style="display: block;">
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-9">
+			<nav class="mesud ozil_menu">
+				<ul class="nav_scroll">
+					<li><a href="#hero">HOME</a></li>
+					<!--<li><a href="#demos">DEMOS</a></li>-->
+					<li><a href="#proyectos">PROYECTOS</a></li>
+					<li><a href="#service">SERVICIOS IA</a></li>
+					<li><a href="#resume">TRAYECTORIA</a></li>
+					
+					<!--<li><a href="#testimonial">CLIENTS</a></li>
+					<li><a href="#blog">BLOG</a></li>
+					<li><a href="#contact">CONTACT</a></li>-->
+				</ul>
+				<div class="mesud ozil-btn">
+					<a href="#contact">Contacto<i class="bi bi-arrow-right"></i></a>
+				</div>
+			</nav>
+		</div>
+	</div>
+</div>
+
+
+<!-- Hamburguesa Flotante -->
+<div class="floating-hamburger d-lg-none" style="display: flex; justify-content: space-between; align-items: center; padding-left: 0; padding-right: 15px;">
+	<div class="mobile-logos">
+	</div>
+	<button class="hamburger-btn" id="mobileMenuToggle">
+		<span class="hamburger-line"></span>
+		<span class="hamburger-line"></span>
+		<span class="hamburger-line"></span>
+	</button>
+</div>
+
+
+
+<!-- Menú Móvil Overlay -->
+<div class="mobile-menu-overlay d-lg-none" id="mobileMenuOverlay">
+	<div class="mobile-menu-content">
+		<button class="close-btn" id="closeMenu">✕</button>
+		<nav class="mobile-nav">
+			<ul>
+				<li><a href="#hero" class="mobile-nav-link">HOME</a></li>
+				<!--<li><a href="#demos" class="mobile-nav-link">DEMOS</a></li>-->
+				<li><a href="#proyectos" class="mobile-nav-link">PROYECTOS</a></li>
+				<li><a href="#service" class="mobile-nav-link">SERVICIOS IA</a></li>
+				<li><a href="#resume" class="mobile-nav-link">TRAYECTORIA</a></li>
+				<li><a href="#contact" class="mobile-nav-link">CONTACTO</a></li>
+			</ul>
+		</nav>
+	</div>
+</div>
+<!--==================================================-->
+<!-- End Mesud Ozil Main Menu Area -->
+<!--==================================================-->
+
+
+
+<!--==================================================-->
+<!-- Start Mesud Ozil hero Area -->
+<!--==================================================-->
+
+	<div class="hero-area-slider" id="hero">
+		<!-- Canvas de fondo azul animado -->
+		<canvas id="hero-bg-canvas"></canvas>
+		<div class="hero-overlay"></div>
+
+		<!-- Contenido principal del hero -->
+		<div class="hero-content-wrapper">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<div class="col-lg-10">
+						<div class="hero-content-center text-center">
+							<!-- Logo flotante -->
+							<div class="hero-logo-floating" data-aos="zoom-in" data-aos-duration="1000">
+								<img src="assets/images/logo jonatan.png" alt="Jonatan Murillo" class="hero-logo-img">
+							</div>
+							
+							<!-- Slogan principal -->
+							<div class="hero-slogan" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+								<p class="hero-subtitle">Desarrollo e implementación de sistemas de IA aplicados a negocio</p>
+							</div>
+
+							<!-- Enlace principal -->
+						<div class="hero-link-wrapper" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="600">
+							<a href="casos-de-uso.html" class="hero-main-link">¿Cómo aplicar IA en mi negocio?</a>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	
+<!--==================================================-->
+<!-- end Mesud Ozil hero Area -->
+<!--==================================================-->
+
+	<!-- Canvas de fondo animado para todas las secciones excepto portada -->
+	<canvas id="sections-bg-canvas"></canvas>
+
+
+
+
+
+
+	<!--==================================================-->
+
+
+
+
+<!--==================================================-->
+<!-- Start Servicios con IA Area -->
+<!--==================================================-->
+
+<div class="service-area" id="service" style="background: #ffffff; padding: 100px 0;">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
+				<div class="section-title text-center">
+					<h5 class="section-sub-title" style="display: inline-block; padding: 8px 20px; border: 1px solid #3b82f6; color: #3b82f6; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Inteligencia Artificial</h5>
+					<h1 class="section-main-title">IA Aplicada a <span style="color: #3b82f6;">Tu Negocio</span></h1>
+					<p style="color: #666666; font-size: 18px; margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto;">
+						Transformación de tu empresa con soluciones de inteligencia artificial personalizadas. Automatización de procesos, optimización de operaciones y potenciación de tu productividad.
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- Primera fila: Servicios -->
+		<div class="row" style="margin-top: 60px; display: flex; flex-wrap: wrap;">
+			<div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="2000" style="display: flex;">
+				<div class="service-single-box" style="padding: 40px; display: flex; flex-direction: column; width: 100%; position: relative; background-image: url('assets/images/web.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+					<div style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 10px; margin: -20px; margin-bottom: 20px;">
+						<div style="margin-bottom: 20px;">
+							<img src="assets/images/web.png" alt="Desarrollo Web" style="width: 48px; height: 48px;">
+						</div>
+						<h3 style="color: #000000; font-size: 22px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase;">Desarrollo Web</h3>
+						<p style="color: #666666; font-size: 14px; margin-bottom: 20px; line-height: 1.6;">
+							Aplicaciones web potenciadas con inteligencia artificial. Desarrollo de soluciones que aprenden, se adaptan y optimizan automáticamente para tu negocio.
+						</p>
+						<ul style="color: #666666; font-size: 12px; list-style: none; padding: 0; margin-top: auto;">
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Diseño responsive y adaptativo</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Optimización automática con IA</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Integración con sistemas existentes</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="2000" style="display: flex;">
+				<div class="service-single-box" style="padding: 40px; display: flex; flex-direction: column; width: 100%; position: relative; background-image: url('assets/images/reco.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+					<div style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 10px; margin: -20px; margin-bottom: 20px;">
+						<div style="margin-bottom: 20px;">
+							<img src="assets/images/reco.png" alt="Reconocimiento de Imágenes" style="width: 48px; height: 48px;">
+						</div>
+						<h3 style="color: #000000; font-size: 22px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase;">Reconocimiento de Imágenes</h3>
+						<p style="color: #666666; font-size: 14px; margin-bottom: 20px; line-height: 1.6; flex-grow: 1;">
+							IA que analiza imágenes y documentos para extraer información automáticamente. La inteligencia artificial convierte facturas, formularios, tickets y cualquier documento en datos estructurados listos para usar.
+						</p>
+						<ul style="color: #666666; font-size: 12px; list-style: none; padding: 0;">
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>OCR avanzado con precisión del 99%</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Extracción automática de datos</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Integración con tus sistemas</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="2000" style="display: flex;">
+				<div class="service-single-box" style="padding: 40px; display: flex; flex-direction: column; width: 100%; position: relative; background-image: url('assets/images/chat.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+					<div style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 10px; margin: -20px; margin-bottom: 20px;">
+						<div style="margin-bottom: 20px;">
+							<img src="assets/images/chat.png" alt="Chatbots Inteligentes" style="width: 48px; height: 48px;">
+						</div>
+						<h3 style="color: #000000; font-size: 22px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase;">Chatbots Inteligentes</h3>
+						<p style="color: #666666; font-size: 14px; margin-bottom: 20px; line-height: 1.6; flex-grow: 1;">
+							Chatbots con IA que entienden el contexto y responden de forma natural. La inteligencia artificial atiende clientes 24/7, resuelve dudas y automatiza procesos de atención al cliente.
+						</p>
+						<ul style="color: #666666; font-size: 12px; list-style: none; padding: 0;">
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Integración con WhatsApp, Telegram y web</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Procesamiento de lenguaje natural</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Aprendizaje continuo y personalización</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-duration="2000" style="display: flex;">
+				<div class="service-single-box" style="padding: 40px; display: flex; flex-direction: column; width: 100%; position: relative; background-image: url('assets/images/auto.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+					<div style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 10px; margin: -20px; margin-bottom: 20px;">
+						<div style="margin-bottom: 20px;">
+							<img src="assets/images/auto.png" alt="Automatizaciones con IA" style="width: 48px; height: 48px;">
+						</div>
+						<h3 style="color: #000000; font-size: 22px; font-weight: bold; margin-bottom: 15px; text-transform: uppercase;">Automatizaciones con IA</h3>
+						<p style="color: #666666; font-size: 14px; margin-bottom: 20px; line-height: 1.6; flex-grow: 1;">
+							Automatiza procesos complejos con IA que aprende y se adapta. Desde gestión de inventario hasta análisis predictivo, optimizamos tus operaciones diarias.
+						</p>
+						<ul style="color: #666666; font-size: 12px; list-style: none; padding: 0;">
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Flujos de trabajo automatizados</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Análisis predictivo y toma de decisiones</span>
+							</li>
+							<li style="margin-bottom: 10px; display: flex; align-items: start;">
+								<span style="color: #3b82f6; margin-right: 8px; margin-top: 4px;">✓</span>
+								<span>Integración con múltiples plataformas</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 60px;">
+			<div class="col-lg-12">
+				<div class="service-single-box" style="padding: 50px; border: 2px solid #3b82f6; background: 
+					linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)),
+					radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.15) 1px, transparent 0),
+					linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent),
+					linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent);
+					background-size: 20px 20px, 40px 40px, 40px 40px, 40px 40px;
+					background-position: 0 0, 0 0, 0 0, 0 0;
+					position: relative;
+					overflow: hidden;">
+					<div class="row align-items-center">
+						<div class="col-lg-8">
+							<h3 style="color: #000000; font-size: 28px; font-weight: bold; margin-bottom: 20px; text-transform: uppercase;">Soluciones Personalizadas</h3>
+							<p style="color: #666666; font-size: 16px; margin-bottom: 30px; line-height: 1.8;">
+								Cada negocio es único. Desarrollo software a medida que se adapta perfectamente a tus necesidades específicas. Desde sistemas de gestión hasta herramientas de análisis avanzado; la solución perfecta para tu empresa.
+							</p>
+							<div class="row">
+								<div class="col-md-6" style="margin-bottom: 20px;">
+									<div style="display: flex; align-items: start; gap: 15px;">
+										<span style="color: #3b82f6; font-size: 24px;">→</span>
+										<div>
+											<p style="color: #1a1a1a; font-weight: bold; margin-bottom: 5px;">Desarrollo a Medida</p>
+											<p style="color: #666666; font-size: 14px;">Software diseñado específicamente para tu negocio</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6" style="margin-bottom: 20px;">
+									<div style="display: flex; align-items: start; gap: 15px;">
+										<span style="color: #3b82f6; font-size: 24px;">→</span>
+										<div>
+											<p style="color: #1a1a1a; font-weight: bold; margin-bottom: 5px;">Integración Completa</p>
+											<p style="color: #666666; font-size: 14px;">Conectamos con tus sistemas existentes</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6" style="margin-bottom: 20px;">
+									<div style="display: flex; align-items: start; gap: 15px;">
+										<span style="color: #3b82f6; font-size: 24px;">→</span>
+										<div>
+											<p style="color: #1a1a1a; font-weight: bold; margin-bottom: 5px;">Soporte Continuo</p>
+											<p style="color: #666666; font-size: 14px;">Mantenimiento y actualizaciones incluidas</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6" style="margin-bottom: 20px;">
+									<div style="display: flex; align-items: start; gap: 15px;">
+										<span style="color: #3b82f6; font-size: 24px;">→</span>
+										<div>
+											<p style="color: #1a1a1a; font-weight: bold; margin-bottom: 5px;">Escalabilidad</p>
+											<p style="color: #666666; font-size: 14px;">Crece con tu negocio sin límites</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a href="#contact" style="display: inline-block; background: #3b82f6; color: #ffffff; padding: 15px 40px; border-radius: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; margin-top: 20px; transition: all 0.3s;">
+								Consulta tu Proyecto
+							</a>
+						</div>
+						<div class="col-lg-4 text-center">
+							<img src="assets/images/bombilla.png" alt="Soluciones Personalizadas" class="bombilla-icon" style="width: 240px; height: 240px; opacity: 0.5; transition: all 0.3s ease;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--==================================================-->
+<!-- End Servicios con IA Area -->
+<!--==================================================-->
+
+<!--==================================================-->
+<!-- start Mesud Ozil proyectos Area -->
+<!--=================================================,=-->
+
+
+	<div class="proyectos-area" id="proyectos">
+		<canvas id="proyectos-bg-canvas"></canvas>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
+					<div class="section-title text-center">
+						<h5 class="section-sub-title">PROYECTOS</h5>
+						<h1 class="section-main-title">Mis últimos trabajos</h1>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Slider de Proyectos con efecto 3D -->
+			<div class="projects-carousel-wrapper" style="margin-top: 60px; padding: 40px 80px 20px 80px; position: relative;">
+				<div class="projects-carousel owl-carousel" id="projectsCarousel">
+					<div class="project-slide-item" data-project="vehiculos">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/alditraex.png" alt="Control de vehículos">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>Control de Vehículos</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="barber">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/proyecto_barber.png" alt="Gestión de citas">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>Gestión de Citas</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="ficheros">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/sfm.png" alt="Gestión de expediciones">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>Gestión de Expediciones</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="ftp">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/proyecto_ftp.png" alt="CMR Inmobiliaria">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>CMR Inmobiliaria</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="weark">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/weark.png" alt="ERP para fábrica de ropa">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>ERP para Fábrica de Ropa</h4>
+							</div>
+						</div>
+					</div>
+					<div class="project-slide-item" data-project="iara">
+						<div class="project-thumbnail">
+							<div class="thumbnail-image">
+								<img src="assets/images/iara_bot.png" alt="Agenda Inteligente con IA">
+							</div>
+							<div class="thumbnail-overlay">
+								<h4>Agenda Inteligente con IA</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Contenedor para botones de navegación -->
+				<div class="owl-nav projects-nav-container"></div>
+				<!-- Contenedor para dots -->
+				<div class="owl-dots projects-dots-container"></div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+
+<!--==================================================-->
+<!-- end Mesud Ozil proyectos Area -->
+<!--==================================================-->
+
+
+
+
+
+
+<!--==================================================-->
+<!--start tab resume Area-->
+<!--==================================================-->
+
+<div class="tab-area" id="resume">
+	<div class="container">
+		<div class="row uppers">
+			<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
+				<div class="section-title text-center">
+					<h5 class="section-sub-title">5+ años de experiencia </h5>
+					<h1 class="section-main-title">Mi currículum</h1>
+				</div>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
+				<div class="tab">
+					 <ul class="tabs">
+						<li><a href="#">Educación</a></li>
+						<li class="active"><a href="#">Professional Skills</a></li>
+						<li><a href="#">Experiencia</a></li>
+						<!--<li class="active"><a href="#">Interview</a></li>-->
+					 </ul>
+					 <div class="tab_content tab-content tow">
+						<div class="tabs_item" style="display: none;">
+							<div class="row upper">
+
+								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box ">
+										<div class="teb-content">
+											<h3 class="tab-title">Ingeniería Informática</h3>
+											<h4 class="tab-text">Universidad Europea Miguel De Cervantes 2023-2026</h4>
+											<p class="tab-descrip">Cursando...</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box two">
+										<div class="teb-content">
+											<h3 class="tab-title"> Programación Python</h3>
+											<h4 class="tab-text">Tokio School / 2021 - 2022</h4>
+											<p class="tab-descrip">Python, Flask</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box">
+										<div class="teb-content">
+											<h3 class="tab-title">Administration de sistemas informáticos en red</h3>
+											<h4 class="tab-text">Instituto FOC (Granada) / 2016 - 2018</h4>
+											<p class="tab-descrip">Windows, Linux, Redes</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box two">
+										<div class="teb-content">
+											<h3 class="tab-title">Filología Hispánica</h3>
+											<h4 class="tab-text">Universidad Española de Educación a Distancia/ 2009 - 2012</h4>
+											<p class="tab-descrip"></p>
+										</div>
+									</div>
+								</div>
+								<!--<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box">
+										<div class="teb-content">
+											<h3 class="tab-title">Bachiller ciencias sociales</h3>
+											<h4 class="tab-text">IES Emérita Agusta (Mérida)/ 2007 - 2009</h4>
+											<p class="tab-descrip"></p>
+										</div>
+									</div>
+								</div>-->
+								<!--<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box two">
+										<div class="teb-content">
+											<h3 class="tab-title">Bachiller ciencias sociales</h3>
+											<h4 class="tab-text">IES Emérita Agusta (Mérida)/ 2007 - 2009</h4>
+											<p class="tab-descrip"></p>
+										</div>
+									</div>
+								</div>-->
+							</div>
+						</div>
+						<div class="tabs_item" data-aos="zoom-in" data-aos-duration="2000">
+							<div class="row tab">
+								<div class="col-lg-6">
+									<div class="skills-single-box two">
+										<img src="assets/images/python.png" alt="Logo Python" style="width: 40px; height: 40px; margin-right: 5px; vertical-align: middle;">
+										<span class="prosses-bar">PYTHON</span>
+										<div class="prossess-ber-plugin">
+											<div id="bar1" class="barfiller">
+												<div class="tipWrap">
+													<span class="tip"></span>
+												</div>
+												<span class="fill" data-percentage="95"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="skills-single-box two">
+										<img src="assets/images/flask.png" alt="Logo de Flask" style="width: 40px; height: 40px; margin-right: 5px; vertical-align: middle;">
+										<span class="prosses-bar">FLASK</span>
+										<div class="prossess-ber-plugin tow">
+											<div id="bar2" class="barfiller">
+												<div class="tipWrap">
+													<span class="tip"></span>
+												</div>
+												<span class="fill" data-percentage="85"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="skills-single-box two">
+										<img src="assets/images/html.png" alt="Logo de HTML" style="width: 40px; height: 40px; margin-right: 5px; vertical-align: middle;">
+										<span class="prosses-bar">HTML</span>
+										<div class="prossess-ber-plugin tow">
+											<div id="bar3" class="barfiller">
+												<div class="tipWrap">
+													<span class="tip"></span>
+												</div>
+												<span class="fill" data-percentage="75"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="skills-single-box two">
+										<img src="assets/images/css.png" alt="Logo de CSS" style="width: 40px; height: 40px; margin-right: 5px; vertical-align: middle;">
+										<span class="prosses-bar">CSS</span>
+										<div class="prossess-ber-plugin tow">
+											<div id="bar4" class="barfiller">
+												<div class="tipWrap">
+													<span class="tip"></span>
+												</div>
+												<span class="fill" data-percentage="90"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="skills-single-box two">
+										<img src="assets/images/git.png" alt="Logo de GIT" style="width: 40px; height: 40px; margin-right: 5px; vertical-align: middle;">
+										<span class="prosses-bar">GITHUB</span>
+										<div class="prossess-ber-plugin tow">
+											<div id="bar5" class="barfiller">
+												<div class="tipWrap">
+													<span class="tip"></span>
+												</div>
+												<span class="fill" data-percentage="80"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="skills-single-box two">
+										<img src="assets/images/js.png" alt="Logo de JS" style="width: 40px; height: 40px; margin-right: 5px; vertical-align: middle;">
+										<span class="prosses-bar">JAVASCRIPT</span>
+										<div class="prossess-ber-plugin tow">
+											<div id="bar6" class="barfiller">
+												<div class="tipWrap">
+													<span class="tip"></span>
+												</div>
+												<span class="fill" data-percentage="85"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--<div class="col-lg-6">
+									<div class="skills-single-box two">
+										<span class="prosses-bar">SOFTWARE</span>
+										<div class="prossess-ber-plugin tow">
+											<div id="bar7" class="barfiller">
+												<div class="tipWrap">
+													<span class="tip"></span>
+												</div>
+												<span class="fill" data-percentage="80"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="skills-single-box two">
+										<span class="prosses-bar">PLUGIN</span>
+										<div class="prossess-ber-plugin tow">
+											<div id="bar8" class="barfiller">
+												<div class="tipWrap">
+													<span class="tip"></span>
+												</div>
+												<span class="fill" data-percentage="75"></span>
+											</div>
+										</div>
+									</div>
+								</div>-->
+							</div>
+						</div>
+						<div class="tabs_item">
+							<div class="row upper">
+								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box">
+										<div class="teb-content">
+											<h3 class="tab-title">Desarrollador web Freelance</h3>
+											<h4 class="tab-text">Alditraex SL / 2025 - actualidad</h4>
+											<p class="tab-descrip">Desarrollo aplicaciones personalizadas, páginas web, integraciones, APIS</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box two">
+										<div class="teb-content">
+											<h3 class="tab-title">Consultor IT </h3>
+											<h4 class="tab-text">Alditraex SL / 2021 - 2024</h4>
+											<p class="tab-descrip">Desarrollo aplicaciones propias, gestión de servidores, integraciones, APIS, gestión de redes</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box ">
+										<div class="teb-content">
+											<h3 class="tab-title">Administración y Subdirección</h3>
+											<h4 class="tab-text">Alditraex SL / 2017 - 2021</h4>
+											<p class="tab-descrip">Planificación de rutas, gestión del persona,facturas, proveedores...</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box two">
+										<div class="teb-content">
+											<h3 class="tab-title">Auxiliar administrativo</h3>
+											<h4 class="tab-text">Alditraex / 2005 - 2017</h4>
+											<p class="tab-descrip">Planificación de rutas,seguimiento expediciones, control almacén</p>
+										</div>
+									</div>
+								</div>
+								<!--<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box">
+										<div class="teb-content">
+											<h3 class="tab-title">The Personal Portfolio Mystery</h3>
+											<h4 class="tab-text">Cambridge University / 2005 - 2008</h4>
+											<p class="tab-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quo
+											repudiandae consectetur adipisicing elit.</p>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6" data-aos="zoom-in" data-aos-duration="2000">
+									<div class="tab-single-box two">
+										<div class="teb-content">
+											<h3 class="tab-title">Tips For Personal Portfolio</h3>
+											<h4 class="tab-text">Cambridge University / 2005 - 2008</h4>
+											<p class="tab-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quo
+											repudiandae consectetur adipisicing elit.</p>
+										</div>
+									</div>-->
+								</div>
+							</div>
+						</div>
+
+					 </div>
+				</div>
+			</div>
+		</div>
+	 </div>
+</div>
+
+
+
+<!--==================================================-->
+<!-- end tab resume Area -->
+<!--==================================================-->
+
+
+
+
+
+
+
+
+<!--==================================================-->
+<!-- start testimonial Area -->
+<!--==================================================-->
+
+
+	
+
+
+<!--==================================================-->
+<!-- end testimonial  Area -->
+<!--==================================================-->
+
+
+
+
+<!--==================================================-->
+<!-- start-Mesud Ozil blog  Area -->
+<!--==================================================-->
+
+
+	
+
+
+
+
+
+
+<!--==================================================-->
+<!-- end -Mesud Ozil blog  Area -->
+<!--==================================================-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--==================================================-->
+<!-- start-Mesud Ozil contact  Area -->
+<!--==================================================-->
+<div class="contact-area" id="contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12" data-aos="zoom-in" data-aos-duration="2000">
+				<div class="section-title text-center">
+					<h5 class="section-sub-title"></h5>
+					<h1 class="section-main-title">CONTACTO</h1>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-center" style="margin: 0; padding: 0;">
+			<div class="col-lg-6 col-md-8 col-sm-10" style="margin: 0; padding: 0; display: flex; justify-content: center;">
+				<div class="contact-card-image" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+					<img src="assets/images/tarjeta.png" alt="Tarjeta de contacto de Jonatan Murillo" class="contact-card-img">
+					<div class="contact-overlay">
+						<div class="contact-overlay-content">
+							<h4>Contacta por:</h4>
+							<div class="contact-options">
+								<a href="https://wa.me/34625433667" target="_blank" class="contact-option whatsapp">
+									<i class="bi bi-whatsapp"></i>
+									<span>WhatsApp</span>
+								</a>
+								<a href="tel:+34625433667" class="contact-option phone">
+									<i class="bi bi-telephone"></i>
+									<span>Llamada</span>
+								</a>
+								<a href="mailto:jomma.tech@gmail.com" class="contact-option email">
+									<i class="bi bi-envelope"></i>
+									<span>Correo</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Modales de Proyectos -->
+<!-- scrollup section -->
+<div class="scroll-area">
+	<div class="top-wrap">
+		<div class="go-top-btn-wraper">
+			<div class="go-top go-top-button" onclick="scrollToTop()">
+				<i class="fas fa-arrow-up"></i>
+				<i class="fas fa-arrow-up"></i>
+			</div>
+		</div>
+	</div>
+</div>
+<!--==================================================-->
+<!-- Start scrollup section Area -->
+<!--==================================================-->
+
+
+
+
+
+	<!-- jquery js -->	
+	<script src="assets/js/vendor/jquery-3.6.2.min.js"></script>
+	<!-- bootstrap js -->	
+	<script src="assets/js/bootstrap.min.js"></script>
+	<!-- carousel js -->
+	<script src="assets/js/owl.carousel.min.js"></script>
+	<!-- counterup js -->
+	<script src="assets/js/jquery.counterup.min.js"></script>
+	<!-- waypoints js -->
+	<script src="assets/js/waypoints.min.js"></script>
+	<!-- wow js -->
+	<script src="assets/js/wow.js"></script>
+	<!-- imagesloaded js -->
+	<script src="assets/js/imagesloaded.pkgd.min.js"></script>
+	<!-- venobox js -->
+	<script src="venobox/venobox.js"></script>
+	<!--  animated-text js -->	
+	<script src="assets/js/animated-text.js"></script>
+	<!-- venobox min js -->
+	<script src="venobox/venobox.min.js"></script>
+	<!-- isotope js -->
+	<script src="assets/js/isotope.pkgd.min.js"></script>
+	<!-- jquery meanmenu js -->	
+	<script src="assets/js/jquery.meanmenu.js"></script>
+	<!-- jquery scrollup js -->	
+	<script src="assets/js/jquery.scrollUp.js"></script>
+	<!-- theme js -->	
+	<script src="assets/js/theme.js"></script>
+	<!-- Habilitar scroll inmediatamente - debe ejecutarse ANTES de cualquier otro script -->
+	<script>
+		// Ejecutar inmediatamente, sin esperar nada
+		(function() {
+			// Habilitar scroll inmediatamente en html y body
+			if (document.documentElement) {
+				document.documentElement.style.overflowY = 'auto';
+				document.documentElement.style.overflowX = 'hidden';
+			}
+			if (document.body) {
+				document.body.style.overflowY = 'auto';
+				document.body.style.overflowX = 'hidden';
+			}
+			
+			// Asegurar que el loader no bloquee el scroll
+			var loader = document.querySelector('.loader-wrapper');
+			if (loader) {
+				loader.style.pointerEvents = 'none';
+				loader.style.zIndex = '-1';
+			}
+		})();
+	</script>
+	
+	<!-- Fallback para ocultar loader si theme.js no carga -->
+	<script>
+		// Asegurar que el scroll funcione inmediatamente
+		(function() {
+			// Habilitar scroll inmediatamente
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
+			document.body.style.overflowX = 'hidden';
+			
+			// Asegurar que el loader no bloquee el scroll
+			var loader = document.querySelector('.loader-wrapper');
+			if (loader) {
+				loader.style.pointerEvents = 'none';
+				loader.style.zIndex = '-1';
+			}
+		})();
+		
+		// Forzar scroll habilitado en eventos de touch - completamente pasivo
+		document.addEventListener('touchstart', function() {
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
+		}, { passive: true });
+		
+		document.addEventListener('touchmove', function() {
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
+		}, { passive: true });
+		
+		// Asegurar que el loader se oculte incluso si theme.js falla
+		function hideLoader() {
+			document.body.classList.add('loaded');
+			// Forzar ocultación adicional
+			var loader = document.querySelector('.loader-wrapper');
+			if (loader) {
+				loader.style.display = 'none';
+				loader.style.visibility = 'hidden';
+				loader.style.opacity = '0';
+				loader.style.pointerEvents = 'none';
+				loader.style.zIndex = '-1';
+			}
+			// Asegurar que el scroll esté habilitado
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
+		}
+		
+		// Habilitar scroll inmediatamente al cargar el DOM
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', function() {
+				document.documentElement.style.overflowY = 'auto';
+				document.body.style.overflowY = 'auto';
+				hideLoader();
+			}, { once: true });
+		} else {
+			document.documentElement.style.overflowY = 'auto';
+			document.body.style.overflowY = 'auto';
+			hideLoader();
+		}
+		
+		// Intentar múltiples veces para asegurar que se ejecute
+		if (document.readyState === 'complete') {
+			hideLoader();
+		} else {
+			window.addEventListener('load', function() {
+				setTimeout(hideLoader, 10); // Reducido a 10ms
+			}, { once: true });
+		}
+		// También con jQuery si está disponible
+		if (typeof jQuery !== 'undefined') {
+			jQuery(function() {
+				jQuery('body').addClass('loaded');
+				jQuery('.loader-wrapper').hide();
+				document.documentElement.style.overflowY = 'auto';
+				document.body.style.overflowY = 'auto';
+			});
+		}
+		// Fallback adicional después de un tiempo más corto
+		setTimeout(hideLoader, 100); // Reducido a 100ms
+	</script>
+	<script src="assets/js/jquery.barfiller.js"></script>
+	<script src="assets/js/typed.js"></script>
+	<!-- jquery js -->	
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+	<script>
+	  AOS.init();
+	</script>	
+	<!--type-js-->
+	<script>
+		// Esperar a que el DOM esté listo
+		$(document).ready(function() {
+			// === HERO SLIDER ===
+			if ($('.hero-slider').length) {
+				$('.hero-slider').owlCarousel({
+					items: 1,
+					loop: true,
+					autoplay: true,
+					autoplayTimeout: 5000,
+					autoplayHoverPause: false,
+					nav: false,
+					dots: true,
+					animateOut: 'fadeOut',
+					animateIn: 'fadeIn',
+					smartSpeed: 1000,
+					mouseDrag: false,
+					touchDrag: false,
+					pullDrag: false
+				});
+			}
+			
+			// === PROJECTS CAROUSEL con efecto 3D ===
+			if ($('.projects-carousel').length) {
+				var projectsCarousel = $('.projects-carousel').owlCarousel({
+					loop: true,
+					margin: 30,
+					nav: true,
+					dots: true,
+					center: true,
+					autoplay: false,
+					responsive: {
+						0: {
+							items: 1,
+							margin: 15
+						},
+						768: {
+							items: 3,
+							margin: 20
+						},
+						1024: {
+							items: 3,
+							margin: 30
+						}
+					},
+					navText: [
+						'<span style="font-size: 28px; color: #ffffff; display: block; line-height: 1;">←</span>',
+						'<span style="font-size: 28px; color: #ffffff; display: block; line-height: 1;">→</span>'
+					],
+					navContainer: '.projects-nav-container',
+					dotsContainer: '.projects-dots-container',
+					navClass: ['owl-prev projects-nav-btn', 'owl-next projects-nav-btn'],
+					onInitialized: function(event) {
+						updateCarouselItems(event);
+					},
+					onChanged: function(event) {
+						updateCarouselItems(event);
+					}
+				});
+				
+				// Función para actualizar las clases de los items
+				function updateCarouselItems(event) {
+					setTimeout(function() {
+						var activeItems = $('.projects-carousel .owl-item.active');
+						
+						activeItems.each(function(index) {
+							$(this).removeClass('center prev next');
+							
+							// El item del medio (índice 1) es el central
+							if (index === 1) {
+								$(this).addClass('center');
+							} else if (index === 0) {
+								$(this).addClass('prev');
+							} else if (index === 2) {
+								$(this).addClass('next');
+							}
+						});
+					}, 50);
+				}
+				
+				// Actualizar también en eventos de transición
+				projectsCarousel.on('changed.owl.carousel', function(event) {
+					updateCarouselItems(event);
+				});
+				
+				// Forzar creación y visibilidad de botones después de inicialización
+				setTimeout(function() {
+					// Verificar si los botones existen, si no, crearlos manualmente
+					if ($('.projects-nav-container .owl-prev').length === 0) {
+						$('.projects-nav-container').html(
+							'<button class="owl-prev projects-nav-btn" aria-label="Previous">' +
+							'<span style="font-size: 28px; color: #ffffff; display: block; line-height: 1;">←</span>' +
+							'</button>' +
+							'<button class="owl-next projects-nav-btn" aria-label="Next">' +
+							'<span style="font-size: 28px; color: #ffffff; display: block; line-height: 1;">→</span>' +
+							'</button>'
+						);
+						
+						// Conectar eventos manualmente
+						$('.projects-nav-container .owl-prev').on('click', function() {
+							projectsCarousel.trigger('prev.owl.carousel');
+						});
+						$('.projects-nav-container .owl-next').on('click', function() {
+							projectsCarousel.trigger('next.owl.carousel');
+						});
+					}
+					
+					// Forzar visibilidad
+					$('.projects-nav-container .owl-prev, .projects-nav-container .owl-next').css({
+						'display': 'flex !important',
+						'opacity': '1 !important',
+						'visibility': 'visible !important'
+					});
+				}, 500);
+			}
+			
+			
+			// Texto animado antiguo (ya no se usa, pero lo mantengo por si acaso)
+			if ($('.type').length) {
+				var typed = new Typed('.type', {
+					strings: ['Desarrollo web', 'Desarrollo app', 'Administración de sistemas', 'Automatización de procesos'],
+					typeSpeed:90,
+					backSpeed:90,
+					loop:true
+				});
+			}
+		});
+		
+		// Datos de proyectos para el showcase
+		const showcaseData = {
+			vehiculos: {
+				title: 'Control de Vehículos',
+				images: [
+					'assets/images/alditraex.png',
+					'assets/images/alditraex.png'
+				],
+				features: ['Avisos fechas vencimientos', 'Registros de talleres', 'Análisis de consumos', 'Seguros, Itv, tacógrafos'],
+				description: 'Sistema completo de gestión para flotas de vehículos con control de vencimientos, mantenimientos y análisis de costes. Permite gestionar toda la documentación de los vehículos, recibir alertas de vencimientos y realizar un seguimiento detallado de los gastos.',
+			},
+			barber: {
+				title: 'Gestión de Citas para Peluquerías',
+				images: [
+					'assets/images/proyecto_barber.png',
+					'assets/images/proyecto_barber.png'
+				],
+				features: ['Versión móvil sencilla', 'Panel de control propio', 'Recordatorios automáticos', 'Personalización completa'],
+				description: 'Sistema de gestión de citas para peluquerías con aplicación móvil intuitiva, panel de administración completo y recordatorios automáticos. Facilita la gestión diaria de citas y mejora la experiencia del cliente.',
+			},
+			ficheros: {
+				title: 'Gestión de Expediciones',
+				images: [
+					'assets/images/sfm.png',
+					'assets/images/sfm.png'
+				],
+				features: ['Asignación de repartos', 'Control de costes', 'Base de datos', 'Versión móvil'],
+				description: 'Sistema completo para gestión de expediciones y repartos con control de costes, ingresos y seguimiento en tiempo real. Optimiza las rutas de reparto y mejora la eficiencia operativa.',
+			},
+			ftp: {
+				title: 'CMR Inmobiliaria',
+				images: [
+					'assets/images/proyecto_ftp.png',
+					'assets/images/proyecto_ftp.png'
+				],
+				features: ['Base de datos de clientes', 'Agenda con recordatorios', 'Control de visitas', 'Avisos por Telegram'],
+				description: 'Sistema de gestión inmobiliaria con control de clientes, agenda inteligente y seguimiento de actividades comerciales. Integración con Telegram para notificaciones instantáneas.',
+			},
+			weark: {
+				title: 'ERP para Fábrica de Ropa',
+				images: [
+					'assets/images/weark.png',
+					'assets/images/weark.png'
+				],
+				features: ['Gestión de producción', 'Control de inventario', 'Gestión de pedidos', 'Recursos humanos'],
+				description: 'Sistema ERP completo desarrollado para la gestión integral de una fábrica de ropa, incluyendo control de producción, inventario, pedidos y recursos humanos. Optimiza todos los procesos de la empresa.',
+			},
+			iara: {
+				title: 'Agenda Inteligente con IA',
+				images: [
+					'assets/images/iara_bot.png',
+					'assets/images/iara_bot.png'
+				],
+				features: ['Asistente de IA integrado', 'Optimización automática', 'Gestión de citas', 'Análisis predictivo'],
+				description: 'Sistema de gestión de citas inteligente con asistente de IA para optimizar tu agenda y mejorar la productividad. Utiliza inteligencia artificial para sugerir mejores horarios y prevenir conflictos.',
+			}
+		};
+		
+		
+		// === MENÚ HAMBURGUESA FLOTANTE === 
+		
+		// Funcionalidad de la hamburguesa flotante
+		document.addEventListener('DOMContentLoaded', function() {
+			console.log('🔄 Iniciando menú hamburguesa...');
+			
+			const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+			const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+			const closeMenu = document.getElementById('closeMenu');
+			const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+			
+			console.log('📱 Elementos encontrados:', {
+				toggle: !!mobileMenuToggle,
+				overlay: !!mobileMenuOverlay,
+				closeBtn: !!closeMenu,
+				links: mobileNavLinks.length
+			});
+			
+			// Abrir menú
+			if (mobileMenuToggle && mobileMenuOverlay) {
+				mobileMenuToggle.addEventListener('click', function(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					console.log('🍔 Click en hamburguesa');
+					mobileMenuOverlay.classList.add('active');
+					mobileMenuToggle.classList.add('active');
+					document.body.style.overflow = 'hidden';
+					console.log('✅ Menú móvil abierto - overlay visible:', mobileMenuOverlay.classList.contains('active'));
+				});
+			} else {
+				console.error('❌ No se encontraron elementos del menú');
+			}
+			
+			// Cerrar menú
+			function closeMenuFunction() {
+				console.log('🔄 Cerrando menú...');
+				if (mobileMenuOverlay && mobileMenuToggle) {
+					mobileMenuOverlay.classList.remove('active');
+					mobileMenuToggle.classList.remove('active');
+					document.body.style.overflow = 'auto';
+					console.log('✅ Menú móvil cerrado');
+				}
+			}
+			
+			if (closeMenu) {
+				closeMenu.addEventListener('click', closeMenuFunction);
+			}
+			
+			// Cerrar menú al tocar el overlay
+			if (mobileMenuOverlay) {
+				mobileMenuOverlay.addEventListener('click', function(e) {
+					if (e.target === mobileMenuOverlay) {
+						closeMenuFunction();
+					}
+				});
+			}
+			
+			// Cerrar menú al hacer clic en enlaces
+			mobileNavLinks.forEach((link, index) => {
+				link.addEventListener('click', function() {
+					console.log(`🔗 Click en enlace ${index + 1}: ${this.textContent}`);
+					closeMenuFunction();
+				});
+			});
+			
+			console.log('✅ Menú hamburguesa configurado completamente');
+			
+			// Cerrar menú con ESC
+			document.addEventListener('keydown', function(e) {
+				if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
+					closeMenuFunction();
+				}
+			});
+		});
+		
+		// Mostrar logo al hacer scroll - optimizado para móvil
+		let scrollTicking = false;
+		let lastScrollY = 0;
+		const isMobile = window.innerWidth <= 768;
+		const scrollThrottle = isMobile ? 100 : 16; // Más throttle en móvil
+		let lastUpdateTime = 0;
+		
+		function handleScroll() {
+			const now = Date.now();
+			if (now - lastUpdateTime < scrollThrottle) {
+				return; // Skip si no ha pasado suficiente tiempo
+			}
+			lastUpdateTime = now;
+			
+			if (!scrollTicking) {
+				requestAnimationFrame(function() {
+					const currentScrollY = window.scrollY;
+					
+					// Solo actualizar si el scroll cambió significativamente (móvil)
+					if (isMobile && Math.abs(currentScrollY - lastScrollY) < 5) {
+						scrollTicking = false;
+						return;
+					}
+					lastScrollY = currentScrollY;
+					
+					if (currentScrollY > 100) {
+						document.body.classList.add('show-logo');
+					} else {
+						document.body.classList.remove('show-logo');
+					}
+					
+					// Actualizar barra de progreso solo si es necesario
+					const scrollProgress = document.querySelector('.scroll-progress');
+					if (scrollProgress) {
+						const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+						if (scrollable > 0) {
+							const progress = (currentScrollY / scrollable) * 100;
+							scrollProgress.style.width = progress + '%';
+						}
+					}
+					scrollTicking = false;
+				});
+				scrollTicking = true;
+			}
+		}
+		
+		window.addEventListener('scroll', handleScroll, { passive: true });
+		
+		// Animaciones de entrada
+		const observerOptions = {
+			threshold: 0.1,
+			rootMargin: '0px 0px -50px 0px'
+		};
+		
+		const observer = new IntersectionObserver(function(entries) {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+				}
+			});
+		}, observerOptions);
+		
+		
+			
+			// === FIX VIEWPORT MÓVIL === 
+			
+			// Solucionar problemas de viewport en móviles (especialmente Safari iOS)
+			function setViewportHeight() {
+				try {
+					let vh = window.innerHeight * 0.01;
+					document.documentElement.style.setProperty('--vh', `${vh}px`);
+				} catch (e) {
+					console.warn('Error setting viewport height:', e);
+				}
+			}
+			
+			// Ejecutar al cargar
+			setTimeout(setViewportHeight, 100);
+		
+		// Aplicar animaciones a elementos
+		document.addEventListener('DOMContentLoaded', function() {
+			// Agregar clase fade-in-up a elementos
+			const elementsToAnimate = document.querySelectorAll('.service-single-box, .proyecto-single-box, .tab-single-box, .section-title, .contact-card-image');
+			elementsToAnimate.forEach(el => {
+				el.classList.add('fade-in-up');
+				observer.observe(el);
+			});
+			
+			// === CONFIGURAR PESTAÑAS PARA ABRIR PROFESSIONAL SKILLS POR DEFECTO ===
+			setTimeout(() => {
+				// Asegurar que Professional Skills esté activo por defecto
+				const tabs = document.querySelectorAll('.tabs li');
+				const tabItems = document.querySelectorAll('.tabs_item');
+				
+				// Remover clase active de todas las pestañas
+				tabs.forEach(tab => tab.classList.remove('active'));
+				
+				// Ocultar todos los contenidos de pestañas
+				tabItems.forEach(item => item.style.display = 'none');
+				
+				// Activar la segunda pestaña (Professional Skills) - índice 1
+				if (tabs[1]) {
+					tabs[1].classList.add('active');
+				}
+				
+				// Mostrar el contenido de Professional Skills - índice 1
+				if (tabItems[1]) {
+					tabItems[1].style.display = 'block';
+				}
+				
+				// Agregar event listeners para las pestañas
+				tabs.forEach((tab, index) => {
+					tab.addEventListener('click', function(e) {
+						e.preventDefault();
+						
+						// Remover active de todas las pestañas
+						tabs.forEach(t => t.classList.remove('active'));
+						
+						// Ocultar todos los contenidos
+						tabItems.forEach(item => item.style.display = 'none');
+						
+						// Activar la pestaña clickeada
+						this.classList.add('active');
+						
+						// Mostrar el contenido correspondiente
+						if (tabItems[index]) {
+							tabItems[index].style.display = 'block';
+						}
+					});
+				});
+			}, 500); // Pequeño delay para asegurar que el DOM esté listo
+			
+
+			
+			// === MEJORAS ESPECÍFICAS PARA MÓVIL === 
+			
+			// Detectar si es un dispositivo móvil
+			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+			
+			if (isMobile) {
+				// Añadir clase específica para móvil
+				document.body.classList.add('mobile-device');
+				
+				// Mejorar el comportamiento del scroll
+				let ticking = false;
+				function updateScrollProgress() {
+					const scrollProgress = document.querySelector('.scroll-progress');
+					if (scrollProgress) {
+						const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+						const scrolled = window.scrollY;
+						const progress = (scrolled / scrollable) * 100;
+						scrollProgress.style.width = progress + '%';
+					}
+					ticking = false;
+				}
+				
+				window.addEventListener('scroll', function() {
+					if (!ticking) {
+						requestAnimationFrame(updateScrollProgress);
+						ticking = true;
+					}
+				}, { passive: true });
+				
+				// No añadir touchstart/touchend que escalan: pueden retrasar el scroll en móvil
+			}
+			
+			// === VERIFICACIÓN MODO STANDALONE === 
+			
+			// Detectar si la página se abre en modo standalone (sin controles del navegador)
+			if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+				console.log('⚠️ Página abierta en modo standalone');
+				// Crear un aviso temporal para el usuario
+				const standaloneBanner = document.createElement('div');
+				standaloneBanner.style.cssText = `
+					position: fixed;
+					top: 0;
+					left: 0;
+					right: 0;
+					background: #28a745;
+					color: white;
+					padding: 10px;
+					text-align: center;
+					font-size: 14px;
+					z-index: 10000;
+					box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+				`;
+				standaloneBanner.innerHTML = `
+					📱 Para acceder a todas las funciones, abre esta página en tu navegador
+					<button onclick="this.parentElement.remove()" style="margin-left: 10px; background: rgba(255,255,255,0.2); border: none; color: white; padding: 5px 10px; border-radius: 3px; cursor: pointer;">✕</button>
+				`;
+				document.body.appendChild(standaloneBanner);
+				
+				// Auto-remover después de 5 segundos
+				setTimeout(() => {
+					if (standaloneBanner.parentElement) {
+						standaloneBanner.remove();
+					}
+				}, 5000);
+			} else {
+				console.log('✅ Página abierta en navegador normal');
+			}
+			
+
+		});
+		
+		// === GOOGLE ANALYTICS - TRACKING DE CLICS ===
+		
+		// Función para enviar eventos a Google Analytics
+		// Función rápida para ir arriba
+		function scrollToTop() {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+			// Tracking del evento
+			trackEvent('scroll_to_top', 'navigation', 'back_to_top_button', 1);
+		}
+
+		function trackEvent(eventName, eventCategory, eventLabel, eventValue) {
+			if (typeof gtag !== 'undefined') {
+				gtag('event', eventName, {
+					'event_category': eventCategory,
+					'event_label': eventLabel,
+					'value': eventValue
+				});
+				console.log(`📊 Evento enviado: ${eventName} - ${eventCategory} - ${eventLabel}`);
+			}
+		}
+		
+		// Tracking de clics en enlaces de contacto
+		document.addEventListener('DOMContentLoaded', function() {
+			
+			// Tracking de clics en WhatsApp
+			const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+			whatsappLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					trackEvent('click', 'Contact', 'WhatsApp', 1);
+				});
+			});
+			
+			// Tracking de clics en teléfono
+			const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+			phoneLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					trackEvent('click', 'Contact', 'Phone Call', 1);
+				});
+			});
+			
+			// Tracking de clics en email
+			const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+			emailLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					trackEvent('click', 'Contact', 'Email', 1);
+				});
+			});
+			
+			// Tracking de clics en botones "Ver más" de proyectos
+			const verMasButtons = document.querySelectorAll('.ver-mas-btn');
+			verMasButtons.forEach(button => {
+				button.addEventListener('click', function() {
+					const projectTitle = this.closest('.proyecto-single-box')?.querySelector('.portfolio-title')?.textContent || 'Proyecto desconocido';
+					trackEvent('click', 'Project', `Ver más - ${projectTitle}`, 1);
+				});
+			});
+			
+			// Tracking de clics en navegación
+			const navLinks = document.querySelectorAll('.nav_scroll a, .mobile-nav-link');
+			navLinks.forEach(link => {
+				link.addEventListener('click', function() {
+					const section = this.getAttribute('href') || 'unknown';
+					trackEvent('click', 'Navigation', `Section: ${section}`, 1);
+				});
+			});
+			
+			// Tracking de scroll en secciones importantes
+			const sections = ['#hero', '#proyectos', '#service', '#contact'];
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const sectionName = entry.target.id || entry.target.className;
+						trackEvent('scroll', 'Section View', sectionName, 1);
+					}
+				});
+			}, { threshold: 0.5 });
+			
+			sections.forEach(sectionId => {
+				const section = document.querySelector(sectionId);
+				if (section) {
+					observer.observe(section);
+				}
+			});
+			
+			console.log('✅ Google Analytics tracking configurado correctamente');
+		});
+	</script>
+	<!-- Widget del Chatbot - Carga después de que la página esté lista -->
+<!--<script>
+	window.addEventListener('load', function() {
+		// Esperar un poco más para asegurar que todo esté cargado
+		setTimeout(function() {
+			const script = document.createElement('script');
+			script.src = 'https://raul-chatbot.onrender.com/static/js/widget.js';
+			script.async = true;
+			document.body.appendChild(script);
+			console.log('🤖 Chatbot cargándose en segundo plano...');
+	}, 1000); // 1 segundo después de que la página esté lista
+});
+</script>-->
+
+	<!-- Efecto de fondo animado para todas las secciones excepto portada -->
+	<script>
+	(function() {
+		function initSectionsBackground() {
+			const canvas = document.getElementById("sections-bg-canvas");
+			if (!canvas) return;
+			
+			const ctx = canvas.getContext("2d");
+			const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+			const heroArea = document.querySelector(".hero-area-slider");
+			let isCanvasVisible = false;
+			let animationId = null;
+			
+			function resize() {
+				canvas.width = Math.floor(window.innerWidth * DPR);
+				canvas.height = Math.floor(window.innerHeight * DPR);
+				canvas.style.width = window.innerWidth + 'px';
+				canvas.style.height = window.innerHeight + 'px';
+			}
+			
+			function handleResize() {
+				resize();
+				rebuild();
+			}
+			
+			addEventListener("resize", handleResize);
+			resize();
+			
+			// Usar IntersectionObserver en lugar de scroll events para mejor rendimiento
+			if (heroArea) {
+				// Observar cuando la portada sale completamente del viewport
+				const heroObserver = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						// Cuando la portada sale completamente del viewport (isIntersecting = false)
+						if (!entry.isIntersecting) {
+							// Activar el canvas inmediatamente pero de forma asíncrona para no bloquear el scroll
+							requestAnimationFrame(() => {
+								canvas.style.display = 'block';
+								isCanvasVisible = true;
+								if (!animationId) {
+									animationId = requestAnimationFrame(draw);
+								}
+							});
+						} else {
+							// Cuando la portada vuelve a ser visible, ocultar el canvas
+							canvas.style.display = 'none';
+							isCanvasVisible = false;
+						}
+					});
+				}, { 
+					threshold: 0, // Activar cuando cualquier parte sale del viewport
+					rootMargin: '-10% 0px' // Activar un poco antes de que salga completamente
+				});
+				
+				heroObserver.observe(heroArea);
+			} else {
+				// Si no hay portada, activar inmediatamente
+				canvas.style.display = 'block';
+				isCanvasVisible = true;
+				animationId = requestAnimationFrame(draw);
+			}
+
+			// Config - Reducir complejidad en móvil
+			const isMobile = window.innerWidth <= 768;
+			const LINE_COUNT = isMobile ? 12 : 18; // Menos líneas en móvil
+			const NODE_PER_LINE = isMobile ? 3 : 5; // Menos nodos en móvil
+			const SPEED = 50;
+			const GLOW = 10;
+
+			function makePath(y) {
+				const w = canvas.width, h = canvas.height;
+				const segs = [];
+				let x = -w * 0.2;
+				let yy = y;
+
+				for (let i = 0; i < 7; i++) {
+					const len = (0.15 + Math.random() * 0.25) * w;
+					segs.push({x1:x, y1:yy, x2:x+len, y2:yy});
+					x += len;
+
+					const step = (Math.random() < 0.5 ? -1 : 1) * (0.04 + Math.random()*0.10) * h;
+					segs.push({x1:x, y1:yy, x2:x, y2:yy+step});
+					yy += step;
+				}
+
+				segs.push({x1:x, y1:yy, x2:w*1.3, y2:yy});
+				return segs;
+			}
+
+			function posOnPath(segs, dist) {
+				for (const s of segs) {
+					const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
+					const L = Math.hypot(dx, dy);
+					if (dist <= L) {
+						const t = L === 0 ? 0 : dist / L;
+						return { x: s.x1 + dx*t, y: s.y1 + dy*t };
+					}
+					dist -= L;
+				}
+				const last = segs[segs.length - 1];
+				return { x: last.x2, y: last.y2 };
+			}
+
+			function pathLength(segs){
+				return segs.reduce((a,s)=>a+Math.hypot(s.x2-s.x1, s.y2-s.y1), 0);
+			}
+
+			let lines = [];
+			
+			// Reducir frecuencia de animación en móvil
+			let lastFrameTimeSections = 0;
+			const targetFPSSections = isMobile ? 30 : 60;
+			const frameIntervalSections = 1000 / targetFPSSections;
+			
+			function rebuild() {
+				const h = canvas.height;
+				lines = [];
+				for (let i = 0; i < LINE_COUNT; i++) {
+					const y = (0.10 + (i/(LINE_COUNT-1))*0.80) * h + (Math.random()-0.5)*h*0.03;
+					const segs = makePath(y);
+					const len = pathLength(segs);
+
+					const nodes = Array.from({length: NODE_PER_LINE}, () => ({
+						d: Math.random()*len,
+						r: (2 + Math.random()*3) * DPR,
+						sp: (0.6 + Math.random()*1.2)
+					}));
+
+					lines.push({ segs, len, nodes });
+				}
+			}
+			rebuild();
+
+			function draw(tms) {
+				// Pausar si el canvas no es visible
+				if (!isCanvasVisible || canvas.style.display === 'none') {
+					animationId = requestAnimationFrame(draw);
+					return;
+				}
+				
+				// Throttle de frames en móvil para mejor rendimiento
+				if (isMobile) {
+					const elapsed = tms - lastFrameTimeSections;
+					if (elapsed < frameIntervalSections) {
+						animationId = requestAnimationFrame(draw);
+						return;
+					}
+					lastFrameTimeSections = tms - (elapsed % frameIntervalSections);
+				}
+				
+				const t = tms / 1000;
+				const w = canvas.width, h = canvas.height;
+
+				// Fondo blanco
+				ctx.clearRect(0, 0, w, h);
+				ctx.fillStyle = "#ffffff";
+				ctx.fillRect(0, 0, w, h);
+
+				// estilo líneas
+				ctx.lineWidth = 2 * DPR;
+				ctx.lineJoin = "round";
+				ctx.lineCap = "round";
+
+				for (const L of lines) {
+					// líneas base (más oscuras para que se vean en blanco)
+					ctx.strokeStyle = "rgba(10, 110, 200, 0.28)";
+					ctx.beginPath();
+					for (const s of L.segs) {
+						ctx.moveTo(s.x1, s.y1);
+						ctx.lineTo(s.x2, s.y2);
+					}
+					ctx.stroke();
+
+					// highlight animado
+					const bandX = (t * SPEED * DPR) % (w * 1.4);
+					ctx.strokeStyle = "rgba(0, 140, 255, 0.22)";
+					ctx.lineWidth = 4 * DPR;
+					ctx.beginPath();
+					for (const s of L.segs) {
+						const minX = Math.min(s.x1, s.x2), maxX = Math.max(s.x1, s.x2);
+						if (bandX > minX - 200*DPR && bandX < maxX + 200*DPR) {
+							ctx.moveTo(s.x1, s.y1);
+							ctx.lineTo(s.x2, s.y2);
+						}
+					}
+					ctx.stroke();
+					ctx.lineWidth = 2 * DPR;
+
+					// nodos en movimiento
+					for (const n of L.nodes) {
+						const d = (n.d + t * SPEED * DPR * n.sp) % L.len;
+						const p = posOnPath(L.segs, d);
+
+						ctx.shadowBlur = GLOW * DPR;
+						ctx.shadowColor = "rgba(0, 140, 255, 0.55)";
+						ctx.fillStyle = "rgba(0, 120, 255, 0.65)";
+						ctx.beginPath();
+						ctx.arc(p.x, p.y, n.r, 0, Math.PI*2);
+						ctx.fill();
+						ctx.shadowBlur = 0;
+					}
+				}
+
+				animationId = requestAnimationFrame(draw);
+			}
+
+			// Observar cambios en la sección de proyectos para reajustar cuando sea visible
+			const proyectosArea = document.querySelector(".proyectos-area");
+			if (proyectosArea) {
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							resize();
+							rebuild();
+							isCanvasVisible = true;
+							if (!animationId) {
+								animationId = requestAnimationFrame(draw);
+							}
+						} else {
+							isCanvasVisible = false;
+						}
+					});
+				}, { threshold: 0.1 });
+				
+				observer.observe(proyectosArea);
+			}
+			
+			// Solo iniciar animación si el canvas debe estar visible
+			if (isCanvasVisible) {
+				animationId = requestAnimationFrame(draw);
+			}
+		}
+		
+		// Ejecutar cuando el DOM esté listo
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initSectionsBackground);
+		} else {
+			initSectionsBackground();
+		}
+	})();
+	</script>
+
+	<!-- Efecto de fondo azul animado para portada -->
+	<script>
+	(function() {
+		function initHeroBackground() {
+			const canvas = document.getElementById("hero-bg-canvas");
+			if (!canvas) return;
+			
+			const ctx = canvas.getContext("2d");
+			const heroArea = document.querySelector(".hero-area-slider");
+			if (!heroArea) return;
+
+			const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+			
+			function resize() {
+				const rect = heroArea.getBoundingClientRect();
+				canvas.width = Math.floor(rect.width * DPR);
+				canvas.height = Math.floor(rect.height * DPR);
+				canvas.style.width = rect.width + 'px';
+				canvas.style.height = rect.height + 'px';
+			}
+			
+			function handleResize() {
+				resize();
+				rebuild();
+			}
+			
+			addEventListener("resize", handleResize);
+			resize();
+
+			// Config - Patrón tipo circuito de tarjeta (más organizado) - Igual que móvil
+			const GRID_SIZE = 100; // Cuadrícula más grande para menos elementos (igual que móvil)
+			const NODE_RADIUS = 2.5;
+			const LINE_WIDTH = 1.2;
+			const SPEED = 20; // Velocidad base para animaciones
+			const LINE_ANIMATION_SPEED = 50; // Velocidad más lenta (igual que móvil)
+			const NODE_SPEED = 15; // Velocidad más lenta (igual que móvil)
+			
+			// Crear una cuadrícula de nodos tipo circuito más organizada
+			function createCircuitGrid() {
+				const w = canvas.width, h = canvas.height;
+				const nodes = [];
+				const connections = [];
+				
+				// Crear nodos en una cuadrícula más organizada (menos aleatoriedad)
+				const cols = Math.ceil(w / GRID_SIZE) + 2;
+				const rows = Math.ceil(h / GRID_SIZE) + 2;
+				
+				for (let row = 0; row < rows; row++) {
+					for (let col = 0; col < cols; col++) {
+						// Menos variación aleatoria para líneas más rectas
+						const x = (col - 1) * GRID_SIZE + (Math.random() - 0.5) * GRID_SIZE * 0.15;
+						const y = (row - 1) * GRID_SIZE + (Math.random() - 0.5) * GRID_SIZE * 0.15;
+						
+						// Solo crear nodos dentro del canvas
+						if (x >= -GRID_SIZE && x <= w + GRID_SIZE && y >= -GRID_SIZE && y <= h + GRID_SIZE) {
+							nodes.push({ x, y, id: row * cols + col });
+						}
+					}
+				}
+				
+				// Conectar nodos de forma más organizada (principalmente horizontal y vertical)
+				for (let i = 0; i < nodes.length; i++) {
+					for (let j = i + 1; j < nodes.length; j++) {
+						const dx = nodes[j].x - nodes[i].x;
+						const dy = nodes[j].y - nodes[i].y;
+						const dist = Math.hypot(dx, dy);
+						
+						// Priorizar conexiones horizontales y verticales (más rectas)
+						const isHorizontal = Math.abs(dy) < GRID_SIZE * 0.2 && Math.abs(dx) < GRID_SIZE * 1.2;
+						const isVertical = Math.abs(dx) < GRID_SIZE * 0.2 && Math.abs(dy) < GRID_SIZE * 1.2;
+						
+						if ((isHorizontal || isVertical) && dist < GRID_SIZE * 1.3) {
+							// Menor probabilidad de conexión (igual que móvil)
+							const connectionProb = 0.2;
+							if (Math.random() < connectionProb) {
+								connections.push({ 
+									from: nodes[i], 
+									to: nodes[j],
+									length: dist,
+									// Agregar nodos animados que viajan por esta conexión (igual que móvil)
+									animatedNodes: Array.from({length: 1}, () => ({
+										progress: Math.random(), // Posición inicial aleatoria (0-1)
+										speed: 0.3 + Math.random() * 0.4, // Velocidad variable
+										size: 1.5 + Math.random() * 1.5 // Tamaño variable
+									}))
+								});
+							}
+						}
+					}
+				}
+				
+				return { nodes, connections };
+			}
+
+			let circuitGrid = null;
+			let heroAnimationId = null;
+			let isHeroVisible = true;
+			
+			// Reducir frecuencia de animación (igual que móvil)
+			let lastFrameTime = 0;
+			const targetFPS = 30; // Igual que móvil
+			const frameInterval = 1000 / targetFPS;
+			
+			function rebuild() {
+				circuitGrid = createCircuitGrid();
+			}
+			rebuild();
+
+			function draw(tms) {
+				// Pausar si el hero no es visible
+				if (!isHeroVisible) {
+					heroAnimationId = requestAnimationFrame(draw);
+					return;
+				}
+				
+				// Throttle de frames para mejor rendimiento (igual que móvil)
+				const elapsed = tms - lastFrameTime;
+				if (elapsed < frameInterval) {
+					heroAnimationId = requestAnimationFrame(draw);
+					return;
+				}
+				lastFrameTime = tms - (elapsed % frameInterval);
+				
+				const t = tms / 1000;
+				const w = canvas.width, h = canvas.height;
+
+				// Primero dibujar el fondo azul completo con el patrón de circuito
+				const grad = ctx.createLinearGradient(0,0,w,h);
+				grad.addColorStop(0, "#0b3aa8");
+				grad.addColorStop(0.5, "#0a4bd6");
+				grad.addColorStop(1, "#062b7a");
+				ctx.fillStyle = grad;
+				ctx.fillRect(0,0,w,h);
+
+				if (circuitGrid) {
+					// Dibujar conexiones (líneas del circuito) con efecto de barrido animado
+					ctx.lineJoin = "round";
+					ctx.lineCap = "round";
+					
+					for (const conn of circuitGrid.connections) {
+						const dx = conn.to.x - conn.from.x;
+						const dy = conn.to.y - conn.from.y;
+						const dist = Math.hypot(dx, dy);
+						
+						// Línea base (más oscura) - siempre visible
+						ctx.globalAlpha = 0.25;
+						ctx.strokeStyle = "rgba(120,180,255,0.35)";
+						ctx.lineWidth = LINE_WIDTH * DPR;
+						ctx.beginPath();
+						ctx.moveTo(conn.from.x, conn.from.y);
+						ctx.lineTo(conn.to.x, conn.to.y);
+						ctx.stroke();
+						
+						// Efecto de barrido animado que recorre la línea (como en efectoazul.html)
+						// El barrido se mueve a lo largo de cada línea desde el inicio
+						const sweepDist = (t * LINE_ANIMATION_SPEED * DPR) % (dist * 1.5);
+						const sweepRadius = 100 * DPR; // Ancho del barrido
+						
+						// Calcular posición del barrido a lo largo de la línea (0 a dist)
+						const sweepPos = sweepDist % dist;
+						
+						// Calcular los límites del segmento visible del barrido
+						const sweepStart = Math.max(0, sweepPos - sweepRadius);
+						const sweepEnd = Math.min(dist, sweepPos + sweepRadius);
+						
+						if (sweepEnd > sweepStart) {
+							// Calcular posición en la línea (0 a 1)
+							const startProgress = sweepStart / dist;
+							const endProgress = sweepEnd / dist;
+							
+							// Puntos de inicio y fin del segmento brillante
+							const segStartX = conn.from.x + dx * startProgress;
+							const segStartY = conn.from.y + dy * startProgress;
+							const segEndX = conn.from.x + dx * endProgress;
+							const segEndY = conn.from.y + dy * endProgress;
+							
+							// Intensidad máxima en el centro del barrido
+							const centerProgress = sweepPos / dist;
+							const centerX = conn.from.x + dx * centerProgress;
+							const centerY = conn.from.y + dy * centerProgress;
+							
+							// Dibujar el segmento brillante de la línea
+							ctx.globalAlpha = 0.6;
+							ctx.strokeStyle = "rgba(180,240,255,0.85)";
+							ctx.lineWidth = (LINE_WIDTH + 2.5) * DPR;
+							ctx.beginPath();
+							ctx.moveTo(segStartX, segStartY);
+							ctx.lineTo(segEndX, segEndY);
+							ctx.stroke();
+							
+							// Punto brillante en el centro del barrido
+							ctx.globalAlpha = 1;
+							ctx.shadowBlur = 15 * DPR;
+							ctx.shadowColor = "rgba(200,240,255,1)";
+							ctx.fillStyle = "rgba(220,250,255,1)";
+							ctx.beginPath();
+							ctx.arc(centerX, centerY, 6 * DPR, 0, Math.PI*2);
+							ctx.fill();
+							ctx.shadowBlur = 0;
+						}
+					}
+					ctx.globalAlpha = 1;
+					ctx.lineWidth = LINE_WIDTH * DPR;
+
+					// Dibujar nodos estáticos (puntos del circuito) - más pequeños y visibles como en la tarjeta
+					for (const node of circuitGrid.nodes) {
+						// Nodos con sombra sutil
+						ctx.shadowBlur = 3 * DPR;
+						ctx.shadowColor = "rgba(180,220,255,0.5)";
+						ctx.fillStyle = "rgba(200,235,255,0.9)"; // Más opacos y visibles
+						ctx.beginPath();
+						ctx.arc(node.x, node.y, NODE_RADIUS * DPR, 0, Math.PI*2);
+						ctx.fill();
+						
+						// Núcleo más brillante pero más pequeño
+						ctx.shadowBlur = 0;
+						ctx.fillStyle = "rgba(220,245,255,1)"; // Completamente opaco
+						ctx.beginPath();
+						ctx.arc(node.x, node.y, (NODE_RADIUS * 0.4) * DPR, 0, Math.PI*2);
+						ctx.fill();
+					}
+					
+					// Dibujar nodos animados que viajan por las conexiones
+					for (const conn of circuitGrid.connections) {
+						if (!conn.animatedNodes) continue;
+						
+						const dx = conn.to.x - conn.from.x;
+						const dy = conn.to.y - conn.from.y;
+						
+						for (const animNode of conn.animatedNodes) {
+							// Actualizar posición del nodo animado
+							animNode.progress = (animNode.progress + t * NODE_SPEED * DPR * animNode.speed / conn.length) % 1;
+							
+							// Calcular posición actual
+							const nodeX = conn.from.x + dx * animNode.progress;
+							const nodeY = conn.from.y + dy * animNode.progress;
+							
+							// Dibujar nodo animado con glow más intenso
+							ctx.shadowBlur = 10 * DPR;
+							ctx.shadowColor = "rgba(170,240,255,0.9)";
+							ctx.fillStyle = "rgba(200,250,255,0.95)";
+							ctx.beginPath();
+							ctx.arc(nodeX, nodeY, animNode.size * DPR, 0, Math.PI*2);
+							ctx.fill();
+							
+							// Núcleo brillante
+							ctx.shadowBlur = 0;
+							ctx.fillStyle = "rgba(220,255,255,1)";
+							ctx.beginPath();
+							ctx.arc(nodeX, nodeY, (animNode.size * 0.5) * DPR, 0, Math.PI*2);
+							ctx.fill();
+						}
+					}
+				}
+
+				// Dibujar fondo blanco que se mete desde la derecha sobre el azul - más terreno
+				ctx.save();
+				ctx.beginPath();
+				// Curva diagonal más redondeada desde la derecha hacia la izquierda (más hacia la izquierda)
+				ctx.moveTo(w, 0);
+				ctx.lineTo(w, h);
+				// Usar bezier curve para una curva más suave y redondeada, más hacia la izquierda
+				ctx.bezierCurveTo(
+					w * 0.75, h * 0.75,  // punto de control 1 (más hacia la izquierda)
+					w * 0.55, h * 0.55,  // punto de control 2 (más hacia la izquierda)
+					w * 0.4, h * 0.2     // punto final de la curva (más hacia la izquierda)
+				);
+				ctx.lineTo(w * 0.45, 0);
+				ctx.closePath();
+				ctx.fillStyle = "#ffffff";
+				ctx.fill();
+				ctx.restore();
+
+				heroAnimationId = requestAnimationFrame(draw);
+			}
+
+			// Observar cambios en la sección para reajustar cuando sea visible
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						resize();
+						rebuild();
+						isHeroVisible = true;
+						if (!heroAnimationId) {
+							heroAnimationId = requestAnimationFrame(draw);
+						}
+					} else {
+						isHeroVisible = false;
+					}
+				});
+			}, { threshold: 0.1 });
+			
+			observer.observe(heroArea);
+			
+			heroAnimationId = requestAnimationFrame(draw);
+		}
+		
+		// Ejecutar cuando el DOM esté listo
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initHeroBackground);
+		} else {
+			initHeroBackground();
+		}
+	})();
+	</script>
+
+	<!-- Efecto de fondo animado para sección de proyectos -->
+	<script>
+	(function() {
+		function initProyectosBackground() {
+			const canvas = document.getElementById("proyectos-bg-canvas");
+			if (!canvas) return;
+		
+		const ctx = canvas.getContext("2d");
+		const proyectosArea = document.querySelector(".proyectos-area");
+		if (!proyectosArea) return;
+
+		const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+		
+		function resize() {
+			const rect = proyectosArea.getBoundingClientRect();
+			canvas.width = Math.floor(rect.width * DPR);
+			canvas.height = Math.floor(rect.height * DPR);
+			canvas.style.width = rect.width + 'px';
+			canvas.style.height = rect.height + 'px';
+		}
+		
+		function handleResize() {
+			resize();
+			rebuild();
+		}
+		
+		addEventListener("resize", handleResize);
+		resize();
+
+		// Config - Reducir complejidad en móvil
+		const isMobileProyectos = window.innerWidth <= 768;
+		const LINE_COUNT = isMobileProyectos ? 12 : 18; // Menos líneas en móvil
+		const NODE_PER_LINE = isMobileProyectos ? 3 : 5; // Menos nodos en móvil
+		const SPEED = 50;
+		const GLOW = 10;
+
+		function makePath(y) {
+			const w = canvas.width, h = canvas.height;
+			const segs = [];
+			let x = -w * 0.2;
+			let yy = y;
+
+			for (let i = 0; i < 7; i++) {
+				const len = (0.15 + Math.random() * 0.25) * w;
+				segs.push({x1:x, y1:yy, x2:x+len, y2:yy});
+				x += len;
+
+				const step = (Math.random() < 0.5 ? -1 : 1) * (0.04 + Math.random()*0.10) * h;
+				segs.push({x1:x, y1:yy, x2:x, y2:yy+step});
+				yy += step;
+			}
+
+			segs.push({x1:x, y1:yy, x2:w*1.3, y2:yy});
+			return segs;
+		}
+
+		function posOnPath(segs, dist) {
+			for (const s of segs) {
+				const dx = s.x2 - s.x1, dy = s.y2 - s.y1;
+				const L = Math.hypot(dx, dy);
+				if (dist <= L) {
+					const t = L === 0 ? 0 : dist / L;
+					return { x: s.x1 + dx*t, y: s.y1 + dy*t };
+				}
+				dist -= L;
+			}
+			const last = segs[segs.length - 1];
+			return { x: last.x2, y: last.y2 };
+		}
+
+		function pathLength(segs){
+			return segs.reduce((a,s)=>a+Math.hypot(s.x2-s.x1, s.y2-s.y1), 0);
+		}
+
+		let lines = [];
+		let proyectosAnimationId = null;
+		let isProyectosVisible = true;
+		
+		function rebuild() {
+			const h = canvas.height;
+			lines = [];
+			for (let i = 0; i < LINE_COUNT; i++) {
+				const y = (0.10 + (i/(LINE_COUNT-1))*0.80) * h + (Math.random()-0.5)*h*0.03;
+				const segs = makePath(y);
+				const len = pathLength(segs);
+
+				const nodes = Array.from({length: NODE_PER_LINE}, () => ({
+					d: Math.random()*len,
+					r: (2 + Math.random()*3) * DPR,
+					sp: (0.6 + Math.random()*1.2)
+				}));
+
+				lines.push({ segs, len, nodes });
+			}
+		}
+		rebuild();
+
+		function draw(tms) {
+			// Pausar si el canvas no es visible
+			if (!isProyectosVisible) {
+				proyectosAnimationId = requestAnimationFrame(draw);
+				return;
+			}
+			
+			const t = tms / 1000;
+			const w = canvas.width, h = canvas.height;
+
+			// Fondo blanco
+			ctx.clearRect(0, 0, w, h);
+			ctx.fillStyle = "#ffffff";
+			ctx.fillRect(0, 0, w, h);
+
+			// estilo líneas
+			ctx.lineWidth = 2 * DPR;
+			ctx.lineJoin = "round";
+			ctx.lineCap = "round";
+
+			for (const L of lines) {
+				// líneas base (más oscuras para que se vean en blanco)
+				ctx.strokeStyle = "rgba(10, 110, 200, 0.28)";
+				ctx.beginPath();
+				for (const s of L.segs) {
+					ctx.moveTo(s.x1, s.y1);
+					ctx.lineTo(s.x2, s.y2);
+				}
+				ctx.stroke();
+
+				// highlight animado
+				const bandX = (t * SPEED * DPR) % (w * 1.4);
+				ctx.strokeStyle = "rgba(0, 140, 255, 0.22)";
+				ctx.lineWidth = 4 * DPR;
+				ctx.beginPath();
+				for (const s of L.segs) {
+					const minX = Math.min(s.x1, s.x2), maxX = Math.max(s.x1, s.x2);
+					if (bandX > minX - 200*DPR && bandX < maxX + 200*DPR) {
+						ctx.moveTo(s.x1, s.y1);
+						ctx.lineTo(s.x2, s.y2);
+					}
+				}
+				ctx.stroke();
+				ctx.lineWidth = 2 * DPR;
+
+				// nodos en movimiento
+				for (const n of L.nodes) {
+					const d = (n.d + t * SPEED * DPR * n.sp) % L.len;
+					const p = posOnPath(L.segs, d);
+
+					ctx.shadowBlur = GLOW * DPR;
+					ctx.shadowColor = "rgba(0, 140, 255, 0.55)";
+					ctx.fillStyle = "rgba(0, 120, 255, 0.65)";
+					ctx.beginPath();
+					ctx.arc(p.x, p.y, n.r, 0, Math.PI*2);
+					ctx.fill();
+					ctx.shadowBlur = 0;
+				}
+			}
+
+			proyectosAnimationId = requestAnimationFrame(draw);
+		}
+
+		// Observar cambios en la sección para reajustar cuando sea visible
+		if (proyectosArea) {
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						resize();
+						rebuild();
+						isProyectosVisible = true;
+						if (!proyectosAnimationId) {
+							proyectosAnimationId = requestAnimationFrame(draw);
+						}
+					} else {
+						isProyectosVisible = false;
+					}
+				});
+			}, { threshold: 0.1 });
+			
+			observer.observe(proyectosArea);
+		}
+		
+		proyectosAnimationId = requestAnimationFrame(draw);
+		}
+		
+		// Ejecutar cuando el DOM esté listo
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', initProyectosBackground);
+		} else {
+			initProyectosBackground();
+		}
+	})();
+	</script>
+
+</body>
+</html>
